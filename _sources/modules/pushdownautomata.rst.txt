@@ -18,7 +18,11 @@ Pushdown Automata (PDA)
      .admonition.quiz { background: #FFF1F0; border-left: 6px solid #FF4D4F; }
      .admonition.id-trace { background: #F5F5F5; border-left: 6px solid #722C2C; padding: 0.75em; }
      .transition-box { background: #f0f9ff; border: 2px solid #1890FF; padding: 1em; margin: 1em 0; border-radius: 6px; }
+     .combined-viz { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin: 1.5em 0; }
+     .viz-section { padding: 1em; background: #f9f9f9; border-radius: 6px; border: 1px solid #ddd; }
+     .viz-title { font-weight: 600; color: #7b1113; margin-bottom: 0.5em; text-align: center; }
      code.notation { background: #e8e8e8; padding: 0.3em 0.6em; font-family: monospace; font-weight: bold; }
+     @media (max-width: 1200px) { .combined-viz { grid-template-columns: 1fr; } }
    </style>
 
 ----
@@ -147,47 +151,6 @@ Recognize :math:`L = \{ w ∈ \{(,)\}^* | w \text{ is balanced} \}`
    When only $ remains, move to final state (empty stack)
    </div>
 
-Acceptance Check — "(())"
----------------------------
-
-.. admonition:: String Trace for "(())" — ACCEPTED
-   :class: id-trace
-
-   **Input:** (())  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | (()) | ε | — |
-   | 1 | q₁ | (()) | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
-   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
-   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
-   | 5 | q₁ | ε | $ | (q₁, ')', '(') → (q₁, ε) |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
-
-   **Result:** ✓ **ACCEPTED** — Input consumed, stack empty, final state q₂ reached
-
-Rejection Check — "(()"
--------------------------
-
-.. admonition:: String Trace for "(()" — REJECTED
-   :class: quiz
-
-   **Input:** (()  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | (() | ε | — |
-   | 1 | q₁ | (() | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
-   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
-   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
-   | 5 | q₁ | ε | ($ | **STUCK** — No transition for (q₁, ε, '(') |
-
-   **Result:** ✗ **REJECTED** — Input ends but stack still has '(' (unmatched open)
-
 State Diagram
 --------------
 
@@ -209,6 +172,111 @@ State Diagram
       q1 -> q1 [label="), ( → ε"];
       q1 -> q2 [label="ε, $ → ε"];
    }
+
+Acceptance Check — "(())"
+---------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "(())"
+   :name: fig-stack-trace-balanced
+
+   digraph StackTrace {
+      rankdir=LR;
+      node [shape=record, fontsize=11, style=filled];
+      
+      step0 [label="<f0>State: q₀|<f1>Input: (())|<f2>Stack:\n⊥", fillcolor="#fff8f8"];
+      step1 [label="<f0>State: q₁|<f1>Input: (())|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
+      step2 [label="<f0>State: q₁|<f1>Input: ())|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step3 [label="<f0>State: q₁|<f1>Input: ))|<f2>Stack:\n(\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step4 [label="<f0>State: q₁|<f1>Input: )|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step5 [label="<f0>State: q₁|<f1>Input: ε|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
+      step6 [label="<f0>State: q₂|<f1>Input: ε|<f2>Stack:\n⊥", fillcolor="#f2fff2"];
+      
+      step0 -> step1 [label="ε,ε→$"];
+      step1 -> step2 [label="(,ε→("];
+      step2 -> step3 [label="(,ε→("];
+      step3 -> step4 [label="),(→ε"];
+      step4 -> step5 [label="),(→ε"];
+      step5 -> step6 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "(())" — ACCEPTED
+   :class: id-trace
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | (()) | ε | — |
+   | 1 | q₁ | (()) | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
+   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
+   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
+   | 5 | q₁ | ε | $ | (q₁, ')', '(') → (q₁, ε) |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Input consumed, stack empty, final state q₂ reached
+
+Rejection Check — "(()"
+-------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "(()" — Shows Unmatched (
+   :name: fig-stack-reject-balanced
+
+   digraph StackReject {
+      rankdir=LR;
+      node [shape=record, fontsize=11, style=filled];
+      
+      s0 [label="<f0>State: q₀|<f1>Input: (()"|<f2>Stack:\n⊥", fillcolor="#fff8f8"];
+      s1 [label="<f0>State: q₁|<f1>Input: (()"|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
+      s2 [label="<f0>State: q₁|<f1>Input: ()"|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      s3 [label="<f0>State: q₁|<f1>Input: )"|<f2>Stack:\n(\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      s4 [label="<f0>State: q₁|<f1>Input: ε|<f2>Stack:\n(\n$\n⊥", fillcolor="#fff1f0"];
+      s5 [label="<f0>STUCK|<f1>—|<f2>Stack:\n(\n$\n⊥", fillcolor="#ffcccc"];
+      
+      s0 -> s1 [label="ε,ε→$"];
+      s1 -> s2 [label="(,ε→("];
+      s2 -> s3 [label="(,ε→("];
+      s3 -> s4 [label="),(→ε"];
+      s4 -> s5 [label="❌ NO TRANSITION"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "(()" — REJECTED
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | (() | ε | — |
+   | 1 | q₁ | (() | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
+   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
+   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
+   | 5 | q₁ | ε | ($ | **STUCK** — No transition for (q₁, ε, '(') |
+
+   **Result:** ✗ **REJECTED** — Input ends but stack still has '(' (unmatched open)
 
 ----
 
@@ -252,50 +320,6 @@ Recognize :math:`L = \{ a^n b^n | n ≥ 1 \}` (equal a's followed by equal b's).
    When only $ remains: accept (stack empty)
    </div>
 
-Acceptance Check — "aaabbb"
------------------------------
-
-.. admonition:: String Trace for "aaabbb" — ACCEPTED
-   :class: id-trace
-
-   **Input:** aaabbb  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aaabbb | ε | — |
-   | 1 | q₁ | aaabbb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | aabbb | A$ | (q₁, a, ε) → (q₁, A) |
-   | 3 | q₁ | abbb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | bbb | AAA$ | (q₁, a, A) → (q₁, AA) |
-   | 5 | q₂ | bb | AA$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
-   | 6 | q₂ | b | A$ | (q₂, b, A) → (q₂, ε) |
-   | 7 | q₂ | ε | $ | (q₂, b, A) → (q₂, ε) |
-   | 8 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
-
-   **Result:** ✓ **ACCEPTED** — Perfect matching: 3 a's pushed, 3 b's popped
-
-Rejection Check — "aabbb"
----------------------------
-
-.. admonition:: String Trace for "aabbb" — REJECTED
-   :class: quiz
-
-   **Input:** aabbb  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aabbb | ε | — |
-   | 1 | q₁ | aabbb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | abbb | A$ | (q₁, a, ε) → (q₁, A) |
-   | 3 | q₁ | bbb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₂ | bb | A$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
-   | 5 | q₂ | b | $ | (q₂, b, A) → (q₂, ε) |
-   | 6 | q₂ | ε | $ | **STUCK** — No transition for (q₂, b, $) |
-
-   **Result:** ✗ **REJECTED** — 2 a's but 3 b's (mismatch)
-
 State Diagram
 --------------
 
@@ -320,6 +344,120 @@ State Diagram
       q2 -> q3 [label="ε, $ → ε"];
    }
 
+Acceptance Check — "aaabbb"
+-----------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "aaabbb"
+   :name: fig-stack-anbn
+
+   digraph StackTrace_anbn {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      s0 [label="<f0>q₀|<f1>aaabbb|<f2>⊥", fillcolor="#fff8f8"];
+      s1 [label="<f0>q₁|<f1>aaabbb|<f2>$", fillcolor="#e6f7ff"];
+      s2 [label="<f0>q₁|<f1>aabbb|<f2>A\n$", fillcolor="#e6f7ff"];
+      s3 [label="<f0>q₁|<f1>abbb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      s4 [label="<f0>q₁|<f1>bbb|<f2>A\nA\nA\n$", fillcolor="#e6f7ff"];
+      s5 [label="<f0>q₂|<f1>bb|<f2>A\nA\n$", fillcolor="#fffbe6"];
+      s6 [label="<f0>q₂|<f1>b|<f2>A\n$", fillcolor="#fffbe6"];
+      s7 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      s8 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      s0 -> s1 [label="ε,ε→$"];
+      s1 -> s2 [label="a,ε→A"];
+      s2 -> s3 [label="a,A→AA"];
+      s3 -> s4 [label="a,A→AA"];
+      s4 -> s5 [label="b,A→ε"];
+      s5 -> s6 [label="b,A→ε"];
+      s6 -> s7 [label="b,A→ε"];
+      s7 -> s8 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "aaabbb" — ACCEPTED
+   :class: id-trace
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aaabbb | ε | — |
+   | 1 | q₁ | aaabbb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | aabbb | A$ | (q₁, a, ε) → (q₁, A) |
+   | 3 | q₁ | abbb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | bbb | AAA$ | (q₁, a, A) → (q₁, AA) |
+   | 5 | q₂ | bb | AA$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
+   | 6 | q₂ | b | A$ | (q₂, b, A) → (q₂, ε) |
+   | 7 | q₂ | ε | $ | (q₂, b, A) → (q₂, ε) |
+   | 8 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Perfect matching: 3 a's pushed, 3 b's popped
+
+Rejection Check — "aabbb"
+---------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "aabbb" — Shows Mismatch
+   :name: fig-stack-reject-anbn
+
+   digraph StackReject_anbn {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      s0 [label="<f0>q₀|<f1>aabbb|<f2>⊥", fillcolor="#fff8f8"];
+      s1 [label="<f0>q₁|<f1>aabbb|<f2>$", fillcolor="#e6f7ff"];
+      s2 [label="<f0>q₁|<f1>abbb|<f2>A\n$", fillcolor="#e6f7ff"];
+      s3 [label="<f0>q₁|<f1>bbb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      s4 [label="<f0>q₂|<f1>bb|<f2>A\n$", fillcolor="#fffbe6"];
+      s5 [label="<f0>q₂|<f1>b|<f2>$", fillcolor="#fff1f0"];
+      s6 [label="<f0>STUCK|<f1>—|<f2>$", fillcolor="#ffcccc"];
+      
+      s0 -> s1 [label="ε,ε→$"];
+      s1 -> s2 [label="a,ε→A"];
+      s2 -> s3 [label="a,A→AA"];
+      s3 -> s4 [label="b,A→ε"];
+      s4 -> s5 [label="b,A→ε"];
+      s5 -> s6 [label="❌ NO TRANSITION"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "aabbb" — REJECTED
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aabbb | ε | — |
+   | 1 | q₁ | aabbb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | abbb | A$ | (q₁, a, ε) → (q₁, A) |
+   | 3 | q₁ | bbb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₂ | bb | A$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
+   | 5 | q₂ | b | $ | (q₂, b, A) → (q₂, ε) |
+   | 6 | q₂ | ε | $ | **STUCK** — No transition for (q₂, b, $) |
+
+   **Result:** ✗ **REJECTED** — 2 a's but 3 b's (mismatch)
+
 ----
 
 PDA Example 3: Palindromes WcWᴿ
@@ -333,6 +471,12 @@ Recognize :math:`L = \{ WcW^R | W ∈ \{a,b\}^* \}` (palindromes with center mar
 
    M = (\{q_0, q_1, q_2, q_3\}, \{a, b, c\}, \{a, b, \$\}, δ, q_0, \$, \{q_3\})
 
+**Strategy:**
+- **Push Phase (q₁)** — Read W, push all symbols onto stack
+- **Pivot Phase** — Read center marker 'c', switch to match mode  
+- **Match Phase (q₂)** — Read Wᴿ, pop must match exactly
+- **Accept** — Stack empty when input ends
+
 **Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
 
 .. raw:: html
@@ -342,85 +486,25 @@ Recognize :math:`L = \{ WcW^R | W ∈ \{a,b\}^* \}` (palindromes with center mar
    <code class="notation">(q₀, ε, ε) → (q₁, $)</code><br>
    Initialize stack with bottom marker ($)
    <br><br>
-   <p><strong>Push Phase — Read W, Push symbols:</strong></p>
+   <p><strong>Push Phase — Read W, accumulate:</strong></p>
    <code class="notation">(q₁, a, ε) → (q₁, a)</code><br>
-   Reading 'a' with ε (empty stack): push 'a'
-   <br>
    <code class="notation">(q₁, a, a) → (q₁, aa)</code><br>
-   Reading 'a' with 'a' on top: push another 'a'
-   <br>
    <code class="notation">(q₁, a, b) → (q₁, ab)</code><br>
-   Reading 'a' with 'b' on top: push 'a' (stacked on top)
-   <br>
    <code class="notation">(q₁, b, ε) → (q₁, b)</code><br>
-   Reading 'b' with ε: push 'b'
-   <br>
    <code class="notation">(q₁, b, a) → (q₁, ba)</code><br>
-   Reading 'b' with 'a' on top: push 'b' on top
-   <br>
    <code class="notation">(q₁, b, b) → (q₁, bb)</code><br>
-   Reading 'b' with 'b' on top: push another 'b'
-   <br><br>
-   <p><strong>Pivot — Read center marker 'c':</strong></p>
+   <br>
+   <p><strong>Pivot — Read 'c', switch to match:</strong></p>
    <code class="notation">(q₁, c, a) → (q₂, a)</code><br>
-   Reading 'c' with any letter on top: move to match state (no stack change)
-   <br>
    <code class="notation">(q₁, c, b) → (q₂, b)</code><br>
-   Reading 'c' with any letter on top: move to match state
-   <br><br>
-   <p><strong>Match Phase — Read Wᴿ, Pop matching symbols:</strong></p>
-   <code class="notation">(q₂, a, a) → (q₂, ε)</code><br>
-   Reading 'a' with 'a' on top: pop 'a'
    <br>
+   <p><strong>Match Phase — Read Wᴿ, pop matching:</strong></p>
+   <code class="notation">(q₂, a, a) → (q₂, ε)</code><br>
    <code class="notation">(q₂, b, b) → (q₂, ε)</code><br>
-   Reading 'b' with 'b' on top: pop 'b'
-   <br><br>
+   <br>
    <p><strong>Accept Transition:</strong></p>
    <code class="notation">(q₂, ε, $) → (q₃, ε)</code><br>
-   When only $ remains: accept
    </div>
-
-Acceptance Check — "abcba"
------------------------------
-
-.. admonition:: String Trace for "abcba" — ACCEPTED
-   :class: id-trace
-
-   **Input:** abcba  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abcba | ε | — |
-   | 1 | q₁ | abcba | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bcba | a$ | (q₁, a, ε) → (q₁, a) |
-   | 3 | q₁ | cba | ba$ | (q₁, b, a) → (q₁, ba) |
-   | 4 | q₂ | ba | ba$ | (q₁, c, b) → (q₂, b) **[Pivot: switch to match]** |
-   | 5 | q₂ | a | a$ | (q₂, b, b) → (q₂, ε) |
-   | 6 | q₂ | ε | $ | (q₂, a, a) → (q₂, ε) |
-   | 7 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
-
-   **Result:** ✓ **ACCEPTED** — Palindrome verified: W="ab" matched with Wᴿ="ba"
-
-Rejection Check — "abcda"
----------------------------
-
-.. admonition:: String Trace for "abcda" — REJECTED
-   :class: quiz
-
-   **Input:** abcda  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abcda | ε | — |
-   | 1 | q₁ | abcda | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bcda | a$ | (q₁, a, ε) → (q₁, a) |
-   | 3 | q₁ | cda | ba$ | (q₁, b, a) → (q₁, ba) |
-   | 4 | q₂ | da | ba$ | (q₁, c, b) → (q₂, b) **[Pivot]** |
-   | 5 | q₂ | a | ba$ | **STUCK** — No transition for (q₂, d, b) |
-
-   **Result:** ✗ **REJECTED** — Symbol 'd' not in alphabet {a,b,c}; mismatch if it were
 
 State Diagram
 --------------
@@ -447,6 +531,114 @@ State Diagram
       q2 -> q3 [label="ε, $ → ε"];
    }
 
+Acceptance Check — "abcba"
+-----------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "abcba"
+   :name: fig-stack-palindrome
+
+   digraph StackTrace_palindrome {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      p0 [label="<f0>q₀|<f1>abcba|<f2>⊥", fillcolor="#fff8f8"];
+      p1 [label="<f0>q₁|<f1>abcba|<f2>$", fillcolor="#e6f7ff"];
+      p2 [label="<f0>q₁|<f1>bcba|<f2>a\n$", fillcolor="#e6f7ff"];
+      p3 [label="<f0>q₁|<f1>cba|<f2>b\na\n$", fillcolor="#e6f7ff"];
+      p4 [label="<f0>q₂|<f1>ba|<f2>b\na\n$", fillcolor="#fffbe6"];
+      p5 [label="<f0>q₂|<f1>a|<f2>a\n$", fillcolor="#fffbe6"];
+      p6 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      p7 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      p0 -> p1 [label="ε,ε→$"];
+      p1 -> p2 [label="a,ε→a"];
+      p2 -> p3 [label="b,a→ba"];
+      p3 -> p4 [label="c,b→b"];
+      p4 -> p5 [label="b,b→ε"];
+      p5 -> p6 [label="a,a→ε"];
+      p6 -> p7 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "abcba" — ACCEPTED
+   :class: id-trace
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abcba | ε | — |
+   | 1 | q₁ | abcba | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bcba | a$ | (q₁, a, ε) → (q₁, a) |
+   | 3 | q₁ | cba | ba$ | (q₁, b, a) → (q₁, ba) |
+   | 4 | q₂ | ba | ba$ | (q₁, c, b) → (q₂, b) **[Pivot: switch]** |
+   | 5 | q₂ | a | a$ | (q₂, b, b) → (q₂, ε) |
+   | 6 | q₂ | ε | $ | (q₂, a, a) → (q₂, ε) |
+   | 7 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Perfect palindrome match: W="ab" matched with Wᴿ="ba"
+
+Rejection Check — "abcda"
+---------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "abcda" — Symbol d not in alphabet
+   :name: fig-stack-reject-palindrome
+
+   digraph StackReject_pal {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      p0 [label="<f0>q₀|<f1>abcda|<f2>⊥", fillcolor="#fff8f8"];
+      p1 [label="<f0>q₁|<f1>abcda|<f2>$", fillcolor="#e6f7ff"];
+      p2 [label="<f0>q₁|<f1>bcda|<f2>a\n$", fillcolor="#e6f7ff"];
+      p3 [label="<f0>q₁|<f1>cda|<f2>b\na\n$", fillcolor="#e6f7ff"];
+      p4 [label="<f0>q₂|<f1>da|<f2>b\na\n$", fillcolor="#fffbe6"];
+      p5 [label="<f0>STUCK|<f1>—|<f2>b\na\n$", fillcolor="#ffcccc"];
+      
+      p0 -> p1 [label="ε,ε→$"];
+      p1 -> p2 [label="a,ε→a"];
+      p2 -> p3 [label="b,a→ba"];
+      p3 -> p4 [label="c,b→b"];
+      p4 -> p5 [label="❌ NO TRANSITION"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "abcda" — REJECTED
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abcda | ε | — |
+   | 1 | q₁ | abcda | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bcda | a$ | (q₁, a, ε) → (q₁, a) |
+   | 3 | q₁ | cda | ba$ | (q₁, b, a) → (q₁, ba) |
+   | 4 | q₂ | da | ba$ | (q₁, c, b) → (q₂, b) **[Pivot]** |
+   | 5 | q₂ | a | ba$ | **STUCK** — No transition for (q₂, d, b); 'd' not in alphabet {a,b,c} |
+
+   **Result:** ✗ **REJECTED** — Mismatch: 'b' on stack but 'd' in input
+
 ----
 
 PDA Example 4: Equal Count aⁿbⁿ (Any Order)
@@ -460,11 +652,11 @@ Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}` (equal a's and b
 
    M = (\{q_0, q_1, q_2\}, \{a, b\}, \{A, B, \$\}, δ, q_0, \$, \{q_2\})
 
-**Strategy:** 
-- Push A when 'a' exceeds 'b'
-- Push B when 'b' exceeds 'a'
-- Pop when opposite symbol arrives (cancels out)
-- Accept when stack returns to $ only
+**Strategy:**
+- **Push A** when 'a' exceeds 'b'
+- **Push B** when 'b' exceeds 'a'
+- **Pop** when opposite symbol arrives (cancellation)
+- **Accept** when stack returns to $ only
 
 **Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
 
@@ -477,7 +669,7 @@ Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}` (equal a's and b
    <br><br>
    <p><strong>Read 'a' — Push A or Pop B:</strong></p>
    <code class="notation">(q₁, a, $) → (q₁, A$)</code><br>
-   First symbol 'a' with $ bottom: push A
+   First 'a' with $ bottom: push A
    <br>
    <code class="notation">(q₁, a, A) → (q₁, AA)</code><br>
    'a' with A on top: push another A (increase a-count)
@@ -487,7 +679,7 @@ Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}` (equal a's and b
    <br><br>
    <p><strong>Read 'b' — Push B or Pop A:</strong></p>
    <code class="notation">(q₁, b, $) → (q₁, B$)</code><br>
-   First symbol 'b' with $ bottom: push B
+   First 'b' with $ bottom: push B
    <br>
    <code class="notation">(q₁, b, B) → (q₁, BB)</code><br>
    'b' with B on top: push another B (increase b-count)
@@ -499,69 +691,6 @@ Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}` (equal a's and b
    <code class="notation">(q₁, ε, $) → (q₂, ε)</code><br>
    When only $ remains: accept (equal counts)
    </div>
-
-Acceptance Check — "aabb"
----------------------------
-
-.. admonition:: String Trace for "aabb" — ACCEPTED
-   :class: id-trace
-
-   **Input:** aabb  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aabb | ε | — |
-   | 1 | q₁ | aabb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | abb | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | bb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | b | B$ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
-
-   **Result:** ✓ **ACCEPTED** — 2 a's and 2 b's cancel perfectly
-
-Acceptance Check — "abab"
----------------------------
-
-.. admonition:: String Trace for "abab" — ACCEPTED
-   :class: id-trace
-
-   **Input:** abab  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abab | ε | — |
-   | 1 | q₁ | abab | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bab | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | ab | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 4 | q₁ | b | A$ | (q₁, a, $) → (q₁, A$) |
-   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
-
-   **Result:** ✓ **ACCEPTED** — Interleaved a's and b's, equal counts
-
-Rejection Check — "aaab"
---------------------------
-
-.. admonition:: String Trace for "aaab" — REJECTED
-   :class: quiz
-
-   **Input:** aaab  
-   **Stack bottom:** $
-
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aaab | ε | — |
-   | 1 | q₁ | aaab | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | aab | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | ab | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | b | AAA$ | (q₁, a, A) → (q₁, AA) |
-   | 5 | q₁ | ε | AA$ | (q₁, b, A) → (q₁, ε) **[Pop A]** |
-   | 6 | q₁ | ε | AA$ | **STUCK** — Input consumed but stack ≠ $ |
-
-   **Result:** ✗ **REJECTED** — 3 a's but only 1 b (unequal)
 
 State Diagram
 --------------
@@ -586,6 +715,168 @@ State Diagram
       
       q1 -> q2 [label="ε, $ → ε"];
    }
+
+Acceptance Check — "aabb"
+---------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "aabb"
+   :name: fig-stack-equal-aabb
+
+   digraph StackTrace_equal1 {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      e0 [label="<f0>q₀|<f1>aabb|<f2>⊥", fillcolor="#fff8f8"];
+      e1 [label="<f0>q₁|<f1>aabb|<f2>$", fillcolor="#e6f7ff"];
+      e2 [label="<f0>q₁|<f1>abb|<f2>A\n$", fillcolor="#e6f7ff"];
+      e3 [label="<f0>q₁|<f1>bb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      e4 [label="<f0>q₁|<f1>b|<f2>A\n$", fillcolor="#e6f7ff"];
+      e5 [label="<f0>q₁|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      e6 [label="<f0>q₂|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      e0 -> e1 [label="ε,ε→$"];
+      e1 -> e2 [label="a,$→A$"];
+      e2 -> e3 [label="a,A→AA"];
+      e3 -> e4 [label="b,A→ε"];
+      e4 -> e5 [label="b,A→ε"];
+      e5 -> e6 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "aabb" — ACCEPTED
+   :class: id-trace
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aabb | ε | — |
+   | 1 | q₁ | aabb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | abb | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | bb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | b | A$ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — 2 a's and 2 b's cancel perfectly
+
+Acceptance Check — "abab"
+---------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "abab" — Interleaved
+   :name: fig-stack-equal-abab
+
+   digraph StackTrace_equal2 {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      f0 [label="<f0>q₀|<f1>abab|<f2>⊥", fillcolor="#fff8f8"];
+      f1 [label="<f0>q₁|<f1>abab|<f2>$", fillcolor="#e6f7ff"];
+      f2 [label="<f0>q₁|<f1>bab|<f2>A\n$", fillcolor="#e6f7ff"];
+      f3 [label="<f0>q₁|<f1>ab|<f2>$", fillcolor="#e6f7ff"];
+      f4 [label="<f0>q₁|<f1>b|<f2>A\n$", fillcolor="#e6f7ff"];
+      f5 [label="<f0>q₁|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      f6 [label="<f0>q₂|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      f0 -> f1 [label="ε,ε→$"];
+      f1 -> f2 [label="a,$→A$"];
+      f2 -> f3 [label="b,A→ε"];
+      f3 -> f4 [label="a,$→A$"];
+      f4 -> f5 [label="b,A→ε"];
+      f5 -> f6 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "abab" — ACCEPTED
+   :class: id-trace
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abab | ε | — |
+   | 1 | q₁ | abab | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bab | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | ab | $ | (q₁, b, A) → (q₁, ε) **[Cancel]** |
+   | 4 | q₁ | b | A$ | (q₁, a, $) → (q₁, A$) |
+   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Cancel]** |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Interleaved a's and b's, perfect cancellation
+
+Rejection Check — "aaab"
+--------------------------
+
+.. raw:: html
+
+   <div class="combined-viz">
+
+**Stack Visualization:**
+
+.. graphviz::
+   :caption: Stack Evolution for "aaab" — Unequal
+   :name: fig-stack-reject-equal
+
+   digraph StackReject_equal {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      g0 [label="<f0>q₀|<f1>aaab|<f2>⊥", fillcolor="#fff8f8"];
+      g1 [label="<f0>q₁|<f1>aaab|<f2>$", fillcolor="#e6f7ff"];
+      g2 [label="<f0>q₁|<f1>aab|<f2>A\n$", fillcolor="#e6f7ff"];
+      g3 [label="<f0>q₁|<f1>ab|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      g4 [label="<f0>q₁|<f1>b|<f2>A\nA\nA\n$", fillcolor="#e6f7ff"];
+      g5 [label="<f0>q₁|<f1>ε|<f2>A\nA\n$", fillcolor="#fff1f0"];
+      g6 [label="<f0>STUCK|<f1>—|<f2>A\nA\n$", fillcolor="#ffcccc"];
+      
+      g0 -> g1 [label="ε,ε→$"];
+      g1 -> g2 [label="a,$→A$"];
+      g2 -> g3 [label="a,A→AA"];
+      g3 -> g4 [label="a,A→AA"];
+      g4 -> g5 [label="b,A→ε"];
+      g5 -> g6 [label="❌ STUCK"];
+   }
+
+.. raw:: html
+
+   </div>
+
+**Transition Table Trace:**
+
+.. admonition:: String Trace for "aaab" — REJECTED
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aaab | ε | — |
+   | 1 | q₁ | aaab | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | aab | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | ab | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | b | AAA$ | (q₁, a, A) → (q₁, AA) |
+   | 5 | q₁ | ε | AA$ | (q₁, b, A) → (q₁, ε) **[Cancel 1st]** |
+   | 6 | q₁ | ε | AA$ | **STUCK** — Input consumed but stack ≠ $ (2 A's remain) |
+
+   **Result:** ✗ **REJECTED** — 3 a's but only 1 b (unequal counts)
 
 ----
 
@@ -643,7 +934,8 @@ Summary
 * **Push phase** accumulates symbols (stack grows)  
 * **Pop phase** matches and removes symbols (stack shrinks)  
 * **Cancellation** allows balancing in any order  
-* **Formal traces** show step-by-step computation with stacks visible  
+* **Combined visualizations** show both stack evolution and formal transitions  
+* **Parallel diagrams** make acceptance/rejection immediately visible  
 * Foundation for parser design and syntax analysis
 
 ----
