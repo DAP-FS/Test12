@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Introduction to Context Free Grammar &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>1. Introduction to Context Free Grammer &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -32,7 +32,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="19. Pushdown Automata (PDA)" href="pushdownautomata.html" />
+    <link rel="next" title="3. Pushdown Automata (PDA)" href="pushdownautomata.html" />
     <link rel="prev" title="&lt;no title&gt;" href="intro.html" /> 
 </head>
 
@@ -57,26 +57,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction to Context Free Grammar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#what-is-context-free">2. What is Context-Free?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#the-problem-why-cfgs-matter">3. The Problem: Why CFGs Matter?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#recipe-analogy-how-cfgs-work">4. Recipe Analogy: How CFGs Work?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#regular-vs-context-free">5. Regular vs. Context-Free</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#why-context-free">6. Why “Context-Free”?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#real-world-applications">7. Real-World Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#quick-check">8. Quick Check</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#summary">9. Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#formal-definition">10. Formal Definition</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#example-cfg-a-balanced-parentheses">11. Example CFG â€” Balanced Parentheses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#derivation-methods">12. Derivation Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#parse-trees">13. Parse Trees</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#parsing-methods">14. Parsing Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#ambiguity-in-cfgs">15. Ambiguity in CFGs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#self-check-interactive-quiz">16. Self-Check: Interactive Quiz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#complete-examples-with-full-solutions">17. Complete Examples with Full Solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">18. Summary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">19. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises.html">20. Practice Excercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#cfg-as-a-recipe-step-by-step">2. CFG as a Recipe: Step-by-Step</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">4. Practice Excercises</a></li>
 </ul>
 
         </div>
@@ -93,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Introduction to Context Free Grammar</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Introduction to Context Free Grammer</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/context_free_languages.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,13 +87,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="introduction-to-context-free-grammar">
-<h1><span class="section-number">1. </span>Introduction to Context Free Grammar<a class="headerlink" href="#introduction-to-context-free-grammar" title="Link to this heading"></a></h1>
+  <section id="introduction-to-context-free-grammer">
+<h1><span class="section-number">1. </span>Introduction to Context Free Grammer<a class="headerlink" href="#introduction-to-context-free-grammer" title="Link to this heading"></a></h1>
 <p>Start here! This section builds <strong>intuition first</strong>, before diving into formal definitions.
-Keep your mind open â€” imagine, visualize, and connect.</p>
-</section>
+Keep your mind open — imagine, visualize, and connect.</p>
+<hr class="docutils" />
 <section id="what-is-context-free">
-<h1><span class="section-number">2. </span>What is Context-Free?<a class="headerlink" href="#what-is-context-free" title="Link to this heading"></a></h1>
+<h2><span class="section-number">1.1. </span>What is Context-Free?<a class="headerlink" href="#what-is-context-free" title="Link to this heading"></a></h2>
 <p><strong>Real-World Analogy: HTML Tags</strong></p>
 <p>Think about nested HTML structure:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
@@ -121,15 +105,16 @@ Keep your mind open â€” imagine, visualize, and connect.</p>
 </div>
 <p>Every opening <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code> has a matching closing <code class="docutils literal notranslate"><span class="pre">&lt;/tag&gt;</span></code>.</p>
 <div class="important admonition">
-<p class="admonition-title">âš ï¸ Key Insight</p>
-<p>A <strong>finite automaton (DFA/NFA)</strong> can’t verify this structureâ€”it lacks <em>memory</em>.
+<p class="admonition-title">⚠️ Key Insight</p>
+<p>A <strong>finite automaton (DFA/NFA)</strong> can’t verify this structure—it lacks <em>memory</em>.
 Matching nested tags requires <strong>unbounded memory</strong>, which <strong>only a stack</strong> can provide.</p>
 </div>
 <p>A <strong>Context-Free Grammar (CFG)</strong> is precisely this:
 a <strong>rule-based system</strong> that can <em>generate and verify</em> hierarchical, nested patterns.</p>
 </section>
+<hr class="docutils" />
 <section id="the-problem-why-cfgs-matter">
-<h1><span class="section-number">3. </span>The Problem: Why CFGs Matter?<a class="headerlink" href="#the-problem-why-cfgs-matter" title="Link to this heading"></a></h1>
+<h2><span class="section-number">1.2. </span>The Problem: Why CFGs Matter ?<a class="headerlink" href="#the-problem-why-cfgs-matter" title="Link to this heading"></a></h2>
 <p><strong>Example: Balanced Parentheses</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -145,67 +130,104 @@ a <strong>rule-based system</strong> that can <em>generate and verify</em> hiera
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">()</span></code></p></td>
-<td><p>âœ“</p></td>
+<td><p>✓</p></td>
 <td><p>Matched pair</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(())</span></code></p></td>
-<td><p>âœ“</p></td>
+<td><p>✓</p></td>
 <td><p>Nested pair</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(()())</span></code></p></td>
-<td><p>âœ“</p></td>
+<td><p>✓</p></td>
 <td><p>Mixed nesting</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(()</span></code></p></td>
-<td><p>âœ—</p></td>
+<td><p>✗</p></td>
 <td><p>Unclosed parenthesis</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">())</span></code></p></td>
-<td><p>âœ—</p></td>
+<td><p>✗</p></td>
 <td><p>Extra closing parenthesis</p></td>
 </tr>
 </tbody>
 </table>
+<hr class="docutils" />
 <section id="can-a-dfa-verify-this">
-<h2><span class="section-number">3.1. </span>Can a DFA verify this?<a class="headerlink" href="#can-a-dfa-verify-this" title="Link to this heading"></a></h2>
+<h3><span class="section-number">1.2.1. </span>Can a DFA verify this?<a class="headerlink" href="#can-a-dfa-verify-this" title="Link to this heading"></a></h3>
 <p><strong>No.</strong></p>
 <p>A DFA cannot decide this language.</p>
 <div class="hint admonition">
-<p class="admonition-title">ðŸ§  Intuition</p>
+<p class="admonition-title">🧠 Intuition</p>
 <p>A DFA has <em>finite memory</em>.
-Balanced parentheses need remembering <em>an arbitrary number of opens</em> until they’re closed later â€” requiring a <strong>stack</strong>, not fixed states.</p>
+Balanced parentheses need remembering <em>an arbitrary number of opens</em> until they’re closed later — requiring a <strong>stack</strong>, not fixed states.</p>
 </div>
+<p>—</p>
 </section>
 </section>
 <section id="recipe-analogy-how-cfgs-work">
-<h1><span class="section-number">4. </span>Recipe Analogy: How CFGs Work?<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h1>
-<p>Think of a CFG as a <strong>recipe</strong> for generating valid sentences.</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentence â†’ Subject Verb Object
-Subject  â†’ &quot;The&quot; Noun
-Noun     â†’ &quot;cat&quot; | &quot;dog&quot; | &quot;bird&quot;
-Verb     â†’ &quot;chased&quot; | &quot;saw&quot;
-Object   â†’ &quot;the&quot; Noun
+<h2><span class="section-number">1.3. </span>Recipe Analogy: How CFGs Work ?<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="cfg-as-a-recipe-step-by-step">
+<h1><span class="section-number">2. </span>CFG as a Recipe: Step-by-Step<a class="headerlink" href="#cfg-as-a-recipe-step-by-step" title="Link to this heading"></a></h1>
+<p>Think of a <strong>Context-Free Grammar (CFG)</strong> as a <em>recipe</em> that tells you how to <strong>build valid sentences</strong> from smaller ingredients.</p>
+<div style="background-color:#f7f9fb; padding:1em; border-left:5px solid #2b6cb0; border-radius:8px;">
+  <strong>Analogy:</strong> A CFG is like a cookbook — you start with a <em>main dish</em> (the start symbol) and repeatedly
+  replace ingredients (non-terminals) with their detailed instructions (production rules).
+</div><p>—</p>
+<p><strong>Grammar Rules</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentence → Subject Verb Object
+Subject  → &quot;The&quot; Noun
+Noun     → &quot;cat&quot; | &quot;dog&quot; | &quot;bird&quot;
+Verb     → &quot;chased&quot; | &quot;saw&quot;
+Object   → &quot;the&quot; Noun
 </pre></div>
 </div>
-<p>Start with the top rule and <strong>substitute step by step</strong>:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentence
-âŸ¹ Subject Verb Object
-âŸ¹ &quot;The&quot; Noun Verb Object
-âŸ¹ &quot;The&quot; &quot;cat&quot; Verb Object
-âŸ¹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; Object
-âŸ¹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; &quot;the&quot; &quot;bird&quot;
+<p>—</p>
+<p><strong>Let’s Generate a Sentence!</strong></p>
+<p>We start from the top rule and <strong>expand step by step</strong>.
+Each arrow <strong>⟹</strong> shows one <em>derivation step</em> — replacing a variable with its rule.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Step 1: Start with the start symbol
+<span class="hll">Sentence
+</span>⟹ Subject Verb Object
+<span class="hll">
+</span>Step 2: Expand Subject
+<span class="hll">⟹ &quot;The&quot; Noun Verb Object
+</span>
+Step 3: Choose a Noun
+⟹ &quot;The&quot; &quot;cat&quot; Verb Object
+
+Step 4: Expand Verb
+⟹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; Object
+
+Step 5: Expand Object
+⟹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; &quot;the&quot; &quot;bird&quot;
 </pre></div>
 </div>
-<p>âœ… <strong>Result:</strong> “The cat chased the bird”</p>
+<p>—</p>
+<p>✅ <strong>Final Result:</strong>
+.. raw:: html</p>
+<blockquote>
+<div><dl class="simple">
+<dt>&lt;div style=”background-color:#e6ffe6; padding:0.8em; border-left:5px solid #2f855a; border-radius:8px;”&gt;</dt><dd><p>&lt;strong&gt;Generated Sentence:&lt;/strong&gt; &lt;em&gt;The cat chased the bird&lt;/em&gt;</p>
+</dd>
+</dl>
+<p>&lt;/div&gt;</p>
+</div></blockquote>
+<p>—</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Each arrow <strong>âŸ¹</strong> is a <strong>derivation step</strong> â€” you replace one variable with its rule.</p>
+<ul class="simple">
+<li><p>Each step <strong>replaces</strong> one non-terminal (like <em>Sentence</em> or <em>Noun</em>) with its corresponding rule.</p></li>
+<li><p>You continue until <strong>only terminals remain</strong> — words that appear directly in the final sentence.</p></li>
+<li><p>This is how a <strong>CFG “generates”</strong> strings in a language.</p></li>
+</ul>
 </div>
-</section>
+<p>—</p>
 <section id="regular-vs-context-free">
-<h1><span class="section-number">5. </span>Regular vs. Context-Free<a class="headerlink" href="#regular-vs-context-free" title="Link to this heading"></a></h1>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Quick Comparison</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<h2><span class="section-number">2.1. </span>Regular vs. Context-Free<a class="headerlink" href="#regular-vs-context-free" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Quick Comparison</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 35.0%" />
@@ -227,12 +249,12 @@ Object   â†’ &quot;the&quot; Noun
 <td><p>PDA</p></td>
 </tr>
 <tr class="row-even"><td><p>Can recognize</p></td>
-<td><p><span class="math notranslate nohighlight">\(a*b*\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(a^nb^n\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a*b*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">aⁿbⁿ</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Handles nesting?</p></td>
-<td><p>âœ— No</p></td>
-<td><p>âœ“ Yes</p></td>
+<td><p>✗ No</p></td>
+<td><p>✓ Yes</p></td>
 </tr>
 </tbody>
 </table>
@@ -240,73 +262,72 @@ Object   â†’ &quot;the&quot; Noun
 <p class="admonition-title">Tip</p>
 <p>Every <strong>CFG</strong> has an equivalent <strong>Pushdown Automaton (PDA)</strong>.</p>
 </div>
-<div class="graphviz"><object data="../_images/graphviz-c008d2f56341e9d18b0b699d5b81833b93386afe.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph CFG_PDA_Equivalence {
+<div class="graphviz"><object data="../_images/graphviz-7f9d154ffbe98406371449a54a80909a665dcdef.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph CFG_PDA {
     rankdir=LR;
-    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=&quot;#E8F4F8&quot;, fontsize=11];
-    edge [fontsize=10];
-
-    CFG [label=&quot;Context-Free\nGrammar (CFG)&quot;];
-    PDA [label=&quot;Pushdown\nAutomaton (PDA)&quot;];
-    CFL [label=&quot;Context-Free\nLanguage (CFL)&quot;];
-
-    CFG -&gt; CFL [label=&quot;generates&quot;];
-    CFL -&gt; PDA [label=&quot;recognized by&quot;];
-    PDA -&gt; CFL [label=&quot;accepts&quot;];
+    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=&quot;#E8F4F8&quot;];
+    CFG [label=&quot;Context-Free Grammar&quot;];
+    PDA [label=&quot;Pushdown Automaton&quot;];
+    CFL [label=&quot;Context-Free Language&quot;];
+    CFG -&gt; CFL;
+    CFL -&gt; PDA [label=&quot;Equivalent Representation&quot;];
 }</p></object></div>
+<p>—</p>
 </section>
 <section id="why-context-free">
-<h1><span class="section-number">6. </span>Why “Context-Free”?<a class="headerlink" href="#why-context-free" title="Link to this heading"></a></h1>
+<h2><span class="section-number">2.2. </span>Why “Context-Free”?<a class="headerlink" href="#why-context-free" title="Link to this heading"></a></h2>
 <div class="shadow-sm p-3 bg-light rounded docutils container">
-<p>A rule applies <strong>regardless of context</strong> â€” that’s why it’s <em>context-free</em>.</p>
+<p>A rule applies <strong>regardless of context</strong> — that’s why it’s <em>context-free</em>.</p>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Noun â†’ &quot;cat&quot;    â† applies anywhere &quot;Noun&quot; appears
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Noun → &quot;cat&quot;    ← applies anywhere “Noun” appears.
 </pre></div>
 </div>
 <p>Compare with context-sensitive rules:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a Noun b â†’ a &quot;cat&quot; b   â† applies only between &quot;a&quot; and &quot;b&quot;
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a Noun b → a &quot;cat&quot; b   ← applies only between “a” and “b”
 </pre></div>
 </div>
+<p>—</p>
 </section>
 <section id="real-world-applications">
-<h1><span class="section-number">7. </span>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading"></a></h1>
+<h2><span class="section-number">2.3. </span>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading"></a></h2>
 <p><strong>1. Programming Languages</strong></p>
 <p>Every compiler (C, Java, Python) uses CFGs for parsing.</p>
 <p><strong>2. HTML/XML Parsing</strong></p>
 <p>Browsers verify nesting of tags using CFG-like structures.</p>
 <p><strong>3. Mathematical Expressions</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2 + 3 * (4 + 5)   âœ“ valid
-2 + * 3 (4 + 5)   âœ— invalid
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2 + 3 * (4 + 5)   ✓ valid
+2 + * 3 (4 + 5)   ✗ invalid
 </pre></div>
 </div>
 <p><strong>4. Natural Language</strong></p>
 <p>Grammar rules model sentence structure.</p>
+<p>—</p>
 </section>
 <section id="quick-check">
-<h1><span class="section-number">8. </span>Quick Check<a class="headerlink" href="#quick-check" title="Link to this heading"></a></h1>
+<h2><span class="section-number">2.4. </span>Quick Check<a class="headerlink" href="#quick-check" title="Link to this heading"></a></h2>
 <p><strong>Q1.</strong> Can a DFA verify <code class="docutils literal notranslate"><span class="pre">(())</span></code>?</p>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ’¡ Solution</p>
+<p class="admonition-title">💡 Solution</p>
 <p><strong>No.</strong> Requires unbounded memory (stack).</p>
 </div>
 <p><strong>Q2.</strong> What can CFGs do that DFAs can’t?</p>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ’¡ Solution</p>
-<p>Describe <strong>recursive</strong> and <strong>nested</strong> patterns â€” vital for programming languages.</p>
+<p class="admonition-title">💡 Solution</p>
+<p>Describe <strong>recursive</strong> and <strong>nested</strong> patterns — vital for programming languages.</p>
 </div>
+<p>—</p>
 </section>
 <section id="summary">
-<h1><span class="section-number">9. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
-<p>âœ… CFGs describe <strong>recursive, nested</strong> languages</p>
-<p>âœ… They use <strong>rule substitution</strong> (derivations)</p>
-<p>âœ… <strong>More powerful than</strong> DFA/NFA</p>
-<p>âœ… <strong>Less powerful than</strong> Turing Machines</p>
-<p>âœ… Essential for <strong>parsers, compilers, and linguistics</strong></p>
+<h2><span class="section-number">2.5. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>✅ CFGs describe <strong>recursive, nested</strong> languages</p>
+<p>✅ They use <strong>rule substitution</strong> (derivations)</p>
+<p>✅ <strong>More powerful than</strong> DFA/NFA</p>
+<p>✅ <strong>Less powerful than</strong> Turing Machines</p>
+<p>✅ Essential for <strong>parsers, compilers, and linguistics</strong></p>
 </section>
-<section id="formal-definition">
-<h1><span class="section-number">10. </span>Formal Definition<a class="headerlink" href="#formal-definition" title="Link to this heading"></a></h1>
-<section id="definition-2-1-a-context-free-grammar">
-<h2><span class="section-number">10.1. </span>Definition 2.1 â€” Context-Free Grammar<a class="headerlink" href="#definition-2-1-a-context-free-grammar" title="Link to this heading"></a></h2>
+<hr class="docutils" />
+<section id="definition-2-1-context-free-grammar">
+<h2><span class="section-number">2.6. </span>Definition 2.1 — Context-Free Grammar<a class="headerlink" href="#definition-2-1-context-free-grammar" title="Link to this heading"></a></h2>
 <p>A <strong>Context-Free Grammar (CFG)</strong> is a 4-tuple:</p>
 <div class="math notranslate nohighlight">
 \[G = (V, \Sigma, R, S)\]</div>
@@ -344,465 +365,62 @@ Object   â†’ &quot;the&quot; Noun
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <ul class="simple">
-<li><p>Variables â†’ UPPERCASE (e.g. <code class="docutils literal notranslate"><span class="pre">S</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code>)</p></li>
-<li><p>Terminals â†’ lowercase or symbols (e.g. <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">(</span></code>)</p></li>
-<li><p>Multiple rules allowed: <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">â†’</span> <span class="pre">wâ‚</span> <span class="pre">|</span> <span class="pre">wâ‚‚</span> <span class="pre">|</span> <span class="pre">wâ‚ƒ</span></code></p></li>
+<li><p>Variables → UPPERCASE (e.g. <code class="docutils literal notranslate"><span class="pre">S</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code>)</p></li>
+<li><p>Terminals → lowercase or symbols (e.g. <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">(</span></code>)</p></li>
+<li><p>Multiple rules allowed: <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">→</span> <span class="pre">w₁</span> <span class="pre">|</span> <span class="pre">w₂</span> <span class="pre">|</span> <span class="pre">w₃</span></code></p></li>
 </ul>
 </div>
+<p>—</p>
 </section>
-</section>
-<section id="example-cfg-a-balanced-parentheses">
-<h1><span class="section-number">11. </span>Example CFG â€” Balanced Parentheses<a class="headerlink" href="#example-cfg-a-balanced-parentheses" title="Link to this heading"></a></h1>
+<section id="example-cfg-balanced-parentheses">
+<h2><span class="section-number">2.7. </span>Example CFG — Balanced Parentheses<a class="headerlink" href="#example-cfg-balanced-parentheses" title="Link to this heading"></a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>G = ({S}, {(,)}, R, S)
-where R = {S â†’ Îµ | (S) | SS}
+where R = {S → ε | (S) | SS}
 </pre></div>
 </div>
 <p><strong>Rule meanings:</strong></p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(S â†’ \epsilon\)</span> : Empty string is valid</p></li>
-<li><p><span class="math notranslate nohighlight">\(S â†’ (S)\)</span> : Wrap balanced string in parentheses</p></li>
-<li><p><span class="math notranslate nohighlight">\(S â†’ SS\)</span> : Concatenate two balanced strings</p></li>
+<li><p><span class="math notranslate nohighlight">\(S → ε\)</span> : Empty string is valid</p></li>
+<li><p><span class="math notranslate nohighlight">\(S → (S)\)</span> : Wrap balanced string in parentheses</p></li>
+<li><p><span class="math notranslate nohighlight">\(S → SS\)</span> : Concatenate two balanced strings</p></li>
 </ul>
 <div class="hint admonition">
-<p class="admonition-title">âœ… Try it yourself</p>
+<p class="admonition-title">✅ Try it yourself</p>
 <p>Derive <code class="docutils literal notranslate"><span class="pre">(())()</span></code> using the above grammar.</p>
 </div>
-<p><strong>Solution:</strong></p>
+<p>—</p>
+<p><strong>Hidden Answer (click to reveal):</strong></p>
+<div class="toggle admonition">
+<p class="admonition-title">💡 Solution</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">âŸ¹</span> <span class="pre">SS</span></code></p></li>
-<li><p>First <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">âŸ¹</span> <span class="pre">(S)</span> <span class="pre">âŸ¹</span> <span class="pre">(())</span></code></p></li>
-<li><p>Second <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">âŸ¹</span> <span class="pre">(S)</span> <span class="pre">âŸ¹</span> <span class="pre">()</span></code></p></li>
-<li><p>âœ… Combined: <code class="docutils literal notranslate"><span class="pre">(())()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">SS</span></code></p></li>
+<li><p>First <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">(S)</span> <span class="pre">⟹</span> <span class="pre">(())</span></code></p></li>
+<li><p>Second <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">(S)</span> <span class="pre">⟹</span> <span class="pre">()</span></code></p></li>
 </ol>
-</section>
-<section id="derivation-methods">
-<h1><span class="section-number">12. </span>Derivation Methods<a class="headerlink" href="#derivation-methods" title="Link to this heading"></a></h1>
-<p>In CFG, we derive strings through <strong>rule substitution</strong>. There are two standard approaches:</p>
-<section id="leftmost-derivation">
-<h2><span class="section-number">12.1. </span>Leftmost Derivation<a class="headerlink" href="#leftmost-derivation" title="Link to this heading"></a></h2>
-<p>In a <strong>leftmost derivation</strong>, we always replace the <strong>leftmost variable</strong> first.</p>
-<div class="important admonition">
-<p class="admonition-title">Definition</p>
-<p>At each step, replace the <strong>leftmost non-terminal</strong> (variable) in the string.</p>
+<p>✅ Combined: <code class="docutils literal notranslate"><span class="pre">(())()</span></code></p>
 </div>
-<p><strong>Example: Derive</strong> <span class="math notranslate nohighlight">\(aabb\)</span> <strong>from</strong> <span class="math notranslate nohighlight">\(G = (\{S, A, B\}, \{a, b\}, R, S)\)</span> <strong>where:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>R: S â†’ AB
-   A â†’ aA | a
-   B â†’ bB | b
-</pre></div>
-</div>
-<p><strong>Leftmost Derivation:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
-âŸ¹ AB         (S â†’ AB)
-âŸ¹ aAB        (A â†’ aA, leftmost variable)
-âŸ¹ aaB        (A â†’ a, leftmost variable)
-âŸ¹ aaBB       (B â†’ bB, leftmost variable)
-âŸ¹ aaBb       (B â†’ b, leftmost variable)
-âŸ¹ aabb       âœ“ Success!
-</pre></div>
-</div>
-<p><strong>Key Point:</strong> At each step, we substitute the <strong>leftmost non-terminal</strong>.</p>
-</section>
-<section id="rightmost-derivation">
-<h2><span class="section-number">12.2. </span>Rightmost Derivation<a class="headerlink" href="#rightmost-derivation" title="Link to this heading"></a></h2>
-<p>In a <strong>rightmost derivation</strong>, we always replace the <strong>rightmost variable</strong> first.</p>
-<div class="important admonition">
-<p class="admonition-title">Definition</p>
-<p>At each step, replace the <strong>rightmost non-terminal</strong> (variable) in the string.</p>
-</div>
-<p><strong>Example: Derive</strong> <span class="math notranslate nohighlight">\(aabb\)</span> <strong>using rightmost derivation:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
-âŸ¹ AB         (S â†’ AB)
-âŸ¹ AbB        (B â†’ bB, rightmost variable)
-âŸ¹ Abb        (B â†’ b, rightmost variable)
-âŸ¹ aAbb       (A â†’ aA, rightmost variable)
-âŸ¹ aabb       (A â†’ a, rightmost variable)
-âŸ¹ aabb       âœ“ Success!
-</pre></div>
-</div>
-<p><strong>Key Point:</strong> At each step, we substitute the <strong>rightmost non-terminal</strong>.</p>
-<section id="comparison">
-<h3><span class="section-number">12.2.1. </span>Comparison<a class="headerlink" href="#comparison" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Leftmost vs Rightmost</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 50.0%" />
-<col style="width: 50.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Leftmost Derivation</strong></p></th>
-<th class="head"><p><strong>Rightmost Derivation</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Always replace leftmost variable</p></td>
-<td><p>Always replace rightmost variable</p></td>
-</tr>
-<tr class="row-odd"><td><p>Top-down parsing approach</p></td>
-<td><p>Bottom-up parsing approach</p></td>
-</tr>
-<tr class="row-even"><td><p>Used by recursive descent parsers</p></td>
-<td><p>Used by LR parsers</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>âœ… Both derive the <strong>same string</strong>, just in different order!</p>
-</div>
-</section>
-</section>
-</section>
-<section id="parse-trees">
-<h1><span class="section-number">13. </span>Parse Trees<a class="headerlink" href="#parse-trees" title="Link to this heading"></a></h1>
-<p>A <strong>parse tree</strong> (or <strong>syntax tree</strong>) is a visual representation of how a string is derived from a grammar.</p>
-<section id="understanding-parse-trees">
-<h2><span class="section-number">13.1. </span>Understanding Parse Trees<a class="headerlink" href="#understanding-parse-trees" title="Link to this heading"></a></h2>
-<div class="important admonition">
-<p class="admonition-title">Definition</p>
-<p>A <strong>parse tree</strong> shows:
-- <strong>Root:</strong> Start symbol <span class="math notranslate nohighlight">\(S\)</span>
-- <strong>Leaves:</strong> Terminals (input symbols)
-- <strong>Internal nodes:</strong> Variables (non-terminals)
-- <strong>Edges:</strong> Production rules applied</p>
-</div>
-<p><strong>Structure Rules:</strong></p>
-<ol class="arabic simple">
-<li><p>Root is the start symbol <span class="math notranslate nohighlight">\(S\)</span></p></li>
-<li><p>Each leaf is a terminal from <span class="math notranslate nohighlight">\(\Sigma\)</span> (or <span class="math notranslate nohighlight">\(\epsilon\)</span>)</p></li>
-<li><p>Each internal node is a non-terminal from <span class="math notranslate nohighlight">\(V\)</span></p></li>
-<li><p>If node <span class="math notranslate nohighlight">\(A\)</span> has children <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_k\)</span>, then <span class="math notranslate nohighlight">\(A \to X_1X_2\cdots X_k\)</span> is a rule in <span class="math notranslate nohighlight">\(R\)</span></p></li>
-</ol>
-<section id="example-parse-tree">
-<h3><span class="section-number">13.1.1. </span>Example Parse Tree<a class="headerlink" href="#example-parse-tree" title="Link to this heading"></a></h3>
-<p><strong>Grammar:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>G = ({S, A, B}, {a, b}, R, S)
-R: S â†’ AB
-   A â†’ aA | a
-   B â†’ bB | b
-</pre></div>
-</div>
-<p><strong>Derive:</strong> <span class="math notranslate nohighlight">\(aabb\)</span></p>
-<p><strong>Parse Tree:</strong></p>
-<div class="graphviz"><object data="../_images/graphviz-ca4facefb52575cf40e17b91b8e58c8815539b14.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph ParseTree_aabb {
-    rankdir=TB;
-    node [shape=circle, style=&quot;filled&quot;, fillcolor=&quot;#FFE6E6&quot;, fontsize=12];
-    edge [fontsize=10];
-
-    S [label=&quot;S&quot;];
-    A1 [label=&quot;A&quot;];
-    B1 [label=&quot;B&quot;];
-    A2 [label=&quot;A&quot;];
-    B2 [label=&quot;B&quot;];
-    a1 [label=&quot;a&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    a2 [label=&quot;a&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    b1 [label=&quot;b&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    b2 [label=&quot;b&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-
-    S -&gt; A1;
-    S -&gt; B1;
-    A1 -&gt; a1;
-    A1 -&gt; A2;
-    A2 -&gt; a2;
-    B1 -&gt; b1;
-    B1 -&gt; B2;
-    B2 -&gt; b2;
-}</p></object></div>
-<p><strong>Reading the tree (left to right at leaves):</strong> <span class="math notranslate nohighlight">\(a \cdot a \cdot b \cdot b = aabb\)</span> âœ“</p>
-</section>
-<section id="balanced-parentheses-parse-tree">
-<h3><span class="section-number">13.1.2. </span>Balanced Parentheses Parse Tree<a class="headerlink" href="#balanced-parentheses-parse-tree" title="Link to this heading"></a></h3>
-<p><strong>Grammar:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S â†’ (S) | SS | Îµ
-</pre></div>
-</div>
-<p><strong>Derive:</strong> <code class="docutils literal notranslate"><span class="pre">(())</span></code></p>
-<p><strong>Parse Tree:</strong></p>
-<div class="graphviz"><object data="../_images/graphviz-d1fc6a5a5dc7c752947ce8683b3d4e88c90982a1.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph ParseTree_Parens {
-    rankdir=TB;
-    node [shape=circle, style=&quot;filled&quot;, fillcolor=&quot;#FFE6E6&quot;, fontsize=12];
-    edge [fontsize=10];
-
-    S0 [label=&quot;S&quot;];
-    paren1 [label=&quot;(&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    S1 [label=&quot;S&quot;];
-    S2 [label=&quot;S&quot;];
-    paren2 [label=&quot;(&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    paren3 [label=&quot;)&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    eps [label=&quot;Îµ&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    paren4 [label=&quot;)&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-
-    S0 -&gt; paren1;
-    S0 -&gt; S1;
-    S0 -&gt; paren4;
-    S1 -&gt; paren2;
-    S1 -&gt; S2;
-    S1 -&gt; paren3;
-    S2 -&gt; eps;
-}</p></object></div>
-<p><strong>Reading the tree (leaves left to right):</strong> <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">(</span> <span class="pre">)</span> <span class="pre">)</span></code> âœ“</p>
-</section>
-</section>
-</section>
-<section id="parsing-methods">
-<h1><span class="section-number">14. </span>Parsing Methods<a class="headerlink" href="#parsing-methods" title="Link to this heading"></a></h1>
-<p><strong>Parsing</strong> is the reverse of derivation: given a string, find its parse tree.</p>
-<p>Two main approaches exist:</p>
-<section id="top-down-parsing-recursive-descent">
-<h2><span class="section-number">14.1. </span>Top-Down Parsing (Recursive Descent)<a class="headerlink" href="#top-down-parsing-recursive-descent" title="Link to this heading"></a></h2>
-<p><strong>Concept:</strong> Start from the root (start symbol) and work downward to build the tree.</p>
-<div class="important admonition">
-<p class="admonition-title">Algorithm</p>
-<ol class="arabic simple">
-<li><p>Start with <span class="math notranslate nohighlight">\(S\)</span> (start symbol)</p></li>
-<li><p>At each node, try applicable production rules</p></li>
-<li><p>Match terminals with input symbols</p></li>
-<li><p>Recursively parse non-terminals</p></li>
-<li><p>Backtrack if a choice fails</p></li>
-</ol>
-</div>
-<p><strong>Example: Parse</strong> <code class="docutils literal notranslate"><span class="pre">aabb</span></code> <strong>using top-down approach</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Grammar:
-S â†’ AB
-A â†’ aA | a
-B â†’ bB | b
-
-Input: aabb
-
-Step 1: S â†’ AB (choose first rule)
-Step 2: A â†’ aA (consume first &#39;a&#39;)
-Step 3: A â†’ a (consume second &#39;a&#39;)
-Step 4: B â†’ bB (consume first &#39;b&#39;)
-Step 5: B â†’ b (consume second &#39;b&#39;)
-âœ“ Success!
-</pre></div>
-</div>
-<div class="graphviz"><object data="../_images/graphviz-d58e2f6c58b3b084676bbc6ae6773398046331e8.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph TopDownParsing {
-    rankdir=TB;
-    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=&quot;#E8F4F8&quot;];
-
-    step1 [label=&quot;1. Start: S&quot;];
-    step2 [label=&quot;2. Sâ†’AB&quot;];
-    step3 [label=&quot;3. Match 'a' with A&quot;];
-    step4 [label=&quot;4. Continue with A&quot;];
-    step5 [label=&quot;5. Match 'a'&quot;];
-    step6 [label=&quot;6. Parse B&quot;];
-    step7 [label=&quot;7. Success!&quot;];
-
-    step1 -&gt; step2;
-    step2 -&gt; step3;
-    step3 -&gt; step4;
-    step4 -&gt; step5;
-    step5 -&gt; step6;
-    step6 -&gt; step7;
-}</p></object></div>
-<p><strong>Advantages:</strong></p>
-<ul class="simple">
-<li><p>Intuitive and easy to implement</p></li>
-<li><p>Natural for hand-tracing</p></li>
-<li><p>Used in recursive descent parsers</p></li>
-</ul>
-<p><strong>Disadvantages:</strong></p>
-<ul class="simple">
-<li><p>Can be inefficient with backtracking</p></li>
-<li><p>Difficult for left-recursive grammars</p></li>
-</ul>
-</section>
-<section id="bottom-up-parsing-shift-reduce">
-<h2><span class="section-number">14.2. </span>Bottom-Up Parsing (Shift-Reduce)<a class="headerlink" href="#bottom-up-parsing-shift-reduce" title="Link to this heading"></a></h2>
-<p><strong>Concept:</strong> Start from input symbols (leaves) and work upward to build the tree.</p>
-<div class="important admonition">
-<p class="admonition-title">Algorithm</p>
-<ol class="arabic simple">
-<li><p>Read input symbols left to right</p></li>
-<li><p><strong>Shift</strong> input onto a stack</p></li>
-<li><p><strong>Reduce</strong> stack using production rules (reverse)</p></li>
-<li><p>Stop when entire input is consumed and stack contains <span class="math notranslate nohighlight">\(S\)</span></p></li>
-</ol>
-</div>
-<p><strong>Example: Parse</strong> <code class="docutils literal notranslate"><span class="pre">aabb</span></code> <strong>using bottom-up approach</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Grammar:
-S â†’ AB
-A â†’ aA | a
-B â†’ bB | b
-
-Input: a a b b
-
-Step 1: Shift &#39;a&#39;
-        Stack: [a], Input: abb
-Step 2: Reduce A â†’ a
-        Stack: [A], Input: abb
-Step 3: Shift &#39;a&#39;
-        Stack: [A, a], Input: bb
-Step 4: Reduce A â†’ aA
-        Stack: [A], Input: bb
-Step 5: Shift &#39;b&#39;
-        Stack: [A, b], Input: b
-Step 6: Shift &#39;b&#39;
-        Stack: [A, b, b], Input: empty
-Step 7: Reduce B â†’ b
-        Stack: [A, B, b], Input: empty
-Step 8: Reduce B â†’ bB
-        Stack: [A, B], Input: empty
-Step 9: Reduce S â†’ AB
-        Stack: [S], Input: empty
-âœ“ Success!
-</pre></div>
-</div>
-<p><strong>Advantages:</strong></p>
-<ul class="simple">
-<li><p>Handles left-recursive grammars</p></li>
-<li><p>More efficient with DP (memoization)</p></li>
-<li><p>Used in LR parsers</p></li>
-</ul>
-<p><strong>Disadvantages:</strong></p>
-<ul class="simple">
-<li><p>More complex to implement</p></li>
-<li><p>Harder for manual tracing</p></li>
-</ul>
-<section id="comparison-of-parsing-methods">
-<h3><span class="section-number">14.2.1. </span>Comparison of Parsing Methods<a class="headerlink" href="#comparison-of-parsing-methods" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Parsing Methods</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
-<colgroup>
-<col style="width: 30.0%" />
-<col style="width: 35.0%" />
-<col style="width: 35.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Aspect</strong></p></th>
-<th class="head"><p><strong>Top-Down</strong></p></th>
-<th class="head"><p><strong>Bottom-Up</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Direction</p></td>
-<td><p>Root â†’ Leaves</p></td>
-<td><p>Leaves â†’ Root</p></td>
-</tr>
-<tr class="row-odd"><td><p>Derivation type</p></td>
-<td><p>Leftmost</p></td>
-<td><p>Rightmost</p></td>
-</tr>
-<tr class="row-even"><td><p>Implementation</p></td>
-<td><p>Recursive descent</p></td>
-<td><p>Shift-reduce</p></td>
-</tr>
-<tr class="row-odd"><td><p>Handles left recursion?</p></td>
-<td><p>âœ— No</p></td>
-<td><p>âœ“ Yes</p></td>
-</tr>
-<tr class="row-even"><td><p>Efficiency</p></td>
-<td><p>Can backtrack</p></td>
-<td><p>More efficient</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-</section>
-</section>
-<section id="ambiguity-in-cfgs">
-<h1><span class="section-number">15. </span>Ambiguity in CFGs<a class="headerlink" href="#ambiguity-in-cfgs" title="Link to this heading"></a></h1>
-<p><strong>Definition:</strong> A grammar is <strong>ambiguous</strong> if a string has multiple parse trees (or derivations).</p>
-<section id="example-ambiguous-grammar">
-<h2><span class="section-number">15.1. </span>Example: Ambiguous Grammar<a class="headerlink" href="#example-ambiguous-grammar" title="Link to this heading"></a></h2>
-<p><strong>Grammar (for arithmetic expressions):</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>E â†’ E + E | E * E | (E) | num
-</pre></div>
-</div>
-<p><strong>Parse string:</strong> <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span></code></p>
-<p><strong>Two different parse trees exist:</strong></p>
-<p>Parse Tree 1: <span class="math notranslate nohighlight">\((2 + 3) \times 4 = 20\)</span></p>
-<div class="graphviz"><object data="../_images/graphviz-71f4c744937dfa8ed93bd660038f0bdd2a2d172e.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph AmbigTree1 {
-    rankdir=TB;
-    node [shape=circle, style=&quot;filled&quot;, fillcolor=&quot;#FFE6E6&quot;];
-
-    E0 [label=&quot;E&quot;];
-    E1 [label=&quot;E&quot;];
-    E2 [label=&quot;E&quot;];
-    E3 [label=&quot;E&quot;];
-    E4 [label=&quot;E&quot;];
-
-    plus [label=&quot;+&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    times [label=&quot;*&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    num2 [label=&quot;2&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    num3 [label=&quot;3&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    num4 [label=&quot;4&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-
-    E0 -&gt; E1;
-    E0 -&gt; times;
-    E0 -&gt; E4;
-    E1 -&gt; E2;
-    E1 -&gt; plus;
-    E1 -&gt; E3;
-    E2 -&gt; num2;
-    E3 -&gt; num3;
-    E4 -&gt; num4;
-}</p></object></div>
-<p>Parse Tree 2: <span class="math notranslate nohighlight">\(2 + (3 \times 4) = 14\)</span></p>
-<div class="graphviz"><object data="../_images/graphviz-96e3a0658e8187150a5cf6cff6f98289f098b2f5.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph AmbigTree2 {
-    rankdir=TB;
-    node [shape=circle, style=&quot;filled&quot;, fillcolor=&quot;#FFE6E6&quot;];
-
-    E0 [label=&quot;E&quot;];
-    E1 [label=&quot;E&quot;];
-    E2 [label=&quot;E&quot;];
-    E3 [label=&quot;E&quot;];
-    E4 [label=&quot;E&quot;];
-
-    plus [label=&quot;+&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    times [label=&quot;*&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    num2 [label=&quot;2&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    num3 [label=&quot;3&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    num4 [label=&quot;4&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-
-    E0 -&gt; E1;
-    E0 -&gt; plus;
-    E0 -&gt; E2;
-    E1 -&gt; num2;
-    E2 -&gt; E3;
-    E2 -&gt; times;
-    E2 -&gt; E4;
-    E3 -&gt; num3;
-    E4 -&gt; num4;
-}</p></object></div>
-<div class="warning admonition">
-<p class="admonition-title">âš ï¸ Problem</p>
-<p><strong>Ambiguity is bad for compilers!</strong> We don’t know which interpretation is correct.</p>
-</div>
-<p><strong>Solution: Use Unambiguous Grammar</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>E â†’ T | E + T
-T â†’ F | T * F
-F â†’ (E) | num
-</pre></div>
-</div>
-<p>This enforces <strong>operator precedence</strong> (multiplication before addition).</p>
-<p>Now <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span></code> has only <strong>one parse tree:</strong> <span class="math notranslate nohighlight">\(2 + (3 \times 4) = 14\)</span> âœ“</p>
-</section>
 </section>
 <section id="self-check-interactive-quiz">
-<h1><span class="section-number">16. </span>Self-Check: Interactive Quiz<a class="headerlink" href="#self-check-interactive-quiz" title="Link to this heading"></a></h1>
+<h2><span class="section-number">2.8. </span>Self-Check: Interactive Quiz<a class="headerlink" href="#self-check-interactive-quiz" title="Link to this heading"></a></h2>
+<p>Click each question to check your understanding!</p>
+<hr class="docutils" />
 <div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q1. Which of the following is <strong>NOT</strong> a context-free language?</p>
+<p class="admonition-title">🧩 Q1. Which of the following is <strong>NOT</strong> a context-free language?</p>
 <ol class="loweralpha simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aâ¿bâ¿</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">â‰¥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwÊ³</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">âˆˆ</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aâ¿báµ</span> <span class="pre">|</span> <span class="pre">n,</span> <span class="pre">m</span> <span class="pre">â‰¥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(â¿)â¿</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">â‰¥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aⁿbⁿ</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aⁿbᵐ</span> <span class="pre">|</span> <span class="pre">n,</span> <span class="pre">m</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(ⁿ)ⁿ</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
 </ol>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âŒ <strong>Incorrect:</strong> a, c, and d are context-free.</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> â€” <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwÊ³</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">âˆˆ</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code> is <strong>not</strong> context-free because it requires matching both halves â€” something a PDA cannot do.</p>
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>❌ <strong>Incorrect:</strong> a, c, and d are context-free.</p>
+<p>✅ <strong>Correct:</strong> (b) — <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code> is <strong>not</strong> context-free because it requires matching both halves — something a PDA cannot do.</p>
 </div>
 </div>
+<hr class="docutils" />
 <div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q2. Which statement about CFGs is <strong>true</strong>?</p>
+<p class="admonition-title">🧩 Q2. Which statement about CFGs is <strong>true</strong>?</p>
 <ol class="loweralpha simple">
 <li><p>CFGs can describe only linear patterns</p></li>
 <li><p>CFGs cannot describe recursion</p></li>
@@ -810,13 +428,14 @@ F â†’ (E) | num
 <li><p>CFGs are less powerful than DFAs</p></li>
 </ol>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(c)</strong> CFGs handle recursive and nested patterns such as balanced parentheses.</p>
-<p>âŒ The others misunderstand CFG power or structure.</p>
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (c) CFGs handle recursive and nested patterns such as balanced parentheses.</p>
+<p>❌ The others misunderstand CFG power or structure.</p>
 </div>
 </div>
+<hr class="docutils" />
 <div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q3. What type of automaton recognizes <strong>Context-Free Languages</strong>?</p>
+<p class="admonition-title">🧩 Q3. What type of automaton recognizes <strong>Context-Free Languages</strong>?</p>
 <ol class="loweralpha simple">
 <li><p>Finite Automaton (FA)</p></li>
 <li><p>Pushdown Automaton (PDA)</p></li>
@@ -824,224 +443,47 @@ F â†’ (E) | num
 <li><p>Moore Machine</p></li>
 </ol>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> PDA â€” uses a <strong>stack</strong> to handle recursion and nested symbols.</p>
-<p>âŒ FAs lack memory; TMs are more powerful; Moore machines output differently.</p>
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) PDA — uses a <strong>stack</strong> to handle recursion and nested symbols.</p>
+<p>❌ FAs lack memory; TMs are more powerful; Moore machines output differently.</p>
 </div>
 </div>
+<hr class="docutils" />
 <div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q4. In a CFG, which of the following is <strong>NOT</strong> true?</p>
+<p class="admonition-title">🧩 Q4. In a CFG, which of the following is <strong>NOT</strong> true?</p>
 <ol class="loweralpha simple">
 <li><p>Each production replaces one variable at a time.</p></li>
 <li><p>The rules depend on surrounding symbols.</p></li>
 <li><p>Rules are applied regardless of context.</p></li>
-<li><p>The grammar is defined as a 4-tuple (V, Î£, R, S).</p></li>
+<li><p>The grammar is defined as a 4-tuple (V, Σ, R, S).</p></li>
 </ol>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> â€” describes <em>context-sensitive</em> grammars, not context-free ones.</p>
-<p>âŒ Others are true for CFGs.</p>
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) — describes <em>context-sensitive</em> grammars, not context-free ones.</p>
+<p>❌ Others are true for CFGs.</p>
 </div>
 </div>
+<hr class="docutils" />
 <div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q5. Which rule correctly defines <strong>balanced parentheses</strong>?</p>
+<p class="admonition-title">🧩 Q5. Which rule correctly defines <strong>balanced parentheses</strong>?</p>
 <ol class="loweralpha simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">â†’</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">S(S)</span> <span class="pre">|</span> <span class="pre">Îµ</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">â†’</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">Îµ</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">â†’</span> <span class="pre">(S</span> <span class="pre">|</span> <span class="pre">S)</span> <span class="pre">|</span> <span class="pre">Îµ</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">â†’</span> <span class="pre">(S(S))</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">S(S)</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S</span> <span class="pre">|</span> <span class="pre">S)</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S(S))</span></code></p></li>
 </ol>
 <div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">â†’</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">Îµ</span></code> generates all valid balanced parentheses.</p>
-<p>âŒ The others fail to produce the entire set or are malformed.</p>
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code> generates all valid balanced parentheses.</p>
+<p>❌ The others fail to produce the entire set or are malformed.</p>
 </div>
 </div>
-<div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q6. What is the main difference between <strong>leftmost</strong> and <strong>rightmost</strong> derivations?</p>
-<ol class="loweralpha simple">
-<li><p>Leftmost is correct; rightmost is not</p></li>
-<li><p>They derive different strings</p></li>
-<li><p>The <strong>order</strong> of variable replacement differs, not the final result</p></li>
-<li><p>Leftmost requires more steps</p></li>
-</ol>
-<div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(c)</strong> Both derivations produce the <strong>same string</strong>, just with different substitution order.</p>
-<p>âŒ Both are valid; both derive the same string; neither is inherently faster.</p>
-</div>
-</div>
-<div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q7. In a <strong>parse tree</strong>, which nodes are terminals?</p>
-<ol class="loweralpha simple">
-<li><p>Root node</p></li>
-<li><p>Internal nodes</p></li>
-<li><p>Leaf nodes</p></li>
-<li><p>All nodes labeled with variables</p></li>
-</ol>
-<div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(c)</strong> Terminals appear as <strong>leaf nodes</strong> at the bottom.</p>
-<p>âŒ Root is the start symbol; internal nodes are non-terminals; variables are non-terminals.</p>
-</div>
-</div>
-<div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q8. Which parsing method is called <strong>top-down</strong>?</p>
-<ol class="loweralpha simple">
-<li><p>Shift-reduce parsing</p></li>
-<li><p>Recursive descent</p></li>
-<li><p>LR parsing</p></li>
-<li><p>Bottom-up parsing</p></li>
-</ol>
-<div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> <strong>Recursive descent</strong> is a top-down approach starting from the root.</p>
-<p>âŒ Others are bottom-up methods.</p>
-</div>
-</div>
-<div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q9. What is <strong>ambiguity</strong> in a CFG?</p>
-<ol class="loweralpha simple">
-<li><p>A grammar with no rules</p></li>
-<li><p>A string that has multiple parse trees</p></li>
-<li><p>A rule with undefined symbols</p></li>
-<li><p>A grammar that accepts empty strings</p></li>
-</ol>
-<div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> <strong>Ambiguity</strong> = multiple parse trees for the same string.</p>
-<p>âŒ Others are different issues.</p>
-</div>
-</div>
-<div class="exercise admonition">
-<p class="admonition-title">ðŸ§© Q10. Which grammar is <strong>unambiguous</strong> for expressions?</p>
-<ol class="loweralpha simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">â†’</span> <span class="pre">E</span> <span class="pre">+</span> <span class="pre">E</span> <span class="pre">|</span> <span class="pre">E</span> <span class="pre">*</span> <span class="pre">E</span> <span class="pre">|</span> <span class="pre">num</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">â†’</span> <span class="pre">T</span> <span class="pre">|</span> <span class="pre">E</span> <span class="pre">+</span> <span class="pre">T;</span> <span class="pre">T</span> <span class="pre">â†’</span> <span class="pre">F</span> <span class="pre">|</span> <span class="pre">T</span> <span class="pre">*</span> <span class="pre">F;</span> <span class="pre">F</span> <span class="pre">â†’</span> <span class="pre">num</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">â†’</span> <span class="pre">num</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">â†’</span> <span class="pre">E</span> <span class="pre">+</span> <span class="pre">E</span> <span class="pre">|</span> <span class="pre">num</span></code></p></li>
-</ol>
-<div class="toggle admonition">
-<p class="admonition-title">ðŸ” Reveal Answer</p>
-<p>âœ… <strong>Correct:</strong> <strong>(b)</strong> Uses <strong>precedence rules</strong> (multiplication before addition) â€” no ambiguity.</p>
-<p>âŒ (a) and (d) allow multiple interpretations; (c) is too restrictive.</p>
-</div>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>💭 <strong>Keep Practicing !!</strong></p>
 </div>
 </section>
-<section id="complete-examples-with-full-solutions">
-<h1><span class="section-number">17. </span>Complete Examples with Full Solutions<a class="headerlink" href="#complete-examples-with-full-solutions" title="Link to this heading"></a></h1>
-<section id="example-1-simple-arithmetic-expressions">
-<h2><span class="section-number">17.1. </span>Example 1: Simple Arithmetic Expressions<a class="headerlink" href="#example-1-simple-arithmetic-expressions" title="Link to this heading"></a></h2>
-<p><strong>Problem:</strong> Generate strings with single-digit numbers and addition.</p>
-<p><strong>Grammar:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S â†’ S + S | num
-num â†’ 0 | 1 | 2 | ... | 9
-</pre></div>
-</div>
-<p><strong>Derive:</strong> <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">3</span> <span class="pre">+</span> <span class="pre">5</span></code></p>
-<p><strong>Leftmost Derivation:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
-âŸ¹ S + S              (S â†’ S + S)
-âŸ¹ num + S            (S â†’ num)
-âŸ¹ 2 + S              (num â†’ 2)
-âŸ¹ 2 + S + S          (S â†’ S + S)
-âŸ¹ 2 + num + S        (S â†’ num)
-âŸ¹ 2 + 3 + S          (num â†’ 3)
-âŸ¹ 2 + 3 + num        (S â†’ num)
-âŸ¹ 2 + 3 + 5          (num â†’ 5) âœ“
-</pre></div>
-</div>
-<p><strong>Parse Tree:</strong></p>
-<div class="graphviz"><object data="../_images/graphviz-d8c9aed3be1f053787528fdd973f50b442938f84.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph ArithParse {
-    rankdir=TB;
-    node [shape=circle, style=&quot;filled&quot;, fillcolor=&quot;#FFE6E6&quot;, fontsize=11];
-
-    S0 [label=&quot;S&quot;];
-    S1 [label=&quot;S&quot;];
-    S2 [label=&quot;S&quot;];
-    plus1 [label=&quot;+&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    plus2 [label=&quot;+&quot;, shape=box, fillcolor=&quot;#E6F3FF&quot;];
-    n1 [label=&quot;2&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    n2 [label=&quot;3&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-    n3 [label=&quot;5&quot;, shape=box, fillcolor=&quot;#E6E6E6&quot;];
-
-    S0 -&gt; S1;
-    S0 -&gt; plus1;
-    S0 -&gt; S2;
-    S1 -&gt; n1;
-    S2 -&gt; n2;
-    S2 -&gt; plus2;
-    S2 -&gt; n3;
-}</p></object></div>
-</section>
-<section id="example-2-palindromes-over-a-b">
-<h2><span class="section-number">17.2. </span>Example 2: Palindromes over {a, b}<a class="headerlink" href="#example-2-palindromes-over-a-b" title="Link to this heading"></a></h2>
-<p><strong>Problem:</strong> Generate all palindromes (strings that read the same forwards and backwards).</p>
-<p><strong>Grammar:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S â†’ Îµ | a | b | aSa | bSb
-</pre></div>
-</div>
-<p><strong>Valid strings:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Îµ</span></code> (empty)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> (single char)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">aa</span></code> = <span class="math notranslate nohighlight">\(a \cdot \epsilon \cdot a\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">aba</span></code> = <span class="math notranslate nohighlight">\(a \cdot b \cdot a\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">aabaa</span></code> = <span class="math notranslate nohighlight">\(a \cdot (aba) \cdot a\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">abba</span></code> = <span class="math notranslate nohighlight">\(a \cdot b \cdot b \cdot a\)</span> âœ— (NOT generated!)</p></li>
-</ul>
-<p><strong>Derive:</strong> <code class="docutils literal notranslate"><span class="pre">aabaa</span></code></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
-âŸ¹ aSa              (S â†’ aSa)
-âŸ¹ aaSaa            (S â†’ aSa)
-âŸ¹ aabaa            (S â†’ b) âœ“
-</pre></div>
-</div>
-</section>
-<section id="example-3-balanced-brackets-multiple-types">
-<h2><span class="section-number">17.3. </span>Example 3: Balanced Brackets (Multiple Types)<a class="headerlink" href="#example-3-balanced-brackets-multiple-types" title="Link to this heading"></a></h2>
-<p><strong>Problem:</strong> Generate all balanced bracket sequences with <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>.</p>
-<p><strong>Grammar:</strong></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S â†’ Îµ | (S) | [S] | {S} | SS
-</pre></div>
-</div>
-<p><strong>Valid strings:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">()</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">([])</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{[()]}</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">()[]</span></code></p></li>
-</ul>
-<p><strong>Invalid strings:</strong></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">([)]</span></code> âœ— (mismatched)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">(]</span></code> âœ— (mismatched)</p></li>
-</ul>
-<p><strong>Derive:</strong> <code class="docutils literal notranslate"><span class="pre">()[()]</span></code></p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
-âŸ¹ SS                (S â†’ SS)
-âŸ¹ (S)S              (S â†’ (S))
-âŸ¹ (Îµ)[S]            (S â†’ Îµ, S â†’ [S])
-âŸ¹ ()[S]             (replace Îµ)
-âŸ¹ ()[(S)]           (S â†’ (S))
-âŸ¹ ()[()]            (S â†’ Îµ) âœ“
-</pre></div>
-</div>
-</section>
-</section>
-<section id="id1">
-<h1><span class="section-number">18. </span>Summary<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p><strong>Derivations</strong> show how strings are generated (leftmost or rightmost)</p>
-<p><strong>Parse trees</strong> visualize the derivation structure</p>
-<p><strong>Parsing</strong> is the reverse â€” finding the tree from input</p>
-<p><em>Top-down*</em> (recursive descent) and <strong>bottom-up</strong> (shift-reduce) are two approaches</p>
-<p><strong>Ambiguity</strong> means multiple interpretations â€” avoid in compilers!</p>
-<p><strong>Precedence rules</strong> eliminate ambiguity in expression grammars</p>
-<p><strong>Practice with examples</strong> until derivations and parse trees become intuitive!</p>
-<p><strong>Next Steps:</strong> Try creating your own grammar for a simple language, then derive strings and build parse trees by hand!</p>
 </section>
 
 
@@ -1049,7 +491,7 @@ num â†’ 0 | 1 | 2 | ... | 9
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="intro.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="19. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="3. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
