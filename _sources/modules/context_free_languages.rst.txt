@@ -1,6 +1,6 @@
-=======================
-Introduction
-=======================
+====================================
+Introduction to Context Free Grammer 
+====================================
 
 Start here! This section builds **intuition first**, before diving into formal definitions.  
 Keep your mind open — imagine, visualize, and connect.
