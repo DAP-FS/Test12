@@ -1,0 +1,404 @@
+=======================
+Intuitive Introduction
+=======================
+
+Start here! This section builds **intuition first**, before diving into formal definitions.  
+Keep your mind open — imagine, visualize, and connect.
+
+----
+
+What is Context-Free?
+=====================
+
+**Real-World Analogy: HTML Tags**
+
+Think about nested HTML structure:
+
+.. code-block:: html
+
+   <html>
+     <body>
+       <p>Hello <strong>World</strong></p>
+     </body>
+   </html>
+
+Every opening ``<tag>`` has a matching closing ``</tag>``.
+
+.. admonition:: ⚠️ Key Insight
+   :class: important
+
+   A **finite automaton (DFA/NFA)** can’t verify this structure—it lacks *memory*.  
+   Matching nested tags requires **unbounded memory**, which **only a stack** can provide.
+
+A **Context-Free Grammar (CFG)** is precisely this:  
+a **rule-based system** that can *generate and verify* hierarchical, nested patterns.
+
+----
+
+The Problem: Why CFGs Matter
+=============================
+
+**Example: Balanced Parentheses**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 10 65
+
+   * - String
+     - Valid?
+     - Explanation
+   * - ``()``
+     - ✓
+     - Matched pair
+   * - ``(())``
+     - ✓
+     - Nested pair
+   * - ``(()())``
+     - ✓
+     - Mixed nesting
+   * - ``(()``
+     - ✗
+     - Unclosed parenthesis
+   * - ``())``
+     - ✗
+     - Extra closing parenthesis
+
+----
+
+Can a DFA verify this?
+----------------------
+
+**No.**
+
+A DFA cannot decide this language.
+
+.. admonition:: 🧠 Intuition
+   :class: hint
+
+   A DFA has *finite memory*.  
+   Balanced parentheses need remembering *an arbitrary number of opens* until they’re closed later — requiring a **stack**, not fixed states.
+
+---
+
+
+
+Recipe Analogy: How CFGs Work
+==============================
+
+Think of a CFG as a **recipe** for generating valid sentences.
+
+.. code-block:: text
+
+   Sentence → Subject Verb Object
+   Subject  → "The" Noun
+   Noun     → "cat" | "dog" | "bird"
+   Verb     → "chased" | "saw"
+   Object   → "the" Noun
+
+Start with the top rule and **substitute step by step**:
+
+.. code-block:: text
+
+   Sentence
+   ⟹ Subject Verb Object
+   ⟹ "The" Noun Verb Object
+   ⟹ "The" "cat" Verb Object
+   ⟹ "The" "cat" "chased" Object
+   ⟹ "The" "cat" "chased" "the" "bird"
+
+✅ **Result:** “The cat chased the bird”
+
+.. note::
+   Each arrow **⟹** is a **derivation step** — you replace one variable with its rule.
+
+---
+
+Regular vs. Context-Free
+=========================
+
+.. list-table:: Quick Comparison
+   :header-rows: 1
+   :widths: 25 35 40
+
+   * - **Feature**
+     - **Regular Language**
+     - **Context-Free Language**
+   * - Memory
+     - Finite (no stack)
+     - Unbounded (stack)
+   * - Tool
+     - DFA / NFA
+     - PDA
+   * - Can recognize
+     - ``a*b*``
+     - ``aⁿbⁿ``
+   * - Handles nesting?
+     - ✗ No
+     - ✓ Yes
+
+.. tip::
+
+   Every **CFG** has an equivalent **Pushdown Automaton (PDA)**.
+
+.. graphviz::
+
+   digraph CFG_PDA {
+       rankdir=LR;
+       node [shape=box, style="rounded,filled", fillcolor="#E8F4F8"];
+       CFG [label="Context-Free Grammar"];
+       PDA [label="Pushdown Automaton"];
+       CFL [label="Context-Free Language"];
+       CFG -> CFL;
+       CFL -> PDA [label="Equivalent Representation"];
+   }
+
+---
+
+Why “Context-Free”?
+===================
+
+.. container:: shadow-sm p-3 bg-light rounded
+
+   A rule applies **regardless of context** — that’s why it’s *context-free*.
+
+.. code-block:: text
+
+   Noun → "cat"    ← applies anywhere “Noun” appears.
+
+Compare with context-sensitive rules:
+
+.. code-block:: text
+
+   a Noun b → a "cat" b   ← applies only between “a” and “b”
+
+---
+
+Real-World Applications
+=======================
+
+**1. Programming Languages**
+
+Every compiler (C, Java, Python) uses CFGs for parsing.
+
+**2. HTML/XML Parsing**
+
+Browsers verify nesting of tags using CFG-like structures.
+
+**3. Mathematical Expressions**
+
+.. code-block:: text
+
+   2 + 3 * (4 + 5)   ✓ valid
+   2 + * 3 (4 + 5)   ✗ invalid
+
+**4. Natural Language**
+
+Grammar rules model sentence structure.
+
+---
+
+Quick Check
+===========
+
+**Q1.** Can a DFA verify ``(())``?
+
+.. admonition:: 💡 Solution
+   :class: toggle
+
+   **No.** Requires unbounded memory (stack).
+
+**Q2.** What can CFGs do that DFAs can’t?
+
+.. admonition:: 💡 Solution
+   :class: toggle
+
+   Describe **recursive** and **nested** patterns — vital for programming languages.
+
+---
+
+Summary
+=======
+
+✅ CFGs describe **recursive, nested** languages  
+
+✅ They use **rule substitution** (derivations)  
+
+✅ **More powerful than** DFA/NFA  
+
+✅ **Less powerful than** Turing Machines  
+
+✅ Essential for **parsers, compilers, and linguistics**
+
+----
+
+====================
+Formal Definitions
+====================
+
+Definition 2.1 — Context-Free Grammar
+=====================================
+
+A **Context-Free Grammar (CFG)** is a 4-tuple:
+
+.. math::
+
+   G = (V, \Sigma, R, S)
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 60 25
+
+   * - **Symbol**
+     - **Meaning**
+     - **Example**
+   * - :math:`V`
+     - Variables (non-terminals)
+     - :math:`S, A`
+   * - :math:`\Sigma`
+     - Terminals (alphabet)
+     - :math:`a, b, (, )`
+   * - :math:`R`
+     - Production rules
+     - :math:`S \to aSb \mid \epsilon`
+   * - :math:`S`
+     - Start symbol
+     - :math:`S \in V`
+
+.. important::
+
+   - Variables → UPPERCASE (e.g. ``S``, ``A``)  
+   - Terminals → lowercase or symbols (e.g. ``a``, ``(``)  
+   - Multiple rules allowed: ``A → w₁ | w₂ | w₃``
+
+---
+
+Example CFG — Balanced Parentheses
+==================================
+
+.. code-block:: text
+
+   G = ({S}, {(,)}, R, S)
+   where R = {S → ε | (S) | SS}
+
+**Rule meanings:**
+
+- :math:`S → ε` : Empty string is valid  
+- :math:`S → (S)` : Wrap balanced string in parentheses  
+- :math:`S → SS` : Concatenate two balanced strings
+
+.. admonition:: ✅ Try it yourself
+   :class: hint
+
+   Derive ``(())()`` using the above grammar.
+
+---
+
+**Hidden Answer (click to reveal):**
+
+.. admonition:: 💡 Solution
+   :class: toggle
+
+   1. ``S ⟹ SS``  
+
+   
+   2. First ``S ⟹ (S) ⟹ (())``  
+   
+   3. Second ``S ⟹ (S) ⟹ ()``  
+   
+   ✅ Combined: ``(())()``
+
+Self-Check: Interactive Quiz
+=============================
+
+Click each question to check your understanding!
+
+----
+
+.. admonition:: 🧩 Q1. Which of the following is **NOT** a context-free language?
+   :class: exercise
+
+   a. ``{ aⁿbⁿ | n ≥ 0 }``  
+   b. ``{ wwʳ | w ∈ {a, b}* }``  
+   c. ``{ aⁿbᵐ | n, m ≥ 0 }``  
+   d. ``{ (ⁿ)ⁿ | n ≥ 0 }``  
+
+   .. admonition:: 🔍 Reveal Answer
+      :class: toggle
+
+      ❌ **Incorrect:** a, c, and d are context-free.  
+      ✅ **Correct:** (b) — ``{ wwʳ | w ∈ {a, b}* }`` is **not** context-free because it requires matching both halves — something a PDA cannot do.
+
+----
+
+.. admonition:: 🧩 Q2. Which statement about CFGs is **true**?
+   :class: exercise
+
+   a. CFGs can describe only linear patterns  
+   b. CFGs cannot describe recursion  
+   c. CFGs can describe nested structures like parentheses  
+   d. CFGs are less powerful than DFAs  
+
+   .. admonition:: 🔍 Reveal Answer
+      :class: toggle
+
+      ✅ **Correct:** (c) CFGs handle recursive and nested patterns such as balanced parentheses.  
+      ❌ The others misunderstand CFG power or structure.
+
+----
+
+.. admonition:: 🧩 Q3. What type of automaton recognizes **Context-Free Languages**?
+   :class: exercise
+
+   a. Finite Automaton (FA)  
+   b. Pushdown Automaton (PDA)  
+   c. Turing Machine (TM)  
+   d. Moore Machine  
+
+   .. admonition:: 🔍 Reveal Answer
+      :class: toggle
+
+      ✅ **Correct:** (b) PDA — uses a **stack** to handle recursion and nested symbols.  
+      ❌ FAs lack memory; TMs are more powerful; Moore machines output differently.
+
+----
+
+.. admonition:: 🧩 Q4. In a CFG, which of the following is **NOT** true?
+   :class: exercise
+
+   a. Each production replaces one variable at a time.  
+   b. The rules depend on surrounding symbols.  
+   c. Rules are applied regardless of context.  
+   d. The grammar is defined as a 4-tuple (V, Σ, R, S).  
+
+   .. admonition:: 🔍 Reveal Answer
+      :class: toggle
+
+      ✅ **Correct:** (b) — describes *context-sensitive* grammars, not context-free ones.  
+      ❌ Others are true for CFGs.
+
+----
+
+.. admonition:: 🧩 Q5. Which rule correctly defines **balanced parentheses**?
+   :class: exercise
+
+   a. ``S → (S) | S(S) | ε``  
+   b. ``S → (S) | SS | ε``  
+   c. ``S → (S | S) | ε``  
+   d. ``S → (S(S))``  
+
+   .. admonition:: 🔍 Reveal Answer
+      :class: toggle
+
+      ✅ **Correct:** (b) ``S → (S) | SS | ε`` generates all valid balanced parentheses.  
+      ❌ The others fail to produce the entire set or are malformed.
+
+----
+
+.. note::
+   💭 **Scoring Tip:**  
+   5/5 → Excellent! Ready for CFG-to-PDA conversion.  
+   3–4/5 → Review “Formal Definitions” section.  
+   1–2/5 → Revisit “Intuitive Introduction” for conceptual clarity.
+
+
+S

@@ -1,0 +1,189 @@
+.. raw:: html
+
+   <style>
+     /* === General Typography and Layout === */
+     body {
+       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+       line-height: 1.6;
+     }
+     h2, h3, h4 {
+       color: #7b1113; /* Stanford Maroon */
+       font-weight: 600;
+       margin-top: 1.8em;
+       margin-bottom: 0.6em;
+       text-align: left;
+     }
+     code, .code {
+       background-color: #f7f7f7;
+       padding: 2px 5px;
+       border-radius: 4px;
+     }
+     p, li {
+       font-size: 16px;
+     }
+
+     /* === Collapsible Solution Blocks === */
+     details {
+       background-color: #fcfcfc;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 10px 15px;
+       margin: 12px 0;
+       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+     }
+     summary {
+       font-weight: 600;
+       font-size: 17px;
+       color: #444;
+       cursor: pointer;
+       padding: 5px 0;
+     }
+     details[open] summary {
+       color: #7b1113;
+     }
+
+     /* === Admonitions (Hints, Tips) === */
+     .admonition.tip, .admonition.hint {
+       border-left: 4px solid #7b1113 !important;
+       background-color: #f9f9f9 !important;
+     }
+
+     /* === Mobile Optimization === */
+     @media (max-width: 600px) {
+       p, li {
+         font-size: 15px;
+         line-height: 1.5;
+       }
+       h2, h3, h4 {
+         font-size: 20px;
+       }
+       summary {
+         font-size: 16px;
+       }
+     }
+   </style>
+
+
+Practice Excercises 
+----------------------------------------
+
+**Question 01:** Find the maximum yield length for the following CNF CFG:
+
+.. code-block:: text
+
+   S → AB
+   A → a
+   B → b
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+**Graphviz Derivation Tree (Hidden Visualization)**  
+
+.. graphviz::
+
+   digraph CFG1 {
+       rankdir=TB;
+       node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
+       S -> A [label=" "];
+       S -> B [label=" "];
+       A -> a;
+       B -> b;
+   }
+
+**Derivation Tree for the string** `ab`  
+
+- Longest path length = 2 = k  
+- Maximum yield length = 2^(k − 1) = 2  
+
+.. admonition:: Concept Insight  
+   :class: tip  
+
+   The *yield length* corresponds to the number of terminals produced at the leaf level.  
+   In CNF, each derivation step can at most double the number of leaves, hence the formula  
+   :math:`2^{k-1}` for the maximum yield length.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 02:** Find the maximum yield length for the following CNF CFG:
+
+.. code-block:: text
+
+   S → AB
+   A → EF
+   B → C
+   E → a
+   F → b
+   C → c
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+**Graphviz Derivation Tree (Hidden Visualization)**  
+
+.. graphviz::
+
+   digraph CFG2 {
+       rankdir=TB;
+       node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
+       S -> A;
+       S -> B;
+       A -> E;
+       A -> F;
+       E -> a;
+       F -> b;
+       B -> C;
+       C -> c;
+   }
+
+**Derivation Tree for the string** `abc`  
+
+- Longest path length = 3 = k  
+- Maximum yield length = 2^(k − 1) = 4  
+
+.. admonition:: Visual Tip  
+   :class: hint  
+
+   Observe that deeper derivation increases the yield length exponentially.  
+   Here, one additional level doubles the number of possible terminals.
+
+.. raw:: html
+
+   </details>
+
+**Question 03:**  Which string is accepted by PDA for :math:`a^nb^nc^n`?
+
+A) ``aabbcc``  
+B) ``aaabbbccc``  
+C) ``None of them``
+
+.. raw:: html
+
+   <details>
+   <summary><strong>✅ SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   Answer: C) None of them ✗
+
+   Explanation:
+   A PDA with ONE stack cannot verify THREE equal-length groups.
+
+   aabbcc:
+   - Stack after a's: [a, a, Z₀]
+   - After matching b's: [Z₀]
+   - How to verify 2 c's match? Stack is already empty!
+
+   Conclusion: This language is NOT context-free. 
+   It requires a Turing Machine (2+ stacks or unlimited memory).
+
+.. raw:: html
+
+   </details>
