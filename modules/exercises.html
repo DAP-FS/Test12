@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Practice Exercises (Extended) &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>3. Practice Exercises — CFL &amp; CFG Mastery &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -59,7 +59,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Practice Exercises (Extended)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Practice Exercises — CFL &amp; CFG Mastery</a></li>
 </ul>
 
         </div>
@@ -76,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Practice Exercises (Extended)</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Practice Exercises — CFL &amp; CFG Mastery</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/exercises.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,158 +86,165 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="practice-exercises-extended">
-<h1><span class="section-number">3. </span>Practice Exercises (Extended)<a class="headerlink" href="#practice-exercises-extended" title="Link to this heading"></a></h1>
-<p><strong>Question 04:</strong> Construct a CFG for the language <span class="math notranslate nohighlight">\(L = \{a^n b^n \mid n ≥ 1\}\)</span></p>
+  <section id="practice-exercises-cfl-cfg-mastery">
+<h1><span class="section-number">3. </span>Practice Exercises — CFL &amp; CFG Mastery<a class="headerlink" href="#practice-exercises-cfl-cfg-mastery" title="Link to this heading"></a></h1>
+<p>These exercises build your <strong>conceptual fluency</strong> step-by-step.
+Each problem includes a <em>hint</em>, <em>solution</em>, and sometimes a <em>visual derivation tree</em> (via Graphviz).
+Click each dropdown to reveal more as you solve.</p>
 <details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
-</pre></div>
-</div>
-<p><strong>Example Derivation:</strong></p>
-<p>S
-⟹ aSb
-⟹ aaSbb
-⟹ aabb ✅</p>
-<div class="tip admonition">
-<p class="admonition-title">Concept Hint</p>
-<p>Each <strong>a</strong> is paired with a <strong>b</strong> through recursive wrapping.</p>
-</div>
-</details><p><strong>Question 05:</strong> Construct a CFG for the language of all <strong>even-length palindromes</strong> over <cite>{0,1}</cite>.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → 0S0 | 1S1 | ε
-</pre></div>
-</div>
-<p><strong>Example:</strong>
-<cite>0110</cite>, <cite>1001</cite>, <cite>ε</cite> ✔</p>
-<div class="hint admonition">
-<p class="admonition-title">Visual Tip</p>
-<p>The grammar builds symmetric structures from the center outward.</p>
-</div>
-</details><p><strong>Question 06:</strong> Convert the FA below to an equivalent CFG.</p>
-<p><strong>Given FA:</strong></p>
-<p>States = {q₀, q₁},
-Start = q₀,
-Final = q₁,
-Transitions:
-- q₀ —a→ q₁
-- q₁ —b→ q₀</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → aS₁
-S₁ → bS₀ | ε
-</pre></div>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Concept Insight</p>
-<p>For each <strong>FA state</strong>, make a <strong>CFG variable</strong>.
-Transitions become <strong>productions</strong> ending with the next state variable.</p>
-</div>
-</details><p><strong>Question 07:</strong> Construct a CFG for regular expression <cite>(a|b)*abb</cite>.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Steps:
-1. Convert RE → NFA → CFG
-2. Simplified form:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | bS | A
-A → aB
-B → bC
-C → b
-</pre></div>
-</div>
-<p><strong>Example Derivation:</strong>
-S ⟹ aS ⟹ aaS ⟹ aaA ⟹ aaaB ⟹ aaabC ⟹ aaabb ✅</p>
-<div class="hint admonition">
-<p class="admonition-title">Tip</p>
-<p>The final <strong>abb</strong> suffix is enforced by nonterminals <cite>A</cite>, <cite>B</cite>, <cite>C</cite>.</p>
-</div>
-</details><p><strong>Question 08:</strong> Create CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m \mid n, m ≥ 1\}\)</span></p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A
-A → bA | b
-</pre></div>
-</div>
-<p>✅ Examples: <cite>ab</cite>, <cite>aaabb</cite>, <cite>aabbbbbb</cite></p>
-<div class="tip admonition">
-<p class="admonition-title">Concept Note</p>
-<p>Independent repetition: <cite>a</cite> and <cite>b</cite> counts are <strong>not linked</strong>.</p>
-</div>
-</details><p><strong>Question 09:</strong> Convert the PDA below into an equivalent CFG.</p>
-<p>Language: <span class="math notranslate nohighlight">\(L = \{a^n b^n | n ≥ 1\}\)</span></p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
-</pre></div>
-</div>
-<p><strong>Derivation:</strong>
-S ⟹ aSb ⟹ aaSbb ⟹ aabb ✅</p>
-<div class="hint admonition">
-<p class="admonition-title">Insight</p>
-<p>PDA pushes for each <cite>a</cite>, pops for each <cite>b</cite>.
-CFG mirrors this with symmetric recursion.</p>
-</div>
-</details><p><strong>Question 10:</strong> Design a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m c^m d^n \mid n,m ≥ 1\}\)</span></p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSd | A
+<summary><strong>💡 Need a Hint?</strong></summary><ul class="simple">
+<li><p>Observe the symmetry between <cite>a</cite> ↔ <cite>d</cite> (outer) and <cite>b</cite> ↔ <cite>c</cite> (inner).</p></li>
+<li><p>The pattern suggests <strong>two nested pairs</strong> of equal-length substrings.</p></li>
+</ul>
+</details><details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>CFG:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSd | A
 A → bAc | bc
 </pre></div>
 </div>
-<p>✅ Example: <cite>abbccd</cite></p>
-<div class="hint admonition">
-<p class="admonition-title">Tip</p>
-<p>Two nested symmetries handled by <strong>two recursive nonterminals</strong>.</p>
-</div>
-</details><p><strong>Question 11:</strong> Construct a CFG for the language accepted by a <strong>DPDA</strong> recognizing balanced parentheses.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → (S)S | ε
-</pre></div>
-</div>
-<p>✅ Examples: <cite>()</cite>, <cite>(())</cite>, <cite>()()</cite></p>
-<div class="tip admonition">
-<p class="admonition-title">Concept Note</p>
-<p>DPDA uses deterministic stack push/pop for each bracket pair.</p>
-</div>
-</details><p><strong>Question 12:</strong> Give CFG for <span class="math notranslate nohighlight">\(a^i b^j c^k\)</span> where <span class="math notranslate nohighlight">\(i, j, k ≥ 1\)</span>.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A
-A → bA | B
-B → cB | c
-</pre></div>
-</div>
-<p>✅ Example: <cite>aaabbcc</cite></p>
-<div class="hint admonition">
-<p class="admonition-title">Hint</p>
-<p>Sequential independent segments: each handled by a separate variable.</p>
-</div>
-</details><p><strong>Question 13:</strong> Construct CFG for all strings with <strong>equal number of a’s and b’s</strong>.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | bSa | SS | ε
-</pre></div>
-</div>
-<p>✅ Examples: <cite>ab</cite>, <cite>ba</cite>, <cite>aabb</cite>, <cite>baba</cite></p>
-<div class="hint admonition">
-<p class="admonition-title">Visual Tip</p>
-<p>Recursion + concatenation allows mixing and pairing.</p>
-</div>
-</details><p><strong>Question 14:</strong> Design a CFG for all palindromes over <cite>{a,b}</cite>.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
-</pre></div>
-</div>
-<p>✅ Examples: <cite>aba</cite>, <cite>abba</cite>, <cite>a</cite>, <cite>ε</cite></p>
-<div class="hint admonition">
-<p class="admonition-title">Hint</p>
-<p>Each production wraps a smaller palindrome symmetrically.</p>
-</div>
-</details><p><strong>Question 15:</strong> Construct CFG for <span class="math notranslate nohighlight">\(L = \{ww^R \mid w ∈ \{a,b\}^*\}\)</span> using PDA intuition.</p>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
-</pre></div>
-</div>
-<p>✅ Example: <cite>abba</cite>, <cite>aa</cite>, <cite>ε</cite></p>
+<p>✅ Example string: <cite>abbccd</cite> (n=1, m=2)</p>
+<p><strong>Graphviz Derivation Tree:</strong></p>
+<div class="graphviz"><object data="../_images/graphviz-6b6f5fa052f97ed541e6dc2eec1597d1f5a22a95.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph CFG7 {
+  rankdir=TB;
+  node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
+  S -&gt; a;
+  S -&gt; A;
+  S -&gt; d;
+  A -&gt; b;
+  A -&gt; A2 [label=&quot;A&quot;];
+  A -&gt; c;
+  A2 -&gt; b;
+  A2 -&gt; c;
+}</p></object></div>
 <div class="tip admonition">
 <p class="admonition-title">Concept Insight</p>
-<p>PDA pushes first half, pops second half → CFG mirrors by recursive wrapping.</p>
+<ul class="simple">
+<li><p>Outer recursion handles <cite>a</cite> and <cite>d</cite> simultaneously.</p></li>
+<li><p>Inner recursion (A) pairs <cite>b</cite> with <cite>c</cite>.</p></li>
+<li><p>This grammar is context-free because both counts are checked <strong>hierarchically</strong>, not simultaneously.</p></li>
+</ul>
 </div>
+</details><details>
+<summary><strong>💡 Need a Hint?</strong></summary><ul class="simple">
+<li><p>PDA pushes <cite>(</cite> onto the stack and pops when it sees <cite>)</cite>.</p></li>
+<li><p>Think recursive pairing — each <cite>(</cite> must have a matching <cite>)</cite> later.</p></li>
+<li><p>The CFG must express nested and sequential pairs.</p></li>
+</ul>
+</details><details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>CFG:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → (S)S | ε
+</pre></div>
+</div>
+<p>✅ Example: <cite>(()())</cite></p>
+<p><strong>PDA Visualization:</strong></p>
+<div class="graphviz"><object data="../_images/graphviz-939e93782d9a2309a1eb519c2d58341ba4e4e5a2.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph PDA9 {
+  rankdir=LR;
+  node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
+  q0 [label=&quot;q₀ (start)&quot;];
+  q1 [label=&quot;q₁&quot;];
+  qf [label=&quot;qf (final)&quot;, shape=doublecircle];
+  q0 -&gt; q1 [label=&quot;ε, ε → $&quot;];
+  q1 -&gt; q1 [label=&quot;(, ε → (&quot;];
+  q1 -&gt; q1 [label=&quot;), ( → ε&quot;];
+  q1 -&gt; qf [label=&quot;ε, $ → ε&quot;];
+}</p></object></div>
+<div class="hint admonition">
+<p class="admonition-title">Concept Focus</p>
+<ul class="simple">
+<li><p>Deterministic PDA (DPDA) — never needs guessing.</p></li>
+<li><p>Stack mirrors open parentheses; empty stack signals acceptance.</p></li>
+<li><p>Grammar mirrors PDA push/pop through recursive embedding.</p></li>
+</ul>
+</div>
+</details><section id="bonus-interactive-questions">
+<h2><span class="section-number">3.1. </span><strong>Bonus Interactive Questions</strong><a class="headerlink" href="#bonus-interactive-questions" title="Link to this heading"></a></h2>
+<p><strong>Question 11:</strong> Convert RE <cite>(0|1)*01</cite> into a CFG.</p>
+<details><summary><strong>💡 Hint</strong></summary>
+Start with `(0|1)*` for arbitrary prefix, then concatenate `01`.
+</details><details><summary><strong>📘 Solution</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → 0S | 1S | 01
+&lt;/details&gt;
+</pre></div>
+</div>
+<p><strong>Question 12:</strong> Create CFG for palindromes with center <cite>c</cite> over <cite>{a,b,c}</cite>.
+<em>(e.g., `abccba`, `accca`)</em></p>
+<details><summary><strong>📘 Solution</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | c
+&lt;/details&gt;
+</pre></div>
+</div>
+<p><strong>Question 13:</strong> CFG for <span class="math notranslate nohighlight">\(a^i b^j\)</span> where <cite>i ≠ j</cite>.</p>
+<details><summary><strong>📘 Solution</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | aS | Sb | a | b
+&lt;/details&gt;
+</pre></div>
+</div>
+<p><strong>Question 14:</strong> RE → CFG for <cite>(ab)*</cite>.</p>
+<details><summary><strong>📘 Solution</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → abS | ε
+&lt;/details&gt;
+</pre></div>
+</div>
+<p><strong>Question 15:</strong> CFG → PDA for <cite>S → aSb | ab</cite>.</p>
+<details><summary><strong>📘 Solution</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PDA transitions:
+(q₀, a, ε) → (q₀, A)
+(q₀, b, A) → (q₀, ε)
+(q₀, ε, $) → (qf, ε)
+&lt;/details&gt;
+</pre></div>
+</div>
+</section>
+<section id="multiple-choice-quiz-reinforcement">
+<h2><span class="section-number">3.2. </span>🧠 Multiple Choice Quiz — Reinforcement<a class="headerlink" href="#multiple-choice-quiz-reinforcement" title="Link to this heading"></a></h2>
+<p><strong>Q1.</strong> Which language is <strong>not context-free</strong>?
+A) <cite>{a^n b^n}</cite> B) <cite>{a^n b^n c^n}</cite> C) <cite>{a^i b^j | i ≠ j}</cite> D) <cite>{a^n b^m}</cite></p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** B — requires tracking three counters.
+</details><p>—</p>
+<p><strong>Q2.</strong> In CNF, each rule’s RHS has:
+A) One variable B) Two variables or one terminal C) Three symbols D) ε always</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** B — CNF restricts RHS to 2 vars or 1 terminal.
+</details><p>—</p>
+<p><strong>Q3.</strong> PDA accepting <cite>{a^n b^n}</cite> pushes for <cite>a</cite> and pops for?
+A) a B) b C) ε D) none</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** B
+</details><p>—</p>
+<p><strong>Q4.</strong> Every regular language is also:
+A) Context-free B) Context-sensitive C) Recursively enumerable D) None</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** A — regular ⊂ context-free.
+</details><p>—</p>
+<p><strong>Q5.</strong> Which grammar type generates CFLs?
+A) Type 0 B) Type 1 C) Type 2 D) Type 3</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** C — Context-Free Grammar.
+</details><p>—</p>
+<p><strong>Q6.</strong> For <cite>S → aSb | ab</cite>, language is?
+A) <cite>{a^n b^n}</cite> B) <cite>{(ab)^n}</cite> C) <cite>{a^n b^(n+1)}</cite> D) None</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** A
+</details><p>—</p>
+<p><strong>Q7.</strong> In PDA, acceptance can be by:
+A) Final state B) Empty stack C) Either D) None</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** C
+</details><p>—</p>
+<p><strong>Q8.</strong> Ambiguous grammar example:
+A) <cite>E → E+E | id</cite> B) <cite>S → aSb | ab</cite> C) <cite>S → aS | bS | ε</cite> D) None</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** A — classic arithmetic ambiguity.
+</details><p>—</p>
+<p><strong>Q9.</strong> PDA’s stack enables:
+A) Linear memory B) Nested recursion tracking C) Random access D) Two-way search</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** B
+</details><p>—</p>
+<p><strong>Q10.</strong> DPDA can accept:
+A) <cite>{a^n b^n}</cite> B) <cite>{ww}</cite> C) <cite>{a^n b^n c^n}</cite> D) None</p>
+<details><summary><strong>✅ Solution</strong></summary>
+**Answer:** A
 </details></section>
+</section>
 
 
            </div>
