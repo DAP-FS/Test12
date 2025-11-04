@@ -102,7 +102,8 @@
 <li><p><a class="reference internal" href="#why-pushdown" id="id10">Why “Pushdown”?</a></p></li>
 <li><p><a class="reference internal" href="#real-world-uses" id="id11">Real-World Uses</a></p></li>
 <li><p><a class="reference internal" href="#definition-3-1-pushdown-automaton" id="id12">Definition 3.1 — Pushdown Automaton</a></p></li>
-<li><p><a class="reference internal" href="#summary" id="id13">Summary</a></p></li>
+<li><p><a class="reference internal" href="#pda-example-balanced-parentheses" id="id13">PDA Example: Balanced Parentheses</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id14">Summary</a></p></li>
 </ul>
 </nav>
 <hr class="docutils" />
@@ -276,9 +277,41 @@ Pop one per <cite>b</cite>, and accept when input ends and stack is empty.</p>
 <p>where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.
 Acceptance is by <strong>final state</strong> or <strong>empty stack</strong>, and both recognize <strong>context-free languages</strong>.</p>
 </section>
+<section id="pda-example-balanced-parentheses">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.13. </span>PDA Example: Balanced Parentheses</a><a class="headerlink" href="#pda-example-balanced-parentheses" title="Link to this heading"></a></h2>
+<figure class="align-center" id="fig-pda-balanced">
+<div class="graphviz"><object data="../_images/graphviz-9a1f361ad71b40b747b4946a49b23d9c32ca7081.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph PDA {
+   rankdir=LR;
+   node [shape = circle, fontsize=12, style=filled, fillcolor=&quot;#f8f8f8&quot;, color=&quot;#7b1113&quot;];
+
+   q0 [label=&quot;q₀\n(start)&quot;, shape=doublecircle, fillcolor=&quot;#fff8f8&quot;];
+   q1 [label=&quot;q₁&quot;];
+   q2 [label=&quot;q₂\n(accept)&quot;, shape=doublecircle, fillcolor=&quot;#f2fff2&quot;];
+
+   // Transitions
+   q0 -&gt; q1 [label=&quot;ε, ε → $&quot;];
+   q1 -&gt; q1 [label=&quot;( , ε → (&quot;];
+   q1 -&gt; q1 [label=&quot;) , ( → ε&quot;];
+   q1 -&gt; q2 [label=&quot;ε , $ → ε&quot;];
+}</p></object></div>
+<figcaption>
+<p><span class="caption-text">PDA for Balanced Parentheses</span><a class="headerlink" href="#fig-pda-balanced" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+<summary style="cursor:pointer; font-weight:600; color:#7b1113;">💡 Hint & Explanation (Click to Expand)</summary>
+<p>
+This PDA recognizes <strong>balanced parentheses</strong>.<br><br>
+- <b>q₀ → q₁:</b> Push stack bottom marker ($).<br>
+- <b>q₁ → q₁:</b> For each ‘(’, push it. For each ‘)’, pop a ‘(’.<br>
+- <b>q₁ → q₂:</b> When stack has only $, accept the string.<br><br>
+Try strings: <code>()</code>, <code>(())</code>, <code>(()())</code>.
+</p>
+</details></section>
 <hr class="docutils" />
 <section id="summary">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.13. </span>Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">2.14. </span>Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>PDAs = CFGs in power → both define CFLs</p></li>
 <li><p>DFAs &lt; PDAs &lt; Turing Machines</p></li>

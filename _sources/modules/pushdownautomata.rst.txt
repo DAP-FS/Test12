@@ -219,6 +219,43 @@ A **Pushdown Automaton (PDA)** is a tuple:
 where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.  
 Acceptance is by **final state** or **empty stack**, and both recognize **context-free languages**.
 
+PDA Example: Balanced Parentheses
+=================================
+
+.. graphviz::
+   :align: center
+   :caption: PDA for Balanced Parentheses
+   :name: fig-pda-balanced
+
+   digraph PDA {
+      rankdir=LR;
+      node [shape = circle, fontsize=12, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
+
+      q0 [label="q₀\n(start)", shape=doublecircle, fillcolor="#fff8f8"];
+      q1 [label="q₁"];
+      q2 [label="q₂\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
+
+      // Transitions
+      q0 -> q1 [label="ε, ε → $"];
+      q1 -> q1 [label="( , ε → ("];
+      q1 -> q1 [label=") , ( → ε"];
+      q1 -> q2 [label="ε , $ → ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">💡 Hint & Explanation (Click to Expand)</summary>
+   <p>
+   This PDA recognizes <strong>balanced parentheses</strong>.<br><br>
+   - <b>q₀ → q₁:</b> Push stack bottom marker ($).<br>
+   - <b>q₁ → q₁:</b> For each ‘(’, push it. For each ‘)’, pop a ‘(’.<br>
+   - <b>q₁ → q₂:</b> When stack has only $, accept the string.<br><br>
+   Try strings: <code>()</code>, <code>(())</code>, <code>(()())</code>.
+   </p>
+   </details>
+
+
 ----
 
 Summary
