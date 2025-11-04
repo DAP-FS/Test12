@@ -1,188 +1,311 @@
-.. raw:: html
+Practice Exercises (Extended)
+------------------------------
 
-   <style>
-     /* === General Typography and Layout === */
-     body {
-       font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-       line-height: 1.6;
-     }
-     h2, h3, h4 {
-       color: #7b1113; /* Stanford Maroon */
-       font-weight: 600;
-       margin-top: 1.8em;
-       margin-bottom: 0.6em;
-       text-align: left;
-     }
-     code, .code {
-       background-color: #f7f7f7;
-       padding: 2px 5px;
-       border-radius: 4px;
-     }
-     p, li {
-       font-size: 16px;
-     }
-
-     /* === Collapsible Solution Blocks === */
-     details {
-       background-color: #fcfcfc;
-       border: 1px solid #ddd;
-       border-radius: 8px;
-       padding: 10px 15px;
-       margin: 12px 0;
-       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-     }
-     summary {
-       font-weight: 600;
-       font-size: 17px;
-       color: #444;
-       cursor: pointer;
-       padding: 5px 0;
-     }
-     details[open] summary {
-       color: #7b1113;
-     }
-
-     /* === Admonitions (Hints, Tips) === */
-     .admonition.tip, .admonition.hint {
-       border-left: 4px solid #7b1113 !important;
-       background-color: #f9f9f9 !important;
-     }
-
-     /* === Mobile Optimization === */
-     @media (max-width: 600px) {
-       p, li {
-         font-size: 15px;
-         line-height: 1.5;
-       }
-       h2, h3, h4 {
-         font-size: 20px;
-       }
-       summary {
-         font-size: 16px;
-       }
-     }
-   </style>
-
-
-Practice Excercises 
-----------------------------------------
-
-**Question 01:** Find the maximum yield length for the following CNF CFG:
-
-.. code-block:: text
-
-   S → AB
-   A → a
-   B → b
+**Question 04:** Construct a CFG for the language :math:`L = \{a^n b^n \mid n ≥ 1\}`
 
 .. raw:: html
 
    <details>
    <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
-**Graphviz Derivation Tree (Hidden Visualization)**  
+.. code-block:: text
 
-.. graphviz::
+   S → aSb | ab
 
-   digraph CFG1 {
-       rankdir=TB;
-       node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
-       S -> A [label=" "];
-       S -> B [label=" "];
-       A -> a;
-       B -> b;
-   }
+**Example Derivation:**
 
-**Derivation Tree for the string** `ab`  
+S  
+⟹ aSb  
+⟹ aaSbb  
+⟹ aabb ✅
 
-- Longest path length = 2 = k  
-- Maximum yield length = 2^(k − 1) = 2  
-
-.. admonition:: Concept Insight  
+.. admonition:: Concept Hint  
    :class: tip  
 
-   The *yield length* corresponds to the number of terminals produced at the leaf level.  
-   In CNF, each derivation step can at most double the number of leaves, hence the formula  
-   :math:`2^{k-1}` for the maximum yield length.
+   Each **a** is paired with a **b** through recursive wrapping.
 
 .. raw:: html
 
    </details>
 
 
-**Question 02:** Find the maximum yield length for the following CNF CFG:
-
-.. code-block:: text
-
-   S → AB
-   A → EF
-   B → C
-   E → a
-   F → b
-   C → c
+**Question 05:** Construct a CFG for the language of all **even-length palindromes** over `{0,1}`.
 
 .. raw:: html
 
    <details>
    <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
-**Graphviz Derivation Tree (Hidden Visualization)**  
+.. code-block:: text
 
-.. graphviz::
+   S → 0S0 | 1S1 | ε
 
-   digraph CFG2 {
-       rankdir=TB;
-       node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
-       S -> A;
-       S -> B;
-       A -> E;
-       A -> F;
-       E -> a;
-       F -> b;
-       B -> C;
-       C -> c;
-   }
-
-**Derivation Tree for the string** `abc`  
-
-- Longest path length = 3 = k  
-- Maximum yield length = 2^(k − 1) = 4  
+**Example:**  
+`0110`, `1001`, `ε` ✔
 
 .. admonition:: Visual Tip  
    :class: hint  
 
-   Observe that deeper derivation increases the yield length exponentially.  
-   Here, one additional level doubles the number of possible terminals.
+   The grammar builds symmetric structures from the center outward.
 
 .. raw:: html
 
    </details>
 
-**Question 03:**  Which string is accepted by PDA for :math:`a^nb^nc^n`?
 
-A) ``aabbcc``  
-B) ``aaabbbccc``  
-C) ``None of them``
+**Question 06:** Convert the FA below to an equivalent CFG.
+
+**Given FA:**
+
+States = {q₀, q₁},  
+Start = q₀,  
+Final = q₁,  
+Transitions:
+- q₀ —a→ q₁  
+- q₁ —b→ q₀
 
 .. raw:: html
 
    <details>
-   <summary><strong>✅ SOLUTION (Click to Expand)</strong></summary>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
 
 .. code-block:: text
 
-   Answer: C) None of them ✗
+   S₀ → aS₁  
+   S₁ → bS₀ | ε
 
-   Explanation:
-   A PDA with ONE stack cannot verify THREE equal-length groups.
+.. admonition:: Concept Insight  
+   :class: tip  
 
-   aabbcc:
-   - Stack after a's: [a, a, Z₀]
-   - After matching b's: [Z₀]
-   - How to verify 2 c's match? Stack is already empty!
+   For each **FA state**, make a **CFG variable**.  
+   Transitions become **productions** ending with the next state variable.
 
-   Conclusion: This language is NOT context-free. 
-   It requires a Turing Machine (2+ stacks or unlimited memory).
+.. raw:: html
+
+   </details>
+
+
+**Question 07:** Construct a CFG for regular expression `(a|b)*abb`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Steps:
+1. Convert RE → NFA → CFG  
+2. Simplified form:
+
+.. code-block:: text
+
+   S → aS | bS | A  
+   A → aB  
+   B → bC  
+   C → b
+
+**Example Derivation:**  
+S ⟹ aS ⟹ aaS ⟹ aaA ⟹ aaaB ⟹ aaabC ⟹ aaabb ✅
+
+.. admonition:: Tip  
+   :class: hint  
+
+   The final **abb** suffix is enforced by nonterminals `A`, `B`, `C`.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 08:** Create CFG for :math:`L = \{a^n b^m \mid n, m ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aS | A  
+   A → bA | b
+
+✅ Examples: `ab`, `aaabb`, `aabbbbbb`
+
+.. admonition:: Concept Note  
+   :class: tip  
+
+   Independent repetition: `a` and `b` counts are **not linked**.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 09:** Convert the PDA below into an equivalent CFG.
+
+Language: :math:`L = \{a^n b^n | n ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
+
+.. code-block:: text
+
+   S → aSb | ab
+
+**Derivation:**  
+S ⟹ aSb ⟹ aaSbb ⟹ aabb ✅
+
+.. admonition:: Insight  
+   :class: hint  
+
+   PDA pushes for each `a`, pops for each `b`.  
+   CFG mirrors this with symmetric recursion.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 10:** Design a CFG for :math:`L = \{a^n b^m c^m d^n \mid n,m ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aSd | A  
+   A → bAc | bc
+
+✅ Example: `abbccd`
+
+.. admonition:: Tip  
+   :class: hint  
+
+   Two nested symmetries handled by **two recursive nonterminals**.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 11:** Construct a CFG for the language accepted by a **DPDA** recognizing balanced parentheses.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → (S)S | ε
+
+✅ Examples: `()`, `(())`, `()()`
+
+.. admonition:: Concept Note  
+   :class: tip  
+
+   DPDA uses deterministic stack push/pop for each bracket pair.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 12:** Give CFG for :math:`a^i b^j c^k` where :math:`i, j, k ≥ 1`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aS | A  
+   A → bA | B  
+   B → cB | c
+
+✅ Example: `aaabbcc`
+
+.. admonition:: Hint  
+   :class: hint  
+
+   Sequential independent segments: each handled by a separate variable.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 13:** Construct CFG for all strings with **equal number of a’s and b’s**.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aSb | bSa | SS | ε
+
+✅ Examples: `ab`, `ba`, `aabb`, `baba`
+
+.. admonition:: Visual Tip  
+   :class: hint  
+
+   Recursion + concatenation allows mixing and pairing.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 14:** Design a CFG for all palindromes over `{a,b}`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aSa | bSb | a | b | ε
+
+✅ Examples: `aba`, `abba`, `a`, `ε`
+
+.. admonition:: Hint  
+   :class: hint  
+
+   Each production wraps a smaller palindrome symmetrically.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 15:** Construct CFG for :math:`L = \{ww^R \mid w ∈ \{a,b\}^*\}` using PDA intuition.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aSa | bSb | a | b | ε
+
+✅ Example: `abba`, `aa`, `ε`
+
+.. admonition:: Concept Insight  
+   :class: tip  
+
+   PDA pushes first half, pops second half → CFG mirrors by recursive wrapping.
 
 .. raw:: html
 

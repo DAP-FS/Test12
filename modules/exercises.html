@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3. Practice Excercises &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>3. Practice Exercises (Extended) &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -59,7 +59,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Practice Excercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Practice Exercises (Extended)</a></li>
 </ul>
 
         </div>
@@ -76,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3. </span>Practice Excercises</li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Practice Exercises (Extended)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/exercises.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,151 +86,156 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <style>
-  /* === General Typography and Layout === */
-  body {
-    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-  }
-  h2, h3, h4 {
-    color: #7b1113; /* Stanford Maroon */
-    font-weight: 600;
-    margin-top: 1.8em;
-    margin-bottom: 0.6em;
-    text-align: left;
-  }
-  code, .code {
-    background-color: #f7f7f7;
-    padding: 2px 5px;
-    border-radius: 4px;
-  }
-  p, li {
-    font-size: 16px;
-  }
-
-  /* === Collapsible Solution Blocks === */
-  details {
-    background-color: #fcfcfc;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px 15px;
-    margin: 12px 0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  }
-  summary {
-    font-weight: 600;
-    font-size: 17px;
-    color: #444;
-    cursor: pointer;
-    padding: 5px 0;
-  }
-  details[open] summary {
-    color: #7b1113;
-  }
-
-  /* === Admonitions (Hints, Tips) === */
-  .admonition.tip, .admonition.hint {
-    border-left: 4px solid #7b1113 !important;
-    background-color: #f9f9f9 !important;
-  }
-
-  /* === Mobile Optimization === */
-  @media (max-width: 600px) {
-    p, li {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    h2, h3, h4 {
-      font-size: 20px;
-    }
-    summary {
-      font-size: 16px;
-    }
-  }
-</style><section id="practice-excercises">
-<h1><span class="section-number">3. </span>Practice Excercises<a class="headerlink" href="#practice-excercises" title="Link to this heading"></a></h1>
-<p><strong>Question 01:</strong> Find the maximum yield length for the following CNF CFG:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
-A → a
-B → b
+  <section id="practice-exercises-extended">
+<h1><span class="section-number">3. </span>Practice Exercises (Extended)<a class="headerlink" href="#practice-exercises-extended" title="Link to this heading"></a></h1>
+<p><strong>Question 04:</strong> Construct a CFG for the language <span class="math notranslate nohighlight">\(L = \{a^n b^n \mid n ≥ 1\}\)</span></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
 </pre></div>
 </div>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>Graphviz Derivation Tree (Hidden Visualization)</strong></p>
-<div class="graphviz"><object data="../_images/graphviz-7611c9136a5dc207f099c9b51fa5670bf256ac5f.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph CFG1 {
-    rankdir=TB;
-    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
-    S -&gt; A [label=&quot; &quot;];
-    S -&gt; B [label=&quot; &quot;];
-    A -&gt; a;
-    B -&gt; b;
-}</p></object></div>
-<p><strong>Derivation Tree for the string</strong> <cite>ab</cite></p>
-<ul class="simple">
-<li><p>Longest path length = 2 = k</p></li>
-<li><p>Maximum yield length = 2^(k − 1) = 2</p></li>
-</ul>
+<p><strong>Example Derivation:</strong></p>
+<p>S
+⟹ aSb
+⟹ aaSbb
+⟹ aabb ✅</p>
 <div class="tip admonition">
-<p class="admonition-title">Concept Insight</p>
-<p>The <em>yield length</em> corresponds to the number of terminals produced at the leaf level.
-In CNF, each derivation step can at most double the number of leaves, hence the formula
-<span class="math notranslate nohighlight">\(2^{k-1}\)</span> for the maximum yield length.</p>
+<p class="admonition-title">Concept Hint</p>
+<p>Each <strong>a</strong> is paired with a <strong>b</strong> through recursive wrapping.</p>
 </div>
-</details><p><strong>Question 02:</strong> Find the maximum yield length for the following CNF CFG:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
-A → EF
-B → C
-E → a
-F → b
-C → c
+</details><p><strong>Question 05:</strong> Construct a CFG for the language of all <strong>even-length palindromes</strong> over <cite>{0,1}</cite>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → 0S0 | 1S1 | ε
 </pre></div>
 </div>
-<details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>Graphviz Derivation Tree (Hidden Visualization)</strong></p>
-<div class="graphviz"><object data="../_images/graphviz-f8ca3d1e5a6fe59183e8a86b7dbd8c2608fda1aa.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph CFG2 {
-    rankdir=TB;
-    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
-    S -&gt; A;
-    S -&gt; B;
-    A -&gt; E;
-    A -&gt; F;
-    E -&gt; a;
-    F -&gt; b;
-    B -&gt; C;
-    C -&gt; c;
-}</p></object></div>
-<p><strong>Derivation Tree for the string</strong> <cite>abc</cite></p>
-<ul class="simple">
-<li><p>Longest path length = 3 = k</p></li>
-<li><p>Maximum yield length = 2^(k − 1) = 4</p></li>
-</ul>
+<p><strong>Example:</strong>
+<cite>0110</cite>, <cite>1001</cite>, <cite>ε</cite> ✔</p>
 <div class="hint admonition">
 <p class="admonition-title">Visual Tip</p>
-<p>Observe that deeper derivation increases the yield length exponentially.
-Here, one additional level doubles the number of possible terminals.</p>
+<p>The grammar builds symmetric structures from the center outward.</p>
 </div>
-</details><p><strong>Question 03:</strong>  Which string is accepted by PDA for <span class="math notranslate nohighlight">\(a^nb^nc^n\)</span>?</p>
-<ol class="upperalpha simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">aabbcc</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">aaabbbccc</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">None</span> <span class="pre">of</span> <span class="pre">them</span></code></p></li>
-</ol>
+</details><p><strong>Question 06:</strong> Convert the FA below to an equivalent CFG.</p>
+<p><strong>Given FA:</strong></p>
+<p>States = {q₀, q₁},
+Start = q₀,
+Final = q₁,
+Transitions:
+- q₀ —a→ q₁
+- q₁ —b→ q₀</p>
 <details>
-<summary><strong>✅ SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Answer: C) None of them ✗
-
-Explanation:
-A PDA with ONE stack cannot verify THREE equal-length groups.
-
-aabbcc:
-- Stack after a&#39;s: [a, a, Z₀]
-- After matching b&#39;s: [Z₀]
-- How to verify 2 c&#39;s match? Stack is already empty!
-
-Conclusion: This language is NOT context-free.
-It requires a Turing Machine (2+ stacks or unlimited memory).
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → aS₁
+S₁ → bS₀ | ε
 </pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>For each <strong>FA state</strong>, make a <strong>CFG variable</strong>.
+Transitions become <strong>productions</strong> ending with the next state variable.</p>
+</div>
+</details><p><strong>Question 07:</strong> Construct a CFG for regular expression <cite>(a|b)*abb</cite>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Steps:
+1. Convert RE → NFA → CFG
+2. Simplified form:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | bS | A
+A → aB
+B → bC
+C → b
+</pre></div>
+</div>
+<p><strong>Example Derivation:</strong>
+S ⟹ aS ⟹ aaS ⟹ aaA ⟹ aaaB ⟹ aaabC ⟹ aaabb ✅</p>
+<div class="hint admonition">
+<p class="admonition-title">Tip</p>
+<p>The final <strong>abb</strong> suffix is enforced by nonterminals <cite>A</cite>, <cite>B</cite>, <cite>C</cite>.</p>
+</div>
+</details><p><strong>Question 08:</strong> Create CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m \mid n, m ≥ 1\}\)</span></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A
+A → bA | b
+</pre></div>
+</div>
+<p>✅ Examples: <cite>ab</cite>, <cite>aaabb</cite>, <cite>aabbbbbb</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Note</p>
+<p>Independent repetition: <cite>a</cite> and <cite>b</cite> counts are <strong>not linked</strong>.</p>
+</div>
+</details><p><strong>Question 09:</strong> Convert the PDA below into an equivalent CFG.</p>
+<p>Language: <span class="math notranslate nohighlight">\(L = \{a^n b^n | n ≥ 1\}\)</span></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
+</pre></div>
+</div>
+<p><strong>Derivation:</strong>
+S ⟹ aSb ⟹ aaSbb ⟹ aabb ✅</p>
+<div class="hint admonition">
+<p class="admonition-title">Insight</p>
+<p>PDA pushes for each <cite>a</cite>, pops for each <cite>b</cite>.
+CFG mirrors this with symmetric recursion.</p>
+</div>
+</details><p><strong>Question 10:</strong> Design a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m c^m d^n \mid n,m ≥ 1\}\)</span></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSd | A
+A → bAc | bc
+</pre></div>
+</div>
+<p>✅ Example: <cite>abbccd</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Tip</p>
+<p>Two nested symmetries handled by <strong>two recursive nonterminals</strong>.</p>
+</div>
+</details><p><strong>Question 11:</strong> Construct a CFG for the language accepted by a <strong>DPDA</strong> recognizing balanced parentheses.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → (S)S | ε
+</pre></div>
+</div>
+<p>✅ Examples: <cite>()</cite>, <cite>(())</cite>, <cite>()()</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Note</p>
+<p>DPDA uses deterministic stack push/pop for each bracket pair.</p>
+</div>
+</details><p><strong>Question 12:</strong> Give CFG for <span class="math notranslate nohighlight">\(a^i b^j c^k\)</span> where <span class="math notranslate nohighlight">\(i, j, k ≥ 1\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A
+A → bA | B
+B → cB | c
+</pre></div>
+</div>
+<p>✅ Example: <cite>aaabbcc</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Sequential independent segments: each handled by a separate variable.</p>
+</div>
+</details><p><strong>Question 13:</strong> Construct CFG for all strings with <strong>equal number of a’s and b’s</strong>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | bSa | SS | ε
+</pre></div>
+</div>
+<p>✅ Examples: <cite>ab</cite>, <cite>ba</cite>, <cite>aabb</cite>, <cite>baba</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>Recursion + concatenation allows mixing and pairing.</p>
+</div>
+</details><p><strong>Question 14:</strong> Design a CFG for all palindromes over <cite>{a,b}</cite>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
+</pre></div>
+</div>
+<p>✅ Examples: <cite>aba</cite>, <cite>abba</cite>, <cite>a</cite>, <cite>ε</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Each production wraps a smaller palindrome symmetrically.</p>
+</div>
+</details><p><strong>Question 15:</strong> Construct CFG for <span class="math notranslate nohighlight">\(L = \{ww^R \mid w ∈ \{a,b\}^*\}\)</span> using PDA intuition.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
+</pre></div>
+</div>
+<p>✅ Example: <cite>abba</cite>, <cite>aa</cite>, <cite>ε</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>PDA pushes first half, pops second half → CFG mirrors by recursive wrapping.</p>
 </div>
 </details></section>
 
