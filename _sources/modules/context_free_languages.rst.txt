@@ -1,11 +1,8 @@
-====================================
-Introduction to Context Free Grammer 
-====================================
+Introduction to Context Free Grammar
+=====================================
 
 Start here! This section builds **intuition first**, before diving into formal definitions.  
-Keep your mind open — imagine, visualize, and connect.
-
-----
+Keep your mind open â€” imagine, visualize, and connect.
 
 What is Context-Free?
 =====================
@@ -24,19 +21,17 @@ Think about nested HTML structure:
 
 Every opening ``<tag>`` has a matching closing ``</tag>``.
 
-.. admonition:: ⚠️ Key Insight
+.. admonition:: âš ï¸ Key Insight
    :class: important
 
-   A **finite automaton (DFA/NFA)** can’t verify this structure—it lacks *memory*.  
+   A **finite automaton (DFA/NFA)** can't verify this structureâ€”it lacks *memory*.  
    Matching nested tags requires **unbounded memory**, which **only a stack** can provide.
 
 A **Context-Free Grammar (CFG)** is precisely this:  
 a **rule-based system** that can *generate and verify* hierarchical, nested patterns.
 
-----
-
-The Problem: Why CFGs Matter ?
-===============================
+The Problem: Why CFGs Matter?
+==============================
 
 **Example: Balanced Parentheses**
 
@@ -48,22 +43,20 @@ The Problem: Why CFGs Matter ?
      - Valid?
      - Explanation
    * - ``()``
-     - ✓
+     - âœ“
      - Matched pair
    * - ``(())``
-     - ✓
+     - âœ“
      - Nested pair
    * - ``(()())``
-     - ✓
+     - âœ“
      - Mixed nesting
    * - ``(()``
-     - ✗
+     - âœ—
      - Unclosed parenthesis
    * - ``())``
-     - ✗
+     - âœ—
      - Extra closing parenthesis
-
-----
 
 Can a DFA verify this?
 ----------------------
@@ -72,46 +65,40 @@ Can a DFA verify this?
 
 A DFA cannot decide this language.
 
-.. admonition:: 🧠 Intuition
+.. admonition:: ðŸ§  Intuition
    :class: hint
 
    A DFA has *finite memory*.  
-   Balanced parentheses need remembering *an arbitrary number of opens* until they’re closed later — requiring a **stack**, not fixed states.
+   Balanced parentheses need remembering *an arbitrary number of opens* until they're closed later â€” requiring a **stack**, not fixed states.
 
----
-
-
-
-Recipe Analogy: How CFGs Work ?
+Recipe Analogy: How CFGs Work?
 ===============================
 
 Think of a CFG as a **recipe** for generating valid sentences.
 
 .. code-block:: text
 
-   Sentence → Subject Verb Object
-   Subject  → "The" Noun
-   Noun     → "cat" | "dog" | "bird"
-   Verb     → "chased" | "saw"
-   Object   → "the" Noun
+   Sentence â†’ Subject Verb Object
+   Subject  â†’ "The" Noun
+   Noun     â†’ "cat" | "dog" | "bird"
+   Verb     â†’ "chased" | "saw"
+   Object   â†’ "the" Noun
 
 Start with the top rule and **substitute step by step**:
 
 .. code-block:: text
 
    Sentence
-   ⟹ Subject Verb Object
-   ⟹ "The" Noun Verb Object
-   ⟹ "The" "cat" Verb Object
-   ⟹ "The" "cat" "chased" Object
-   ⟹ "The" "cat" "chased" "the" "bird"
+   âŸ¹ Subject Verb Object
+   âŸ¹ "The" Noun Verb Object
+   âŸ¹ "The" "cat" Verb Object
+   âŸ¹ "The" "cat" "chased" Object
+   âŸ¹ "The" "cat" "chased" "the" "bird"
 
-✅ **Result:** “The cat chased the bird”
+âœ… **Result:** "The cat chased the bird"
 
 .. note::
-   Each arrow **⟹** is a **derivation step** — you replace one variable with its rule.
-
----
+   Each arrow **âŸ¹** is a **derivation step** â€” you replace one variable with its rule.
 
 Regular vs. Context-Free
 =========================
@@ -130,11 +117,11 @@ Regular vs. Context-Free
      - DFA / NFA
      - PDA
    * - Can recognize
-     - ``a*b*``
-     - ``aⁿbⁿ``
+     - :math:`a*b*`
+     - :math:`a^nb^n`
    * - Handles nesting?
-     - ✗ No
-     - ✓ Yes
+     - âœ— No
+     - âœ“ Yes
 
 .. tip::
 
@@ -142,36 +129,36 @@ Regular vs. Context-Free
 
 .. graphviz::
 
-   digraph CFG_PDA {
+   digraph CFG_PDA_Equivalence {
        rankdir=LR;
-       node [shape=box, style="rounded,filled", fillcolor="#E8F4F8"];
-       CFG [label="Context-Free Grammar"];
-       PDA [label="Pushdown Automaton"];
-       CFL [label="Context-Free Language"];
-       CFG -> CFL;
-       CFL -> PDA [label="Equivalent Representation"];
+       node [shape=box, style="rounded,filled", fillcolor="#E8F4F8", fontsize=11];
+       edge [fontsize=10];
+
+       CFG [label="Context-Free\nGrammar (CFG)"];
+       PDA [label="Pushdown\nAutomaton (PDA)"];
+       CFL [label="Context-Free\nLanguage (CFL)"];
+
+       CFG -> CFL [label="generates"];
+       CFL -> PDA [label="recognized by"];
+       PDA -> CFL [label="accepts"];
    }
 
----
-
-Why “Context-Free”?
+Why "Context-Free"?
 ===================
 
 .. container:: shadow-sm p-3 bg-light rounded
 
-   A rule applies **regardless of context** — that’s why it’s *context-free*.
+   A rule applies **regardless of context** â€” that's why it's *context-free*.
 
 .. code-block:: text
 
-   Noun → "cat"    ← applies anywhere “Noun” appears.
+   Noun â†’ "cat"    â† applies anywhere "Noun" appears
 
 Compare with context-sensitive rules:
 
 .. code-block:: text
 
-   a Noun b → a "cat" b   ← applies only between “a” and “b”
-
----
+   a Noun b â†’ a "cat" b   â† applies only between "a" and "b"
 
 Real-World Applications
 =======================
@@ -188,51 +175,48 @@ Browsers verify nesting of tags using CFG-like structures.
 
 .. code-block:: text
 
-   2 + 3 * (4 + 5)   ✓ valid
-   2 + * 3 (4 + 5)   ✗ invalid
+   2 + 3 * (4 + 5)   âœ“ valid
+   2 + * 3 (4 + 5)   âœ— invalid
 
 **4. Natural Language**
 
 Grammar rules model sentence structure.
-
----
 
 Quick Check
 ===========
 
 **Q1.** Can a DFA verify ``(())``?
 
-.. admonition:: 💡 Solution
+.. admonition:: ðŸ’¡ Solution
    :class: toggle
 
    **No.** Requires unbounded memory (stack).
 
-**Q2.** What can CFGs do that DFAs can’t?
+**Q2.** What can CFGs do that DFAs can't?
 
-.. admonition:: 💡 Solution
+.. admonition:: ðŸ’¡ Solution
    :class: toggle
 
-   Describe **recursive** and **nested** patterns — vital for programming languages.
-
----
+   Describe **recursive** and **nested** patterns â€” vital for programming languages.
 
 Summary
 =======
 
-✅ CFGs describe **recursive, nested** languages  
+âœ… CFGs describe **recursive, nested** languages  
 
-✅ They use **rule substitution** (derivations)  
+âœ… They use **rule substitution** (derivations)  
 
-✅ **More powerful than** DFA/NFA  
+âœ… **More powerful than** DFA/NFA  
 
-✅ **Less powerful than** Turing Machines  
+âœ… **Less powerful than** Turing Machines  
 
-✅ Essential for **parsers, compilers, and linguistics**
+âœ… Essential for **parsers, compilers, and linguistics**
 
-----
+Formal Definition
+=================
 
-Definition 2.1 — Context-Free Grammar
-=====================================
+Definition 2.1 â€” Context-Free Grammar
+--------------------------------------
 
 A **Context-Free Grammar (CFG)** is a 4-tuple:
 
@@ -262,72 +246,495 @@ A **Context-Free Grammar (CFG)** is a 4-tuple:
 
 .. important::
 
-   - Variables → UPPERCASE (e.g. ``S``, ``A``)  
-   - Terminals → lowercase or symbols (e.g. ``a``, ``(``)  
-   - Multiple rules allowed: ``A → w₁ | w₂ | w₃``
+   - Variables â†’ UPPERCASE (e.g. ``S``, ``A``)  
+   - Terminals â†’ lowercase or symbols (e.g. ``a``, ``(``)  
+   - Multiple rules allowed: ``A â†’ wâ‚ | wâ‚‚ | wâ‚ƒ``
 
----
-
-Example CFG — Balanced Parentheses
-==================================
+Example CFG â€” Balanced Parentheses
+===================================
 
 .. code-block:: text
 
    G = ({S}, {(,)}, R, S)
-   where R = {S → ε | (S) | SS}
+   where R = {S â†’ Îµ | (S) | SS}
 
 **Rule meanings:**
 
-- :math:`S → ε` : Empty string is valid  
-- :math:`S → (S)` : Wrap balanced string in parentheses  
-- :math:`S → SS` : Concatenate two balanced strings
+- :math:`S â†’ \epsilon` : Empty string is valid  
+- :math:`S â†’ (S)` : Wrap balanced string in parentheses  
+- :math:`S â†’ SS` : Concatenate two balanced strings
 
-.. admonition:: ✅ Try it yourself
+.. admonition:: âœ… Try it yourself
    :class: hint
 
    Derive ``(())()`` using the above grammar.
 
----
+**Solution:**
 
-**Hidden Answer (click to reveal):**
+1. ``S âŸ¹ SS``  
+2. First ``S âŸ¹ (S) âŸ¹ (())``  
+3. Second ``S âŸ¹ (S) âŸ¹ ()``  
+4. âœ… Combined: ``(())()``
 
-.. admonition:: 💡 Solution
-   :class: toggle
+Derivation Methods
+==================
 
-   1. ``S ⟹ SS``  
+In CFG, we derive strings through **rule substitution**. There are two standard approaches:
 
-   
-   2. First ``S ⟹ (S) ⟹ (())``  
-   
-   3. Second ``S ⟹ (S) ⟹ ()``  
-   
-   ✅ Combined: ``(())()``
+Leftmost Derivation
+--------------------
+
+In a **leftmost derivation**, we always replace the **leftmost variable** first.
+
+.. admonition:: Definition
+   :class: important
+
+   At each step, replace the **leftmost non-terminal** (variable) in the string.
+
+**Example: Derive** :math:`aabb` **from** :math:`G = (\{S, A, B\}, \{a, b\}, R, S)` **where:**
+
+.. code-block:: text
+
+   R: S â†’ AB
+      A â†’ aA | a
+      B â†’ bB | b
+
+**Leftmost Derivation:**
+
+.. code-block:: text
+
+   S
+   âŸ¹ AB         (S â†’ AB)
+   âŸ¹ aAB        (A â†’ aA, leftmost variable)
+   âŸ¹ aaB        (A â†’ a, leftmost variable)
+   âŸ¹ aaBB       (B â†’ bB, leftmost variable)
+   âŸ¹ aaBb       (B â†’ b, leftmost variable)
+   âŸ¹ aabb       âœ“ Success!
+
+**Key Point:** At each step, we substitute the **leftmost non-terminal**.
+
+Rightmost Derivation
+---------------------
+
+In a **rightmost derivation**, we always replace the **rightmost variable** first.
+
+.. admonition:: Definition
+   :class: important
+
+   At each step, replace the **rightmost non-terminal** (variable) in the string.
+
+**Example: Derive** :math:`aabb` **using rightmost derivation:**
+
+.. code-block:: text
+
+   S
+   âŸ¹ AB         (S â†’ AB)
+   âŸ¹ AbB        (B â†’ bB, rightmost variable)
+   âŸ¹ Abb        (B â†’ b, rightmost variable)
+   âŸ¹ aAbb       (A â†’ aA, rightmost variable)
+   âŸ¹ aabb       (A â†’ a, rightmost variable)
+   âŸ¹ aabb       âœ“ Success!
+
+**Key Point:** At each step, we substitute the **rightmost non-terminal**.
+
+Comparison
+~~~~~~~~~~
+
+.. list-table:: Leftmost vs Rightmost
+   :header-rows: 1
+   :widths: 50 50
+
+   * - **Leftmost Derivation**
+     - **Rightmost Derivation**
+   * - Always replace leftmost variable
+     - Always replace rightmost variable
+   * - Top-down parsing approach
+     - Bottom-up parsing approach
+   * - Used by recursive descent parsers
+     - Used by LR parsers
+
+.. note::
+
+   âœ… Both derive the **same string**, just in different order!
+
+Parse Trees
+===========
+
+A **parse tree** (or **syntax tree**) is a visual representation of how a string is derived from a grammar.
+
+Understanding Parse Trees
+--------------------------
+
+.. admonition:: Definition
+   :class: important
+
+   A **parse tree** shows:
+   - **Root:** Start symbol :math:`S`
+   - **Leaves:** Terminals (input symbols)
+   - **Internal nodes:** Variables (non-terminals)
+   - **Edges:** Production rules applied
+
+**Structure Rules:**
+
+1. Root is the start symbol :math:`S`
+2. Each leaf is a terminal from :math:`\Sigma` (or :math:`\epsilon`)
+3. Each internal node is a non-terminal from :math:`V`
+4. If node :math:`A` has children :math:`X_1, X_2, \ldots, X_k`, then :math:`A \to X_1X_2\cdots X_k` is a rule in :math:`R`
+
+Example Parse Tree
+~~~~~~~~~~~~~~~~~~~
+
+**Grammar:**
+
+.. code-block:: text
+
+   G = ({S, A, B}, {a, b}, R, S)
+   R: S â†’ AB
+      A â†’ aA | a
+      B â†’ bB | b
+
+**Derive:** :math:`aabb`
+
+**Parse Tree:**
+
+.. graphviz::
+
+   digraph ParseTree_aabb {
+       rankdir=TB;
+       node [shape=circle, style="filled", fillcolor="#FFE6E6", fontsize=12];
+       edge [fontsize=10];
+
+       S [label="S"];
+       A1 [label="A"];
+       B1 [label="B"];
+       A2 [label="A"];
+       B2 [label="B"];
+       a1 [label="a", shape=box, fillcolor="#E6F3FF"];
+       a2 [label="a", shape=box, fillcolor="#E6F3FF"];
+       b1 [label="b", shape=box, fillcolor="#E6F3FF"];
+       b2 [label="b", shape=box, fillcolor="#E6F3FF"];
+
+       S -> A1;
+       S -> B1;
+       A1 -> a1;
+       A1 -> A2;
+       A2 -> a2;
+       B1 -> b1;
+       B1 -> B2;
+       B2 -> b2;
+   }
+
+**Reading the tree (left to right at leaves):** :math:`a \cdot a \cdot b \cdot b = aabb` âœ“
+
+Balanced Parentheses Parse Tree
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Grammar:**
+
+.. code-block:: text
+
+   S â†’ (S) | SS | Îµ
+
+**Derive:** ``(())``
+
+**Parse Tree:**
+
+.. graphviz::
+
+   digraph ParseTree_Parens {
+       rankdir=TB;
+       node [shape=circle, style="filled", fillcolor="#FFE6E6", fontsize=12];
+       edge [fontsize=10];
+
+       S0 [label="S"];
+       paren1 [label="(", shape=box, fillcolor="#E6F3FF"];
+       S1 [label="S"];
+       S2 [label="S"];
+       paren2 [label="(", shape=box, fillcolor="#E6F3FF"];
+       paren3 [label=")", shape=box, fillcolor="#E6F3FF"];
+       eps [label="Îµ", shape=box, fillcolor="#E6E6E6"];
+       paren4 [label=")", shape=box, fillcolor="#E6F3FF"];
+
+       S0 -> paren1;
+       S0 -> S1;
+       S0 -> paren4;
+       S1 -> paren2;
+       S1 -> S2;
+       S1 -> paren3;
+       S2 -> eps;
+   }
+
+**Reading the tree (leaves left to right):** ``( ( ) )`` âœ“
+
+Parsing Methods
+===============
+
+**Parsing** is the reverse of derivation: given a string, find its parse tree.
+
+Two main approaches exist:
+
+Top-Down Parsing (Recursive Descent)
+-------------------------------------
+
+**Concept:** Start from the root (start symbol) and work downward to build the tree.
+
+.. admonition:: Algorithm
+   :class: important
+
+   1. Start with :math:`S` (start symbol)
+   2. At each node, try applicable production rules
+   3. Match terminals with input symbols
+   4. Recursively parse non-terminals
+   5. Backtrack if a choice fails
+
+**Example: Parse** ``aabb`` **using top-down approach**
+
+.. code-block:: text
+
+   Grammar:
+   S â†’ AB
+   A â†’ aA | a
+   B â†’ bB | b
+
+   Input: aabb
+
+   Step 1: S â†’ AB (choose first rule)
+   Step 2: A â†’ aA (consume first 'a')
+   Step 3: A â†’ a (consume second 'a')
+   Step 4: B â†’ bB (consume first 'b')
+   Step 5: B â†’ b (consume second 'b')
+   âœ“ Success!
+
+.. graphviz::
+
+   digraph TopDownParsing {
+       rankdir=TB;
+       node [shape=box, style="rounded,filled", fillcolor="#E8F4F8"];
+
+       step1 [label="1. Start: S"];
+       step2 [label="2. Sâ†’AB"];
+       step3 [label="3. Match 'a' with A"];
+       step4 [label="4. Continue with A"];
+       step5 [label="5. Match 'a'"];
+       step6 [label="6. Parse B"];
+       step7 [label="7. Success!"];
+
+       step1 -> step2;
+       step2 -> step3;
+       step3 -> step4;
+       step4 -> step5;
+       step5 -> step6;
+       step6 -> step7;
+   }
+
+**Advantages:**
+
+- Intuitive and easy to implement
+- Natural for hand-tracing
+- Used in recursive descent parsers
+
+**Disadvantages:**
+
+- Can be inefficient with backtracking
+- Difficult for left-recursive grammars
+
+Bottom-Up Parsing (Shift-Reduce)
+---------------------------------
+
+**Concept:** Start from input symbols (leaves) and work upward to build the tree.
+
+.. admonition:: Algorithm
+   :class: important
+
+   1. Read input symbols left to right
+   2. **Shift** input onto a stack
+   3. **Reduce** stack using production rules (reverse)
+   4. Stop when entire input is consumed and stack contains :math:`S`
+
+**Example: Parse** ``aabb`` **using bottom-up approach**
+
+.. code-block:: text
+
+   Grammar:
+   S â†’ AB
+   A â†’ aA | a
+   B â†’ bB | b
+
+   Input: a a b b
+
+   Step 1: Shift 'a'
+           Stack: [a], Input: abb
+   Step 2: Reduce A â†’ a
+           Stack: [A], Input: abb
+   Step 3: Shift 'a'
+           Stack: [A, a], Input: bb
+   Step 4: Reduce A â†’ aA
+           Stack: [A], Input: bb
+   Step 5: Shift 'b'
+           Stack: [A, b], Input: b
+   Step 6: Shift 'b'
+           Stack: [A, b, b], Input: empty
+   Step 7: Reduce B â†’ b
+           Stack: [A, B, b], Input: empty
+   Step 8: Reduce B â†’ bB
+           Stack: [A, B], Input: empty
+   Step 9: Reduce S â†’ AB
+           Stack: [S], Input: empty
+   âœ“ Success!
+
+**Advantages:**
+
+- Handles left-recursive grammars
+- More efficient with DP (memoization)
+- Used in LR parsers
+
+**Disadvantages:**
+
+- More complex to implement
+- Harder for manual tracing
+
+Comparison of Parsing Methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table:: Parsing Methods
+   :header-rows: 1
+   :widths: 30 35 35
+
+   * - **Aspect**
+     - **Top-Down**
+     - **Bottom-Up**
+   * - Direction
+     - Root â†’ Leaves
+     - Leaves â†’ Root
+   * - Derivation type
+     - Leftmost
+     - Rightmost
+   * - Implementation
+     - Recursive descent
+     - Shift-reduce
+   * - Handles left recursion?
+     - âœ— No
+     - âœ“ Yes
+   * - Efficiency
+     - Can backtrack
+     - More efficient
+
+Ambiguity in CFGs
+=================
+
+**Definition:** A grammar is **ambiguous** if a string has multiple parse trees (or derivations).
+
+Example: Ambiguous Grammar
+---------------------------
+
+**Grammar (for arithmetic expressions):**
+
+.. code-block:: text
+
+   E â†’ E + E | E * E | (E) | num
+
+**Parse string:** ``2 + 3 * 4``
+
+**Two different parse trees exist:**
+
+Parse Tree 1: :math:`(2 + 3) \times 4 = 20`
+
+.. graphviz::
+
+   digraph AmbigTree1 {
+       rankdir=TB;
+       node [shape=circle, style="filled", fillcolor="#FFE6E6"];
+
+       E0 [label="E"];
+       E1 [label="E"];
+       E2 [label="E"];
+       E3 [label="E"];
+       E4 [label="E"];
+
+       plus [label="+", shape=box, fillcolor="#E6F3FF"];
+       times [label="*", shape=box, fillcolor="#E6F3FF"];
+       num2 [label="2", shape=box, fillcolor="#E6E6E6"];
+       num3 [label="3", shape=box, fillcolor="#E6E6E6"];
+       num4 [label="4", shape=box, fillcolor="#E6E6E6"];
+
+       E0 -> E1;
+       E0 -> times;
+       E0 -> E4;
+       E1 -> E2;
+       E1 -> plus;
+       E1 -> E3;
+       E2 -> num2;
+       E3 -> num3;
+       E4 -> num4;
+   }
+
+Parse Tree 2: :math:`2 + (3 \times 4) = 14`
+
+.. graphviz::
+
+   digraph AmbigTree2 {
+       rankdir=TB;
+       node [shape=circle, style="filled", fillcolor="#FFE6E6"];
+
+       E0 [label="E"];
+       E1 [label="E"];
+       E2 [label="E"];
+       E3 [label="E"];
+       E4 [label="E"];
+
+       plus [label="+", shape=box, fillcolor="#E6F3FF"];
+       times [label="*", shape=box, fillcolor="#E6F3FF"];
+       num2 [label="2", shape=box, fillcolor="#E6E6E6"];
+       num3 [label="3", shape=box, fillcolor="#E6E6E6"];
+       num4 [label="4", shape=box, fillcolor="#E6E6E6"];
+
+       E0 -> E1;
+       E0 -> plus;
+       E0 -> E2;
+       E1 -> num2;
+       E2 -> E3;
+       E2 -> times;
+       E2 -> E4;
+       E3 -> num3;
+       E4 -> num4;
+   }
+
+.. admonition:: âš ï¸ Problem
+   :class: warning
+
+   **Ambiguity is bad for compilers!** We don't know which interpretation is correct.
+
+**Solution: Use Unambiguous Grammar**
+
+.. code-block:: text
+
+   E â†’ T | E + T
+   T â†’ F | T * F
+   F â†’ (E) | num
+
+This enforces **operator precedence** (multiplication before addition).
+
+Now ``2 + 3 * 4`` has only **one parse tree:** :math:`2 + (3 \times 4) = 14` âœ“
 
 Self-Check: Interactive Quiz
 =============================
 
-Click each question to check your understanding!
-
-----
-
-.. admonition:: 🧩 Q1. Which of the following is **NOT** a context-free language?
+.. admonition:: ðŸ§© Q1. Which of the following is **NOT** a context-free language?
    :class: exercise
 
-   a. ``{ aⁿbⁿ | n ≥ 0 }``  
-   b. ``{ wwʳ | w ∈ {a, b}* }``  
-   c. ``{ aⁿbᵐ | n, m ≥ 0 }``  
-   d. ``{ (ⁿ)ⁿ | n ≥ 0 }``  
+   a. ``{ aâ¿bâ¿ | n â‰¥ 0 }``  
+   b. ``{ wwÊ³ | w âˆˆ {a, b}* }``  
+   c. ``{ aâ¿báµ | n, m â‰¥ 0 }``  
+   d. ``{ (â¿)â¿ | n â‰¥ 0 }``  
 
-   .. admonition:: 🔍 Reveal Answer
+   .. admonition:: ðŸ” Reveal Answer
       :class: toggle
 
-      ❌ **Incorrect:** a, c, and d are context-free.  
+      âŒ **Incorrect:** a, c, and d are context-free.  
 
-      ✅ **Correct:** (b) — ``{ wwʳ | w ∈ {a, b}* }`` is **not** context-free because it requires matching both halves — something a PDA cannot do.
+      âœ… **Correct:** **(b)** â€” ``{ wwÊ³ | w âˆˆ {a, b}* }`` is **not** context-free because it requires matching both halves â€” something a PDA cannot do.
 
-----
-
-.. admonition:: 🧩 Q2. Which statement about CFGs is **true**?
+.. admonition:: ðŸ§© Q2. Which statement about CFGs is **true**?
    :class: exercise
 
    a. CFGs can describe only linear patterns  
@@ -335,16 +742,14 @@ Click each question to check your understanding!
    c. CFGs can describe nested structures like parentheses  
    d. CFGs are less powerful than DFAs  
 
-   .. admonition:: 🔍 Reveal Answer
+   .. admonition:: ðŸ” Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (c) CFGs handle recursive and nested patterns such as balanced parentheses.
+      âœ… **Correct:** **(c)** CFGs handle recursive and nested patterns such as balanced parentheses.
 
-      ❌ The others misunderstand CFG power or structure.
+      âŒ The others misunderstand CFG power or structure.
 
-----
-
-.. admonition:: 🧩 Q3. What type of automaton recognizes **Context-Free Languages**?
+.. admonition:: ðŸ§© Q3. What type of automaton recognizes **Context-Free Languages**?
    :class: exercise
 
    a. Finite Automaton (FA)  
@@ -352,48 +757,256 @@ Click each question to check your understanding!
    c. Turing Machine (TM)  
    d. Moore Machine  
 
-   .. admonition:: 🔍 Reveal Answer
+   .. admonition:: ðŸ” Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (b) PDA — uses a **stack** to handle recursion and nested symbols.  
+      âœ… **Correct:** **(b)** PDA â€” uses a **stack** to handle recursion and nested symbols.  
 
-      ❌ FAs lack memory; TMs are more powerful; Moore machines output differently.
+      âŒ FAs lack memory; TMs are more powerful; Moore machines output differently.
 
-----
-
-.. admonition:: 🧩 Q4. In a CFG, which of the following is **NOT** true?
+.. admonition:: ðŸ§© Q4. In a CFG, which of the following is **NOT** true?
    :class: exercise
 
    a. Each production replaces one variable at a time.  
    b. The rules depend on surrounding symbols.  
    c. Rules are applied regardless of context.  
-   d. The grammar is defined as a 4-tuple (V, Σ, R, S).  
+   d. The grammar is defined as a 4-tuple (V, Î£, R, S).  
 
-   .. admonition:: 🔍 Reveal Answer
+   .. admonition:: ðŸ” Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (b) — describes *context-sensitive* grammars, not context-free ones.
+      âœ… **Correct:** **(b)** â€” describes *context-sensitive* grammars, not context-free ones.
 
-      ❌ Others are true for CFGs.
+      âŒ Others are true for CFGs.
 
-----
-
-.. admonition:: 🧩 Q5. Which rule correctly defines **balanced parentheses**?
+.. admonition:: ðŸ§© Q5. Which rule correctly defines **balanced parentheses**?
    :class: exercise
 
-   a. ``S → (S) | S(S) | ε``  
-   b. ``S → (S) | SS | ε``  
-   c. ``S → (S | S) | ε``  
-   d. ``S → (S(S))``  
+   a. ``S â†’ (S) | S(S) | Îµ``  
+   b. ``S â†’ (S) | SS | Îµ``  
+   c. ``S â†’ (S | S) | Îµ``  
+   d. ``S â†’ (S(S))``  
 
-   .. admonition:: 🔍 Reveal Answer
+   .. admonition:: ðŸ” Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (b) ``S → (S) | SS | ε`` generates all valid balanced parentheses.  
+      âœ… **Correct:** **(b)** ``S â†’ (S) | SS | Îµ`` generates all valid balanced parentheses.  
 
-      ❌ The others fail to produce the entire set or are malformed.
+      âŒ The others fail to produce the entire set or are malformed.
 
-----
+.. admonition:: ðŸ§© Q6. What is the main difference between **leftmost** and **rightmost** derivations?
+   :class: exercise
 
-.. note::
-   💭 **Keep Practicing !!**  
+   a. Leftmost is correct; rightmost is not  
+   b. They derive different strings  
+   c. The **order** of variable replacement differs, not the final result  
+   d. Leftmost requires more steps  
+
+   .. admonition:: ðŸ” Reveal Answer
+      :class: toggle
+
+      âœ… **Correct:** **(c)** Both derivations produce the **same string**, just with different substitution order.
+
+      âŒ Both are valid; both derive the same string; neither is inherently faster.
+
+.. admonition:: ðŸ§© Q7. In a **parse tree**, which nodes are terminals?
+   :class: exercise
+
+   a. Root node  
+   b. Internal nodes  
+   c. Leaf nodes  
+   d. All nodes labeled with variables  
+
+   .. admonition:: ðŸ” Reveal Answer
+      :class: toggle
+
+      âœ… **Correct:** **(c)** Terminals appear as **leaf nodes** at the bottom.
+
+      âŒ Root is the start symbol; internal nodes are non-terminals; variables are non-terminals.
+
+.. admonition:: ðŸ§© Q8. Which parsing method is called **top-down**?
+   :class: exercise
+
+   a. Shift-reduce parsing  
+   b. Recursive descent  
+   c. LR parsing  
+   d. Bottom-up parsing  
+
+   .. admonition:: ðŸ” Reveal Answer
+      :class: toggle
+
+      âœ… **Correct:** **(b)** **Recursive descent** is a top-down approach starting from the root.
+
+      âŒ Others are bottom-up methods.
+
+.. admonition:: ðŸ§© Q9. What is **ambiguity** in a CFG?
+   :class: exercise
+
+   a. A grammar with no rules  
+   b. A string that has multiple parse trees  
+   c. A rule with undefined symbols  
+   d. A grammar that accepts empty strings  
+
+   .. admonition:: ðŸ” Reveal Answer
+      :class: toggle
+
+      âœ… **Correct:** **(b)** **Ambiguity** = multiple parse trees for the same string.
+
+      âŒ Others are different issues.
+
+.. admonition:: ðŸ§© Q10. Which grammar is **unambiguous** for expressions?
+   :class: exercise
+
+   a. ``E â†’ E + E | E * E | num``  
+   b. ``E â†’ T | E + T; T â†’ F | T * F; F â†’ num``  
+   c. ``E â†’ num``  
+   d. ``E â†’ E + E | num``  
+
+   .. admonition:: ðŸ” Reveal Answer
+      :class: toggle
+
+      âœ… **Correct:** **(b)** Uses **precedence rules** (multiplication before addition) â€” no ambiguity.
+
+      âŒ (a) and (d) allow multiple interpretations; (c) is too restrictive.
+
+Complete Examples with Full Solutions
+======================================
+
+Example 1: Simple Arithmetic Expressions
+-----------------------------------------
+
+**Problem:** Generate strings with single-digit numbers and addition.
+
+**Grammar:**
+
+.. code-block:: text
+
+   S â†’ S + S | num
+   num â†’ 0 | 1 | 2 | ... | 9
+
+**Derive:** ``2 + 3 + 5``
+
+**Leftmost Derivation:**
+
+.. code-block:: text
+
+   S
+   âŸ¹ S + S              (S â†’ S + S)
+   âŸ¹ num + S            (S â†’ num)
+   âŸ¹ 2 + S              (num â†’ 2)
+   âŸ¹ 2 + S + S          (S â†’ S + S)
+   âŸ¹ 2 + num + S        (S â†’ num)
+   âŸ¹ 2 + 3 + S          (num â†’ 3)
+   âŸ¹ 2 + 3 + num        (S â†’ num)
+   âŸ¹ 2 + 3 + 5          (num â†’ 5) âœ“
+
+**Parse Tree:**
+
+.. graphviz::
+
+   digraph ArithParse {
+       rankdir=TB;
+       node [shape=circle, style="filled", fillcolor="#FFE6E6", fontsize=11];
+
+       S0 [label="S"];
+       S1 [label="S"];
+       S2 [label="S"];
+       plus1 [label="+", shape=box, fillcolor="#E6F3FF"];
+       plus2 [label="+", shape=box, fillcolor="#E6F3FF"];
+       n1 [label="2", shape=box, fillcolor="#E6E6E6"];
+       n2 [label="3", shape=box, fillcolor="#E6E6E6"];
+       n3 [label="5", shape=box, fillcolor="#E6E6E6"];
+
+       S0 -> S1;
+       S0 -> plus1;
+       S0 -> S2;
+       S1 -> n1;
+       S2 -> n2;
+       S2 -> plus2;
+       S2 -> n3;
+   }
+
+Example 2: Palindromes over {a, b}
+-----------------------------------
+
+**Problem:** Generate all palindromes (strings that read the same forwards and backwards).
+
+**Grammar:**
+
+.. code-block:: text
+
+   S â†’ Îµ | a | b | aSa | bSb
+
+**Valid strings:**
+
+- ``Îµ`` (empty)
+- ``a``, ``b`` (single char)
+- ``aa`` = :math:`a \cdot \epsilon \cdot a`
+- ``aba`` = :math:`a \cdot b \cdot a`
+- ``aabaa`` = :math:`a \cdot (aba) \cdot a`
+- ``abba`` = :math:`a \cdot b \cdot b \cdot a` âœ— (NOT generated!)
+
+**Derive:** ``aabaa``
+
+.. code-block:: text
+
+   S
+   âŸ¹ aSa              (S â†’ aSa)
+   âŸ¹ aaSaa            (S â†’ aSa)
+   âŸ¹ aabaa            (S â†’ b) âœ“
+
+Example 3: Balanced Brackets (Multiple Types)
+-----------------------------------------------
+
+**Problem:** Generate all balanced bracket sequences with ``( )``, ``[ ]``, ``{ }``.
+
+**Grammar:**
+
+.. code-block:: text
+
+   S â†’ Îµ | (S) | [S] | {S} | SS
+
+**Valid strings:**
+
+- ``()``
+- ``[]``
+- ``{}``
+- ``([])``
+- ``{[()]}``
+- ``()[]``
+
+**Invalid strings:**
+
+- ``([)]`` âœ— (mismatched)
+- ``(]`` âœ— (mismatched)
+
+**Derive:** ``()[()]``
+
+.. code-block:: text
+
+   S
+   âŸ¹ SS                (S â†’ SS)
+   âŸ¹ (S)S              (S â†’ (S))
+   âŸ¹ (Îµ)[S]            (S â†’ Îµ, S â†’ [S])
+   âŸ¹ ()[S]             (replace Îµ)
+   âŸ¹ ()[(S)]           (S â†’ (S))
+   âŸ¹ ()[()]            (S â†’ Îµ) âœ“
+
+Summary
+=======
+
+**Derivations** show how strings are generated (leftmost or rightmost)
+
+**Parse trees** visualize the derivation structure
+
+**Parsing** is the reverse â€” finding the tree from input
+
+*Top-down** (recursive descent) and **bottom-up** (shift-reduce) are two approaches
+
+**Ambiguity** means multiple interpretations â€” avoid in compilers!
+
+**Precedence rules** eliminate ambiguity in expression grammars
+
+**Practice with examples** until derivations and parse trees become intuitive!
+
+**Next Steps:** Try creating your own grammar for a simple language, then derive strings and build parse trees by hand!
