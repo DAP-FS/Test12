@@ -498,3 +498,298 @@ S ⟹ aSb ⟹ aaSbb ⟹ aabb ✅
 
    </details>
 
+**Question 16:** Convert the following FA into an equivalent CFG.
+
+**FA Description:**
+
+- States: {q₀ (start), q₁ (final)}  
+- Alphabet: {0, 1}  
+- Transitions:
+  - q₀ —0→ q₀  
+  - q₀ —1→ q₁  
+  - q₁ —1→ q₁
+
+.. graphviz::
+
+   digraph FA16 {
+      rankdir=LR;
+      node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
+      q0 [label="q₀ (Start)"];
+      q1 [label="q₁ (Final)", shape=doublecircle, fillcolor="#f2f2f2"];
+      q0 -> q0 [label="0"];
+      q0 -> q1 [label="1"];
+      q1 -> q1 [label="1"];
+   }
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
+
+.. code-block:: text
+
+   S₀ → 0S₀ | 1S₁  
+   S₁ → 1S₁ | ε
+
+✅ Example: `011`, `1`, `00111`
+
+.. admonition:: Concept Note  
+   :class: tip  
+
+   For each transition (p, x, q), create production **p → xq**.  
+   Final states add **ε-productions**.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 17:** Construct CFG for the FA accepting strings ending with `ab`.
+
+.. graphviz::
+
+   digraph FA17 {
+      rankdir=LR;
+      node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+      q0 [label="q₀ (Start)"];
+      q1 [label="q₁"];
+      q2 [label="q₂ (Final)", shape=doublecircle];
+      q0 -> q0 [label="a,b"];
+      q0 -> q1 [label="a"];
+      q1 -> q2 [label="b"];
+   }
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
+
+.. code-block:: text
+
+   S₀ → aS₁ | bS₀  
+   S₁ → bS₂  
+   S₂ → ε
+
+✅ Example: `aab`, `bab`, `aaab`
+
+.. admonition:: Visual Tip  
+   :class: hint  
+
+   “Ends with ab” means **final path** `→ a → b → accept`.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 18:** Trace PDA execution for string `"aabb"` for :math:`L = \{a^n b^n | n ≥ 1\}`
+
+.. admonition:: String Trace for "aabb"
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition |
+   |------|-------|-------|--------|-------------|
+   | 0 | q₀ | aabb | ε | (q₀, ε, ε) → (q₁, $) |
+   | 1 | q₁ | aabb | $ | (q₁, a, ε) → (q₁, a) |
+   | 2 | q₁ | abb | a$ | (q₁, a, ε) → (q₁, aa) |
+   | 3 | q₁ | bb | aa$ | (q₁, b, a) → (q₂, ε) |
+   | 4 | q₂ | b | a$ | (q₂, b, a) → (q₂, ε) |
+   | 5 | q₂ | ε | $ | (q₂, ε, $) → ACCEPT |
+
+✅ **Result:** ACCEPTED ✔ Balanced pattern
+
+.. admonition:: PDA Concept  
+   :class: tip  
+
+   PDA pushes for every **a**, pops for every **b**.  
+   Empty stack ⇒ balanced and accepted.
+
+
+**Question 19:** Convert this RE → CFG: `(0|1)*00`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → 0S | 1S | A  
+   A → 0B  
+   B → 0
+
+✅ Example: `100`, `000`, `1100`
+
+.. admonition:: Hint  
+   :class: hint  
+
+   Use prefix `(0|1)*` to loop until `00` suffix is formed.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 20 (MCQ):**  
+Which of the following languages is **not** context-free?
+
+A) `{a^n b^n | n ≥ 0}`  
+B) `{a^n b^n c^n | n ≥ 0}`  
+C) `{a^i b^j | i,j ≥ 0}`  
+D) `{w w^R | w ∈ {a,b}*}`  
+
+.. raw:: html
+
+   <details>
+   <summary><strong>✅ ANSWER</strong></summary>
+
+**Answer:** B) `{a^n b^n c^n}` ✗  
+Reason: Requires comparison among 3 counts — beyond PDA capacity.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 21:** Convert FA (below) that accepts `strings over {a,b} with even number of a’s`.
+
+.. graphviz::
+
+   digraph FA21 {
+       rankdir=LR;
+       node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+       q0 [label="q₀ (Even a’s, Start, Final)", shape=doublecircle];
+       q1 [label="q₁ (Odd a’s)"];
+       q0 -> q1 [label="a"];
+       q1 -> q0 [label="a"];
+       q0 -> q0 [label="b"];
+       q1 -> q1 [label="b"];
+   }
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S₀ → bS₀ | aS₁ | ε  
+   S₁ → bS₁ | aS₀
+
+✅ Example: `bbaab`, `aabb`, `ε`
+
+.. admonition:: Insight  
+   :class: tip  
+
+   Even-a counting → toggling states.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 22 (MCQ):**  
+Which PDA operation is **not allowed**?
+
+A) Push two symbols at once  
+B) Pop top symbol  
+C) Push ε  
+D) Replace top symbol  
+
+.. raw:: html
+
+   <details>
+   <summary><strong>✅ ANSWER</strong></summary>
+
+**Answer:** A) Push two symbols at once ✗  
+PDAs can push **only one** symbol per move.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 23:** CFG → PDA construction for `S → aSb | ε`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+PDA transitions:
+
+| Move | Description |
+|------|--------------|
+| (q₀, ε, ε) → (q₁, S$) | Initialization |
+| (q₁, ε, S) → (q₁, aSb) | Expand S |
+| (q₁, a, a) → (q₁, ε) | Match terminal |
+| (q₁, b, b) → (q₁, ε) | Match terminal |
+| (q₁, ε, $) → (q_accept, ε) | Accept |
+
+.. admonition:: Insight  
+   :class: hint  
+
+   CFG → PDA via **leftmost derivation simulation**.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 24 (MCQ):**  
+Which of the following **CFGs generates all strings over {a,b}?**
+
+A) S → aS | bS | ε  
+B) S → aSb | bSa  
+C) S → aS | b  
+D) S → aSb | ab  
+
+.. raw:: html
+
+   <details>
+   <summary><strong>✅ ANSWER</strong></summary>
+
+**Answer:** A) S → aS | bS | ε ✔  
+All combinations, any length.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 25:** Design a PDA for `L = {a^n b^n | n ≥ 1}` and show **string trace** for `aaabbb`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. admonition:: String Trace for "aaabbb"
+   :class: quiz
+
+   | Step | State | Input | Stack | Transition |
+   |------|-------|-------|--------|-------------|
+   | 0 | q₀ | aaabbb | ε | (q₀, ε, ε) → (q₁, $) |
+   | 1 | q₁ | aaabbb | $ | push a |
+   | 2 | q₁ | aabbb | a$ | push a |
+   | 3 | q₁ | abbb | aa$ | push a |
+   | 4 | q₂ | bbb | aa$ | pop a |
+   | 5 | q₂ | bb | a$ | pop a |
+   | 6 | q₂ | b | $ | pop a |
+   | 7 | q₂ | ε | $ | (q₂, ε, $) → ACCEPT |
+
+✅ **Result:** ACCEPTED ✔
+
+.. admonition:: Tip  
+   :class: tip  
+
+   Matching equal segments is classic PDA behavior — pushes first half, pops second.
+
+.. raw:: html
+
+   </details>
+

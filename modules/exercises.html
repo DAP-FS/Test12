@@ -381,6 +381,187 @@ B → cB | c
 <p class="admonition-title">Concept Insight</p>
 <p>PDA pushes first half, pops second half → CFG mirrors by recursive wrapping.</p>
 </div>
+</details><p><strong>Question 16:</strong> Convert the following FA into an equivalent CFG.</p>
+<p><strong>FA Description:</strong></p>
+<ul class="simple">
+<li><p>States: {q₀ (start), q₁ (final)}</p></li>
+<li><p>Alphabet: {0, 1}</p></li>
+<li><p>Transitions:
+- q₀ —0→ q₀
+- q₀ —1→ q₁
+- q₁ —1→ q₁</p></li>
+</ul>
+<div class="graphviz"><object data="../_images/graphviz-f8c72a092c704a584733231f78794978b04fb10a.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA16 {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
+   q0 [label=&quot;q₀ (Start)&quot;];
+   q1 [label=&quot;q₁ (Final)&quot;, shape=doublecircle, fillcolor=&quot;#f2f2f2&quot;];
+   q0 -&gt; q0 [label=&quot;0&quot;];
+   q0 -&gt; q1 [label=&quot;1&quot;];
+   q1 -&gt; q1 [label=&quot;1&quot;];
+}</p></object></div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → 0S₀ | 1S₁
+S₁ → 1S₁ | ε
+</pre></div>
+</div>
+<p>✅ Example: <cite>011</cite>, <cite>1</cite>, <cite>00111</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Note</p>
+<p>For each transition (p, x, q), create production <strong>p → xq</strong>.
+Final states add <strong>ε-productions</strong>.</p>
+</div>
+</details><p><strong>Question 17:</strong> Construct CFG for the FA accepting strings ending with <cite>ab</cite>.</p>
+<div class="graphviz"><object data="../_images/graphviz-a12b800639a4901fbed3b1866af69315d81a762b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA17 {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   q0 [label=&quot;q₀ (Start)&quot;];
+   q1 [label=&quot;q₁&quot;];
+   q2 [label=&quot;q₂ (Final)&quot;, shape=doublecircle];
+   q0 -&gt; q0 [label=&quot;a,b&quot;];
+   q0 -&gt; q1 [label=&quot;a&quot;];
+   q1 -&gt; q2 [label=&quot;b&quot;];
+}</p></object></div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>Equivalent CFG:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → aS₁ | bS₀
+S₁ → bS₂
+S₂ → ε
+</pre></div>
+</div>
+<p>✅ Example: <cite>aab</cite>, <cite>bab</cite>, <cite>aaab</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>“Ends with ab” means <strong>final path</strong> <cite>→ a → b → accept</cite>.</p>
+</div>
+</details><p><strong>Question 18:</strong> Trace PDA execution for string <cite>“aabb”</cite> for <span class="math notranslate nohighlight">\(L = \{a^n b^n | n ≥ 1\}\)</span></p>
+<div class="quiz admonition">
+<p class="admonition-title">String Trace for “aabb”</p>
+<div class="line-block">
+<div class="line">Step | State | Input | Stack | Transition |</div>
+</div>
+<p><a href="#id1"><span class="problematic" id="id2">|------|</span></a>——-<a href="#id3"><span class="problematic" id="id4">|-------|</span></a>——–<a href="#id5"><span class="problematic" id="id6">|-------------|</span></a>
+| 0 | q₀ | aabb | ε | (q₀, ε, ε) → (q₁, $) |
+| 1 | q₁ | aabb | $ | (q₁, a, ε) → (q₁, a) |
+| 2 | q₁ | abb | a$ | (q₁, a, ε) → (q₁, aa) |
+| 3 | q₁ | bb | aa$ | (q₁, b, a) → (q₂, ε) |
+| 4 | q₂ | b | a$ | (q₂, b, a) → (q₂, ε) |
+| 5 | q₂ | ε | $ | (q₂, ε, $) → ACCEPT |</p>
+</div>
+<p>✅ <strong>Result:</strong> ACCEPTED ✔ Balanced pattern</p>
+<div class="tip admonition">
+<p class="admonition-title">PDA Concept</p>
+<p>PDA pushes for every <strong>a</strong>, pops for every <strong>b</strong>.
+Empty stack ⇒ balanced and accepted.</p>
+</div>
+<p><strong>Question 19:</strong> Convert this RE → CFG: <cite>(0|1)*00</cite></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → 0S | 1S | A
+A → 0B
+B → 0
+</pre></div>
+</div>
+<p>✅ Example: <cite>100</cite>, <cite>000</cite>, <cite>1100</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Use prefix <cite>(0|1)*</cite> to loop until <cite>00</cite> suffix is formed.</p>
+</div>
+</details><p><strong>Question 20 (MCQ):</strong>
+Which of the following languages is <strong>not</strong> context-free?</p>
+<ol class="upperalpha simple">
+<li><p><cite>{a^n b^n | n ≥ 0}</cite></p></li>
+<li><p><cite>{a^n b^n c^n | n ≥ 0}</cite></p></li>
+<li><p><cite>{a^i b^j | i,j ≥ 0}</cite></p></li>
+<li><p><cite>{w w^R | w ∈ {a,b}*}</cite></p></li>
+</ol>
+<details>
+<summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> B) <cite>{a^n b^n c^n}</cite> ✗
+Reason: Requires comparison among 3 counts — beyond PDA capacity.</p>
+</details><p><strong>Question 21:</strong> Convert FA (below) that accepts <cite>strings over {a,b} with even number of a’s</cite>.</p>
+<div class="graphviz"><object data="../_images/graphviz-9ff23d4fad18969885857faa46b6c0a55980068d.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA21 {
+    rankdir=LR;
+    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+    q0 [label=&quot;q₀ (Even a’s, Start, Final)&quot;, shape=doublecircle];
+    q1 [label=&quot;q₁ (Odd a’s)&quot;];
+    q0 -&gt; q1 [label=&quot;a&quot;];
+    q1 -&gt; q0 [label=&quot;a&quot;];
+    q0 -&gt; q0 [label=&quot;b&quot;];
+    q1 -&gt; q1 [label=&quot;b&quot;];
+}</p></object></div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → bS₀ | aS₁ | ε
+S₁ → bS₁ | aS₀
+</pre></div>
+</div>
+<p>✅ Example: <cite>bbaab</cite>, <cite>aabb</cite>, <cite>ε</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Insight</p>
+<p>Even-a counting → toggling states.</p>
+</div>
+</details><p><strong>Question 22 (MCQ):</strong>
+Which PDA operation is <strong>not allowed</strong>?</p>
+<ol class="upperalpha simple">
+<li><p>Push two symbols at once</p></li>
+<li><p>Pop top symbol</p></li>
+<li><p>Push ε</p></li>
+<li><p>Replace top symbol</p></li>
+</ol>
+<details>
+<summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> A) Push two symbols at once ✗
+PDAs can push <strong>only one</strong> symbol per move.</p>
+</details><p><strong>Question 23:</strong> CFG → PDA construction for <cite>S → aSb | ε</cite></p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>PDA transitions:</p>
+<div class="line-block">
+<div class="line">Move | Description |</div>
+</div>
+<p><a href="#id7"><span class="problematic" id="id8">|------|</span></a>————–|
+| (q₀, ε, ε) → (q₁, S$) | Initialization |
+| (q₁, ε, S) → (q₁, aSb) | Expand S |
+| (q₁, a, a) → (q₁, ε) | Match terminal |
+| (q₁, b, b) → (q₁, ε) | Match terminal |
+| (q₁, ε, $) → (q_accept, ε) | Accept |</p>
+<div class="hint admonition">
+<p class="admonition-title">Insight</p>
+<p>CFG → PDA via <strong>leftmost derivation simulation</strong>.</p>
+</div>
+</details><p><strong>Question 24 (MCQ):</strong>
+Which of the following <strong>CFGs generates all strings over {a,b}?</strong></p>
+<ol class="upperalpha simple">
+<li><p>S → aS | bS | ε</p></li>
+<li><p>S → aSb | bSa</p></li>
+<li><p>S → aS | b</p></li>
+<li><p>S → aSb | ab</p></li>
+</ol>
+<details>
+<summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> A) S → aS | bS | ε ✔
+All combinations, any length.</p>
+</details><p><strong>Question 25:</strong> Design a PDA for <cite>L = {a^n b^n | n ≥ 1}</cite> and show <strong>string trace</strong> for <cite>aaabbb</cite>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="quiz admonition">
+<p class="admonition-title">String Trace for “aaabbb”</p>
+<div class="line-block">
+<div class="line">Step | State | Input | Stack | Transition |</div>
+</div>
+<p><a href="#id9"><span class="problematic" id="id10">|------|</span></a>——-<a href="#id11"><span class="problematic" id="id12">|-------|</span></a>——–<a href="#id13"><span class="problematic" id="id14">|-------------|</span></a>
+| 0 | q₀ | aaabbb | ε | (q₀, ε, ε) → (q₁, $) |
+| 1 | q₁ | aaabbb | $ | push a |
+| 2 | q₁ | aabbb | a$ | push a |
+| 3 | q₁ | abbb | aa$ | push a |
+| 4 | q₂ | bbb | aa$ | pop a |
+| 5 | q₂ | bb | a$ | pop a |
+| 6 | q₂ | b | $ | pop a |
+| 7 | q₂ | ε | $ | (q₂, ε, $) → ACCEPT |</p>
+</div>
+<p>✅ <strong>Result:</strong> ACCEPTED ✔</p>
+<div class="tip admonition">
+<p class="admonition-title">Tip</p>
+<p>Matching equal segments is classic PDA behavior — pushes first half, pops second.</p>
+</div>
 </details></section>
 
 
