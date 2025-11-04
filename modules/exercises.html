@@ -515,16 +515,34 @@ Which PDA operation is <strong>not allowed</strong>?</p>
 PDAs can push <strong>only one</strong> symbol per move.</p>
 </details><p><strong>Question 23:</strong> CFG → PDA construction for <cite>S → aSb | ε</cite></p>
 <details>
-<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p>PDA transitions:</p>
-<div class="line-block">
-<div class="line">Move | Description |</div>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="quiz admonition">
+<p class="admonition-title">PDA Transitions</p>
+<p><strong>Transition Rules:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Move</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(q₀, ε, ε) → (q₁, S$)</p></td>
+<td><p>Initialization</p></td>
+</tr>
+<tr class="row-odd"><td><p>(q₁, ε, S) → (q₁, aSb)</p></td>
+<td><p>Expand S</p></td>
+</tr>
+<tr class="row-even"><td><p>(q₁, a, a) → (q₁, ε)</p></td>
+<td><p>Match terminal ‘a’</p></td>
+</tr>
+<tr class="row-odd"><td><p>(q₁, b, b) → (q₁, ε)</p></td>
+<td><p>Match terminal ‘b’</p></td>
+</tr>
+<tr class="row-even"><td><p>(q₁, ε, $) → (q_accept, ε)</p></td>
+<td><p>Accept</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><a href="#id7"><span class="problematic" id="id8">|------|</span></a>————–|
-| (q₀, ε, ε) → (q₁, S$) | Initialization |
-| (q₁, ε, S) → (q₁, aSb) | Expand S |
-| (q₁, a, a) → (q₁, ε) | Match terminal |
-| (q₁, b, b) → (q₁, ε) | Match terminal |
-| (q₁, ε, $) → (q_accept, ε) | Accept |</p>
 <div class="hint admonition">
 <p class="admonition-title">Insight</p>
 <p>CFG → PDA via <strong>leftmost derivation simulation</strong>.</p>
@@ -544,20 +562,9 @@ All combinations, any length.</p>
 <details>
 <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="quiz admonition">
 <p class="admonition-title">String Trace for “aaabbb”</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition |</div>
+<p><strong>Trace Steps:</strong></p>
+<p>✅ <strong>Result:</strong> <em>ACCEPTED</em></p>
 </div>
-<p><a href="#id9"><span class="problematic" id="id10">|------|</span></a>——-<a href="#id11"><span class="problematic" id="id12">|-------|</span></a>——–<a href="#id13"><span class="problematic" id="id14">|-------------|</span></a>
-| 0 | q₀ | aaabbb | ε | (q₀, ε, ε) → (q₁, $) |
-| 1 | q₁ | aaabbb | $ | push a |
-| 2 | q₁ | aabbb | a$ | push a |
-| 3 | q₁ | abbb | aa$ | push a |
-| 4 | q₂ | bbb | aa$ | pop a |
-| 5 | q₂ | bb | a$ | pop a |
-| 6 | q₂ | b | $ | pop a |
-| 7 | q₂ | ε | $ | (q₂, ε, $) → ACCEPT |</p>
-</div>
-<p>✅ <strong>Result:</strong> ACCEPTED ✔</p>
 <div class="tip admonition">
 <p class="admonition-title">Tip</p>
 <p>Matching equal segments is classic PDA behavior — pushes first half, pops second.</p>
