@@ -51,7 +51,7 @@ Everyday Analogy
 ================
 
 *HTML/XML nesting* or *balanced parentheses* follow the rule:  
-“**What was opened last must close first**.”  
+"**What was opened last must close first**."  
 That is exactly the **LIFO (Last-In-First-Out)** discipline of a stack.
 
 Compilers, expression parsers, and markup validators all rely on this PDA principle.
@@ -99,8 +99,8 @@ Acceptance Modes
 Core Intuition — Balanced Parentheses
 =====================================
 
-* Push a marker for each “(”.
-* Pop one for each “)”.
+* Push a marker for each "(".
+* Pop one for each ")".
 * Reject if a pop is impossible or if the stack is non-empty at end (when using empty-stack acceptance).
 
 This recognizes the classic **balanced parentheses language**, which DFAs cannot handle.
@@ -113,8 +113,8 @@ Minimal Recipe — PDA for Balanced Parentheses
 * Input alphabet: ``(, )``  
 * Stack symbols: ``(, $`` (where ``$`` marks stack bottom)
 * Transitions:
-  - On reading “(”: **push (“(”)**
-  - On reading “)” with “(” on top: **pop**
+  - On reading "(": **push ("(")**
+  - On reading ")" with "(" on top: **pop**
   - At end: accept by final state or empty stack (via ε-move when only ``$`` remains)
 
 .. admonition:: Example Construction
@@ -141,7 +141,7 @@ Every **Context-Free Grammar (CFG)** has an equivalent **PDA**, and every PDA co
 PDAs and CFGs therefore define the same language class: **Context-Free Languages (CFLs)**.
 
 Conversion steps (CFG → PDA):
-1. Push the grammar’s start symbol onto the stack.
+1. Push the grammar's start symbol onto the stack.
 2. Nondeterministically expand nonterminals by pushing productions.
 3. Match input symbols by popping terminals.
 4. Accept when stack is empty and input is consumed.
@@ -165,7 +165,7 @@ Regular vs. PDA
 
 ----
 
-Why “Pushdown”?
+Why "Pushdown"?
 ===============
 
 Because its working memory is a **pushdown stack** — you *push* when starting a nested construct and *pop* when finishing it.  
@@ -185,7 +185,7 @@ Real-World Uses
 .. admonition:: Try it Yourself
    :class: exercise
 
-   **Design a PDA for** :math:`L = { a^n b^n | n ≥ 1 }`  
+   **Design a PDA for** :math:`L = \{ a^n b^n | n ≥ 1 \}`  
 
    **Hint:**  
    Push a marker for each `a`; nondeterministically switch to popping phase on first `b`;  
@@ -196,9 +196,9 @@ Real-World Uses
 .. admonition:: Quick Check
    :class: quiz
 
-   1. Can a DFA verify “(())”?  
+   1. Can a DFA verify "(())"?  
       → ✗ No — requires unbounded matching depth.  
-   2. What can PDAs do that DFAs can’t?  
+   2. What can PDAs do that DFAs can't?  
       → ✓ Recognize recursive or nested structures.  
    3. Which automaton recognizes all CFLs?  
       → ✓ PDA.  
@@ -218,6 +218,8 @@ A **Pushdown Automaton (PDA)** is a tuple:
 
 where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.  
 Acceptance is by **final state** or **empty stack**, and both recognize **context-free languages**.
+
+----
 
 PDA Example: Balanced Parentheses
 =================================
@@ -249,12 +251,311 @@ PDA Example: Balanced Parentheses
    <p>
    This PDA recognizes <strong>balanced parentheses</strong>.<br><br>
    - <b>q₀ → q₁:</b> Push stack bottom marker ($).<br>
-   - <b>q₁ → q₁:</b> For each ‘(’, push it. For each ‘)’, pop a ‘(’.<br>
+   - <b>q₁ → q₁:</b> For each '(', push it. For each ')', pop a '('.<br>
    - <b>q₁ → q₂:</b> When stack has only $, accept the string.<br><br>
    Try strings: <code>()</code>, <code>(())</code>, <code>(()())</code>.
    </p>
    </details>
 
+----
+
+Stack Execution Trace for "(())"
+=================================
+
+.. graphviz::
+   :align: center
+   :caption: Stack Evolution for input "(())"
+   :name: fig-stack-trace-balanced
+
+   digraph StackTrace {
+      rankdir=LR;
+      node [shape=record, fontsize=11, style=filled];
+      
+      step0 [label="<f0>State: q₀|<f1>Input: (())|<f2>Stack:\n⊥", fillcolor="#fff8f8"];
+      step1 [label="<f0>State: q₁|<f1>Input: (())|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
+      step2 [label="<f0>State: q₁|<f1>Input: ())|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step3 [label="<f0>State: q₁|<f1>Input: ))|<f2>Stack:\n(\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step4 [label="<f0>State: q₁|<f1>Input: )|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
+      step5 [label="<f0>State: q₁|<f1>Input: ε|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
+      step6 [label="<f0>State: q₂|<f1>Input: ε|<f2>Stack:\n⊥", fillcolor="#f2fff2"];
+      
+      step0 -> step1 [label="ε,ε→$"];
+      step1 -> step2 [label="(,ε→("];
+      step2 -> step3 [label="(,ε→("];
+      step3 -> step4 [label="),(→ε"];
+      step4 -> step5 [label="),(→ε"];
+      step5 -> step6 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">📚 Understanding Stack Execution (Click to Expand)</summary>
+   <p>
+   Each step shows: <strong>State | Remaining Input | Stack Contents</strong><br><br>
+   - <b>Step 0→1:</b> Initialize stack with $ (bottom marker).<br>
+   - <b>Step 1→3:</b> Push '(' for each open parenthesis.<br>
+   - <b>Step 3→5:</b> Pop '(' for each close parenthesis.<br>
+   - <b>Step 5→6:</b> Empty stack (only $ remains), accept.<br><br>
+   Stack grows <strong>downward</strong> (top at top).
+   </p>
+   </details>
+
+----
+
+PDA Example: Language aⁿbⁿ
+===========================
+
+Recognize :math:`L = \{ a^n b^n | n ≥ 1 \}` (equal a's followed by equal b's).
+
+.. graphviz::
+   :align: center
+   :caption: PDA for aⁿbⁿ
+   :name: fig-pda-anbn
+
+   digraph PDA_anbn {
+      rankdir=LR;
+      node [shape = circle, fontsize=12, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
+
+      q0 [label="q₀\n(start)", fillcolor="#fff8f8"];
+      q1 [label="q₁\n(push)"];
+      q2 [label="q₂\n(pop)"];
+      q3 [label="q₃\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
+
+      q0 -> q1 [label="ε, ε → $"];
+      q1 -> q1 [label="a, ε → A"];
+      q1 -> q2 [label="b, A → ε"];
+      q2 -> q2 [label="b, A → ε"];
+      q2 -> q3 [label="ε, $ → ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">💡 Design Strategy (Click to Expand)</summary>
+   <p>
+   <strong>Phase 1 (q₁):</strong> Push 'A' for every 'a' read.<br>
+   <strong>Phase 2 (q₂):</strong> Pop 'A' for every 'b' read.<br>
+   <strong>Accept (q₃):</strong> If stack empties exactly when input ends.<br><br>
+   This ensures: #a's = #b's and a's come before b's.
+   </p>
+   </details>
+
+----
+
+Stack Execution for "aaabbb"
+=============================
+
+.. graphviz::
+   :align: center
+   :caption: Stack Evolution for "aaabbb"
+   :name: fig-stack-anbn
+
+   digraph StackTrace_anbn {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      s0 [label="<f0>q₀|<f1>aaabbb|<f2>⊥", fillcolor="#fff8f8"];
+      s1 [label="<f0>q₁|<f1>aaabbb|<f2>$", fillcolor="#e6f7ff"];
+      s2 [label="<f0>q₁|<f1>aabbb|<f2>A\n$", fillcolor="#e6f7ff"];
+      s3 [label="<f0>q₁|<f1>abbb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      s4 [label="<f0>q₁|<f1>bbb|<f2>A\nA\nA\n$", fillcolor="#e6f7ff"];
+      s5 [label="<f0>q₂|<f1>bb|<f2>A\nA\n$", fillcolor="#fffbe6"];
+      s6 [label="<f0>q₂|<f1>b|<f2>A\n$", fillcolor="#fffbe6"];
+      s7 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      s8 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      s0 -> s1 [label="ε,ε→$"];
+      s1 -> s2 [label="a,ε→A"];
+      s2 -> s3 [label="a,ε→A"];
+      s3 -> s4 [label="a,ε→A"];
+      s4 -> s5 [label="b,A→ε"];
+      s5 -> s6 [label="b,A→ε"];
+      s6 -> s7 [label="b,A→ε"];
+      s7 -> s8 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">🔍 Trace Analysis (Click to Expand)</summary>
+   <p>
+   <strong>Push phase (q₁):</strong> Stack grows with each 'a'.<br>
+   <strong>Pop phase (q₂):</strong> Stack shrinks with each 'b'.<br>
+   <strong>Accept:</strong> Stack empties precisely when input exhausted.<br><br>
+   This demonstrates perfect matching of <code>n = 3</code>.
+   </p>
+   </details>
+
+----
+
+PDA Example: Palindromes (WcWᴿ)
+================================
+
+Recognize :math:`L = \{ WcW^R | W ∈ \{a,b\}^* \}` (palindromes with center marker).
+
+.. graphviz::
+   :align: center
+   :caption: PDA for WcWᴿ
+   :name: fig-pda-palindrome
+
+   digraph PDA_palindrome {
+      rankdir=LR;
+      node [shape = circle, fontsize=11, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
+
+      q0 [label="q₀", fillcolor="#fff8f8"];
+      q1 [label="q₁\npush W"];
+      q2 [label="q₂\nmatch Wᴿ"];
+      q3 [label="q₃", shape=doublecircle, fillcolor="#f2fff2"];
+
+      q0 -> q1 [label="ε, ε → $"];
+      q1 -> q1 [label="a, ε → a\nb, ε → b"];
+      q1 -> q2 [label="c, ε → ε"];
+      q2 -> q2 [label="a, a → ε\nb, b → ε"];
+      q2 -> q3 [label="ε, $ → ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">💡 Palindrome Matching (Click to Expand)</summary>
+   <p>
+   <strong>Phase 1 (q₁):</strong> Push every symbol before 'c'.<br>
+   <strong>Pivot (c):</strong> Switch to matching mode.<br>
+   <strong>Phase 2 (q₂):</strong> Pop must match input exactly.<br><br>
+   Example: "abcba" → push(a,b), read(c), match(b,a).
+   </p>
+   </details>
+
+----
+
+Stack Execution for "abcba"
+============================
+
+.. graphviz::
+   :align: center
+   :caption: Stack Evolution for "abcba"
+   :name: fig-stack-palindrome
+
+   digraph StackTrace_palindrome {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      p0 [label="<f0>q₀|<f1>abcba|<f2>⊥", fillcolor="#fff8f8"];
+      p1 [label="<f0>q₁|<f1>abcba|<f2>$", fillcolor="#e6f7ff"];
+      p2 [label="<f0>q₁|<f1>bcba|<f2>a\n$", fillcolor="#e6f7ff"];
+      p3 [label="<f0>q₁|<f1>cba|<f2>b\na\n$", fillcolor="#e6f7ff"];
+      p4 [label="<f0>q₂|<f1>ba|<f2>b\na\n$", fillcolor="#fffbe6"];
+      p5 [label="<f0>q₂|<f1>a|<f2>a\n$", fillcolor="#fffbe6"];
+      p6 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
+      p7 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
+      
+      p0 -> p1 [label="ε,ε→$"];
+      p1 -> p2 [label="a,ε→a"];
+      p2 -> p3 [label="b,ε→b"];
+      p3 -> p4 [label="c,ε→ε"];
+      p4 -> p5 [label="b,b→ε"];
+      p5 -> p6 [label="a,a→ε"];
+      p6 -> p7 [label="ε,$→ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">🎯 Palindrome Verification (Click to Expand)</summary>
+   <p>
+   <strong>Push W = "ab":</strong> Stack becomes [b,a,$].<br>
+   <strong>Read center 'c':</strong> Switch to pop mode.<br>
+   <strong>Match Wᴿ = "ba":</strong> Stack pops in reverse order.<br><br>
+   Perfect match confirms palindrome structure.
+   </p>
+   </details>
+
+----
+
+PDA Example: Equal a's and b's (any order)
+===========================================
+
+Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}`
+
+.. graphviz::
+   :align: center
+   :caption: PDA for Equal a's and b's
+   :name: fig-pda-equal
+
+   digraph PDA_equal {
+      rankdir=LR;
+      node [shape = circle, fontsize=11, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
+
+      q0 [label="q₀", fillcolor="#fff8f8"];
+      q1 [label="q₁\nbalance"];
+      q2 [label="q₂", shape=doublecircle, fillcolor="#f2fff2"];
+
+      q0 -> q1 [label="ε, ε → $"];
+      
+      q1 -> q1 [label="a, $ → A$\na, A → AA\na, B → ε"];
+      q1 -> q1 [label="b, $ → B$\nb, B → BB\nb, A → ε"];
+      
+      q1 -> q2 [label="ε, $ → ε"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">💡 Balancing Strategy (Click to Expand)</summary>
+   <p>
+   - <strong>Push A</strong> when 'a' exceeds 'b'.<br>
+   - <strong>Push B</strong> when 'b' exceeds 'a'.<br>
+   - <strong>Pop</strong> when opposite symbol balances.<br>
+   - <strong>Accept</strong> when stack returns to $.<br><br>
+   Example: "aabb", "abab", "baba" all accepted.
+   </p>
+   </details>
+
+----
+
+Stack Execution for "aababb"
+=============================
+
+.. graphviz::
+   :align: center
+   :caption: Stack Evolution for "aababb"
+   :name: fig-stack-equal
+
+   digraph StackTrace_equal {
+      rankdir=LR;
+      node [shape=record, fontsize=10, style=filled];
+      
+      e0 [label="<f0>q₀|<f1>aababb|<f2>⊥", fillcolor="#fff8f8"];
+      e1 [label="<f0>q₁|<f1>aababb|<f2>$", fillcolor="#e6f7ff"];
+      e2 [label="<f0>q₁|<f1>ababb|<f2>A\n$", fillcolor="#e6f7ff"];
+      e3 [label="<f0>q₁|<f1>babb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
+      e4 [label="<f0>q₁|<f1>abb|<f2>A\n$", fillcolor="#e6f7ff"];
+      e5 [label="<f0>q₁|<f1>bb|<f2>$", fillcolor="#e6f7ff"];
+      e6 [label="<f0>q₁|<f1>b|<f2>B\n$", fillcolor="#e6f7ff"];
+      e7 [label="<f0>q₁|<f1>ε|<f2>B\nB\n$", fillcolor="#fff1f0"];
+      
+      e0 -> e1 [label="ε,ε→$"];
+      e1 -> e2 [label="a,$→A$"];
+      e2 -> e3 [label="a,A→AA"];
+      e3 -> e4 [label="b,A→ε"];
+      e4 -> e5 [label="a,A→ε"];
+      e5 -> e6 [label="b,$→B$"];
+      e6 -> e7 [label="b,B→BB"];
+   }
+
+.. raw:: html
+
+   <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">⚠️ Rejection Example (Click to Expand)</summary>
+   <p>
+   String: "aababb" has <strong>3 a's and 3 b's</strong>, BUT:<br>
+   After processing, <strong>stack = [B,B,$]</strong> (not empty).<br><br>
+   This PDA requires <strong>perfect interleaving</strong> to accept.<br>
+   String "aaabbb" would also be <strong>rejected</strong> despite equal counts.<br><br>
+   <em>Note: Full acceptance requires nondeterministic choice of when to cancel.</em>
+   </p>
+   </details>
 
 ----
 
