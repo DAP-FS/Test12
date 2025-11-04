@@ -214,6 +214,9 @@ Acceptance Check — "(())"
 
 .. admonition:: String Trace for "(())" — ACCEPTED
    :class: id-trace, toggle, dropdown
+   :color: success
+   :icon: check-circle
+   :open:
 
    **Input:** (())  
    **Stack bottom:** $
