@@ -6,13 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>2. Pushdown Automata (PDA) &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -27,11 +28,12 @@
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Practice Excercises" href="exercises.html" />
-    <link rel="prev" title="1. Intuitive Introduction" href="context_free_languages.html" /> 
+    <link rel="prev" title="1. Introduction to Context Free Grammer" href="context_free_languages.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,9 +56,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Intuitive Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html#formal-definitions">2. Formal Definitions</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Pushdown Automata (PDA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
 </ul>
 
@@ -74,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Pushdown Automata (PDA)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/pushdownautomata.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -84,12 +86,214 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="pushdown-automata-pda">
+<h1><span class="section-number">2. </span>Pushdown Automata (PDA)<a class="headerlink" href="#pushdown-automata-pda" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#why-pda" id="id2">Why PDA?</a></p></li>
+<li><p><a class="reference internal" href="#everyday-analogy" id="id3">Everyday Analogy</a></p></li>
+<li><p><a class="reference internal" href="#formal-definition" id="id4">Formal Definition</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-modes" id="id5">Acceptance Modes</a></p></li>
+<li><p><a class="reference internal" href="#core-intuition-balanced-parentheses" id="id6">Core Intuition — Balanced Parentheses</a></p></li>
+<li><p><a class="reference internal" href="#minimal-recipe-pda-for-balanced-parentheses" id="id7">Minimal Recipe — PDA for Balanced Parentheses</a></p></li>
+<li><p><a class="reference internal" href="#cfg-pda-equivalence" id="id8">CFG ↔ PDA Equivalence</a></p></li>
+<li><p><a class="reference internal" href="#regular-vs-pda" id="id9">Regular vs. PDA</a></p></li>
+<li><p><a class="reference internal" href="#why-pushdown" id="id10">Why “Pushdown”?</a></p></li>
+<li><p><a class="reference internal" href="#real-world-uses" id="id11">Real-World Uses</a></p></li>
+<li><p><a class="reference internal" href="#definition-3-1-pushdown-automaton" id="id12">Definition 3.1 — Pushdown Automaton</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id13">Summary</a></p></li>
+</ul>
+</nav>
+<hr class="docutils" />
+<style>
+  h2, h3 { color: #7B1113; }
+  .admonition.hint { background: #E6F7FF; border-left: 6px solid #1890FF; }
+  .admonition.note { background: #FFFBE6; border-left: 6px solid #FAAD14; }
+  .admonition.exercise { background: #F0F5FF; border-left: 6px solid #2F54EB; }
+  .admonition.quiz { background: #FFF1F0; border-left: 6px solid #FF4D4F; }
+</style><hr class="docutils" />
+<section id="introduction">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">2.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>A <strong>Pushdown Automaton (PDA)</strong> is the <em>minimal machine</em> that can recognize <strong>languages with nested or hierarchical structure</strong> using a stack.
+It is the natural computational counterpart to <strong>Context-Free Grammars (CFGs)</strong> for parsing <strong>balanced patterns and matched constructs</strong>.</p>
+<p>A PDA can accept a language <strong>either by final state</strong> or <strong>by empty stack</strong>, and both acceptance modes are <em>equivalent in power</em> for context-free languages.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>PDAs extend finite automata with a <strong>stack memory</strong>, giving just enough power to match <em>opens with closes</em> (like parentheses or tags) — but still simpler than a Turing machine.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="why-pda">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">2.2. </span>Why PDA?</a><a class="headerlink" href="#why-pda" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>DFA/NFA fail</strong> on nested patterns because they have only finite memory.</p></li>
+<li><p><strong>PDA succeeds</strong> by using a <strong>stack</strong> — push on every open symbol, pop on each matching close, and accept when both input and stack align.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>A PDA adds one unbounded <em>LIFO</em> stack to a finite automaton.</p></li>
+<li><p>This lets it match recursive structures such as parentheses, expressions, or HTML tags.</p></li>
+</ul>
+</div>
+</section>
+<hr class="docutils" />
+<section id="everyday-analogy">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">2.3. </span>Everyday Analogy</a><a class="headerlink" href="#everyday-analogy" title="Link to this heading"></a></h2>
+<p><em>HTML/XML nesting</em> or <em>balanced parentheses</em> follow the rule:
+“<strong>What was opened last must close first</strong>.”
+That is exactly the <strong>LIFO (Last-In-First-Out)</strong> discipline of a stack.</p>
+<p>Compilers, expression parsers, and markup validators all rely on this PDA principle.</p>
+</section>
+<hr class="docutils" />
+<section id="formal-definition">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">2.4. </span>Formal Definition</a><a class="headerlink" href="#formal-definition" title="Link to this heading"></a></h2>
+<p>A <strong>PDA</strong> is a 7-tuple:</p>
+<div class="math notranslate nohighlight">
+\[M = (Q, Σ, Γ, δ, q_0, Z_0, F)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q\)</span> — finite set of states</p></li>
+<li><p><span class="math notranslate nohighlight">\(Σ\)</span> — input alphabet</p></li>
+<li><p><span class="math notranslate nohighlight">\(Γ\)</span> — stack alphabet</p></li>
+<li><p><span class="math notranslate nohighlight">\(δ\)</span> — transition relation</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_0\)</span> — start state</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z_0\)</span> — initial stack symbol</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span> — set of accepting states</p></li>
+</ul>
+<p>A transition
+<span class="math notranslate nohighlight">\(δ(q, a, X) → (p, γ)\)</span>
+means: <em>in state q</em>, reading input symbol <em>a</em> (or ε), with <em>X</em> on top of stack —
+<strong>pop X</strong>, and <strong>push γ</strong> (possibly ε) while moving to <em>p</em>.</p>
+</section>
+<hr class="docutils" />
+<section id="acceptance-modes">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">2.5. </span>Acceptance Modes</a><a class="headerlink" href="#acceptance-modes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Acceptance by Final State</strong> — consume entire input and end in any state in <em>F</em>; stack contents may remain.</p></li>
+<li><p><strong>Acceptance by Empty Stack</strong> — consume input and empty the stack; final state ignored.</p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Both modes recognize <strong>exactly the same class</strong> of languages: <em>Context-Free Languages (CFLs)</em>.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="core-intuition-balanced-parentheses">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">2.6. </span>Core Intuition — Balanced Parentheses</a><a class="headerlink" href="#core-intuition-balanced-parentheses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Push a marker for each “(”.</p></li>
+<li><p>Pop one for each “)”.</p></li>
+<li><p>Reject if a pop is impossible or if the stack is non-empty at end (when using empty-stack acceptance).</p></li>
+</ul>
+<p>This recognizes the classic <strong>balanced parentheses language</strong>, which DFAs cannot handle.</p>
+</section>
+<hr class="docutils" />
+<section id="minimal-recipe-pda-for-balanced-parentheses">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">2.7. </span>Minimal Recipe — PDA for Balanced Parentheses</a><a class="headerlink" href="#minimal-recipe-pda-for-balanced-parentheses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Input alphabet: <code class="docutils literal notranslate"><span class="pre">(,</span> <span class="pre">)</span></code></p></li>
+<li><p>Stack symbols: <code class="docutils literal notranslate"><span class="pre">(,</span> <span class="pre">$</span></code> (where <code class="docutils literal notranslate"><span class="pre">$</span></code> marks stack bottom)</p></li>
+<li><p>Transitions:
+- On reading “(”: <strong>push (“(”)</strong>
+- On reading “)” with “(” on top: <strong>pop</strong>
+- At end: accept by final state or empty stack (via ε-move when only <code class="docutils literal notranslate"><span class="pre">$</span></code> remains)</p></li>
+</ul>
+<div class="example admonition">
+<p class="admonition-title">Example Construction</p>
+<p>States: q0 (start), q1 (loop), qf (final)
+Stack start: <code class="docutils literal notranslate"><span class="pre">$</span></code></p>
+<ul class="simple">
+<li><p>q0 –ε, push($)–&gt; q1</p></li>
+<li><p>q1 –‘(’– push(‘(‘)–&gt; q1</p></li>
+<li><p>q1 –‘)’ with ‘(’ on top– pop(‘(‘)–&gt; q1</p></li>
+<li><p>q1 –ε with only $ left– goto qf</p></li>
+</ul>
+<p>Accept either:
+* by <strong>empty stack</strong>, or
+* by <strong>final state qf</strong>.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="cfg-pda-equivalence">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.8. </span>CFG ↔ PDA Equivalence</a><a class="headerlink" href="#cfg-pda-equivalence" title="Link to this heading"></a></h2>
+<p>Every <strong>Context-Free Grammar (CFG)</strong> has an equivalent <strong>PDA</strong>, and every PDA corresponds to some CFG.
+PDAs and CFGs therefore define the same language class: <strong>Context-Free Languages (CFLs)</strong>.</p>
+<p>Conversion steps (CFG → PDA):
+1. Push the grammar’s start symbol onto the stack.
+2. Nondeterministically expand nonterminals by pushing productions.
+3. Match input symbols by popping terminals.
+4. Accept when stack is empty and input is consumed.</p>
+</section>
+<hr class="docutils" />
+<section id="regular-vs-pda">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.9. </span>Regular vs. PDA</a><a class="headerlink" href="#regular-vs-pda" title="Link to this heading"></a></h2>
+</section>
+<hr class="docutils" />
+<section id="why-pushdown">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">2.10. </span>Why “Pushdown”?</a><a class="headerlink" href="#why-pushdown" title="Link to this heading"></a></h2>
+<p>Because its working memory is a <strong>pushdown stack</strong> — you <em>push</em> when starting a nested construct and <em>pop</em> when finishing it.
+This mirrors recursive structures and parser stacks in compilers.</p>
+</section>
+<hr class="docutils" />
+<section id="real-world-uses">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">2.11. </span>Real-World Uses</a><a class="headerlink" href="#real-world-uses" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Parsing</strong> programming languages (C, Java, Python)</p></li>
+<li><p><strong>Checking balanced delimiters</strong> in code or XML</p></li>
+<li><p><strong>Validating arithmetic expressions</strong> using grammar-based stack parsing</p></li>
+</ul>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">Try it Yourself</p>
+<p><strong>Design a PDA for</strong> <span class="math notranslate nohighlight">\(L = { a^n b^n | n ≥ 1 }\)</span></p>
+<p><strong>Hint:</strong>
+Push a marker for each <cite>a</cite>; nondeterministically switch to popping phase on first <cite>b</cite>;
+Pop one per <cite>b</cite>, and accept when input ends and stack is empty.</p>
+</div>
+<hr class="docutils" />
+<div class="quiz admonition">
+<p class="admonition-title">Quick Check</p>
+<ol class="arabic simple">
+<li><p>Can a DFA verify “(())”?
+→ ✗ No — requires unbounded matching depth.</p></li>
+<li><p>What can PDAs do that DFAs can’t?
+→ ✓ Recognize recursive or nested structures.</p></li>
+<li><p>Which automaton recognizes all CFLs?
+→ ✓ PDA.</p></li>
+<li><p>Are final-state and empty-stack acceptance different in power?
+→ ✗ No — equivalent.</p></li>
+</ol>
+</div>
+</section>
+<hr class="docutils" />
+<section id="definition-3-1-pushdown-automaton">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">2.12. </span>Definition 3.1 — Pushdown Automaton</a><a class="headerlink" href="#definition-3-1-pushdown-automaton" title="Link to this heading"></a></h2>
+<p>A <strong>Pushdown Automaton (PDA)</strong> is a tuple:</p>
+<div class="math notranslate nohighlight">
+\[M = (Q, Σ, Γ, δ, q_0, Z_0, F)\]</div>
+<p>where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.
+Acceptance is by <strong>final state</strong> or <strong>empty stack</strong>, and both recognize <strong>context-free languages</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.13. </span>Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>PDAs = CFGs in power → both define CFLs</p></li>
+<li><p>DFAs &lt; PDAs &lt; Turing Machines</p></li>
+<li><p>Stack enables recursion, nesting, and matching</p></li>
+<li><p>Foundation for parser design and syntax analysis</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="context_free_languages.html" class="btn btn-neutral float-left" title="1. Intuitive Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="context_free_languages.html" class="btn btn-neutral float-left" title="1. Introduction to Context Free Grammer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="exercises.html" class="btn btn-neutral float-right" title="3. Practice Excercises" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

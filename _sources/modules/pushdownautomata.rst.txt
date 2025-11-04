@@ -1,0 +1,232 @@
+=============================
+Pushdown Automata (PDA)
+=============================
+
+.. contents::
+   :local:
+   :depth: 2
+
+----
+
+.. raw:: html
+
+   <style>
+     h2, h3 { color: #7B1113; }
+     .admonition.hint { background: #E6F7FF; border-left: 6px solid #1890FF; }
+     .admonition.note { background: #FFFBE6; border-left: 6px solid #FAAD14; }
+     .admonition.exercise { background: #F0F5FF; border-left: 6px solid #2F54EB; }
+     .admonition.quiz { background: #FFF1F0; border-left: 6px solid #FF4D4F; }
+   </style>
+
+----
+
+Introduction
+============
+
+A **Pushdown Automaton (PDA)** is the *minimal machine* that can recognize **languages with nested or hierarchical structure** using a stack.  
+It is the natural computational counterpart to **Context-Free Grammars (CFGs)** for parsing **balanced patterns and matched constructs**.
+
+A PDA can accept a language **either by final state** or **by empty stack**, and both acceptance modes are *equivalent in power* for context-free languages.
+
+.. hint::
+
+   PDAs extend finite automata with a **stack memory**, giving just enough power to match *opens with closes* (like parentheses or tags) — but still simpler than a Turing machine.
+
+----
+
+Why PDA?
+=========
+
+* **DFA/NFA fail** on nested patterns because they have only finite memory.
+* **PDA succeeds** by using a **stack** — push on every open symbol, pop on each matching close, and accept when both input and stack align.
+
+.. note::
+
+   - A PDA adds one unbounded *LIFO* stack to a finite automaton.  
+   - This lets it match recursive structures such as parentheses, expressions, or HTML tags.
+
+----
+
+Everyday Analogy
+================
+
+*HTML/XML nesting* or *balanced parentheses* follow the rule:  
+“**What was opened last must close first**.”  
+That is exactly the **LIFO (Last-In-First-Out)** discipline of a stack.
+
+Compilers, expression parsers, and markup validators all rely on this PDA principle.
+
+----
+
+Formal Definition
+=================
+
+A **PDA** is a 7-tuple:
+
+.. math::
+
+   M = (Q, Σ, Γ, δ, q_0, Z_0, F)
+
+where:
+
+- :math:`Q` — finite set of states  
+- :math:`Σ` — input alphabet  
+- :math:`Γ` — stack alphabet  
+- :math:`δ` — transition relation  
+- :math:`q_0` — start state  
+- :math:`Z_0` — initial stack symbol  
+- :math:`F` — set of accepting states
+
+A transition  
+:math:`δ(q, a, X) → (p, γ)`  
+means: *in state q*, reading input symbol *a* (or ε), with *X* on top of stack —  
+**pop X**, and **push γ** (possibly ε) while moving to *p*.
+
+----
+
+Acceptance Modes
+================
+
+* **Acceptance by Final State** — consume entire input and end in any state in *F*; stack contents may remain.  
+* **Acceptance by Empty Stack** — consume input and empty the stack; final state ignored.
+
+.. hint::
+
+   Both modes recognize **exactly the same class** of languages: *Context-Free Languages (CFLs)*.
+
+----
+
+Core Intuition — Balanced Parentheses
+=====================================
+
+* Push a marker for each “(”.
+* Pop one for each “)”.
+* Reject if a pop is impossible or if the stack is non-empty at end (when using empty-stack acceptance).
+
+This recognizes the classic **balanced parentheses language**, which DFAs cannot handle.
+
+----
+
+Minimal Recipe — PDA for Balanced Parentheses
+==============================================
+
+* Input alphabet: ``(, )``  
+* Stack symbols: ``(, $`` (where ``$`` marks stack bottom)
+* Transitions:
+  - On reading “(”: **push (“(”)**
+  - On reading “)” with “(” on top: **pop**
+  - At end: accept by final state or empty stack (via ε-move when only ``$`` remains)
+
+.. admonition:: Example Construction
+   :class: example
+
+   States: q0 (start), q1 (loop), qf (final)  
+   Stack start: ``$``  
+
+   - q0 --ε, push($)--> q1  
+   - q1 --'('-- push('(')--> q1  
+   - q1 --')' with '(' on top-- pop('(')--> q1  
+   - q1 --ε with only $ left-- goto qf  
+
+   Accept either:
+   * by **empty stack**, or  
+   * by **final state qf**.
+
+----
+
+CFG ↔ PDA Equivalence
+======================
+
+Every **Context-Free Grammar (CFG)** has an equivalent **PDA**, and every PDA corresponds to some CFG.  
+PDAs and CFGs therefore define the same language class: **Context-Free Languages (CFLs)**.
+
+Conversion steps (CFG → PDA):
+1. Push the grammar’s start symbol onto the stack.
+2. Nondeterministically expand nonterminals by pushing productions.
+3. Match input symbols by popping terminals.
+4. Accept when stack is empty and input is consumed.
+
+----
+
+Regular vs. PDA
+===============
+
++------------------+----------------------+-----------------------------+
+| **Aspect**       | **DFA/NFA**          | **PDA**                     |
++==================+======================+=============================+
+| Memory           | Fixed states only    | Unbounded stack (LIFO)     |
++------------------+----------------------+-----------------------------+
+| Language Type    | Regular Languages    | Context-Free Languages      |
++------------------+----------------------+-----------------------------+
+| Typical Pattern  | a*b*, even/odd count | Balanced parentheses, aⁿbⁿ |
++------------------+----------------------+-----------------------------+
+| Machine Power    | Finite               | Below Turing Machine        |
++------------------+----------------------+-----------------------------+
+
+----
+
+Why “Pushdown”?
+===============
+
+Because its working memory is a **pushdown stack** — you *push* when starting a nested construct and *pop* when finishing it.  
+This mirrors recursive structures and parser stacks in compilers.
+
+----
+
+Real-World Uses
+===============
+
+* **Parsing** programming languages (C, Java, Python)
+* **Checking balanced delimiters** in code or XML
+* **Validating arithmetic expressions** using grammar-based stack parsing
+
+----
+
+.. admonition:: Try it Yourself
+   :class: exercise
+
+   **Design a PDA for** :math:`L = { a^n b^n | n ≥ 1 }`  
+
+   **Hint:**  
+   Push a marker for each `a`; nondeterministically switch to popping phase on first `b`;  
+   Pop one per `b`, and accept when input ends and stack is empty.
+
+----
+
+.. admonition:: Quick Check
+   :class: quiz
+
+   1. Can a DFA verify “(())”?  
+      → ✗ No — requires unbounded matching depth.  
+   2. What can PDAs do that DFAs can’t?  
+      → ✓ Recognize recursive or nested structures.  
+   3. Which automaton recognizes all CFLs?  
+      → ✓ PDA.  
+   4. Are final-state and empty-stack acceptance different in power?  
+      → ✗ No — equivalent.  
+
+----
+
+Definition 3.1 — Pushdown Automaton
+====================================
+
+A **Pushdown Automaton (PDA)** is a tuple:
+
+.. math::
+
+   M = (Q, Σ, Γ, δ, q_0, Z_0, F)
+
+where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.  
+Acceptance is by **final state** or **empty stack**, and both recognize **context-free languages**.
+
+----
+
+Summary
+=======
+
+* PDAs = CFGs in power → both define CFLs  
+* DFAs < PDAs < Turing Machines  
+* Stack enables recursion, nesting, and matching  
+* Foundation for parser design and syntax analysis
+
+----
