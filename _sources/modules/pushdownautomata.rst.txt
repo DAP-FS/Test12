@@ -17,7 +17,8 @@ Pushdown Automata (PDA)
      .admonition.exercise { background: #F0F5FF; border-left: 6px solid #2F54EB; }
      .admonition.quiz { background: #FFF1F0; border-left: 6px solid #FF4D4F; }
      .admonition.id-trace { background: #F5F5F5; border-left: 6px solid #722C2C; padding: 0.75em; }
-     code.id-notation { background: #e8e8e8; padding: 0.2em 0.4em; font-family: monospace; }
+     .transition-box { background: #f0f9ff; border: 2px solid #1890FF; padding: 1em; margin: 1em 0; border-radius: 6px; }
+     code.notation { background: #e8e8e8; padding: 0.3em 0.6em; font-family: monospace; font-weight: bold; }
    </style>
 
 ----
@@ -49,17 +50,6 @@ Why PDA?
 
 ----
 
-Everyday Analogy
-================
-
-*HTML/XML nesting* or *balanced parentheses* follow the rule:  
-"**What was opened last must close first**."  
-That is exactly the **LIFO (Last-In-First-Out)** discipline of a stack.
-
-Compilers, expression parsers, and markup validators all rely on this PDA principle.
-
-----
-
 Formal Definition
 =================
 
@@ -79,45 +69,36 @@ where:
 - :math:`Z_0` — initial stack symbol  
 - :math:`F` — set of accepting states
 
-A transition  
-:math:`δ(q, a, X) → (p, γ)`  
+A transition in notation:
+
+.. math::
+
+   δ(q, a, X) → (q', γ)
+
 means: *in state q*, reading input symbol *a* (or ε), with *X* on top of stack —  
-**pop X**, and **push γ** (possibly ε) while moving to *p*.
+**pop X**, and **push γ** (possibly ε) while moving to state *q'*.
 
 ----
 
-Instantaneous Description (ID) & Acceptance
-============================================
+Transition Notation Explained
+=============================
 
-Formal Notation
----------------
+The format :math:`(q, a, X) → (q', γ)` has three parts:
 
-An **Instantaneous Description (ID)** is a triple:
+.. raw:: html
 
-.. math::
-
-   (q, w, α)
-
-where:
-
-- :math:`q` — current state  
-- :math:`w` — remaining input (unconsumed symbols)  
-- :math:`α` — stack contents (top-to-bottom, left-to-right)
-
-**Turnstile Notation** — The symbol :math:`\vdash` (turnstile) represents a single move:
-
-.. math::
-
-   (q, aw, Xβ) \vdash (q', w, γβ)
-
-means: from state :math:`q`, consuming input :math:`a`, with stack symbol :math:`X` on top, we move to state :math:`q'`, exposing the next input symbol, and replacing :math:`X` with string :math:`γ`.
-
-.. note::
-
-   - :math:`\vdash` represents **one move**  
-   - :math:`\vdash^*` represents **zero or more moves**  
-   - A string :math:`w` is **accepted by final state** if :math:`(q_0, w, Z_0) \vdash^* (q_f, ε, α)` where :math:`q_f \in F`  
-   - A string :math:`w` is **accepted by empty stack** if :math:`(q_0, w, Z_0) \vdash^* (q, ε, ε)` for any state :math:`q`
+   <div class="transition-box">
+   <strong>Format:</strong> (current_state, input_symbol, stack_top) → (next_state, new_stack_symbols)
+   <br><br>
+   <strong>Example:</strong> (q₁, a, Z) → (q₁, AZ)<br>
+   &nbsp;&nbsp;→ In state q₁, reading 'a', with Z on top of stack<br>
+   &nbsp;&nbsp;→ Move to q₁, pop Z, push A then Z (net effect: push A)
+   <br><br>
+   <strong>Note:</strong> γ can be:<br>
+   &nbsp;&nbsp;• Single symbol (q, a, X) → (q', Y)  [pop X, push Y]<br>
+   &nbsp;&nbsp;• Multiple symbols (q, a, X) → (q', YZ)  [pop X, push Y then Z]<br>
+   &nbsp;&nbsp;• Empty (q, a, X) → (q', ε)  [pop X, push nothing]
+   </div>
 
 ----
 
@@ -133,135 +114,79 @@ Acceptance Modes
 
 ----
 
-Core Intuition — Balanced Parentheses
-=====================================
+PDA Example 1: Balanced Parentheses "()"
+==========================================
 
-* Push a marker for each "(".
-* Pop one for each ")".
-* Reject if a pop is impossible or if the stack is non-empty at end (when using empty-stack acceptance).
+Recognize :math:`L = \{ w ∈ \{(,)\}^* | w \text{ is balanced} \}`
 
-This recognizes the classic **balanced parentheses language**, which DFAs cannot handle.
-
-----
-
-Minimal Recipe — PDA for Balanced Parentheses
-==============================================
-
-* Input alphabet: ``(, )``  
-* Stack symbols: ``(, $`` (where ``$`` marks stack bottom)
-* Transitions:
-  - On reading "(": **push ("(")**
-  - On reading ")" with "(" on top: **pop**
-  - At end: accept by final state or empty stack (via ε-move when only ``$`` remains)
-
-.. admonition:: Example Construction
-   :class: example
-
-   States: q0 (start), q1 (loop), qf (final)  
-   Stack start: ``$``  
-
-   - q0 --ε, push($)--> q1  
-   - q1 --'('-- push('(')--> q1  
-   - q1 --')' with '(' on top-- pop('(')--> q1  
-   - q1 --ε with only $ left-- goto qf  
-
-   Accept either:
-   * by **empty stack**, or  
-   * by **final state qf**.
-
-----
-
-CFG ↔ PDA Equivalence
-======================
-
-Every **Context-Free Grammar (CFG)** has an equivalent **PDA**, and every PDA corresponds to some CFG.  
-PDAs and CFGs therefore define the same language class: **Context-Free Languages (CFLs)**.
-
-Conversion steps (CFG → PDA):
-1. Push the grammar's start symbol onto the stack.
-2. Nondeterministically expand nonterminals by pushing productions.
-3. Match input symbols by popping terminals.
-4. Accept when stack is empty and input is consumed.
-
-----
-
-Regular vs. PDA
-===============
-
-+------------------+----------------------+-----------------------------+
-| **Aspect**       | **DFA/NFA**          | **PDA**                     |
-+==================+======================+=============================+
-| Memory           | Fixed states only    | Unbounded stack (LIFO)     |
-+------------------+----------------------+-----------------------------+
-| Language Type    | Regular Languages    | Context-Free Languages      |
-+------------------+----------------------+-----------------------------+
-| Typical Pattern  | a*b*, even/odd count | Balanced parentheses, aⁿbⁿ |
-+------------------+----------------------+-----------------------------+
-| Machine Power    | Finite               | Below Turing Machine        |
-+------------------+----------------------+-----------------------------+
-
-----
-
-Why "Pushdown"?
-===============
-
-Because its working memory is a **pushdown stack** — you *push* when starting a nested construct and *pop* when finishing it.  
-This mirrors recursive structures and parser stacks in compilers.
-
-----
-
-Real-World Uses
-===============
-
-* **Parsing** programming languages (C, Java, Python)
-* **Checking balanced delimiters** in code or XML
-* **Validating arithmetic expressions** using grammar-based stack parsing
-
-----
-
-.. admonition:: Try it Yourself
-   :class: exercise
-
-   **Design a PDA for** :math:`L = \{ a^n b^n | n ≥ 1 \}`  
-
-   **Hint:**  
-   Push a marker for each `a`; nondeterministically switch to popping phase on first `b`;  
-   Pop one per `b`, and accept when input ends and stack is empty.
-
-----
-
-.. admonition:: Quick Check
-   :class: quiz
-
-   1. Can a DFA verify "(())"?  
-      → ✗ No — requires unbounded matching depth.  
-   2. What can PDAs do that DFAs can't?  
-      → ✓ Recognize recursive or nested structures.  
-   3. Which automaton recognizes all CFLs?  
-      → ✓ PDA.  
-   4. Are final-state and empty-stack acceptance different in power?  
-      → ✗ No — equivalent.  
-
-----
-
-Definition 3.1 — Pushdown Automaton
-====================================
-
-A **Pushdown Automaton (PDA)** is a tuple:
+**Formal Definition:**
 
 .. math::
 
-   M = (Q, Σ, Γ, δ, q_0, Z_0, F)
+   M = (\{q_0, q_1, q_2\}, \{(, )\}, \{(, \$\}, δ, q_0, \$, \{q_2\})
 
-where δ describes moves that read an input symbol or ε, pop one stack symbol, and push zero or more stack symbols.  
-Acceptance is by **final state** or **empty stack**, and both recognize **context-free languages**.
+**Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
 
-----
+.. raw:: html
 
-PDA Example 1: Balanced Parentheses
-====================================
+   <div class="transition-box">
+   <p><strong>Setup Transition:</strong></p>
+   <code class="notation">(q₀, ε, ε) → (q₁, $)</code><br>
+   Initialize stack with bottom marker ($)
+   <br><br>
+   <p><strong>Push Transitions:</strong></p>
+   <code class="notation">(q₁, '(', ε) → (q₁, '(')</code><br>
+   Reading '(': push '(' onto stack
+   <br><br>
+   <p><strong>Pop Transitions:</strong></p>
+   <code class="notation">(q₁, ')', '(') → (q₁, ε)</code><br>
+   Reading ')' with '(' on top: pop it (remove from stack)
+   <br><br>
+   <p><strong>Accept Transition:</strong></p>
+   <code class="notation">(q₁, ε, $) → (q₂, ε)</code><br>
+   When only $ remains, move to final state (empty stack)
+   </div>
 
-Recognize :math:`L = \{ w ∈ \{(,)\}^* | w \text{ is balanced} \}`
+Acceptance Check — "(())"
+---------------------------
+
+.. admonition:: String Trace for "(())" — ACCEPTED
+   :class: id-trace
+
+   **Input:** (())  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | (()) | ε | — |
+   | 1 | q₁ | (()) | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
+   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
+   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
+   | 5 | q₁ | ε | $ | (q₁, ')', '(') → (q₁, ε) |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Input consumed, stack empty, final state q₂ reached
+
+Rejection Check — "(()"
+-------------------------
+
+.. admonition:: String Trace for "(()" — REJECTED
+   :class: quiz
+
+   **Input:** (()  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | (() | ε | — |
+   | 1 | q₁ | (() | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
+   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
+   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
+   | 5 | q₁ | ε | ($ | **STUCK** — No transition for (q₁, ε, '(') |
+
+   **Result:** ✗ **REJECTED** — Input ends but stack still has '(' (unmatched open)
 
 State Diagram
 --------------
@@ -280,64 +205,10 @@ State Diagram
       q2 [label="q₂\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
 
       q0 -> q1 [label="ε, ε → $"];
-      q1 -> q1 [label="( , ε → ("];
-      q1 -> q1 [label=") , ( → ε"];
-      q1 -> q2 [label="ε , $ → ε"];
+      q1 -> q1 [label="(, ε → ("];
+      q1 -> q1 [label="), ( → ε"];
+      q1 -> q2 [label="ε, $ → ε"];
    }
-
-Stack Evolution
-----------------
-
-.. graphviz::
-   :align: center
-   :caption: Stack Visualization for input "(())"
-   :name: fig-stack-trace-balanced
-
-   digraph StackTrace {
-      rankdir=LR;
-      node [shape=record, fontsize=11, style=filled];
-      
-      step0 [label="<f0>State: q₀|<f1>Input: (())|<f2>Stack:\n⊥", fillcolor="#fff8f8"];
-      step1 [label="<f0>State: q₁|<f1>Input: (())|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
-      step2 [label="<f0>State: q₁|<f1>Input: ())|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
-      step3 [label="<f0>State: q₁|<f1>Input: ))|<f2>Stack:\n(\n(\n$\n⊥", fillcolor="#e6f7ff"];
-      step4 [label="<f0>State: q₁|<f1>Input: )|<f2>Stack:\n(\n$\n⊥", fillcolor="#e6f7ff"];
-      step5 [label="<f0>State: q₁|<f1>Input: ε|<f2>Stack:\n$\n⊥", fillcolor="#e6f7ff"];
-      step6 [label="<f0>State: q₂|<f1>Input: ε|<f2>Stack:\n⊥", fillcolor="#f2fff2"];
-      
-      step0 -> step1 [label="ε,ε→$"];
-      step1 -> step2 [label="(,ε→("];
-      step2 -> step3 [label="(,ε→("];
-      step3 -> step4 [label="),(→ε"];
-      step4 -> step5 [label="),(→ε"];
-      step5 -> step6 [label="ε,$→ε"];
-   }
-
-Formal Acceptance Check — Instantaneous Description
------------------------------------------------------
-
-.. admonition:: ID Sequence for "(())" — Accepted by Final State
-   :class: id-trace
-
-   **Formal Trace:**
-
-   .. math::
-
-      (q_0, \text{(())}, ε) \vdash (q_1, \text{(())}, \$)
-
-      \vdash (q_1, \text{())}, (\$)
-
-      \vdash (q_1, \text{)}, ((\$)
-
-      \vdash (q_1, \text{)}, (\$)
-
-      \vdash (q_1, ε, \$)
-
-      \vdash (q_2, ε, ε)
-
-   **Acceptance:** :math:`(q_0, \text{(())}, ε) \vdash^* (q_2, ε, ε)` where :math:`q_2 ∈ F`
-   
-   **Result:** ✓ **ACCEPTED** (both by final state and empty stack)
 
 ----
 
@@ -345,6 +216,85 @@ PDA Example 2: Language aⁿbⁿ
 =============================
 
 Recognize :math:`L = \{ a^n b^n | n ≥ 1 \}` (equal a's followed by equal b's).
+
+**Formal Definition:**
+
+.. math::
+
+   M = (\{q_0, q_1, q_2, q_3\}, \{a, b\}, \{A, \$\}, δ, q_0, \$, \{q_3\})
+
+**Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
+
+.. raw:: html
+
+   <div class="transition-box">
+   <p><strong>Setup Transition:</strong></p>
+   <code class="notation">(q₀, ε, ε) → (q₁, $)</code><br>
+   Initialize stack with bottom marker ($)
+   <br><br>
+   <p><strong>Push Phase — Read a's, Push A's:</strong></p>
+   <code class="notation">(q₁, a, ε) → (q₁, A)</code><br>
+   Reading 'a' at stack bottom: push A
+   <br>
+   <code class="notation">(q₁, a, A) → (q₁, AA)</code><br>
+   Reading 'a' with A on top: push another A
+   <br><br>
+   <p><strong>Switch Phase — First b arrives, move to pop:</strong></p>
+   <code class="notation">(q₁, b, A) → (q₂, ε)</code><br>
+   Reading first 'b' with A on top: pop A, move to pop state
+   <br><br>
+   <p><strong>Pop Phase — Read b's, Pop A's:</strong></p>
+   <code class="notation">(q₂, b, A) → (q₂, ε)</code><br>
+   Reading 'b' with A on top: pop A
+   <br><br>
+   <p><strong>Accept Transition:</strong></p>
+   <code class="notation">(q₂, ε, $) → (q₃, ε)</code><br>
+   When only $ remains: accept (stack empty)
+   </div>
+
+Acceptance Check — "aaabbb"
+-----------------------------
+
+.. admonition:: String Trace for "aaabbb" — ACCEPTED
+   :class: id-trace
+
+   **Input:** aaabbb  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aaabbb | ε | — |
+   | 1 | q₁ | aaabbb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | aabbb | A$ | (q₁, a, ε) → (q₁, A) |
+   | 3 | q₁ | abbb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | bbb | AAA$ | (q₁, a, A) → (q₁, AA) |
+   | 5 | q₂ | bb | AA$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
+   | 6 | q₂ | b | A$ | (q₂, b, A) → (q₂, ε) |
+   | 7 | q₂ | ε | $ | (q₂, b, A) → (q₂, ε) |
+   | 8 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Perfect matching: 3 a's pushed, 3 b's popped
+
+Rejection Check — "aabbb"
+---------------------------
+
+.. admonition:: String Trace for "aabbb" — REJECTED
+   :class: quiz
+
+   **Input:** aabbb  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aabbb | ε | — |
+   | 1 | q₁ | aabbb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | abbb | A$ | (q₁, a, ε) → (q₁, A) |
+   | 3 | q₁ | bbb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₂ | bb | A$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
+   | 5 | q₂ | b | $ | (q₂, b, A) → (q₂, ε) |
+   | 6 | q₂ | ε | $ | **STUCK** — No transition for (q₂, b, $) |
+
+   **Result:** ✗ **REJECTED** — 2 a's but 3 b's (mismatch)
 
 State Diagram
 --------------
@@ -364,327 +314,323 @@ State Diagram
       q3 [label="q₃\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
 
       q0 -> q1 [label="ε, ε → $"];
-      q1 -> q1 [label="a, ε → A"];
+      q1 -> q1 [label="a, ε → A\na, A → AA"];
       q1 -> q2 [label="b, A → ε"];
       q2 -> q2 [label="b, A → ε"];
       q2 -> q3 [label="ε, $ → ε"];
    }
-
-Stack Evolution
-----------------
-
-.. graphviz::
-   :align: center
-   :caption: Stack Evolution for "aaabbb"
-   :name: fig-stack-anbn
-
-   digraph StackTrace_anbn {
-      rankdir=LR;
-      node [shape=record, fontsize=10, style=filled];
-      
-      s0 [label="<f0>q₀|<f1>aaabbb|<f2>⊥", fillcolor="#fff8f8"];
-      s1 [label="<f0>q₁|<f1>aaabbb|<f2>$", fillcolor="#e6f7ff"];
-      s2 [label="<f0>q₁|<f1>aabbb|<f2>A\n$", fillcolor="#e6f7ff"];
-      s3 [label="<f0>q₁|<f1>abbb|<f2>A\nA\n$", fillcolor="#e6f7ff"];
-      s4 [label="<f0>q₁|<f1>bbb|<f2>A\nA\nA\n$", fillcolor="#e6f7ff"];
-      s5 [label="<f0>q₂|<f1>bb|<f2>A\nA\n$", fillcolor="#fffbe6"];
-      s6 [label="<f0>q₂|<f1>b|<f2>A\n$", fillcolor="#fffbe6"];
-      s7 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
-      s8 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
-      
-      s0 -> s1 [label="ε,ε→$"];
-      s1 -> s2 [label="a,ε→A"];
-      s2 -> s3 [label="a,ε→A"];
-      s3 -> s4 [label="a,ε→A"];
-      s4 -> s5 [label="b,A→ε"];
-      s5 -> s6 [label="b,A→ε"];
-      s6 -> s7 [label="b,A→ε"];
-      s7 -> s8 [label="ε,$→ε"];
-   }
-
-Formal Acceptance Check — Instantaneous Description
------------------------------------------------------
-
-.. admonition:: ID Sequence for "aaabbb" — Accepted by Final State
-   :class: id-trace
-
-   **Formal Trace:**
-
-   .. math::
-
-      (q_0, \text{aaabbb}, ε) \vdash (q_1, \text{aaabbb}, \$)
-
-      \vdash (q_1, \text{aabbb}, A\$)
-
-      \vdash (q_1, \text{abbb}, AA\$)
-
-      \vdash (q_1, \text{bbb}, AAA\$)
-
-      \vdash (q_2, \text{bb}, AA\$)
-
-      \vdash (q_2, \text{b}, A\$)
-
-      \vdash (q_2, ε, \$)
-
-      \vdash (q_3, ε, ε)
-
-   **Acceptance:** :math:`(q_0, \text{aaabbb}, ε) \vdash^* (q_3, ε, ε)` where :math:`q_3 ∈ F`
-   
-   **Result:** ✓ **ACCEPTED**
-
-Rejection Check — Instantaneous Description
-----------------------------------------------
-
-.. admonition:: ID Sequence for "aabb" — REJECTED (shows why)
-   :class: quiz
-
-   **Formal Trace (Partial):**
-
-   .. math::
-
-      (q_0, \text{aabb}, ε) \vdash (q_1, \text{aabb}, \$)
-
-      \vdash (q_1, \text{abb}, A\$)
-
-      \vdash (q_1, \text{bb}, AA\$)
-
-      \vdash (q_2, \text{b}, A\$)
-
-      \vdash (q_2, ε, \$)
-
-      \vdash (q_3, ε, ε)
-
-   **Failure Reason:** Only 2 a's pushed but 2 b's attempted to pop.
-   
-   Actually, this **IS accepted** (shows equal matching works).
-   
-   **Try "aaab":** Stack never empties with symbol left → **REJECTED**.
 
 ----
 
 PDA Example 3: Palindromes WcWᴿ
 ================================
 
-Recognize :math:`L = \{ WcW^R | W ∈ \{a,b\}^* \}` (palindromes with center marker).
+Recognize :math:`L = \{ WcW^R | W ∈ \{a,b\}^* \}` (palindromes with center marker 'c').
+
+**Formal Definition:**
+
+.. math::
+
+   M = (\{q_0, q_1, q_2, q_3\}, \{a, b, c\}, \{a, b, \$\}, δ, q_0, \$, \{q_3\})
+
+**Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
+
+.. raw:: html
+
+   <div class="transition-box">
+   <p><strong>Setup Transition:</strong></p>
+   <code class="notation">(q₀, ε, ε) → (q₁, $)</code><br>
+   Initialize stack with bottom marker ($)
+   <br><br>
+   <p><strong>Push Phase — Read W, Push symbols:</strong></p>
+   <code class="notation">(q₁, a, ε) → (q₁, a)</code><br>
+   Reading 'a' with ε (empty stack): push 'a'
+   <br>
+   <code class="notation">(q₁, a, a) → (q₁, aa)</code><br>
+   Reading 'a' with 'a' on top: push another 'a'
+   <br>
+   <code class="notation">(q₁, a, b) → (q₁, ab)</code><br>
+   Reading 'a' with 'b' on top: push 'a' (stacked on top)
+   <br>
+   <code class="notation">(q₁, b, ε) → (q₁, b)</code><br>
+   Reading 'b' with ε: push 'b'
+   <br>
+   <code class="notation">(q₁, b, a) → (q₁, ba)</code><br>
+   Reading 'b' with 'a' on top: push 'b' on top
+   <br>
+   <code class="notation">(q₁, b, b) → (q₁, bb)</code><br>
+   Reading 'b' with 'b' on top: push another 'b'
+   <br><br>
+   <p><strong>Pivot — Read center marker 'c':</strong></p>
+   <code class="notation">(q₁, c, a) → (q₂, a)</code><br>
+   Reading 'c' with any letter on top: move to match state (no stack change)
+   <br>
+   <code class="notation">(q₁, c, b) → (q₂, b)</code><br>
+   Reading 'c' with any letter on top: move to match state
+   <br><br>
+   <p><strong>Match Phase — Read Wᴿ, Pop matching symbols:</strong></p>
+   <code class="notation">(q₂, a, a) → (q₂, ε)</code><br>
+   Reading 'a' with 'a' on top: pop 'a'
+   <br>
+   <code class="notation">(q₂, b, b) → (q₂, ε)</code><br>
+   Reading 'b' with 'b' on top: pop 'b'
+   <br><br>
+   <p><strong>Accept Transition:</strong></p>
+   <code class="notation">(q₂, ε, $) → (q₃, ε)</code><br>
+   When only $ remains: accept
+   </div>
+
+Acceptance Check — "abcba"
+-----------------------------
+
+.. admonition:: String Trace for "abcba" — ACCEPTED
+   :class: id-trace
+
+   **Input:** abcba  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abcba | ε | — |
+   | 1 | q₁ | abcba | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bcba | a$ | (q₁, a, ε) → (q₁, a) |
+   | 3 | q₁ | cba | ba$ | (q₁, b, a) → (q₁, ba) |
+   | 4 | q₂ | ba | ba$ | (q₁, c, b) → (q₂, b) **[Pivot: switch to match]** |
+   | 5 | q₂ | a | a$ | (q₂, b, b) → (q₂, ε) |
+   | 6 | q₂ | ε | $ | (q₂, a, a) → (q₂, ε) |
+   | 7 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Palindrome verified: W="ab" matched with Wᴿ="ba"
+
+Rejection Check — "abcda"
+---------------------------
+
+.. admonition:: String Trace for "abcda" — REJECTED
+   :class: quiz
+
+   **Input:** abcda  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abcda | ε | — |
+   | 1 | q₁ | abcda | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bcda | a$ | (q₁, a, ε) → (q₁, a) |
+   | 3 | q₁ | cda | ba$ | (q₁, b, a) → (q₁, ba) |
+   | 4 | q₂ | da | ba$ | (q₁, c, b) → (q₂, b) **[Pivot]** |
+   | 5 | q₂ | a | ba$ | **STUCK** — No transition for (q₂, d, b) |
+
+   **Result:** ✗ **REJECTED** — Symbol 'd' not in alphabet {a,b,c}; mismatch if it were
 
 State Diagram
 --------------
 
 .. graphviz::
    :align: center
-   :caption: PDA for WcWᴿ
+   :caption: PDA for Palindromes WcWᴿ
    :name: fig-pda-palindrome
 
    digraph PDA_palindrome {
       rankdir=LR;
       node [shape = circle, fontsize=11, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
 
-      q0 [label="q₀", fillcolor="#fff8f8"];
+      q0 [label="q₀\n(start)", fillcolor="#fff8f8"];
       q1 [label="q₁\npush W"];
       q2 [label="q₂\nmatch Wᴿ"];
-      q3 [label="q₃", shape=doublecircle, fillcolor="#f2fff2"];
+      q3 [label="q₃\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
 
       q0 -> q1 [label="ε, ε → $"];
-      q1 -> q1 [label="a, ε → a\nb, ε → b"];
-      q1 -> q2 [label="c, ε → ε"];
+      q1 -> q1 [label="a, ε → a\na, a → aa\na, b → ab"];
+      q1 -> q1 [label="b, ε → b\nb, a → ba\nb, b → bb"];
+      q1 -> q2 [label="c, a → a\nc, b → b"];
       q2 -> q2 [label="a, a → ε\nb, b → ε"];
       q2 -> q3 [label="ε, $ → ε"];
    }
 
-Stack Evolution
-----------------
-
-.. graphviz::
-   :align: center
-   :caption: Stack Evolution for "abcba"
-   :name: fig-stack-palindrome
-
-   digraph StackTrace_palindrome {
-      rankdir=LR;
-      node [shape=record, fontsize=10, style=filled];
-      
-      p0 [label="<f0>q₀|<f1>abcba|<f2>⊥", fillcolor="#fff8f8"];
-      p1 [label="<f0>q₁|<f1>abcba|<f2>$", fillcolor="#e6f7ff"];
-      p2 [label="<f0>q₁|<f1>bcba|<f2>a\n$", fillcolor="#e6f7ff"];
-      p3 [label="<f0>q₁|<f1>cba|<f2>b\na\n$", fillcolor="#e6f7ff"];
-      p4 [label="<f0>q₂|<f1>ba|<f2>b\na\n$", fillcolor="#fffbe6"];
-      p5 [label="<f0>q₂|<f1>a|<f2>a\n$", fillcolor="#fffbe6"];
-      p6 [label="<f0>q₂|<f1>ε|<f2>$", fillcolor="#fffbe6"];
-      p7 [label="<f0>q₃|<f1>ε|<f2>⊥", fillcolor="#f2fff2"];
-      
-      p0 -> p1 [label="ε,ε→$"];
-      p1 -> p2 [label="a,ε→a"];
-      p2 -> p3 [label="b,ε→b"];
-      p3 -> p4 [label="c,ε→ε"];
-      p4 -> p5 [label="b,b→ε"];
-      p5 -> p6 [label="a,a→ε"];
-      p6 -> p7 [label="ε,$→ε"];
-   }
-
-Formal Acceptance Check — Instantaneous Description
------------------------------------------------------
-
-.. admonition:: ID Sequence for "abcba" — Accepted by Final State
-   :class: id-trace
-
-   **Formal Trace:**
-
-   .. math::
-
-      (q_0, \text{abcba}, ε) \vdash (q_1, \text{abcba}, \$)
-
-      \vdash (q_1, \text{bcba}, a\$)
-
-      \vdash (q_1, \text{cba}, ba\$)
-
-      \vdash (q_2, \text{ba}, ba\$)
-
-      \vdash (q_2, \text{a}, a\$)
-
-      \vdash (q_2, ε, \$)
-
-      \vdash (q_3, ε, ε)
-
-   **Acceptance:** :math:`(q_0, \text{abcba}, ε) \vdash^* (q_3, ε, ε)` where :math:`q_3 ∈ F`
-   
-   **Result:** ✓ **ACCEPTED** — Perfect palindrome match
-
-Rejection Check — Instantaneous Description
-----------------------------------------------
-
-.. admonition:: ID Sequence for "abcda" — REJECTED
-   :class: quiz
-
-   **Formal Trace (Partial):**
-
-   .. math::
-
-      (q_0, \text{abcda}, ε) \vdash (q_1, \text{abcda}, \$)
-
-      \vdash (q_1, \text{bcda}, a\$)
-
-      \vdash (q_1, \text{cda}, ba\$)
-
-      \vdash (q_2, \text{da}, ba\$)
-
-      \vdash \text{STUCK!}
-
-   **Failure Reason:** At :math:`q_2`, reading input 'd' with 'b' on top of stack.
-   No transition: :math:`δ(q_2, d, b)` is undefined.
-   
-   **Result:** ✗ **REJECTED** — No valid computation path
-
 ----
 
-PDA Example 4: Balanced Square Brackets
-=========================================
+PDA Example 4: Equal Count aⁿbⁿ (Any Order)
+=============================================
 
-Recognize :math:`L = \{ w ∈ \{[,]\}^* | w \text{ has balanced brackets} \}`
+Recognize :math:`L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}` (equal a's and b's in any order).
+
+**Formal Definition:**
+
+.. math::
+
+   M = (\{q_0, q_1, q_2\}, \{a, b\}, \{A, B, \$\}, δ, q_0, \$, \{q_2\})
+
+**Strategy:** 
+- Push A when 'a' exceeds 'b'
+- Push B when 'b' exceeds 'a'
+- Pop when opposite symbol arrives (cancels out)
+- Accept when stack returns to $ only
+
+**Transition Rules** — Format: :math:`(q, a, X) → (q', γ)`
+
+.. raw:: html
+
+   <div class="transition-box">
+   <p><strong>Setup Transition:</strong></p>
+   <code class="notation">(q₀, ε, ε) → (q₁, $)</code><br>
+   Initialize stack with bottom marker ($)
+   <br><br>
+   <p><strong>Read 'a' — Push A or Pop B:</strong></p>
+   <code class="notation">(q₁, a, $) → (q₁, A$)</code><br>
+   First symbol 'a' with $ bottom: push A
+   <br>
+   <code class="notation">(q₁, a, A) → (q₁, AA)</code><br>
+   'a' with A on top: push another A (increase a-count)
+   <br>
+   <code class="notation">(q₁, a, B) → (q₁, ε)</code><br>
+   'a' with B on top: pop B (cancel b with a)
+   <br><br>
+   <p><strong>Read 'b' — Push B or Pop A:</strong></p>
+   <code class="notation">(q₁, b, $) → (q₁, B$)</code><br>
+   First symbol 'b' with $ bottom: push B
+   <br>
+   <code class="notation">(q₁, b, B) → (q₁, BB)</code><br>
+   'b' with B on top: push another B (increase b-count)
+   <br>
+   <code class="notation">(q₁, b, A) → (q₁, ε)</code><br>
+   'b' with A on top: pop A (cancel a with b)
+   <br><br>
+   <p><strong>Accept Transition:</strong></p>
+   <code class="notation">(q₁, ε, $) → (q₂, ε)</code><br>
+   When only $ remains: accept (equal counts)
+   </div>
+
+Acceptance Check — "aabb"
+---------------------------
+
+.. admonition:: String Trace for "aabb" — ACCEPTED
+   :class: id-trace
+
+   **Input:** aabb  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aabb | ε | — |
+   | 1 | q₁ | aabb | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | abb | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | bb | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | b | B$ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — 2 a's and 2 b's cancel perfectly
+
+Acceptance Check — "abab"
+---------------------------
+
+.. admonition:: String Trace for "abab" — ACCEPTED
+   :class: id-trace
+
+   **Input:** abab  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | abab | ε | — |
+   | 1 | q₁ | abab | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | bab | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | ab | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 4 | q₁ | b | A$ | (q₁, a, $) → (q₁, A$) |
+   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
+   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+
+   **Result:** ✓ **ACCEPTED** — Interleaved a's and b's, equal counts
+
+Rejection Check — "aaab"
+--------------------------
+
+.. admonition:: String Trace for "aaab" — REJECTED
+   :class: quiz
+
+   **Input:** aaab  
+   **Stack bottom:** $
+
+   | Step | State | Input | Stack | Transition Applied |
+   |------|-------|-------|-------|-------------------|
+   | 0 | q₀ | aaab | ε | — |
+   | 1 | q₁ | aaab | $ | (q₀, ε, ε) → (q₁, $) |
+   | 2 | q₁ | aab | A$ | (q₁, a, $) → (q₁, A$) |
+   | 3 | q₁ | ab | AA$ | (q₁, a, A) → (q₁, AA) |
+   | 4 | q₁ | b | AAA$ | (q₁, a, A) → (q₁, AA) |
+   | 5 | q₁ | ε | AA$ | (q₁, b, A) → (q₁, ε) **[Pop A]** |
+   | 6 | q₁ | ε | AA$ | **STUCK** — Input consumed but stack ≠ $ |
+
+   **Result:** ✗ **REJECTED** — 3 a's but only 1 b (unequal)
 
 State Diagram
 --------------
 
 .. graphviz::
    :align: center
-   :caption: PDA for Balanced Brackets
-   :name: fig-pda-brackets
+   :caption: PDA for Equal a's and b's (any order)
+   :name: fig-pda-equal
 
-   digraph PDA_brackets {
+   digraph PDA_equal {
       rankdir=LR;
-      node [shape = circle, fontsize=12, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
+      node [shape = circle, fontsize=11, style=filled, fillcolor="#f8f8f8", color="#7b1113"];
 
       q0 [label="q₀\n(start)", fillcolor="#fff8f8"];
-      q1 [label="q₁"];
+      q1 [label="q₁\nbalance"];
       q2 [label="q₂\n(accept)", shape=doublecircle, fillcolor="#f2fff2"];
 
       q0 -> q1 [label="ε, ε → $"];
-      q1 -> q1 [label="[ , ε → ["];
-      q1 -> q1 [label="] , [ → ε"];
-      q1 -> q2 [label="ε , $ → ε"];
+      
+      q1 -> q1 [label="a, $ → A$\na, A → AA\na, B → ε"];
+      q1 -> q1 [label="b, $ → B$\nb, B → BB\nb, A → ε"];
+      
+      q1 -> q2 [label="ε, $ → ε"];
    }
-
-Formal Acceptance Check — Instantaneous Description
------------------------------------------------------
-
-.. admonition:: ID Sequence for "[[]]" — Accepted by Empty Stack
-   :class: id-trace
-
-   **Formal Trace:**
-
-   .. math::
-
-      (q_0, [\![\!]\!], ε) \vdash (q_1, [\![\!]\!], \$)
-
-      \vdash (q_1, [\!]\!], [\$)
-
-      \vdash (q_1, ]\!], [\![\$)
-
-      \vdash (q_1, ]\!], [\$)
-
-      \vdash (q_1, ε, \$)
-
-      \vdash (q_2, ε, ε)
-
-   **Acceptance Criteria — Empty Stack:** :math:`(q_0, [\![\!]\!], ε) \vdash^* (q, ε, ε)` for **any** state :math:`q`
-   
-   **Result:** ✓ **ACCEPTED** by empty stack at state :math:`q_1`
-
-Rejection Check — Instantaneous Description
-----------------------------------------------
-
-.. admonition:: ID Sequence for "[[]][" — REJECTED
-   :class: quiz
-
-   **Formal Trace:**
-
-   .. math::
-
-      (q_0, [\![\!]\!]\![, ε) \vdash (q_1, [\![\!]\!]\![, \$)
-
-      \vdash (q_1, [\!]\!]\![, [\$)
-
-      \vdash (q_1, ]\!]\![, [\![\$)
-
-      \vdash (q_1, ]\![, [\$)
-
-      \vdash (q_1, [\!], \$)
-
-      \vdash (q_1, [\!], [\$)
-
-      \vdash (q_1, ], [\![\$)
-
-      \vdash (q_1, ], [\$)
-
-      \vdash (q_1, ε, \$)
-
-      \vdash (q_2, ε, ε)
-
-   **Result:** ✓ **ACCEPTED** (actually balanced!)
-   
-   **Try "[[](]] ":** Stack has leftover [ → **REJECTED**
 
 ----
 
-Key Insights from ID Traces
-============================
+Summary Table — Comparing All Examples
+=======================================
+
++------------------------+-------------------------+-------------------+-------------------+
+| **Language**           | **Form**                | **Stack Behavior**| **Acceptance**    |
++========================+=========================+===================+===================+
+| Balanced ()            | :math:`()*`             | Push (, pop )     | Final state       |
++------------------------+-------------------------+-------------------+-------------------+
+| :math:`a^nb^n`         | Equal a's then b's      | Push n A's, pop   | Final state       |
++------------------------+-------------------------+-------------------+-------------------+
+| :math:`WcW^R`          | Palindrome + center     | Push W, pop Wᴿ    | Final state       |
++------------------------+-------------------------+-------------------+-------------------+
+| Equal :math:`a^*b^*`   | Any interleaved order   | Cancellation      | Final state       |
++------------------------+-------------------------+-------------------+-------------------+
+
+----
+
+Key Principles for Reading Transitions
+========================================
 
 .. raw:: html
 
    <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
-   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">🎯 Understanding Acceptance Criteria (Click to Expand)</summary>
+   <summary style="cursor:pointer; font-weight:600; color:#7b1113;">🎯 How to Understand (q, a, X) → (q', γ) (Click to Expand)</summary>
    <p>
-   <strong>By Final State:</strong><br>
-   - Input must be fully consumed (:math:`w = ε`)<br>
-   - Must end in accepting state (:math:`q ∈ F`)<br>
-   - Stack contents don't matter<br><br>
-   <strong>By Empty Stack:</strong><br>
-   - Input must be fully consumed (:math:`w = ε`)<br>
-   - Stack must be empty (:math:`α = ε`)<br>
-   - Final state doesn't matter<br><br>
-   <strong>Common Pattern in IDs:</strong><br>
-   - Stack grows during "push phases"<br>
-   - Stack shrinks during "match/pop phases"<br>
-   - Both phases visible in formal trace
+   <strong>Component 1: (q, a, X)</strong><br>
+   • <code>q</code> = current state<br>
+   • <code>a</code> = input symbol being read (or ε for no input consumed)<br>
+   • <code>X</code> = stack top symbol being popped<br><br>
+   
+   <strong>Component 2: (q', γ)</strong><br>
+   • <code>q'</code> = next state to move to<br>
+   • <code>γ</code> = string to push (can be empty ε, single symbol, or multiple)<br><br>
+   
+   <strong>Order of Stack Operations:</strong><br>
+   1. POP: Remove X from stack top<br>
+   2. PUSH: Add symbols in γ left-to-right (leftmost goes first)<br><br>
+   
+   <strong>Examples:</strong><br>
+   • <code>(q, a, X) → (q, ε)</code> = consume 'a', pop X, push nothing<br>
+   • <code>(q, a, X) → (q, YZ)</code> = consume 'a', pop X, push Y then Z (Y on top)<br>
+   • <code>(q, ε, X) → (q, ε)</code> = no input, pop X, push nothing (spontaneous move)
    </p>
    </details>
 
@@ -693,11 +639,11 @@ Key Insights from ID Traces
 Summary
 =======
 
-* PDAs = CFGs in power → both define CFLs  
-* DFAs < PDAs < Turing Machines  
-* Stack enables recursion, nesting, and matching  
-* **Instantaneous Description** provides formal verification of acceptance  
-* **Turnstile notation** :math:`\vdash` makes computation sequences explicit  
+* **Transition notation** :math:`(q, a, X) → (q', γ)` specifies exact stack operations  
+* **Push phase** accumulates symbols (stack grows)  
+* **Pop phase** matches and removes symbols (stack shrinks)  
+* **Cancellation** allows balancing in any order  
+* **Formal traces** show step-by-step computation with stacks visible  
 * Foundation for parser design and syntax analysis
 
 ----
