@@ -1,5 +1,5 @@
 =======================
-Intuitive Introduction
+Introduction
 =======================
 
 Start here! This section builds **intuition first**, before diving into formal definitions.  
@@ -35,8 +35,8 @@ a **rule-based system** that can *generate and verify* hierarchical, nested patt
 
 ----
 
-The Problem: Why CFGs Matter
-=============================
+The Problem: Why CFGs Matter ?
+===============================
 
 **Example: Balanced Parentheses**
 
@@ -82,8 +82,8 @@ A DFA cannot decide this language.
 
 
 
-Recipe Analogy: How CFGs Work
-==============================
+Recipe Analogy: How CFGs Work ?
+===============================
 
 Think of a CFG as a **recipe** for generating valid sentences.
 
@@ -326,6 +326,7 @@ Click each question to check your understanding!
       :class: toggle
 
       ❌ **Incorrect:** a, c, and d are context-free.  
+
       ✅ **Correct:** (b) — ``{ wwʳ | w ∈ {a, b}* }`` is **not** context-free because it requires matching both halves — something a PDA cannot do.
 
 ----
@@ -341,7 +342,8 @@ Click each question to check your understanding!
    .. admonition:: 🔍 Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (c) CFGs handle recursive and nested patterns such as balanced parentheses.  
+      ✅ **Correct:** (c) CFGs handle recursive and nested patterns such as balanced parentheses.
+
       ❌ The others misunderstand CFG power or structure.
 
 ----
@@ -358,6 +360,7 @@ Click each question to check your understanding!
       :class: toggle
 
       ✅ **Correct:** (b) PDA — uses a **stack** to handle recursion and nested symbols.  
+
       ❌ FAs lack memory; TMs are more powerful; Moore machines output differently.
 
 ----
@@ -373,7 +376,8 @@ Click each question to check your understanding!
    .. admonition:: 🔍 Reveal Answer
       :class: toggle
 
-      ✅ **Correct:** (b) — describes *context-sensitive* grammars, not context-free ones.  
+      ✅ **Correct:** (b) — describes *context-sensitive* grammars, not context-free ones.
+
       ❌ Others are true for CFGs.
 
 ----
@@ -390,15 +394,12 @@ Click each question to check your understanding!
       :class: toggle
 
       ✅ **Correct:** (b) ``S → (S) | SS | ε`` generates all valid balanced parentheses.  
+
       ❌ The others fail to produce the entire set or are malformed.
 
 ----
 
 .. note::
-   💭 **Scoring Tip:**  
-   5/5 → Excellent! Ready for CFG-to-PDA conversion.  
-   3–4/5 → Review “Formal Definitions” section.  
-   1–2/5 → Revisit “Intuitive Introduction” for conceptual clarity.
-
+   💭 **Keep Practicing !!**  
 
 S

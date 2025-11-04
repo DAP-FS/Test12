@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Intuitive Introduction &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>1. Introduction &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -56,7 +56,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Intuitive Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#formal-definitions">2. Formal Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
 </ul>
@@ -75,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Intuitive Introduction</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Introduction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/context_free_languages.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,8 +85,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="intuitive-introduction">
-<h1><span class="section-number">1. </span>Intuitive Introduction<a class="headerlink" href="#intuitive-introduction" title="Link to this heading"></a></h1>
+  <section id="introduction">
+<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
 <p>Start here! This section builds <strong>intuition first</strong>, before diving into formal definitions.
 Keep your mind open — imagine, visualize, and connect.</p>
 <hr class="docutils" />
@@ -112,7 +112,7 @@ a <strong>rule-based system</strong> that can <em>generate and verify</em> hiera
 </section>
 <hr class="docutils" />
 <section id="the-problem-why-cfgs-matter">
-<h2><span class="section-number">1.2. </span>The Problem: Why CFGs Matter<a class="headerlink" href="#the-problem-why-cfgs-matter" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.2. </span>The Problem: Why CFGs Matter ?<a class="headerlink" href="#the-problem-why-cfgs-matter" title="Link to this heading"></a></h2>
 <p><strong>Example: Balanced Parentheses</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -163,7 +163,7 @@ Balanced parentheses need remembering <em>an arbitrary number of opens</em> unti
 </section>
 </section>
 <section id="recipe-analogy-how-cfgs-work">
-<h2><span class="section-number">1.3. </span>Recipe Analogy: How CFGs Work<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.3. </span>Recipe Analogy: How CFGs Work ?<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h2>
 <p>Think of a CFG as a <strong>recipe</strong> for generating valid sentences.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentence → Subject Verb Object
 Subject  → &quot;The&quot; Noun
@@ -381,8 +381,8 @@ where R = {S → ε | (S) | SS}
 </ol>
 <div class="toggle admonition">
 <p class="admonition-title">🔍 Reveal Answer</p>
-<p>❌ <strong>Incorrect:</strong> a, c, and d are context-free.
-✅ <strong>Correct:</strong> (b) — <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code> is <strong>not</strong> context-free because it requires matching both halves — something a PDA cannot do.</p>
+<p>❌ <strong>Incorrect:</strong> a, c, and d are context-free.</p>
+<p>✅ <strong>Correct:</strong> (b) — <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code> is <strong>not</strong> context-free because it requires matching both halves — something a PDA cannot do.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -396,8 +396,8 @@ where R = {S → ε | (S) | SS}
 </ol>
 <div class="toggle admonition">
 <p class="admonition-title">🔍 Reveal Answer</p>
-<p>✅ <strong>Correct:</strong> (c) CFGs handle recursive and nested patterns such as balanced parentheses.
-❌ The others misunderstand CFG power or structure.</p>
+<p>✅ <strong>Correct:</strong> (c) CFGs handle recursive and nested patterns such as balanced parentheses.</p>
+<p>❌ The others misunderstand CFG power or structure.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -411,8 +411,8 @@ where R = {S → ε | (S) | SS}
 </ol>
 <div class="toggle admonition">
 <p class="admonition-title">🔍 Reveal Answer</p>
-<p>✅ <strong>Correct:</strong> (b) PDA — uses a <strong>stack</strong> to handle recursion and nested symbols.
-❌ FAs lack memory; TMs are more powerful; Moore machines output differently.</p>
+<p>✅ <strong>Correct:</strong> (b) PDA — uses a <strong>stack</strong> to handle recursion and nested symbols.</p>
+<p>❌ FAs lack memory; TMs are more powerful; Moore machines output differently.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -426,8 +426,8 @@ where R = {S → ε | (S) | SS}
 </ol>
 <div class="toggle admonition">
 <p class="admonition-title">🔍 Reveal Answer</p>
-<p>✅ <strong>Correct:</strong> (b) — describes <em>context-sensitive</em> grammars, not context-free ones.
-❌ Others are true for CFGs.</p>
+<p>✅ <strong>Correct:</strong> (b) — describes <em>context-sensitive</em> grammars, not context-free ones.</p>
+<p>❌ Others are true for CFGs.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -441,17 +441,14 @@ where R = {S → ε | (S) | SS}
 </ol>
 <div class="toggle admonition">
 <p class="admonition-title">🔍 Reveal Answer</p>
-<p>✅ <strong>Correct:</strong> (b) <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code> generates all valid balanced parentheses.
-❌ The others fail to produce the entire set or are malformed.</p>
+<p>✅ <strong>Correct:</strong> (b) <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code> generates all valid balanced parentheses.</p>
+<p>❌ The others fail to produce the entire set or are malformed.</p>
 </div>
 </div>
 <hr class="docutils" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>💭 <strong>Scoring Tip:</strong>
-5/5 → Excellent! Ready for CFG-to-PDA conversion.
-3–4/5 → Review “Formal Definitions” section.
-1–2/5 → Revisit “Intuitive Introduction” for conceptual clarity.</p>
+<p>💭 <strong>Keep Practicing !!</strong></p>
 </div>
 <p>S</p>
 </section>
