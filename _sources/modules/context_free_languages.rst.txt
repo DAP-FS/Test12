@@ -231,10 +231,6 @@ Summary
 
 ----
 
-====================
-Formal Definitions
-====================
-
 Definition 2.1 — Context-Free Grammar
 =====================================
 
