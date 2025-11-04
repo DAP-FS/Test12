@@ -520,17 +520,6 @@ Which of the following languages is <strong>not</strong> context-free?</p>
 <summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> B) <cite>{a^n b^n c^n}</cite> ✗
 Reason: Requires comparison among 3 counts — beyond PDA capacity.</p>
 </details><p><strong>Question 21:</strong> Convert FA (below) that accepts <cite>strings over {a,b} with even number of a’s</cite>.</p>
-<div class="graphviz"><object data="../_images/graphviz-9ff23d4fad18969885857faa46b6c0a55980068d.svg" type="image/svg+xml" class="graphviz">
-<p class="warning">digraph FA21 {
-    rankdir=LR;
-    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
-    q0 [label=&quot;q₀ (Even a’s, Start, Final)&quot;, shape=doublecircle];
-    q1 [label=&quot;q₁ (Odd a’s)&quot;];
-    q0 -&gt; q1 [label=&quot;a&quot;];
-    q1 -&gt; q0 [label=&quot;a&quot;];
-    q0 -&gt; q0 [label=&quot;b&quot;];
-    q1 -&gt; q1 [label=&quot;b&quot;];
-}</p></object></div>
 <details>
 <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → bS₀ | aS₁ | ε
 S₁ → bS₁ | aS₀

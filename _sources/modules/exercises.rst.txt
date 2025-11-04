@@ -666,18 +666,24 @@ Reason: Requires comparison among 3 counts — beyond PDA capacity.
 
 **Question 21:** Convert FA (below) that accepts `strings over {a,b} with even number of a’s`.
 
-.. graphviz::
+.. tikz::
 
-   digraph FA21 {
-       rankdir=LR;
-       node [shape=circle, style=filled, fillcolor="#f9f9f9"];
-       q0 [label="q₀ (Even a’s, Start, Final)", shape=doublecircle];
-       q1 [label="q₁ (Odd a’s)"];
-       q0 -> q1 [label="a"];
-       q1 -> q0 [label="a"];
-       q0 -> q0 [label="b"];
-       q1 -> q1 [label="b"];
-   }
+   \begin{tikzpicture}[shorten >=1pt,node distance=3cm,on grid,auto]
+     \tikzstyle{every state}=[fill=white,draw=black,text=black,minimum size=18pt]
+
+     % States
+     \node[state,initial,accepting] (q0) {q₀\\\scriptsize(Even a’s)};
+     \node[state,right=of q0] (q1) {q₁\\\scriptsize(Odd a’s)};
+
+     % Transitions
+     \path[->]
+       (q0) edge[bend left,above] node{a} (q1)
+       (q1) edge[bend left,below] node{a} (q0)
+       (q0) edge[loop above] node{b} ()
+       (q1) edge[loop above] node{b} ();
+   \end{tikzpicture}
+
+
 
 .. raw:: html
 
