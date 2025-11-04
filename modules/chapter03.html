@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Remedial Practice: CFG Construction &amp; PDA &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>1. Remedial Practice: CFG Construction &amp; PDA &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -30,7 +30,9 @@
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Introduction to Context Free Grammer" href="context_free_languages.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="intro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,10 +55,12 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Remedial Practice: CFG Construction &amp; PDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#self-evaluation-checklist">2. 🧩 Self-Evaluation Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">3. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">4. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">5. Practice Excercises</a></li>
 </ul>
 
         </div>
@@ -73,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Remedial Practice: CFG Construction &amp; PDA</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Remedial Practice: CFG Construction &amp; PDA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/chapter03.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -84,7 +88,7 @@
            <div itemprop="articleBody">
              
   <section id="remedial-practice-cfg-construction-pda">
-<h1>Remedial Practice: CFG Construction &amp; PDA<a class="headerlink" href="#remedial-practice-cfg-construction-pda" title="Link to this heading"></a></h1>
+<h1><span class="section-number">1. </span>Remedial Practice: CFG Construction &amp; PDA<a class="headerlink" href="#remedial-practice-cfg-construction-pda" title="Link to this heading"></a></h1>
 <style>
   h1, h2, h3 {
     color: #7b1113; /* Stanford Maroon */
@@ -99,7 +103,7 @@
     border-left: 5px solid #ffa500;
   }
 </style><section id="q1-easy-from-regular-expression-cfg">
-<h2>Q1. (Easy) From Regular Expression → CFG<a class="headerlink" href="#q1-easy-from-regular-expression-cfg" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.1. </span>Q1. (Easy) From Regular Expression → CFG<a class="headerlink" href="#q1-easy-from-regular-expression-cfg" title="Link to this heading"></a></h2>
 <p><strong>Regular Expression:</strong>
 <code class="docutils literal notranslate"><span class="pre">(a|b)*abb</span></code></p>
 <p><strong>Task:</strong>
@@ -119,7 +123,7 @@ A → a A | b A | ε</p>
 </div>
 </section>
 <section id="q2-intermediate-from-fa-cfg-construction">
-<h2>Q2. (Intermediate) From FA → CFG Construction<a class="headerlink" href="#q2-intermediate-from-fa-cfg-construction" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.2. </span>Q2. (Intermediate) From FA → CFG Construction<a class="headerlink" href="#q2-intermediate-from-fa-cfg-construction" title="Link to this heading"></a></h2>
 <p><strong>Given Finite Automaton (FA):</strong></p>
 <div class="graphviz"><object data="../_images/graphviz-fc9fefaa5106d7e21283a749ee878e5ca89140b3.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph FA {
@@ -149,7 +153,7 @@ A2 → bA2 | b</p>
 </div>
 </section>
 <section id="q3-difficult-from-cfg-pda-construction">
-<h2>Q3. (Difficult) From CFG → PDA Construction<a class="headerlink" href="#q3-difficult-from-cfg-pda-construction" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.3. </span>Q3. (Difficult) From CFG → PDA Construction<a class="headerlink" href="#q3-difficult-from-cfg-pda-construction" title="Link to this heading"></a></h2>
 <p><strong>Given CFG:</strong></p>
 <p>S → aSb | SS | ε</p>
 <p><strong>Task:</strong>
@@ -197,7 +201,7 @@ Construct a <strong>Pushdown Automaton (PDA)</strong> that accepts the same lang
 </section>
 </section>
 <section id="self-evaluation-checklist">
-<h1>🧩 Self-Evaluation Checklist<a class="headerlink" href="#self-evaluation-checklist" title="Link to this heading"></a></h1>
+<h1><span class="section-number">2. </span>🧩 Self-Evaluation Checklist<a class="headerlink" href="#self-evaluation-checklist" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p>[ ] Can I convert any simple regular expression into a CFG?</p></li>
 <li><p>[ ] Do I understand FA-to-CFG mapping rules?</p></li>
@@ -214,7 +218,10 @@ Each step adds <em>power and expressiveness</em> while retaining <em>structure</
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="context_free_languages.html" class="btn btn-neutral float-right" title="3. Introduction to Context Free Grammer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
