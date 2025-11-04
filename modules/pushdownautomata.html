@@ -92,43 +92,43 @@
 <h1><span class="section-number">4. </span>Pushdown Automata (PDA)<a class="headerlink" href="#pushdown-automata-pda" title="Link to this heading"></a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id58">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#why-pda" id="id59">Why PDA?</a></p></li>
-<li><p><a class="reference internal" href="#formal-definition" id="id60">Formal Definition</a></p></li>
-<li><p><a class="reference internal" href="#transition-notation-explained" id="id61">Transition Notation Explained</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-modes" id="id62">Acceptance Modes</a></p></li>
-<li><p><a class="reference internal" href="#pda-example-1-balanced-parentheses" id="id63">PDA Example 1: Balanced Parentheses “()”</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id4">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#why-pda" id="id5">Why PDA?</a></p></li>
+<li><p><a class="reference internal" href="#formal-definition" id="id6">Formal Definition</a></p></li>
+<li><p><a class="reference internal" href="#transition-notation-explained" id="id7">Transition Notation Explained</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-modes" id="id8">Acceptance Modes</a></p></li>
+<li><p><a class="reference internal" href="#pda-example-1-balanced-parentheses" id="id9">PDA Example 1: Balanced Parentheses “()”</a></p>
 <ul>
-<li><p><a class="reference internal" href="#state-diagram" id="id64">State Diagram</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-check" id="id65">Acceptance Check — “(())”</a></p></li>
-<li><p><a class="reference internal" href="#rejection-check" id="id66">Rejection Check — “(()”</a></p></li>
+<li><p><a class="reference internal" href="#state-diagram" id="id10">State Diagram</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-check" id="id11">Acceptance Check — “(())”</a></p></li>
+<li><p><a class="reference internal" href="#rejection-check" id="id12">Rejection Check — “(()”</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#pda-example-2-language-anbn" id="id67">PDA Example 2: Language aⁿbⁿ</a></p>
+<li><p><a class="reference internal" href="#pda-example-2-language-anbn" id="id13">PDA Example 2: Language aⁿbⁿ</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id68">State Diagram</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-check-aaabbb" id="id69">Acceptance Check — “aaabbb”</a></p></li>
-<li><p><a class="reference internal" href="#rejection-check-aabbb" id="id70">Rejection Check — “aabbb”</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id14">State Diagram</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-check-aaabbb" id="id15">Acceptance Check — “aaabbb”</a></p></li>
+<li><p><a class="reference internal" href="#rejection-check-aabbb" id="id16">Rejection Check — “aabbb”</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#pda-example-3-palindromes-wcw" id="id71">PDA Example 3: Palindromes WcWᴿ</a></p>
+<li><p><a class="reference internal" href="#pda-example-3-palindromes-wcw" id="id17">PDA Example 3: Palindromes WcWᴿ</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id2" id="id72">State Diagram</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-check-abcba" id="id73">Acceptance Check — “abcba”</a></p></li>
-<li><p><a class="reference internal" href="#rejection-check-abcda" id="id74">Rejection Check — “abcda”</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id18">State Diagram</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-check-abcba" id="id19">Acceptance Check — “abcba”</a></p></li>
+<li><p><a class="reference internal" href="#rejection-check-abcda" id="id20">Rejection Check — “abcda”</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#pda-example-4-equal-count-anbn-any-order" id="id75">PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a></p>
+<li><p><a class="reference internal" href="#pda-example-4-equal-count-anbn-any-order" id="id21">PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id3" id="id76">State Diagram</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-check-aabb" id="id77">Acceptance Check — “aabb”</a></p></li>
-<li><p><a class="reference internal" href="#acceptance-check-abab" id="id78">Acceptance Check — “abab”</a></p></li>
-<li><p><a class="reference internal" href="#rejection-check-aaab" id="id79">Rejection Check — “aaab”</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id22">State Diagram</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-check-aabb" id="id23">Acceptance Check — “aabb”</a></p></li>
+<li><p><a class="reference internal" href="#acceptance-check-abab" id="id24">Acceptance Check — “abab”</a></p></li>
+<li><p><a class="reference internal" href="#rejection-check-aaab" id="id25">Rejection Check — “aaab”</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary-table-comparing-all-examples" id="id80">Summary Table — Comparing All Examples</a></p></li>
-<li><p><a class="reference internal" href="#key-principles-for-reading-transitions" id="id81">Key Principles for Reading Transitions</a></p></li>
-<li><p><a class="reference internal" href="#summary" id="id82">Summary</a></p></li>
+<li><p><a class="reference internal" href="#summary-table-comparing-all-examples" id="id26">Summary Table — Comparing All Examples</a></p></li>
+<li><p><a class="reference internal" href="#key-principles-for-reading-transitions" id="id27">Key Principles for Reading Transitions</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id28">Summary</a></p></li>
 </ul>
 </nav>
 <hr class="docutils" />
@@ -147,7 +147,7 @@
   @media (max-width: 1200px) { .combined-viz { grid-template-columns: 1fr; } }
 </style><hr class="docutils" />
 <section id="introduction">
-<h2><a class="toc-backref" href="#id58" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">4.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>A <strong>Pushdown Automaton (PDA)</strong> is the <em>minimal machine</em> that can recognize <strong>languages with nested or hierarchical structure</strong> using a stack.
 It is the natural computational counterpart to <strong>Context-Free Grammars (CFGs)</strong> for parsing <strong>balanced patterns and matched constructs</strong>.</p>
 <p>A PDA can accept a language <strong>either by final state</strong> or <strong>by empty stack</strong>, and both acceptance modes are <em>equivalent in power</em> for context-free languages.</p>
@@ -158,7 +158,7 @@ It is the natural computational counterpart to <strong>Context-Free Grammars (CF
 </section>
 <hr class="docutils" />
 <section id="why-pda">
-<h2><a class="toc-backref" href="#id59" role="doc-backlink"><span class="section-number">4.2. </span>Why PDA?</a><a class="headerlink" href="#why-pda" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4.2. </span>Why PDA?</a><a class="headerlink" href="#why-pda" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>DFA/NFA fail</strong> on nested patterns because they have only finite memory.</p></li>
 <li><p><strong>PDA succeeds</strong> by using a <strong>stack</strong> — push on every open symbol, pop on each matching close, and accept when both input and stack align.</p></li>
@@ -173,7 +173,7 @@ It is the natural computational counterpart to <strong>Context-Free Grammars (CF
 </section>
 <hr class="docutils" />
 <section id="formal-definition">
-<h2><a class="toc-backref" href="#id60" role="doc-backlink"><span class="section-number">4.3. </span>Formal Definition</a><a class="headerlink" href="#formal-definition" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">4.3. </span>Formal Definition</a><a class="headerlink" href="#formal-definition" title="Link to this heading"></a></h2>
 <p>A <strong>PDA</strong> is a 7-tuple:</p>
 <div class="math notranslate nohighlight">
 \[M = (Q, Σ, Γ, δ, q_0, Z_0, F)\]</div>
@@ -195,7 +195,7 @@ It is the natural computational counterpart to <strong>Context-Free Grammars (CF
 </section>
 <hr class="docutils" />
 <section id="transition-notation-explained">
-<h2><a class="toc-backref" href="#id61" role="doc-backlink"><span class="section-number">4.4. </span>Transition Notation Explained</a><a class="headerlink" href="#transition-notation-explained" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">4.4. </span>Transition Notation Explained</a><a class="headerlink" href="#transition-notation-explained" title="Link to this heading"></a></h2>
 <p>The format <span class="math notranslate nohighlight">\((q, a, X) → (q', γ)\)</span> has three parts:</p>
 <div class="transition-box">
 <strong>Format:</strong> (current_state, input_symbol, stack_top) → (next_state, new_stack_symbols)
@@ -211,7 +211,7 @@ It is the natural computational counterpart to <strong>Context-Free Grammars (CF
 </div></section>
 <hr class="docutils" />
 <section id="acceptance-modes">
-<h2><a class="toc-backref" href="#id62" role="doc-backlink"><span class="section-number">4.5. </span>Acceptance Modes</a><a class="headerlink" href="#acceptance-modes" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">4.5. </span>Acceptance Modes</a><a class="headerlink" href="#acceptance-modes" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Acceptance by Final State</strong> — consume entire input and end in any state in <em>F</em>; stack contents may remain.</p></li>
 <li><p><strong>Acceptance by Empty Stack</strong> — consume input and empty the stack; final state ignored.</p></li>
@@ -223,7 +223,7 @@ It is the natural computational counterpart to <strong>Context-Free Grammars (CF
 </section>
 <hr class="docutils" />
 <section id="pda-example-1-balanced-parentheses">
-<h2><a class="toc-backref" href="#id63" role="doc-backlink"><span class="section-number">4.6. </span>PDA Example 1: Balanced Parentheses “()”</a><a class="headerlink" href="#pda-example-1-balanced-parentheses" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">4.6. </span>PDA Example 1: Balanced Parentheses “()”</a><a class="headerlink" href="#pda-example-1-balanced-parentheses" title="Link to this heading"></a></h2>
 <p>Recognize <span class="math notranslate nohighlight">\(L = \{ w ∈ \{(,)\}^* | w \text{ is balanced} \}\)</span></p>
 <p><strong>Formal Definition:</strong></p>
 <div class="math notranslate nohighlight">
@@ -246,7 +246,7 @@ Reading ')' with '(' on top: pop it (remove from stack)
 <code class="notation">(q₁, ε, $) → (q₂, ε)</code><br>
 When only $ remains, move to final state (empty stack)
 </div><section id="state-diagram">
-<h3><a class="toc-backref" href="#id64" role="doc-backlink"><span class="section-number">4.6.1. </span>State Diagram</a><a class="headerlink" href="#state-diagram" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">4.6.1. </span>State Diagram</a><a class="headerlink" href="#state-diagram" title="Link to this heading"></a></h3>
 <figure class="align-center" id="fig-pda-balanced">
 <div class="graphviz"><object data="../_images/graphviz-e4fea1460bf00fa5cfa57435599b5911a10b588d.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph PDA {
@@ -268,7 +268,7 @@ When only $ remains, move to final state (empty stack)
 </figure>
 </section>
 <section id="acceptance-check">
-<h3><a class="toc-backref" href="#id65" role="doc-backlink"><span class="section-number">4.6.2. </span>Acceptance Check — “(())”</a><a class="headerlink" href="#acceptance-check" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">4.6.2. </span>Acceptance Check — “(())”</a><a class="headerlink" href="#acceptance-check" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-trace-balanced">
 <div class="graphviz"><object data="../_images/graphviz-4258900bb15668c238b828c0f41d4dc4dc78bf63.svg" type="image/svg+xml" class="graphviz">
@@ -295,25 +295,77 @@ When only $ remains, move to final state (empty stack)
 <p><span class="caption-text">Stack Evolution for “(())”</span><a class="headerlink" href="#fig-stack-trace-balanced" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</div><p><strong>Transition Table Trace:</strong></p>
-<div class="id-trace admonition">
+</div><p><strong>Transition Table Trace</strong></p>
+<div class="id-trace toggle dropdown admonition">
 <p class="admonition-title">String Trace for “(())” — ACCEPTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id4"><span class="problematic" id="id5">|------|</span></a>——-<a href="#id6"><span class="problematic" id="id7">|-------|</span></a>——-<a href="#id8"><span class="problematic" id="id9">|-------------------|</span></a>
-| 0 | q₀ | (()) | ε | — |
-| 1 | q₁ | (()) | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | ()) | ($ | (q₁, ‘(’, ε) → (q₁, ‘(’) |
-| 3 | q₁ | )) | (($ | (q₁, ‘(’, ε) → (q₁, ‘(’) |
-| 4 | q₁ | ) | ($ | (q₁, ‘)’, ‘(’) → (q₁, ε) |
-| 5 | q₁ | ε | $ | (q₁, ‘)’, ‘(’) → (q₁, ε) |
-| 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |</p>
+<p><strong>Input:</strong> (())
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>(())</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>(())</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>())</p></td>
+<td><p>($</p></td>
+<td><p>(q₁, ‘(’, ε) → (q₁, ‘(‘)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>))</p></td>
+<td><p>(($</p></td>
+<td><p>(q₁, ‘(’, ε) → (q₁, ‘(‘)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₁</p></td>
+<td><p>)</p></td>
+<td><p>($</p></td>
+<td><p>(q₁, ‘)’, ‘(’) → (q₁, ε)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₁</p></td>
+<td><p>ε</p></td>
+<td><p>$</p></td>
+<td><p>(q₁, ‘)’, ‘(’) → (q₁, ε)</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₂</p></td>
+<td><p>ε</p></td>
+<td><p>ε</p></td>
+<td><p>(q₁, ε, $) → (q₂, ε)</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — Input consumed, stack empty, final state q₂ reached</p>
 </div>
 </section>
 <section id="rejection-check">
-<h3><a class="toc-backref" href="#id66" role="doc-backlink"><span class="section-number">4.6.3. </span>Rejection Check — “(()”</a><a class="headerlink" href="#rejection-check" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">4.6.3. </span>Rejection Check — “(()”</a><a class="headerlink" href="#rejection-check" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-reject-balanced">
 <figcaption>
@@ -321,25 +373,71 @@ When only $ remains, move to final state (empty stack)
 </figcaption>
 </figure>
 </div><p><strong>Transition Table Trace:</strong></p>
-<div class="quiz admonition">
+<div class="quiz toggle dropdown admonition">
 <p class="admonition-title">String Trace for “(()” — REJECTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id10"><span class="problematic" id="id11">|------|</span></a>——-<a href="#id12"><span class="problematic" id="id13">|-------|</span></a>——-<a href="#id14"><span class="problematic" id="id15">|-------------------|</span></a>
-| 0 | q₀ | (() | ε | — |
-| 1 | q₁ | (() | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | ()) | ($ | (q₁, ‘(’, ε) → (q₁, ‘(’) |
-| 3 | q₁ | )) | (($ | (q₁, ‘(’, ε) → (q₁, ‘(’) |
-| 4 | q₁ | ) | ($ | (q₁, ‘)’, ‘(’) → (q₁, ε) |
-| 5 | q₁ | ε | ($ | <strong>STUCK</strong> — No transition for (q₁, ε, ‘(’) |</p>
+<p><strong>Input:</strong> (()</p>
+<p><strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>(()</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>(()</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>())</p></td>
+<td><p>($</p></td>
+<td><p>(q₁, ‘(’, ε) → (q₁, ‘(‘)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>))</p></td>
+<td><p>(($</p></td>
+<td><p>(q₁, ‘(’, ε) → (q₁, ‘(‘)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₁</p></td>
+<td><p>)</p></td>
+<td><p>($</p></td>
+<td><p>(q₁, ‘)’, ‘(’) → (q₁, ε)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₁</p></td>
+<td><p>ε</p></td>
+<td><p>($</p></td>
+<td><p><strong>STUCK</strong> — No transition for (q₁, ε, ‘(‘)</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✗ <strong>REJECTED</strong> — Input ends but stack still has ‘(’ (unmatched open)</p>
 </div>
 </section>
 </section>
-<hr class="docutils" />
 <section id="pda-example-2-language-anbn">
-<h2><a class="toc-backref" href="#id67" role="doc-backlink"><span class="section-number">4.7. </span>PDA Example 2: Language aⁿbⁿ</a><a class="headerlink" href="#pda-example-2-language-anbn" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">4.7. </span>PDA Example 2: Language aⁿbⁿ</a><a class="headerlink" href="#pda-example-2-language-anbn" title="Link to this heading"></a></h2>
 <p>Recognize <span class="math notranslate nohighlight">\(L = \{ a^n b^n | n ≥ 1 \}\)</span> (equal a’s followed by equal b’s).</p>
 <p><strong>Formal Definition:</strong></p>
 <div class="math notranslate nohighlight">
@@ -369,7 +467,7 @@ Reading 'b' with A on top: pop A
 <code class="notation">(q₂, ε, $) → (q₃, ε)</code><br>
 When only $ remains: accept (stack empty)
 </div><section id="id1">
-<h3><a class="toc-backref" href="#id68" role="doc-backlink"><span class="section-number">4.7.1. </span>State Diagram</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">4.7.1. </span>State Diagram</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <figure class="align-center" id="fig-pda-anbn">
 <div class="graphviz"><object data="../_images/graphviz-32b660657ab677cd55cd98f7dc59f6b69f6729f7.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph PDA_anbn {
@@ -393,7 +491,7 @@ When only $ remains: accept (stack empty)
 </figure>
 </section>
 <section id="acceptance-check-aaabbb">
-<h3><a class="toc-backref" href="#id69" role="doc-backlink"><span class="section-number">4.7.2. </span>Acceptance Check — “aaabbb”</a><a class="headerlink" href="#acceptance-check-aaabbb" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">4.7.2. </span>Acceptance Check — “aaabbb”</a><a class="headerlink" href="#acceptance-check-aaabbb" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-anbn">
 <div class="graphviz"><object data="../_images/graphviz-9b17e422d4a4aa6c85bcd30f877766095f8caf55.svg" type="image/svg+xml" class="graphviz">
@@ -425,26 +523,88 @@ When only $ remains: accept (stack empty)
 </figcaption>
 </figure>
 </div><p><strong>Transition Table Trace:</strong></p>
-<div class="id-trace admonition">
+<div class="id-trace toggle dropdown admonition">
 <p class="admonition-title">String Trace for “aaabbb” — ACCEPTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id16"><span class="problematic" id="id17">|------|</span></a>——-<a href="#id18"><span class="problematic" id="id19">|-------|</span></a>——-<a href="#id20"><span class="problematic" id="id21">|-------------------|</span></a>
-| 0 | q₀ | aaabbb | ε | — |
-| 1 | q₁ | aaabbb | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | aabbb | A$ | (q₁, a, ε) → (q₁, A) |
-| 3 | q₁ | abbb | AA$ | (q₁, a, A) → (q₁, AA) |
-| 4 | q₁ | bbb | AAA$ | (q₁, a, A) → (q₁, AA) |
-| 5 | q₂ | bb | AA$ | (q₁, b, A) → (q₂, ε) <strong>[Switch to pop]</strong> |
-| 6 | q₂ | b | A$ | (q₂, b, A) → (q₂, ε) |
-| 7 | q₂ | ε | $ | (q₂, b, A) → (q₂, ε) |
-| 8 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |</p>
+<p><strong>Input:</strong> aaabbb
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>aaabbb</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>aaabbb</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>aabbb</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, a, ε) → (q₁, A)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>abbb</p></td>
+<td><p>AA$</p></td>
+<td><p>(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₁</p></td>
+<td><p>bbb</p></td>
+<td><p>AAA$</p></td>
+<td><p>(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₂</p></td>
+<td><p>bb</p></td>
+<td><p>AA$</p></td>
+<td><p>(q₁, b, A) → (q₂, ε) <strong>[Switch to pop]</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₂</p></td>
+<td><p>b</p></td>
+<td><p>A$</p></td>
+<td><p>(q₂, b, A) → (q₂, ε)</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>q₂</p></td>
+<td><p>ε</p></td>
+<td><p>$</p></td>
+<td><p>(q₂, b, A) → (q₂, ε)</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>q₃</p></td>
+<td><p>ε</p></td>
+<td><p>ε</p></td>
+<td><p>(q₂, ε, $) → (q₃, ε)</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — Perfect matching: 3 a’s pushed, 3 b’s popped</p>
 </div>
 </section>
 <section id="rejection-check-aabbb">
-<h3><a class="toc-backref" href="#id70" role="doc-backlink"><span class="section-number">4.7.3. </span>Rejection Check — “aabbb”</a><a class="headerlink" href="#rejection-check-aabbb" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">4.7.3. </span>Rejection Check — “aabbb”</a><a class="headerlink" href="#rejection-check-aabbb" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-reject-anbn">
 <div class="graphviz"><object data="../_images/graphviz-2c8577836f63afc7d5c406e412948f9ced81954f.svg" type="image/svg+xml" class="graphviz">
@@ -472,26 +632,78 @@ When only $ remains: accept (stack empty)
 </figcaption>
 </figure>
 </div><p><strong>Transition Table Trace:</strong></p>
-<div class="quiz admonition">
+<div class="quiz toggle dropdown admonition">
 <p class="admonition-title">String Trace for “aabbb” — REJECTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id22"><span class="problematic" id="id23">|------|</span></a>——-<a href="#id24"><span class="problematic" id="id25">|-------|</span></a>——-<a href="#id26"><span class="problematic" id="id27">|-------------------|</span></a>
-| 0 | q₀ | aabbb | ε | — |
-| 1 | q₁ | aabbb | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | abbb | A$ | (q₁, a, ε) → (q₁, A) |
-| 3 | q₁ | bbb | AA$ | (q₁, a, A) → (q₁, AA) |
-| 4 | q₂ | bb | A$ | (q₁, b, A) → (q₂, ε) <strong>[Switch to pop]</strong> |
-| 5 | q₂ | b | $ | (q₂, b, A) → (q₂, ε) |
-| 6 | q₂ | ε | $ | <strong>STUCK</strong> — No transition for (q₂, b, $) |</p>
+<p><strong>Input:</strong> aabbb
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>aabbb</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>aabbb</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>abbb</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, a, ε) → (q₁, A)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>bbb</p></td>
+<td><p>AA$</p></td>
+<td><p>(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₂</p></td>
+<td><p>bb</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, b, A) → (q₂, ε) <strong>[Switch to pop]</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₂</p></td>
+<td><p>b</p></td>
+<td><p>$</p></td>
+<td><p>(q₂, b, A) → (q₂, ε)</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₂</p></td>
+<td><p>ε</p></td>
+<td><p>$</p></td>
+<td><p><strong>STUCK</strong> — No transition for (q₂, b, $)</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✗ <strong>REJECTED</strong> — 2 a’s but 3 b’s (mismatch)</p>
 </div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="pda-example-3-palindromes-wcw">
-<h2><a class="toc-backref" href="#id71" role="doc-backlink"><span class="section-number">4.8. </span>PDA Example 3: Palindromes WcWᴿ</a><a class="headerlink" href="#pda-example-3-palindromes-wcw" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">4.8. </span>PDA Example 3: Palindromes WcWᴿ</a><a class="headerlink" href="#pda-example-3-palindromes-wcw" title="Link to this heading"></a></h2>
 <p>Recognize <span class="math notranslate nohighlight">\(L = \{ WcW^R | W ∈ \{a,b\}^* \}\)</span> (palindromes with center marker ‘c’).</p>
 <p><strong>Formal Definition:</strong></p>
 <div class="math notranslate nohighlight">
@@ -526,7 +738,7 @@ Initialize stack with bottom marker ($)
 <p><strong>Accept Transition:</strong></p>
 <code class="notation">(q₂, ε, $) → (q₃, ε)</code><br>
 </div><section id="id2">
-<h3><a class="toc-backref" href="#id72" role="doc-backlink"><span class="section-number">4.8.1. </span>State Diagram</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">4.8.1. </span>State Diagram</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <figure class="align-center" id="fig-pda-palindrome">
 <div class="graphviz"><object data="../_images/graphviz-00a34b2f7c8a881e3e9e28377e25e64f7cac9a87.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph PDA_palindrome {
@@ -551,7 +763,7 @@ Initialize stack with bottom marker ($)
 </figure>
 </section>
 <section id="acceptance-check-abcba">
-<h3><a class="toc-backref" href="#id73" role="doc-backlink"><span class="section-number">4.8.2. </span>Acceptance Check — “abcba”</a><a class="headerlink" href="#acceptance-check-abcba" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">4.8.2. </span>Acceptance Check — “abcba”</a><a class="headerlink" href="#acceptance-check-abcba" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-palindrome">
 <div class="graphviz"><object data="../_images/graphviz-45c52087eb57da3835c3ffccab5a9545a8a775c0.svg" type="image/svg+xml" class="graphviz">
@@ -581,25 +793,82 @@ Initialize stack with bottom marker ($)
 </figcaption>
 </figure>
 </div><p><strong>Transition Table Trace:</strong></p>
-<div class="id-trace admonition">
+<div class="id-trace toggle dropdown admonition">
 <p class="admonition-title">String Trace for “abcba” — ACCEPTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id28"><span class="problematic" id="id29">|------|</span></a>——-<a href="#id30"><span class="problematic" id="id31">|-------|</span></a>——-<a href="#id32"><span class="problematic" id="id33">|-------------------|</span></a>
-| 0 | q₀ | abcba | ε | — |
-| 1 | q₁ | abcba | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | bcba | a$ | (q₁, a, ε) → (q₁, a) |
-| 3 | q₁ | cba | ba$ | (q₁, b, a) → (q₁, ba) |
-| 4 | q₂ | ba | ba$ | (q₁, c, b) → (q₂, b) <strong>[Pivot: switch]</strong> |
-| 5 | q₂ | a | a$ | (q₂, b, b) → (q₂, ε) |
-| 6 | q₂ | ε | $ | (q₂, a, a) → (q₂, ε) |
-| 7 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |</p>
+<p><strong>Input:</strong> abcba
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>abcba</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>abcba</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>bcba</p></td>
+<td><p>a$</p></td>
+<td><p>(q₁, a, ε) → (q₁, a)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>cba</p></td>
+<td><p>ba$</p></td>
+<td><p>(q₁, b, a) → (q₁, ba)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₂</p></td>
+<td><p>ba</p></td>
+<td><p>ba$</p></td>
+<td><p>(q₁, c, b) → (q₂, b) <strong>[Pivot: switch]</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₂</p></td>
+<td><p>a</p></td>
+<td><p>a$</p></td>
+<td><p>(q₂, b, b) → (q₂, ε)</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₂</p></td>
+<td><p>ε</p></td>
+<td><p>$</p></td>
+<td><p>(q₂, a, a) → (q₂, ε)</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>q₃</p></td>
+<td><p>ε</p></td>
+<td><p>ε</p></td>
+<td><p>(q₂, ε, $) → (q₃, ε)</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — Perfect palindrome match: W=”ab” matched with Wᴿ=”ba”</p>
 </div>
 </section>
 <section id="rejection-check-abcda">
-<h3><a class="toc-backref" href="#id74" role="doc-backlink"><span class="section-number">4.8.3. </span>Rejection Check — “abcda”</a><a class="headerlink" href="#rejection-check-abcda" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">4.8.3. </span>Rejection Check — “abcda”</a><a class="headerlink" href="#rejection-check-abcda" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-reject-palindrome">
 <div class="graphviz"><object data="../_images/graphviz-6ccd7691a7a39e6b0989f735f25efa98f50d69d2.svg" type="image/svg+xml" class="graphviz">
@@ -625,25 +894,72 @@ Initialize stack with bottom marker ($)
 </figcaption>
 </figure>
 </div><p><strong>Transition Table Trace:</strong></p>
-<div class="quiz admonition">
+<div class="quiz toggle dropdown admonition">
 <p class="admonition-title">String Trace for “abcda” — REJECTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id34"><span class="problematic" id="id35">|------|</span></a>——-<a href="#id36"><span class="problematic" id="id37">|-------|</span></a>——-<a href="#id38"><span class="problematic" id="id39">|-------------------|</span></a>
-| 0 | q₀ | abcda | ε | — |
-| 1 | q₁ | abcda | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | bcda | a$ | (q₁, a, ε) → (q₁, a) |
-| 3 | q₁ | cda | ba$ | (q₁, b, a) → (q₁, ba) |
-| 4 | q₂ | da | ba$ | (q₁, c, b) → (q₂, b) <strong>[Pivot]</strong> |
-| 5 | q₂ | a | ba$ | <strong>STUCK</strong> — No transition for (q₂, d, b); ‘d’ not in alphabet {a,b,c} |</p>
+<p><strong>Input:</strong> abcda
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>abcda</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>abcda</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>bcda</p></td>
+<td><p>a$</p></td>
+<td><p>(q₁, a, ε) → (q₁, a)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>cda</p></td>
+<td><p>ba$</p></td>
+<td><p>(q₁, b, a) → (q₁, ba)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₂</p></td>
+<td><p>da</p></td>
+<td><p>ba$</p></td>
+<td><p>(q₁, c, b) → (q₂, b) <strong>[Pivot]</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₂</p></td>
+<td><p>a</p></td>
+<td><p>ba$</p></td>
+<td><p><strong>STUCK</strong> — No transition for (q₂, d, b); ‘d’ not in alphabet {a, b, c}</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Result:</strong> ✗ <strong>REJECTED</strong> — Mismatch: ‘b’ on stack but ‘d’ in input</p>
 </div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="pda-example-4-equal-count-anbn-any-order">
-<h2><a class="toc-backref" href="#id75" role="doc-backlink"><span class="section-number">4.9. </span>PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a><a class="headerlink" href="#pda-example-4-equal-count-anbn-any-order" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">4.9. </span>PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a><a class="headerlink" href="#pda-example-4-equal-count-anbn-any-order" title="Link to this heading"></a></h2>
 <p>Recognize <span class="math notranslate nohighlight">\(L = \{ w ∈ \{a,b\}^* | \#_a(w) = \#_b(w) \}\)</span> (equal a’s and b’s in any order).</p>
 <p><strong>Formal Definition:</strong></p>
 <div class="math notranslate nohighlight">
@@ -683,7 +999,7 @@ First 'b' with $ bottom: push B
 <code class="notation">(q₁, ε, $) → (q₂, ε)</code><br>
 When only $ remains: accept (equal counts)
 </div><section id="id3">
-<h3><a class="toc-backref" href="#id76" role="doc-backlink"><span class="section-number">4.9.1. </span>State Diagram</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">4.9.1. </span>State Diagram</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <figure class="align-center" id="fig-pda-equal">
 <div class="graphviz"><object data="../_images/graphviz-350aa945dc41e41c89927317cd52379226505175.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph PDA_equal {
@@ -707,7 +1023,7 @@ When only $ remains: accept (equal counts)
 </figure>
 </section>
 <section id="acceptance-check-aabb">
-<h3><a class="toc-backref" href="#id77" role="doc-backlink"><span class="section-number">4.9.2. </span>Acceptance Check — “aabb”</a><a class="headerlink" href="#acceptance-check-aabb" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">4.9.2. </span>Acceptance Check — “aabb”</a><a class="headerlink" href="#acceptance-check-aabb" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-equal-aabb">
 <div class="graphviz"><object data="../_images/graphviz-3c4c800dbbe6e114febed7b2175669a4d28d1ea7.svg" type="image/svg+xml" class="graphviz">
@@ -734,25 +1050,78 @@ When only $ remains: accept (equal counts)
 <p><span class="caption-text">Stack Evolution for “aabb”</span><a class="headerlink" href="#fig-stack-equal-aabb" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</div><p><strong>Transition Table Trace:</strong></p>
-<div class="id-trace admonition">
-<p class="admonition-title">String Trace for “aabb” — ACCEPTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
+</div><p><strong>Transition Table Trace</strong></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3" open="open">
+<summary class="sd-summary-title sd-card-header sd-bg-success sd-bg-text-success">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-check-circle" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm1.5 0a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm10.28-1.72-4.5 4.5a.75.75 0 0 1-1.06 0l-2-2a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l1.47 1.47 3.97-3.97a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path></svg></span><span class="sd-summary-text">String Trace for “aabb” — ACCEPTED</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Input:</strong> aabb
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Step</p></th>
+<th class="head"><p class="sd-card-text">State</p></th>
+<th class="head"><p class="sd-card-text">Input</p></th>
+<th class="head"><p class="sd-card-text">Stack</p></th>
+<th class="head"><p class="sd-card-text">Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">q₀</p></td>
+<td><p class="sd-card-text">aabb</p></td>
+<td><p class="sd-card-text">ε</p></td>
+<td><p class="sd-card-text">—</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">q₁</p></td>
+<td><p class="sd-card-text">aabb</p></td>
+<td><p class="sd-card-text">$</p></td>
+<td><p class="sd-card-text">(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">q₁</p></td>
+<td><p class="sd-card-text">abb</p></td>
+<td><p class="sd-card-text">A$</p></td>
+<td><p class="sd-card-text">(q₁, a, $) → (q₁, A$)</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">q₁</p></td>
+<td><p class="sd-card-text">bb</p></td>
+<td><p class="sd-card-text">AA$</p></td>
+<td><p class="sd-card-text">(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">q₁</p></td>
+<td><p class="sd-card-text">b</p></td>
+<td><p class="sd-card-text">A$</p></td>
+<td><p class="sd-card-text">(q₁, b, A) → (q₁, ε) <strong>[Pop A, cancel]</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">q₁</p></td>
+<td><p class="sd-card-text">ε</p></td>
+<td><p class="sd-card-text">$</p></td>
+<td><p class="sd-card-text">(q₁, b, A) → (q₁, ε) <strong>[Pop A, cancel]</strong></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">q₂</p></td>
+<td><p class="sd-card-text">ε</p></td>
+<td><p class="sd-card-text">ε</p></td>
+<td><p class="sd-card-text">(q₁, ε, $) → (q₂, ε)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="sd-card-text"><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — 2 <em>a</em>’s and 2 <em>b</em>’s cancel perfectly.</p>
 </div>
-<p><a href="#id40"><span class="problematic" id="id41">|------|</span></a>——-<a href="#id42"><span class="problematic" id="id43">|-------|</span></a>——-<a href="#id44"><span class="problematic" id="id45">|-------------------|</span></a>
-| 0 | q₀ | aabb | ε | — |
-| 1 | q₁ | aabb | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | abb | A$ | (q₁, a, $) → (q₁, A$) |
-| 3 | q₁ | bb | AA$ | (q₁, a, A) → (q₁, AA) |
-| 4 | q₁ | b | A$ | (q₁, b, A) → (q₁, ε) <strong>[Pop A, cancel]</strong> |
-| 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) <strong>[Pop A, cancel]</strong> |
-| 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |</p>
-<p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — 2 a’s and 2 b’s cancel perfectly</p>
-</div>
-</section>
+</details></section>
 <section id="acceptance-check-abab">
-<h3><a class="toc-backref" href="#id78" role="doc-backlink"><span class="section-number">4.9.3. </span>Acceptance Check — “abab”</a><a class="headerlink" href="#acceptance-check-abab" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">4.9.3. </span>Acceptance Check — “abab”</a><a class="headerlink" href="#acceptance-check-abab" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-equal-abab">
 <div class="graphviz"><object data="../_images/graphviz-7d049faf6c4319f90a850c90bbe4ffe5057d2785.svg" type="image/svg+xml" class="graphviz">
@@ -779,25 +1148,77 @@ When only $ remains: accept (equal counts)
 <p><span class="caption-text">Stack Evolution for “abab” — Interleaved</span><a class="headerlink" href="#fig-stack-equal-abab" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</div><p><strong>Transition Table Trace:</strong></p>
+</div><p><strong>Transition Table Trace</strong></p>
 <div class="id-trace admonition">
 <p class="admonition-title">String Trace for “abab” — ACCEPTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id46"><span class="problematic" id="id47">|------|</span></a>——-<a href="#id48"><span class="problematic" id="id49">|-------|</span></a>——-<a href="#id50"><span class="problematic" id="id51">|-------------------|</span></a>
-| 0 | q₀ | abab | ε | — |
-| 1 | q₁ | abab | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | bab | A$ | (q₁, a, $) → (q₁, A$) |
-| 3 | q₁ | ab | $ | (q₁, b, A) → (q₁, ε) <strong>[Cancel]</strong> |
-| 4 | q₁ | b | A$ | (q₁, a, $) → (q₁, A$) |
-| 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) <strong>[Cancel]</strong> |
-| 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |</p>
-<p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — Interleaved a’s and b’s, perfect cancellation</p>
+<p><strong>Input:</strong> abab
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>abab</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>abab</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>bab</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, a, $) → (q₁, A$)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>ab</p></td>
+<td><p>$</p></td>
+<td><p>(q₁, b, A) → (q₁, ε) <strong>[Cancel]</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₁</p></td>
+<td><p>b</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, a, $) → (q₁, A$)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₁</p></td>
+<td><p>ε</p></td>
+<td><p>$</p></td>
+<td><p>(q₁, b, A) → (q₁, ε) <strong>[Cancel]</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₂</p></td>
+<td><p>ε</p></td>
+<td><p>ε</p></td>
+<td><p>(q₁, ε, $) → (q₂, ε)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result:</strong> ✓ <strong>ACCEPTED</strong> — Interleaved a’s and b’s, perfect cancellation.</p>
 </div>
 </section>
 <section id="rejection-check-aaab">
-<h3><a class="toc-backref" href="#id79" role="doc-backlink"><span class="section-number">4.9.4. </span>Rejection Check — “aaab”</a><a class="headerlink" href="#rejection-check-aaab" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">4.9.4. </span>Rejection Check — “aaab”</a><a class="headerlink" href="#rejection-check-aaab" title="Link to this heading"></a></h3>
 <div class="combined-viz"><p><strong>Stack Visualization:</strong></p>
 <figure class="align-default" id="fig-stack-reject-equal">
 <div class="graphviz"><object data="../_images/graphviz-fe92f6fc7dadea5db7d43a7bbcdba70fdd1e75dc.svg" type="image/svg+xml" class="graphviz">
@@ -824,27 +1245,79 @@ When only $ remains: accept (equal counts)
 <p><span class="caption-text">Stack Evolution for “aaab” — Unequal</span><a class="headerlink" href="#fig-stack-reject-equal" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-</div><p><strong>Transition Table Trace:</strong></p>
+</div><p><strong>Transition Table Trace</strong></p>
 <div class="quiz admonition">
 <p class="admonition-title">String Trace for “aaab” — REJECTED</p>
-<div class="line-block">
-<div class="line">Step | State | Input | Stack | Transition Applied |</div>
-</div>
-<p><a href="#id52"><span class="problematic" id="id53">|------|</span></a>——-<a href="#id54"><span class="problematic" id="id55">|-------|</span></a>——-<a href="#id56"><span class="problematic" id="id57">|-------------------|</span></a>
-| 0 | q₀ | aaab | ε | — |
-| 1 | q₁ | aaab | $ | (q₀, ε, ε) → (q₁, $) |
-| 2 | q₁ | aab | A$ | (q₁, a, $) → (q₁, A$) |
-| 3 | q₁ | ab | AA$ | (q₁, a, A) → (q₁, AA) |
-| 4 | q₁ | b | AAA$ | (q₁, a, A) → (q₁, AA) |
-| 5 | q₁ | ε | AA$ | (q₁, b, A) → (q₁, ε) <strong>[Cancel 1st]</strong> |
-| 6 | q₁ | ε | AA$ | <strong>STUCK</strong> — Input consumed but stack ≠ $ (2 A’s remain) |</p>
-<p><strong>Result:</strong> ✗ <strong>REJECTED</strong> — 3 a’s but only 1 b (unequal counts)</p>
+<p><strong>Input:</strong> aaab
+<strong>Stack bottom:</strong> $</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7.6%" />
+<col style="width: 12.1%" />
+<col style="width: 15.2%" />
+<col style="width: 12.1%" />
+<col style="width: 53.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Input</p></th>
+<th class="head"><p>Stack</p></th>
+<th class="head"><p>Transition Applied</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>q₀</p></td>
+<td><p>aaab</p></td>
+<td><p>ε</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>q₁</p></td>
+<td><p>aaab</p></td>
+<td><p>$</p></td>
+<td><p>(q₀, ε, ε) → (q₁, $)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>q₁</p></td>
+<td><p>aab</p></td>
+<td><p>A$</p></td>
+<td><p>(q₁, a, $) → (q₁, A$)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>q₁</p></td>
+<td><p>ab</p></td>
+<td><p>AA$</p></td>
+<td><p>(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>q₁</p></td>
+<td><p>b</p></td>
+<td><p>AAA$</p></td>
+<td><p>(q₁, a, A) → (q₁, AA)</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>q₁</p></td>
+<td><p>ε</p></td>
+<td><p>AA$</p></td>
+<td><p>(q₁, b, A) → (q₁, ε) <strong>[Cancel 1st]</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>q₁</p></td>
+<td><p>ε</p></td>
+<td><p>AA$</p></td>
+<td><p><strong>STUCK</strong> — Input consumed but stack ≠ $ (2 A’s remain)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result:</strong> ✗ <strong>REJECTED</strong> — 3 <em>a</em>’s but only 1 <em>b</em> (unequal counts)</p>
 </div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="summary-table-comparing-all-examples">
-<h2><a class="toc-backref" href="#id80" role="doc-backlink"><span class="section-number">4.10. </span>Summary Table — Comparing All Examples</a><a class="headerlink" href="#summary-table-comparing-all-examples" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">4.10. </span>Summary Table — Comparing All Examples</a><a class="headerlink" href="#summary-table-comparing-all-examples" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Language</strong></p></th>
@@ -879,7 +1352,7 @@ When only $ remains: accept (equal counts)
 </section>
 <hr class="docutils" />
 <section id="key-principles-for-reading-transitions">
-<h2><a class="toc-backref" href="#id81" role="doc-backlink"><span class="section-number">4.11. </span>Key Principles for Reading Transitions</a><a class="headerlink" href="#key-principles-for-reading-transitions" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">4.11. </span>Key Principles for Reading Transitions</a><a class="headerlink" href="#key-principles-for-reading-transitions" title="Link to this heading"></a></h2>
 <details style="margin-top:1em; background-color:#f9f9f9; border-left:4px solid #7b1113; padding:0.5em 1em; border-radius:8px;">
 <summary style="cursor:pointer; font-weight:600; color:#7b1113;">🎯 How to Understand (q, a, X) → (q', γ) (Click to Expand)</summary>
 <p>
@@ -904,7 +1377,7 @@ When only $ remains: accept (equal counts)
 </details></section>
 <hr class="docutils" />
 <section id="summary">
-<h2><a class="toc-backref" href="#id82" role="doc-backlink"><span class="section-number">4.12. </span>Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">4.12. </span>Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Transition notation</strong> <span class="math notranslate nohighlight">\((q, a, X) → (q', γ)\)</span> specifies exact stack operations</p></li>
 <li><p><strong>Push phase</strong> accumulates symbols (stack grows)</p></li>

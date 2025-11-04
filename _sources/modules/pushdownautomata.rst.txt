@@ -210,20 +210,58 @@ Acceptance Check — "(())"
 
    </div>
 
-**Transition Table Trace:**
+**Transition Table Trace**
 
 .. admonition:: String Trace for "(())" — ACCEPTED
-   :class: id-trace
+   :class: id-trace, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | (()) | ε | — |
-   | 1 | q₁ | (()) | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
-   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
-   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
-   | 5 | q₁ | ε | $ | (q₁, ')', '(') → (q₁, ε) |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+   **Input:** (())  
+   **Stack bottom:** $
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - (())
+        - ε
+        - —
+      * - 1
+        - q₁
+        - (())
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - ())
+        - ($
+        - (q₁, '(', ε) → (q₁, '(')
+      * - 3
+        - q₁
+        - ))
+        - (($
+        - (q₁, '(', ε) → (q₁, '(')
+      * - 4
+        - q₁
+        - )
+        - ($
+        - (q₁, ')', '(') → (q₁, ε)
+      * - 5
+        - q₁
+        - ε
+        - $
+        - (q₁, ')', '(') → (q₁, ε)
+      * - 6
+        - q₂
+        - ε
+        - ε
+        - (q₁, ε, $) → (q₂, ε)
 
    **Result:** ✓ **ACCEPTED** — Input consumed, stack empty, final state q₂ reached
 
@@ -265,20 +303,54 @@ Rejection Check — "(()"
 **Transition Table Trace:**
 
 .. admonition:: String Trace for "(()" — REJECTED
-   :class: quiz
+   :class: quiz, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | (() | ε | — |
-   | 1 | q₁ | (() | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | ()) | ($ | (q₁, '(', ε) → (q₁, '(') |
-   | 3 | q₁ | )) | (($ | (q₁, '(', ε) → (q₁, '(') |
-   | 4 | q₁ | ) | ($ | (q₁, ')', '(') → (q₁, ε) |
-   | 5 | q₁ | ε | ($ | **STUCK** — No transition for (q₁, ε, '(') |
+   **Input:** (()
+   
+   **Stack bottom:** $
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - (()
+        - ε
+        - —
+      * - 1
+        - q₁
+        - (()
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - ())
+        - ($
+        - (q₁, '(', ε) → (q₁, '(')
+      * - 3
+        - q₁
+        - ))
+        - (($
+        - (q₁, '(', ε) → (q₁, '(')
+      * - 4
+        - q₁
+        - )
+        - ($
+        - (q₁, ')', '(') → (q₁, ε)
+      * - 5
+        - q₁
+        - ε
+        - ($
+        - **STUCK** — No transition for (q₁, ε, '(')
 
    **Result:** ✗ **REJECTED** — Input ends but stack still has '(' (unmatched open)
 
-----
 
 PDA Example 2: Language aⁿbⁿ
 =============================
@@ -388,21 +460,67 @@ Acceptance Check — "aaabbb"
 **Transition Table Trace:**
 
 .. admonition:: String Trace for "aaabbb" — ACCEPTED
-   :class: id-trace
+   :class: id-trace, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aaabbb | ε | — |
-   | 1 | q₁ | aaabbb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | aabbb | A$ | (q₁, a, ε) → (q₁, A) |
-   | 3 | q₁ | abbb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | bbb | AAA$ | (q₁, a, A) → (q₁, AA) |
-   | 5 | q₂ | bb | AA$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
-   | 6 | q₂ | b | A$ | (q₂, b, A) → (q₂, ε) |
-   | 7 | q₂ | ε | $ | (q₂, b, A) → (q₂, ε) |
-   | 8 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+   **Input:** aaabbb  
+   **Stack bottom:** $
 
-   **Result:** ✓ **ACCEPTED** — Perfect matching: 3 a's pushed, 3 b's popped
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - aaabbb
+        - ε
+        - —
+      * - 1
+        - q₁
+        - aaabbb
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - aabbb
+        - A$
+        - (q₁, a, ε) → (q₁, A)
+      * - 3
+        - q₁
+        - abbb
+        - AA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 4
+        - q₁
+        - bbb
+        - AAA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 5
+        - q₂
+        - bb
+        - AA$
+        - (q₁, b, A) → (q₂, ε) **[Switch to pop]**
+      * - 6
+        - q₂
+        - b
+        - A$
+        - (q₂, b, A) → (q₂, ε)
+      * - 7
+        - q₂
+        - ε
+        - $
+        - (q₂, b, A) → (q₂, ε)
+      * - 8
+        - q₃
+        - ε
+        - ε
+        - (q₂, ε, $) → (q₃, ε)
+
+   **Result:** ✓ **ACCEPTED** — Perfect matching: 3 a’s pushed, 3 b’s popped
 
 Rejection Check — "aabbb"
 ---------------------------
@@ -444,19 +562,58 @@ Rejection Check — "aabbb"
 **Transition Table Trace:**
 
 .. admonition:: String Trace for "aabbb" — REJECTED
-   :class: quiz
+   :class: quiz, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aabbb | ε | — |
-   | 1 | q₁ | aabbb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | abbb | A$ | (q₁, a, ε) → (q₁, A) |
-   | 3 | q₁ | bbb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₂ | bb | A$ | (q₁, b, A) → (q₂, ε) **[Switch to pop]** |
-   | 5 | q₂ | b | $ | (q₂, b, A) → (q₂, ε) |
-   | 6 | q₂ | ε | $ | **STUCK** — No transition for (q₂, b, $) |
+   **Input:** aabbb  
+   **Stack bottom:** $
 
-   **Result:** ✗ **REJECTED** — 2 a's but 3 b's (mismatch)
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - aabbb
+        - ε
+        - —
+      * - 1
+        - q₁
+        - aabbb
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - abbb
+        - A$
+        - (q₁, a, ε) → (q₁, A)
+      * - 3
+        - q₁
+        - bbb
+        - AA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 4
+        - q₂
+        - bb
+        - A$
+        - (q₁, b, A) → (q₂, ε) **[Switch to pop]**
+      * - 5
+        - q₂
+        - b
+        - $
+        - (q₂, b, A) → (q₂, ε)
+      * - 6
+        - q₂
+        - ε
+        - $
+        - **STUCK** — No transition for (q₂, b, $)
+
+   **Result:** ✗ **REJECTED** — 2 a’s but 3 b’s (mismatch)
+
 
 ----
 
@@ -573,18 +730,60 @@ Acceptance Check — "abcba"
 **Transition Table Trace:**
 
 .. admonition:: String Trace for "abcba" — ACCEPTED
-   :class: id-trace
+   :class: id-trace, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abcba | ε | — |
-   | 1 | q₁ | abcba | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bcba | a$ | (q₁, a, ε) → (q₁, a) |
-   | 3 | q₁ | cba | ba$ | (q₁, b, a) → (q₁, ba) |
-   | 4 | q₂ | ba | ba$ | (q₁, c, b) → (q₂, b) **[Pivot: switch]** |
-   | 5 | q₂ | a | a$ | (q₂, b, b) → (q₂, ε) |
-   | 6 | q₂ | ε | $ | (q₂, a, a) → (q₂, ε) |
-   | 7 | q₃ | ε | ε | (q₂, ε, $) → (q₃, ε) |
+   **Input:** abcba  
+   **Stack bottom:** $
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - abcba
+        - ε
+        - —
+      * - 1
+        - q₁
+        - abcba
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - bcba
+        - a$
+        - (q₁, a, ε) → (q₁, a)
+      * - 3
+        - q₁
+        - cba
+        - ba$
+        - (q₁, b, a) → (q₁, ba)
+      * - 4
+        - q₂
+        - ba
+        - ba$
+        - (q₁, c, b) → (q₂, b) **[Pivot: switch]**
+      * - 5
+        - q₂
+        - a
+        - a$
+        - (q₂, b, b) → (q₂, ε)
+      * - 6
+        - q₂
+        - ε
+        - $
+        - (q₂, a, a) → (q₂, ε)
+      * - 7
+        - q₃
+        - ε
+        - ε
+        - (q₂, ε, $) → (q₃, ε)
 
    **Result:** ✓ **ACCEPTED** — Perfect palindrome match: W="ab" matched with Wᴿ="ba"
 
@@ -626,16 +825,50 @@ Rejection Check — "abcda"
 **Transition Table Trace:**
 
 .. admonition:: String Trace for "abcda" — REJECTED
-   :class: quiz
+   :class: quiz, toggle, dropdown
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abcda | ε | — |
-   | 1 | q₁ | abcda | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bcda | a$ | (q₁, a, ε) → (q₁, a) |
-   | 3 | q₁ | cda | ba$ | (q₁, b, a) → (q₁, ba) |
-   | 4 | q₂ | da | ba$ | (q₁, c, b) → (q₂, b) **[Pivot]** |
-   | 5 | q₂ | a | ba$ | **STUCK** — No transition for (q₂, d, b); 'd' not in alphabet {a,b,c} |
+   **Input:** abcda  
+   **Stack bottom:** $
+
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - abcda
+        - ε
+        - —
+      * - 1
+        - q₁
+        - abcda
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - bcda
+        - a$
+        - (q₁, a, ε) → (q₁, a)
+      * - 3
+        - q₁
+        - cda
+        - ba$
+        - (q₁, b, a) → (q₁, ba)
+      * - 4
+        - q₂
+        - da
+        - ba$
+        - (q₁, c, b) → (q₂, b) **[Pivot]**
+      * - 5
+        - q₂
+        - a
+        - ba$
+        - **STUCK** — No transition for (q₂, d, b); 'd' not in alphabet {a, b, c}
 
    **Result:** ✗ **REJECTED** — Mismatch: 'b' on stack but 'd' in input
 
@@ -753,22 +986,63 @@ Acceptance Check — "aabb"
 
    </div>
 
-**Transition Table Trace:**
+**Transition Table Trace**
 
-.. admonition:: String Trace for "aabb" — ACCEPTED
-   :class: id-trace
+.. dropdown:: String Trace for "aabb" — ACCEPTED
+   :color: success
+   :icon: check-circle
+   :open:
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aabb | ε | — |
-   | 1 | q₁ | aabb | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | abb | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | bb | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | b | A$ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Pop A, cancel]** |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+   **Input:** aabb  
+   **Stack bottom:** $
 
-   **Result:** ✓ **ACCEPTED** — 2 a's and 2 b's cancel perfectly
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - aabb
+        - ε
+        - —
+      * - 1
+        - q₁
+        - aabb
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - abb
+        - A$
+        - (q₁, a, $) → (q₁, A$)
+      * - 3
+        - q₁
+        - bb
+        - AA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 4
+        - q₁
+        - b
+        - A$
+        - (q₁, b, A) → (q₁, ε) **[Pop A, cancel]**
+      * - 5
+        - q₁
+        - ε
+        - $
+        - (q₁, b, A) → (q₁, ε) **[Pop A, cancel]**
+      * - 6
+        - q₂
+        - ε
+        - ε
+        - (q₁, ε, $) → (q₂, ε)
+
+   **Result:** ✓ **ACCEPTED** — 2 *a*’s and 2 *b*’s cancel perfectly.
+
 
 Acceptance Check — "abab"
 ---------------------------
@@ -807,22 +1081,61 @@ Acceptance Check — "abab"
 
    </div>
 
-**Transition Table Trace:**
+**Transition Table Trace**
 
 .. admonition:: String Trace for "abab" — ACCEPTED
    :class: id-trace
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | abab | ε | — |
-   | 1 | q₁ | abab | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | bab | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | ab | $ | (q₁, b, A) → (q₁, ε) **[Cancel]** |
-   | 4 | q₁ | b | A$ | (q₁, a, $) → (q₁, A$) |
-   | 5 | q₁ | ε | $ | (q₁, b, A) → (q₁, ε) **[Cancel]** |
-   | 6 | q₂ | ε | ε | (q₁, ε, $) → (q₂, ε) |
+   **Input:** abab  
+   **Stack bottom:** $
 
-   **Result:** ✓ **ACCEPTED** — Interleaved a's and b's, perfect cancellation
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - abab
+        - ε
+        - —
+      * - 1
+        - q₁
+        - abab
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - bab
+        - A$
+        - (q₁, a, $) → (q₁, A$)
+      * - 3
+        - q₁
+        - ab
+        - $
+        - (q₁, b, A) → (q₁, ε) **[Cancel]**
+      * - 4
+        - q₁
+        - b
+        - A$
+        - (q₁, a, $) → (q₁, A$)
+      * - 5
+        - q₁
+        - ε
+        - $
+        - (q₁, b, A) → (q₁, ε) **[Cancel]**
+      * - 6
+        - q₂
+        - ε
+        - ε
+        - (q₁, ε, $) → (q₂, ε)
+
+   **Result:** ✓ **ACCEPTED** — Interleaved a's and b's, perfect cancellation.
+
 
 Rejection Check — "aaab"
 --------------------------
@@ -861,22 +1174,60 @@ Rejection Check — "aaab"
 
    </div>
 
-**Transition Table Trace:**
+**Transition Table Trace**
 
 .. admonition:: String Trace for "aaab" — REJECTED
    :class: quiz
 
-   | Step | State | Input | Stack | Transition Applied |
-   |------|-------|-------|-------|-------------------|
-   | 0 | q₀ | aaab | ε | — |
-   | 1 | q₁ | aaab | $ | (q₀, ε, ε) → (q₁, $) |
-   | 2 | q₁ | aab | A$ | (q₁, a, $) → (q₁, A$) |
-   | 3 | q₁ | ab | AA$ | (q₁, a, A) → (q₁, AA) |
-   | 4 | q₁ | b | AAA$ | (q₁, a, A) → (q₁, AA) |
-   | 5 | q₁ | ε | AA$ | (q₁, b, A) → (q₁, ε) **[Cancel 1st]** |
-   | 6 | q₁ | ε | AA$ | **STUCK** — Input consumed but stack ≠ $ (2 A's remain) |
+   **Input:** aaab  
+   **Stack bottom:** $
 
-   **Result:** ✗ **REJECTED** — 3 a's but only 1 b (unequal counts)
+   .. list-table::
+      :header-rows: 1
+      :widths: 5 8 10 8 35
+
+      * - Step
+        - State
+        - Input
+        - Stack
+        - Transition Applied
+      * - 0
+        - q₀
+        - aaab
+        - ε
+        - —
+      * - 1
+        - q₁
+        - aaab
+        - $
+        - (q₀, ε, ε) → (q₁, $)
+      * - 2
+        - q₁
+        - aab
+        - A$
+        - (q₁, a, $) → (q₁, A$)
+      * - 3
+        - q₁
+        - ab
+        - AA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 4
+        - q₁
+        - b
+        - AAA$
+        - (q₁, a, A) → (q₁, AA)
+      * - 5
+        - q₁
+        - ε
+        - AA$
+        - (q₁, b, A) → (q₁, ε) **[Cancel 1st]**
+      * - 6
+        - q₁
+        - ε
+        - AA$
+        - **STUCK** — Input consumed but stack ≠ $ (2 A's remain)
+
+   **Result:** ✗ **REJECTED** — 3 *a*’s but only 1 *b* (unequal counts)
 
 ----
 
