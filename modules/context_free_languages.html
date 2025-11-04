@@ -32,7 +32,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Pushdown Automata (PDA)" href="pushdownautomata.html" />
+    <link rel="next" title="2. Pushdown Automata (PDA)" href="pushdownautomata.html" />
     <link rel="prev" title="&lt;no title&gt;" href="intro.html" /> 
 </head>
 
@@ -58,9 +58,8 @@
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction to Context Free Grammer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#cfg-as-a-recipe-step-by-step">2. CFG as a Recipe: Step-by-Step</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises.html">4. Practice Excercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
 </ul>
 
         </div>
@@ -166,10 +165,6 @@ Balanced parentheses need remembering <em>an arbitrary number of opens</em> unti
 </section>
 <section id="recipe-analogy-how-cfgs-work">
 <h2><span class="section-number">1.3. </span>Recipe Analogy: How CFGs Work ?<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h2>
-</section>
-</section>
-<section id="cfg-as-a-recipe-step-by-step">
-<h1><span class="section-number">2. </span>CFG as a Recipe: Step-by-Step<a class="headerlink" href="#cfg-as-a-recipe-step-by-step" title="Link to this heading"></a></h1>
 <p>Think of a <strong>Context-Free Grammar (CFG)</strong> as a <em>recipe</em> that tells you how to <strong>build valid sentences</strong> from smaller ingredients.</p>
 <div style="background-color:#f7f9fb; padding:1em; border-left:5px solid #2b6cb0; border-radius:8px;">
   <strong>Analogy:</strong> A CFG is like a cookbook — you start with a <em>main dish</em> (the start symbol) and repeatedly
@@ -205,15 +200,7 @@ Step 5: Expand Object
 </pre></div>
 </div>
 <p>—</p>
-<p>✅ <strong>Final Result:</strong>
-.. raw:: html</p>
-<blockquote>
-<div><dl class="simple">
-<dt>&lt;div style=”background-color:#e6ffe6; padding:0.8em; border-left:5px solid #2f855a; border-radius:8px;”&gt;</dt><dd><p>&lt;strong&gt;Generated Sentence:&lt;/strong&gt; &lt;em&gt;The cat chased the bird&lt;/em&gt;</p>
-</dd>
-</dl>
-<p>&lt;/div&gt;</p>
-</div></blockquote>
+<p>✅ <strong>Final Result:</strong> The cat chased the bird</p>
 <p>—</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -224,8 +211,9 @@ Step 5: Expand Object
 </ul>
 </div>
 <p>—</p>
+</section>
 <section id="regular-vs-context-free">
-<h2><span class="section-number">2.1. </span>Regular vs. Context-Free<a class="headerlink" href="#regular-vs-context-free" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.4. </span>Regular vs. Context-Free<a class="headerlink" href="#regular-vs-context-free" title="Link to this heading"></a></h2>
 <table class="docutils align-default" id="id1">
 <caption><span class="caption-text">Quick Comparison</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <colgroup>
@@ -275,7 +263,7 @@ Step 5: Expand Object
 <p>—</p>
 </section>
 <section id="why-context-free">
-<h2><span class="section-number">2.2. </span>Why “Context-Free”?<a class="headerlink" href="#why-context-free" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.5. </span>Why “Context-Free”?<a class="headerlink" href="#why-context-free" title="Link to this heading"></a></h2>
 <div class="shadow-sm p-3 bg-light rounded docutils container">
 <p>A rule applies <strong>regardless of context</strong> — that’s why it’s <em>context-free</em>.</p>
 </div>
@@ -289,7 +277,7 @@ Step 5: Expand Object
 <p>—</p>
 </section>
 <section id="real-world-applications">
-<h2><span class="section-number">2.3. </span>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.6. </span>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading"></a></h2>
 <p><strong>1. Programming Languages</strong></p>
 <p>Every compiler (C, Java, Python) uses CFGs for parsing.</p>
 <p><strong>2. HTML/XML Parsing</strong></p>
@@ -304,7 +292,7 @@ Step 5: Expand Object
 <p>—</p>
 </section>
 <section id="quick-check">
-<h2><span class="section-number">2.4. </span>Quick Check<a class="headerlink" href="#quick-check" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.7. </span>Quick Check<a class="headerlink" href="#quick-check" title="Link to this heading"></a></h2>
 <p><strong>Q1.</strong> Can a DFA verify <code class="docutils literal notranslate"><span class="pre">(())</span></code>?</p>
 <div class="toggle admonition">
 <p class="admonition-title">💡 Solution</p>
@@ -318,7 +306,7 @@ Step 5: Expand Object
 <p>—</p>
 </section>
 <section id="summary">
-<h2><span class="section-number">2.5. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.8. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>✅ CFGs describe <strong>recursive, nested</strong> languages</p>
 <p>✅ They use <strong>rule substitution</strong> (derivations)</p>
 <p>✅ <strong>More powerful than</strong> DFA/NFA</p>
@@ -327,7 +315,7 @@ Step 5: Expand Object
 </section>
 <hr class="docutils" />
 <section id="definition-2-1-context-free-grammar">
-<h2><span class="section-number">2.6. </span>Definition 2.1 — Context-Free Grammar<a class="headerlink" href="#definition-2-1-context-free-grammar" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.9. </span>Definition 2.1 — Context-Free Grammar<a class="headerlink" href="#definition-2-1-context-free-grammar" title="Link to this heading"></a></h2>
 <p>A <strong>Context-Free Grammar (CFG)</strong> is a 4-tuple:</p>
 <div class="math notranslate nohighlight">
 \[G = (V, \Sigma, R, S)\]</div>
@@ -373,7 +361,7 @@ Step 5: Expand Object
 <p>—</p>
 </section>
 <section id="example-cfg-balanced-parentheses">
-<h2><span class="section-number">2.7. </span>Example CFG — Balanced Parentheses<a class="headerlink" href="#example-cfg-balanced-parentheses" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.10. </span>Example CFG — Balanced Parentheses<a class="headerlink" href="#example-cfg-balanced-parentheses" title="Link to this heading"></a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>G = ({S}, {(,)}, R, S)
 where R = {S → ε | (S) | SS}
 </pre></div>
@@ -401,7 +389,7 @@ where R = {S → ε | (S) | SS}
 </div>
 </section>
 <section id="self-check-interactive-quiz">
-<h2><span class="section-number">2.8. </span>Self-Check: Interactive Quiz<a class="headerlink" href="#self-check-interactive-quiz" title="Link to this heading"></a></h2>
+<h2><span class="section-number">1.11. </span>Self-Check: Interactive Quiz<a class="headerlink" href="#self-check-interactive-quiz" title="Link to this heading"></a></h2>
 <p>Click each question to check your understanding!</p>
 <hr class="docutils" />
 <div class="exercise admonition">
@@ -491,7 +479,7 @@ where R = {S → ε | (S) | SS}
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="intro.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="3. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="2. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

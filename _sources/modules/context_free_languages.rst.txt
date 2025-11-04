@@ -85,9 +85,6 @@ A DFA cannot decide this language.
 Recipe Analogy: How CFGs Work ?
 ===============================
 
-============================
-CFG as a Recipe: Step-by-Step
-============================
 
 Think of a **Context-Free Grammar (CFG)** as a *recipe* that tells you how to **build valid sentences** from smaller ingredients.
 
@@ -138,12 +135,7 @@ Each arrow **⟹** shows one *derivation step* — replacing a variable with its
 
 ---
 
-✅ **Final Result:**  
-.. raw:: html
-
-   <div style="background-color:#e6ffe6; padding:0.8em; border-left:5px solid #2f855a; border-radius:8px;">
-     <strong>Generated Sentence:</strong> <em>The cat chased the bird</em>
-   </div>
+✅ **Final Result:** The cat chased the bird
 
 ---
 
