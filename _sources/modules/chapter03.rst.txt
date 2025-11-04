@@ -1,0 +1,154 @@
+===========================================
+Remedial Practice: CFG Construction & PDA
+===========================================
+
+.. raw:: html
+
+   <style>
+     h1, h2, h3 {
+       color: #7b1113; /* Stanford Maroon */
+       font-weight: 600;
+     }
+     .admonition-hint {
+       background-color: #f0f7ff;
+       border-left: 5px solid #4a90e2;
+     }
+     .admonition-solution {
+       background-color: #fffaf0;
+       border-left: 5px solid #ffa500;
+     }
+   </style>
+
+
+---------------------------------------
+Q1. (Easy) From Regular Expression → CFG
+---------------------------------------
+
+**Regular Expression:**  
+``(a|b)*abb``
+
+**Task:**  
+Construct a **Context-Free Grammar (CFG)** that generates the same language as the given regular expression.
+
+.. admonition:: Hint
+   :class: hint
+
+   Think step-by-step:  
+   - Recognize patterns that must end in **“abb”**.  
+   - Use a variable for the repetition part.  
+   - Use concatenation at the end.
+
+.. admonition:: Solution (Hidden)
+   :class: solution
+   :name: sol1
+
+   **CFG:**  
+   S → A a b b  
+   A → a A | b A | ε
+
+
+---------------------------------------------
+Q2. (Intermediate) From FA → CFG Construction
+---------------------------------------------
+
+**Given Finite Automaton (FA):**
+
+.. graphviz::
+
+   digraph FA {
+       rankdir=LR;
+       node [shape = doublecircle]; q2;
+       node [shape = circle];
+       q0 -> q1 [label = "a"];
+       q1 -> q2 [label = "b"];
+       q1 -> q1 [label = "a"];
+       q2 -> q2 [label = "b"];
+   }
+
+**Task:**  
+Construct a **CFG** equivalent to this FA.
+
+.. admonition:: Hint
+   :class: hint
+
+   Use the **FA-to-CFG mapping rule**:  
+   For each transition δ(qᵢ, a) = qⱼ, add **Aᵢ → aAⱼ**.  
+   If qⱼ is final, add **Aᵢ → a**.
+
+.. admonition:: Solution (Hidden)
+   :class: solution
+   :name: sol2
+
+   **CFG:**  
+   A0 → aA1  
+   A1 → aA1 | bA2  
+   A2 → bA2 | b
+
+   Start symbol = A0
+
+
+------------------------------------------------------
+Q3. (Difficult) From CFG → PDA Construction
+------------------------------------------------------
+
+**Given CFG:**
+
+S → aSb | SS | ε
+
+**Task:**  
+Construct a **Pushdown Automaton (PDA)** that accepts the same language.
+
+.. admonition:: Hint
+   :class: hint
+
+   Remember:  
+   - PDA can be built by **CFG → PDA conversion algorithm**.  
+   - Push the start symbol on stack initially.  
+   - Use rules:  
+     - For each production A → α, replace A on top with α.  
+     - For each terminal on top matching input, pop it.
+
+.. graphviz::
+
+   digraph PDA {
+       rankdir=LR;
+       node [shape = circle];
+       q0 -> q1 [label = "ε, ε → S"];
+       q1 -> q1 [label = "ε, S → aSb"];
+       q1 -> q1 [label = "ε, S → SS"];
+       q1 -> q1 [label = "ε, S → ε"];
+       q1 -> qf [label = "ε, ε → ε"];
+       node [shape = doublecircle]; qf;
+   }
+
+.. admonition:: Solution (Hidden)
+   :class: solution
+   :name: sol3
+
+   **Equivalent PDA description:**
+
+   - States: {q0, q1, qf}  
+   - Start symbol: S  
+   - Stack alphabet: {a, b, S}  
+   - Transitions:
+     1. (q0, ε, ε) → (q1, S)  
+     2. (q1, ε, S) → (q1, aSb)  
+     3. (q1, ε, S) → (q1, SS)  
+     4. (q1, ε, S) → (q1, ε)  
+     5. (q1, ε, ε) → (qf, ε)  
+   - Acceptance: by empty stack.
+
+
+==============================
+🧩 Self-Evaluation Checklist
+==============================
+
+- [ ] Can I convert any simple regular expression into a CFG?  
+- [ ] Do I understand FA-to-CFG mapping rules?  
+- [ ] Can I systematically build PDA transitions from a CFG?
+
+.. note::
+
+   Review **Made Easy Concept Link**:
+   RE → FA → CFG → PDA  
+   Each step adds *power and expressiveness* while retaining *structure*.

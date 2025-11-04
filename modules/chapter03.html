@@ -6,13 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>Remedial Practice: CFG Construction &amp; PDA &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -53,8 +54,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Intuitive Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html#formal-definitions">2. Formal Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
 </ul>
 
@@ -72,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Remedial Practice: CFG Construction &amp; PDA</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/chapter03.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -82,7 +83,134 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="remedial-practice-cfg-construction-pda">
+<h1>Remedial Practice: CFG Construction &amp; PDA<a class="headerlink" href="#remedial-practice-cfg-construction-pda" title="Link to this heading"></a></h1>
+<style>
+  h1, h2, h3 {
+    color: #7b1113; /* Stanford Maroon */
+    font-weight: 600;
+  }
+  .admonition-hint {
+    background-color: #f0f7ff;
+    border-left: 5px solid #4a90e2;
+  }
+  .admonition-solution {
+    background-color: #fffaf0;
+    border-left: 5px solid #ffa500;
+  }
+</style><section id="q1-easy-from-regular-expression-cfg">
+<h2>Q1. (Easy) From Regular Expression → CFG<a class="headerlink" href="#q1-easy-from-regular-expression-cfg" title="Link to this heading"></a></h2>
+<p><strong>Regular Expression:</strong>
+<code class="docutils literal notranslate"><span class="pre">(a|b)*abb</span></code></p>
+<p><strong>Task:</strong>
+Construct a <strong>Context-Free Grammar (CFG)</strong> that generates the same language as the given regular expression.</p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Think step-by-step:
+- Recognize patterns that must end in <strong>“abb”</strong>.
+- Use a variable for the repetition part.
+- Use concatenation at the end.</p>
+</div>
+<div class="solution admonition" id="sol1">
+<p class="admonition-title">Solution (Hidden)</p>
+<p><strong>CFG:</strong>
+S → A a b b
+A → a A | b A | ε</p>
+</div>
+</section>
+<section id="q2-intermediate-from-fa-cfg-construction">
+<h2>Q2. (Intermediate) From FA → CFG Construction<a class="headerlink" href="#q2-intermediate-from-fa-cfg-construction" title="Link to this heading"></a></h2>
+<p><strong>Given Finite Automaton (FA):</strong></p>
+<div class="graphviz"><object data="../_images/graphviz-fc9fefaa5106d7e21283a749ee878e5ca89140b3.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA {
+    rankdir=LR;
+    node [shape = doublecircle]; q2;
+    node [shape = circle];
+    q0 -&gt; q1 [label = &quot;a&quot;];
+    q1 -&gt; q2 [label = &quot;b&quot;];
+    q1 -&gt; q1 [label = &quot;a&quot;];
+    q2 -&gt; q2 [label = &quot;b&quot;];
+}</p></object></div>
+<p><strong>Task:</strong>
+Construct a <strong>CFG</strong> equivalent to this FA.</p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Use the <strong>FA-to-CFG mapping rule</strong>:
+For each transition δ(qᵢ, a) = qⱼ, add <strong>Aᵢ → aAⱼ</strong>.
+If qⱼ is final, add <strong>Aᵢ → a</strong>.</p>
+</div>
+<div class="solution admonition" id="sol2">
+<p class="admonition-title">Solution (Hidden)</p>
+<p><strong>CFG:</strong>
+A0 → aA1
+A1 → aA1 | bA2
+A2 → bA2 | b</p>
+<p>Start symbol = A0</p>
+</div>
+</section>
+<section id="q3-difficult-from-cfg-pda-construction">
+<h2>Q3. (Difficult) From CFG → PDA Construction<a class="headerlink" href="#q3-difficult-from-cfg-pda-construction" title="Link to this heading"></a></h2>
+<p><strong>Given CFG:</strong></p>
+<p>S → aSb | SS | ε</p>
+<p><strong>Task:</strong>
+Construct a <strong>Pushdown Automaton (PDA)</strong> that accepts the same language.</p>
+<div class="hint admonition">
+<p class="admonition-title">Hint</p>
+<p>Remember:
+- PDA can be built by <strong>CFG → PDA conversion algorithm</strong>.
+- Push the start symbol on stack initially.
+- Use rules:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For each production A → α, replace A on top with α.</p></li>
+<li><p>For each terminal on top matching input, pop it.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-6e56c943dc29ad29038cfa852f724c7eaf6b7229.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph PDA {
+    rankdir=LR;
+    node [shape = circle];
+    q0 -&gt; q1 [label = &quot;ε, ε → S&quot;];
+    q1 -&gt; q1 [label = &quot;ε, S → aSb&quot;];
+    q1 -&gt; q1 [label = &quot;ε, S → SS&quot;];
+    q1 -&gt; q1 [label = &quot;ε, S → ε&quot;];
+    q1 -&gt; qf [label = &quot;ε, ε → ε&quot;];
+    node [shape = doublecircle]; qf;
+}</p></object></div>
+<div class="solution admonition" id="sol3">
+<p class="admonition-title">Solution (Hidden)</p>
+<p><strong>Equivalent PDA description:</strong></p>
+<ul class="simple">
+<li><p>States: {q0, q1, qf}</p></li>
+<li><p>Start symbol: S</p></li>
+<li><p>Stack alphabet: {a, b, S}</p></li>
+<li><p>Transitions:
+1. (q0, ε, ε) → (q1, S)
+2. (q1, ε, S) → (q1, aSb)
+3. (q1, ε, S) → (q1, SS)
+4. (q1, ε, S) → (q1, ε)
+5. (q1, ε, ε) → (qf, ε)</p></li>
+<li><p>Acceptance: by empty stack.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="self-evaluation-checklist">
+<h1>🧩 Self-Evaluation Checklist<a class="headerlink" href="#self-evaluation-checklist" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>[ ] Can I convert any simple regular expression into a CFG?</p></li>
+<li><p>[ ] Do I understand FA-to-CFG mapping rules?</p></li>
+<li><p>[ ] Can I systematically build PDA transitions from a CFG?</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Review <strong>Made Easy Concept Link</strong>:
+RE → FA → CFG → PDA
+Each step adds <em>power and expressiveness</em> while retaining <em>structure</em>.</p>
+</div>
+</section>
+
 
            </div>
           </div>
