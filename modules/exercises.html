@@ -520,6 +520,36 @@ Which of the following languages is <strong>not</strong> context-free?</p>
 <summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> B) <cite>{a^n b^n c^n}</cite> ✗
 Reason: Requires comparison among 3 counts — beyond PDA capacity.</p>
 </details><p><strong>Question 21:</strong> Convert FA (below) that accepts <cite>strings over {a,b} with even number of a’s</cite>.</p>
+<div class="graphviz"><object data="../_images/graphviz-437acb864129068a6c067237df802351f489b959.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph EvenAsFA {
+    rankdir=LR;
+    fontname=&quot;Helvetica&quot;;
+
+    // Default node style
+    node [
+        shape=circle,
+        style=filled,
+        fillcolor=&quot;#ffffff&quot;,
+        fontsize=12,
+        fixedsize=true,
+        width=1.0,   // 👈 makes circles smaller &amp; uniform
+        height=1.0
+    ];
+
+    // States
+    q0 [label=&quot;q₀\n(Even a’s)\nStart, Final&quot;, shape=doublecircle];
+    q1 [label=&quot;q₁\n(Odd a’s)&quot;];
+
+    // Start arrow
+    start [shape=point, width=0.1];
+    start -&gt; q0;
+
+    // Transitions
+    q0 -&gt; q1 [label=&quot;a&quot;];
+    q1 -&gt; q0 [label=&quot;a&quot;];
+    q0 -&gt; q0 [label=&quot;b&quot;];
+    q1 -&gt; q1 [label=&quot;b&quot;];
+}</p></object></div>
 <details>
 <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → bS₀ | aS₁ | ε
 S₁ → bS₁ | aS₀
