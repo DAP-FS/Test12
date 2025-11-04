@@ -1,308 +1,312 @@
-======================================
-Practice Exercises — CFL & CFG Mastery
-======================================
+Practice Exercises (Extended)
+------------------------------
 
-These exercises build your **conceptual fluency** step-by-step.  
-Each problem includes a *hint*, *solution*, and sometimes a *visual derivation tree* (via Graphviz).  
-Click each dropdown to reveal more as you solve.
-
-----------------------------------------
-**Question 07:** Construct CFG for :math:`L = \{a^n b^m c^m d^n\}`
-
-.. raw:: html
-
-   <details>
-   <summary><strong>💡 Need a Hint?</strong></summary>
-
-- Observe the symmetry between `a` ↔ `d` (outer) and `b` ↔ `c` (inner).  
-- The pattern suggests **two nested pairs** of equal-length substrings.
-
-.. raw:: html
-
-   </details>
+**Question 04:** Construct a CFG for the language :math:`L = \{a^n b^n \mid n ≥ 1\}`
 
 .. raw:: html
 
    <details>
    <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
-**CFG:**
+.. code-block:: text
+
+   S → aSb | ab
+
+**Example Derivation:**
+
+S  
+⟹ aSb  
+⟹ aaSbb  
+⟹ aabb ✅
+
+.. admonition:: Concept Hint  
+   :class: tip  
+
+   Each **a** is paired with a **b** through recursive wrapping.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 05:** Construct a CFG for the language of all **even-length palindromes** over `{0,1}`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → 0S0 | 1S1 | ε
+
+**Example:**  
+`0110`, `1001`, `ε` ✔
+
+.. admonition:: Visual Tip  
+   :class: hint  
+
+   The grammar builds symmetric structures from the center outward.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 06:** Convert the FA below to an equivalent CFG.
+
+**Given FA:**
+
+States = {q₀, q₁},  
+Start = q₀,  
+Final = q₁,  
+Transitions:
+- q₀ —a→ q₁  
+- q₁ —b→ q₀
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
+
+.. code-block:: text
+
+   S₀ → aS₁  
+   S₁ → bS₀ | ε
+
+.. admonition:: Concept Insight  
+   :class: tip  
+
+   For each **FA state**, make a **CFG variable**.  
+   Transitions become **productions** ending with the next state variable.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 07:** Construct a CFG for regular expression `(a|b)*abb`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Steps:
+1. Convert RE → NFA → CFG  
+2. Simplified form:
+
+.. code-block:: text
+
+   S → aS | bS | A  
+   A → aB  
+   B → bC  
+   C → b
+
+**Example Derivation:**  
+S ⟹ aS ⟹ aaS ⟹ aaA ⟹ aaaB ⟹ aaabC ⟹ aaabb ✅
+
+.. admonition:: Tip  
+   :class: hint  
+
+   The final **abb** suffix is enforced by nonterminals `A`, `B`, `C`.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 08:** Create CFG for :math:`L = \{a^n b^m \mid n, m ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aS | A  
+   A → bA | b
+
+✅ Examples: `ab`, `aaabb`, `aabbbbbb`
+
+.. admonition:: Concept Note  
+   :class: tip  
+
+   Independent repetition: `a` and `b` counts are **not linked**.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 09:** Convert the PDA below into an equivalent CFG.
+
+Language: :math:`L = \{a^n b^n | n ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+Equivalent CFG:
+
+.. code-block:: text
+
+   S → aSb | ab
+
+**Derivation:**  
+S ⟹ aSb ⟹ aaSbb ⟹ aabb ✅
+
+.. admonition:: Insight  
+   :class: hint  
+
+   PDA pushes for each `a`, pops for each `b`.  
+   CFG mirrors this with symmetric recursion.
+
+.. raw:: html
+
+   </details>
+
+
+**Question 10:** Design a CFG for :math:`L = \{a^n b^m c^m d^n \mid n,m ≥ 1\}`
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
 .. code-block:: text
 
    S → aSd | A  
    A → bAc | bc
 
-✅ Example string: `abbccd` (n=1, m=2)
+✅ Example: `abbccd`
 
-**Graphviz Derivation Tree:**
+.. admonition:: Tip  
+   :class: hint  
 
-.. graphviz::
-
-   digraph CFG7 {
-     rankdir=TB;
-     node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
-     S -> a;
-     S -> A;
-     S -> d;
-     A -> b;
-     A -> A2 [label="A"];
-     A -> c;
-     A2 -> b;
-     A2 -> c;
-   }
-
-.. admonition:: Concept Insight
-   :class: tip  
-
-   - Outer recursion handles `a` and `d` simultaneously.  
-   - Inner recursion (A) pairs `b` with `c`.  
-   - This grammar is context-free because both counts are checked **hierarchically**, not simultaneously.
+   Two nested symmetries handled by **two recursive nonterminals**.
 
 .. raw:: html
 
    </details>
 
 
-----------------------------------------
-**Question 09:** PDA → CFG for balanced parentheses
-
-.. raw:: html
-
-   <details>
-   <summary><strong>💡 Need a Hint?</strong></summary>
-
-- PDA pushes `(` onto the stack and pops when it sees `)`.  
-- Think recursive pairing — each `(` must have a matching `)` later.  
-- The CFG must express nested and sequential pairs.
-
-.. raw:: html
-
-   </details>
+**Question 11:** Construct a CFG for the language accepted by a **DPDA** recognizing balanced parentheses.
 
 .. raw:: html
 
    <details>
    <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
-**CFG:**
-
 .. code-block:: text
 
    S → (S)S | ε
 
-✅ Example: `(()())`
+✅ Examples: `()`, `(())`, `()()`
 
-**PDA Visualization:**
+.. admonition:: Concept Note  
+   :class: tip  
 
-.. graphviz::
+   DPDA uses deterministic stack push/pop for each bracket pair.
 
-   digraph PDA9 {
-     rankdir=LR;
-     node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
-     q0 [label="q₀ (start)"];
-     q1 [label="q₁"];
-     qf [label="qf (final)", shape=doublecircle];
-     q0 -> q1 [label="ε, ε → $"];
-     q1 -> q1 [label="(, ε → ("];
-     q1 -> q1 [label="), ( → ε"];
-     q1 -> qf [label="ε, $ → ε"];
-   }
+.. raw:: html
 
-.. admonition:: Concept Focus
+   </details>
+
+
+**Question 12:** Give CFG for :math:`a^i b^j c^k` where :math:`i, j, k ≥ 1`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
+
+.. code-block:: text
+
+   S → aS | A  
+   A → bA | B  
+   B → cB | c
+
+✅ Example: `aaabbcc`
+
+.. admonition:: Hint  
    :class: hint  
 
-   - Deterministic PDA (DPDA) — never needs guessing.  
-   - Stack mirrors open parentheses; empty stack signals acceptance.  
-   - Grammar mirrors PDA push/pop through recursive embedding.
+   Sequential independent segments: each handled by a separate variable.
 
 .. raw:: html
 
    </details>
 
 
-----------------------------------------
-**Bonus Interactive Questions**
-----------------------------------------
-
-**Question 11:** Convert RE `(0|1)*01` into a CFG.
+**Question 13:** Construct CFG for all strings with **equal number of a’s and b’s**.
 
 .. raw:: html
 
-   <details><summary><strong>💡 Hint</strong></summary>
-   Start with `(0|1)*` for arbitrary prefix, then concatenate `01`.
-   </details>
-
-.. raw:: html
-
-   <details><summary><strong>📘 Solution</strong></summary>
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
 .. code-block:: text
 
-   S → 0S | 1S | 01
-   </details>
+   S → aSb | bSa | SS | ε
 
+✅ Examples: `ab`, `ba`, `aabb`, `baba`
 
-**Question 12:** Create CFG for palindromes with center `c` over `{a,b,c}`.  
-*(e.g., `abccba`, `accca`)*
+.. admonition:: Visual Tip  
+   :class: hint  
+
+   Recursion + concatenation allows mixing and pairing.
 
 .. raw:: html
 
-   <details><summary><strong>📘 Solution</strong></summary>
+   </details>
+
+
+**Question 14:** Design a CFG for all palindromes over `{a,b}`.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
 .. code-block:: text
 
-   S → aSa | bSb | c
-   </details>
+   S → aSa | bSb | a | b | ε
 
+✅ Examples: `aba`, `abba`, `a`, `ε`
 
-**Question 13:** CFG for :math:`a^i b^j` where `i ≠ j`.
+.. admonition:: Hint  
+   :class: hint  
+
+   Each production wraps a smaller palindrome symmetrically.
 
 .. raw:: html
 
-   <details><summary><strong>📘 Solution</strong></summary>
+   </details>
+
+
+**Question 15:** Construct CFG for :math:`L = \{ww^R \mid w ∈ \{a,b\}^*\}` using PDA intuition.
+
+.. raw:: html
+
+   <details>
+   <summary><strong>📘 SOLUTION (Click to Expand)</strong></summary>
 
 .. code-block:: text
 
-   S → aSb | aS | Sb | a | b
-   </details>
+   S → aSa | bSb | a | b | ε
 
+✅ Example: `abba`, `aa`, `ε`
 
-**Question 14:** RE → CFG for `(ab)*`.
+.. admonition:: Concept Insight  
+   :class: tip  
 
-.. raw:: html
-
-   <details><summary><strong>📘 Solution</strong></summary>
-
-.. code-block:: text
-
-   S → abS | ε
-   </details>
-
-
-**Question 15:** CFG → PDA for `S → aSb | ab`.
+   PDA pushes first half, pops second half → CFG mirrors by recursive wrapping.
 
 .. raw:: html
 
-   <details><summary><strong>📘 Solution</strong></summary>
-
-.. code-block:: text
-
-   PDA transitions:
-   (q₀, a, ε) → (q₀, A)
-   (q₀, b, A) → (q₀, ε)
-   (q₀, ε, $) → (qf, ε)
-   </details>
-
-
-----------------------------------------
-🧠 Multiple Choice Quiz — Reinforcement
-----------------------------------------
-
-**Q1.** Which language is **not context-free**?  
-A) `{a^n b^n}` B) `{a^n b^n c^n}` C) `{a^i b^j | i ≠ j}` D) `{a^n b^m}`  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** B — requires tracking three counters.
-   </details>
-
----
-
-**Q2.** In CNF, each rule’s RHS has:  
-A) One variable B) Two variables or one terminal C) Three symbols D) ε always  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** B — CNF restricts RHS to 2 vars or 1 terminal.
-   </details>
-
----
-
-**Q3.** PDA accepting `{a^n b^n}` pushes for `a` and pops for?  
-A) a B) b C) ε D) none  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** B
-   </details>
-
----
-
-**Q4.** Every regular language is also:  
-A) Context-free B) Context-sensitive C) Recursively enumerable D) None  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** A — regular ⊂ context-free.
-   </details>
-
----
-
-**Q5.** Which grammar type generates CFLs?  
-A) Type 0 B) Type 1 C) Type 2 D) Type 3  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** C — Context-Free Grammar.
-   </details>
-
----
-
-**Q6.** For `S → aSb | ab`, language is?  
-A) `{a^n b^n}` B) `{(ab)^n}` C) `{a^n b^(n+1)}` D) None  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** A
-   </details>
-
----
-
-**Q7.** In PDA, acceptance can be by:  
-A) Final state B) Empty stack C) Either D) None  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** C
-   </details>
-
----
-
-**Q8.** Ambiguous grammar example:  
-A) `E → E+E | id` B) `S → aSb | ab` C) `S → aS | bS | ε` D) None  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** A — classic arithmetic ambiguity.
-   </details>
-
----
-
-**Q9.** PDA’s stack enables:  
-A) Linear memory B) Nested recursion tracking C) Random access D) Two-way search  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** B
-   </details>
-
----
-
-**Q10.** DPDA can accept:  
-A) `{a^n b^n}` B) `{ww}` C) `{a^n b^n c^n}` D) None  
-
-.. raw:: html
-
-   <details><summary><strong>✅ Solution</strong></summary>
-   **Answer:** A
    </details>
