@@ -11,9 +11,9 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6e070c58" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -28,6 +28,7 @@
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -85,7 +86,534 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <div class="admonition-question-1-construct-a-grammar-that-accepts-the-set-of-all-strings-of-length-2-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 1:</strong> Construct a grammar that accepts the set of all strings of length 2 (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to X X \\
+X \to a \mid b\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>We want strings of exactly length 2.</p></li>
+<li><p>Introduce a symbol <span class="math notranslate nohighlight">\(X\)</span> that generates a single character (<span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>).</p></li>
+<li><p>The start symbol <span class="math notranslate nohighlight">\(S\)</span> should produce two <span class="math notranslate nohighlight">\(X\)</span> in sequence, so <span class="math notranslate nohighlight">\(S \to X X\)</span>.</p></li>
+<li><p>This allows all four strings: <span class="math notranslate nohighlight">\(aa, ab, ba, bb\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-2-grammar-for-math-l-a-n-b-m-mid-n-ge-1-m-ge-1 admonition">
+<p class="admonition-title"><strong>Question 2:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^m \mid n \ge 1, m \ge 1 \}\)</span>.</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A B \\
+A \to a A \mid a \\
+B \to b B \mid b\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language is some positive number of <span class="math notranslate nohighlight">\(a\)</span> followed by some positive number of <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(A\)</span> to generate one or more <span class="math notranslate nohighlight">\(a\)</span>’s (<span class="math notranslate nohighlight">\(n \ge 1\)</span>): <span class="math notranslate nohighlight">\(A \to a A \mid a\)</span>.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(B\)</span> to generate one or more <span class="math notranslate nohighlight">\(b\)</span>’s (<span class="math notranslate nohighlight">\(m \ge 1\)</span>): <span class="math notranslate nohighlight">\(B \to b B \mid b\)</span>.</p></li>
+<li><p>The start symbol <span class="math notranslate nohighlight">\(S\)</span> concatenates them: <span class="math notranslate nohighlight">\(S \to A B\)</span>.</p></li>
+<li><p>Example: to produce <span class="math notranslate nohighlight">\(aaab\)</span>, expand <span class="math notranslate nohighlight">\(S \to A B\)</span>, <span class="math notranslate nohighlight">\(A \to a A \to a a A \to a a a\)</span>, and <span class="math notranslate nohighlight">\(B \to b\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-3-grammar-for-math-l-a-n-b-n-mid-n-ge-0 admonition">
+<p class="admonition-title"><strong>Question 3:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n \mid n \ge 0 \}\)</span>.</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[S \to a S b \mid \epsilon\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>We must produce equal numbers of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, with all <span class="math notranslate nohighlight">\(a\)</span> before <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+<li><p>The rule <span class="math notranslate nohighlight">\(S \to a S b\)</span> adds one <span class="math notranslate nohighlight">\(a\)</span> at the left and one <span class="math notranslate nohighlight">\(b\)</span> at the right together — that keeps the counts equal.</p></li>
+<li><p>The base <span class="math notranslate nohighlight">\(S \to \epsilon\)</span> handles the case <span class="math notranslate nohighlight">\(n = 0\)</span> (empty string).</p></li>
+<li><p>Example: For <span class="math notranslate nohighlight">\(n=2\)</span>, expand <span class="math notranslate nohighlight">\(S \to a S b \to a a S b b \to a a \epsilon b b = a a b b\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-4-set-of-strings-of-length-at-least-2-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 4:</strong> Set of strings of length at least 2 (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to X X Y \\
+X \to a \mid b \\
+Y \to a Y \mid b Y \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>We must generate any string whose length is <strong>≥ 2</strong>.</p></li>
+<li><p>Ensure at least two characters by requiring two occurrences of <span class="math notranslate nohighlight">\(X\)</span> at the start: <span class="math notranslate nohighlight">\(S \to X X Y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> generates a single symbol (<span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>). So <span class="math notranslate nohighlight">\(X X\)</span> guarantees two symbols minimum.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Y\)</span> generates the rest of the string, which can be any length (including zero) from the set <span class="math notranslate nohighlight">\(\Sigma^*\)</span>. The rules for <span class="math notranslate nohighlight">\(Y\)</span> are equivalent to <span class="math notranslate nohighlight">\((a \mid b)^*\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-5-set-of-strings-of-length-at-most-2-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 5:</strong> Set of strings of length at most 2 (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to \epsilon \mid X \mid X X \\
+X \to a \mid b\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>Strings allowed: length 0, 1, or 2.</p></li>
+<li><p>Use the alternatives: empty string (<span class="math notranslate nohighlight">\(\epsilon\)</span>), one symbol (<span class="math notranslate nohighlight">\(X\)</span>), or two symbols (<span class="math notranslate nohighlight">\(X X\)</span>).</p></li>
+<li><p>Define <span class="math notranslate nohighlight">\(X\)</span> as a single letter <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+<li><p>This covers <span class="math notranslate nohighlight">\(\{\epsilon, a, b, aa, ab, ba, bb\}\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-6-set-of-strings-starting-with-math-a-and-ending-with-math-b-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 6:</strong> Set of strings starting with <span class="math notranslate nohighlight">\(a\)</span> and ending with <span class="math notranslate nohighlight">\(b\)</span> (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to a X b \mid a b \\
+X \to a X \mid b X \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>Every string must begin with <span class="math notranslate nohighlight">\(a\)</span> and end with <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+<li><p>The base case is the minimal string <span class="math notranslate nohighlight">\(ab\)</span>, handled by <span class="math notranslate nohighlight">\(S \to a b\)</span>.</p></li>
+<li><p>For longer strings, use <span class="math notranslate nohighlight">\(S \to a X b\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> generates any string of length $ge 1$.</p></li>
+<li><p>The non-terminal <span class="math notranslate nohighlight">\(X\)</span> generates any string from <span class="math notranslate nohighlight">\(\Sigma^*\)</span> using the rules <span class="math notranslate nohighlight">\(X \to a X \mid b X \mid \epsilon\)</span>. The overall grammar must include the minimal string <span class="math notranslate nohighlight">\(ab\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-7-set-of-strings-starting-and-ending-with-different-symbols-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 7:</strong> Set of strings starting and ending with different symbols (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A \mid B \\
+A \to a X b \\
+B \to b X a \\
+X \to a X \mid b X \mid a \mid b \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language is the union of two cases: (Starts with <span class="math notranslate nohighlight">\(a\)</span> and ends with <span class="math notranslate nohighlight">\(b\)</span>) OR (Starts with <span class="math notranslate nohighlight">\(b\)</span> and ends with <span class="math notranslate nohighlight">\(a\)</span>).</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(S \to A \mid B\)</span> to separate the cases.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \to a X b\)</span> covers the first case. <span class="math notranslate nohighlight">\(B \to b X a\)</span> covers the second case.</p></li>
+<li><p>The non-terminal <span class="math notranslate nohighlight">\(X\)</span> generates any string from <span class="math notranslate nohighlight">\(\Sigma^*\)</span>, ensuring all strings of length $ge 2$ (e.g., <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(ba\)</span>) are covered. The rule <span class="math notranslate nohighlight">\(X \to \epsilon\)</span> handles the length 2 strings, while <span class="math notranslate nohighlight">\(X \to a \mid b\)</span> handles length 3 strings like <span class="math notranslate nohighlight">\(aab\)</span> and <span class="math notranslate nohighlight">\(baa\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-8-set-of-all-strings-starting-and-ending-with-the-same-symbol-math-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 8:</strong> Set of all strings starting and ending with the same symbol (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to a X a \mid b X b \mid a \mid b \mid \epsilon \\
+X \to a X \mid b X \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>This includes four sub-cases:</dt><dd><ol class="loweralpha simple">
+<li><p>Strings of length $ge 2$ starting and ending with <span class="math notranslate nohighlight">\(a\)</span>: <span class="math notranslate nohighlight">\(a X a\)</span>.</p></li>
+<li><p>Strings of length $ge 2$ starting and ending with <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(b X b\)</span>.</p></li>
+<li><p>Strings of length 1 (<span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(b\)</span>).</p></li>
+<li><p>String of length 0 (<span class="math notranslate nohighlight">\(\epsilon\)</span>).</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>The production <span class="math notranslate nohighlight">\(S \to a \mid b \mid \epsilon\)</span> handles cases (c) and (d).</p></li>
+<li><p>The productions <span class="math notranslate nohighlight">\(S \to a X a \mid b X b\)</span> handle cases (a) and (b).</p></li>
+<li><p><span class="math notranslate nohighlight">\(X \to a X \mid b X \mid \epsilon\)</span> generates any possible middle section <span class="math notranslate nohighlight">\(\Sigma^*\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-9-grammar-for-math-l-a-n-b-n-c-m-mid-n-ge-0-m-ge-0 admonition">
+<p class="admonition-title"><strong>Question 9:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^m \mid n \ge 0, m \ge 0 \}\)</span>.</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A B \\
+A \to a A b \mid \epsilon \\
+B \to c B \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language is a sequence of equal <span class="math notranslate nohighlight">\(a\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>’s, followed by any number of <span class="math notranslate nohighlight">\(c\)</span>’s. This suggests concatenation of two independent parts.</p></li>
+<li><p>Use non-terminal <span class="math notranslate nohighlight">\(A\)</span> for the equal <span class="math notranslate nohighlight">\(a^n b^n\)</span> part (CFG is required here): <span class="math notranslate nohighlight">\(A \to a A b \mid \epsilon\)</span>.</p></li>
+<li><p>Use non-terminal <span class="math notranslate nohighlight">\(B\)</span> for the arbitrary <span class="math notranslate nohighlight">\(c^m\)</span> part (Regular Grammar is sufficient): <span class="math notranslate nohighlight">\(B \to c B \mid \epsilon\)</span>.</p></li>
+<li><p>Concatenate them: <span class="math notranslate nohighlight">\(S \to A B\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-10-set-of-all-palindromes-math-w-w-r-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 10:</strong> Set of all palindromes (<span class="math notranslate nohighlight">\(w = w^R, \Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[S \to a S a \mid b S b \mid a \mid b \mid \epsilon\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>Palindromes must read the same forward and backward.</p></li>
+<li><p>The recursive rules <span class="math notranslate nohighlight">\(S \to a S a \mid b S b\)</span> ensure that whatever is added to the left is also added to the right, preserving the palindrome property.</p></li>
+<li><dl class="simple">
+<dt>The base cases cover:</dt><dd><ol class="loweralpha simple">
+<li><p>Odd-length palindromes (middle symbol): <span class="math notranslate nohighlight">\(S \to a \mid b\)</span>.</p></li>
+<li><p>Even-length palindromes (empty middle): <span class="math notranslate nohighlight">\(S \to \epsilon\)</span>.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>Example: <span class="math notranslate nohighlight">\(aba\)</span> from <span class="math notranslate nohighlight">\(S \to a S a \to a b a\)</span>. Example: <span class="math notranslate nohighlight">\(abba\)</span> from <span class="math notranslate nohighlight">\(S \to a S a \to a b S b a \to a b \epsilon b a = a b b a\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-11-even-length-strings-math-w-2k-k-ge-0-sigma-a-b admonition">
+<p class="admonition-title"><strong>Question 11:</strong> Even length strings (<span class="math notranslate nohighlight">\(|w| = 2k, k \ge 0, \Sigma = \{a, b\}\)</span>).</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to X X S \mid \epsilon \\
+X \to a \mid b\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>We want strings where the length is a multiple of 2 (0, 2, 4, …).</p></li>
+<li><p>The recursive rule must add symbols in pairs.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to X X S\)</span> adds two symbols (<span class="math notranslate nohighlight">\(X X\)</span>) and continues the process (<span class="math notranslate nohighlight">\(S\)</span>).</p></li>
+<li><p>The base case <span class="math notranslate nohighlight">\(S \to \epsilon\)</span> stops the recursion, resulting in an even length.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X \to a \mid b\)</span> generates a single character.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-12-grammar-for-math-l-w-mid-w-equiv-0-pmod-3-sigma-a-b-length-is-a-multiple-of-3 admonition">
+<p class="admonition-title"><strong>Question 12:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w \mid |w| \equiv 0 \pmod 3, \Sigma = \{a, b\} \}\)</span>. (Length is a multiple of 3)</p>
+<p><strong>Solution (hidden):</strong></p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to X X X S \mid \epsilon \\
+X \to a \mid b\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>We want strings where the length is a multiple of 3 (0, 3, 6, 9, …).</p></li>
+<li><p>The recursive rule must add symbols in triplets.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to X X X S\)</span> adds three symbols (<span class="math notranslate nohighlight">\(X X X\)</span>) and continues the process (<span class="math notranslate nohighlight">\(S\)</span>).</p></li>
+<li><p>The base case <span class="math notranslate nohighlight">\(S \to \epsilon\)</span> stops the recursion, resulting in a length divisible by 3.</p></li>
+<li><p><span class="math notranslate nohighlight">\(X \to a \mid b\)</span> generates a single character.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-13-grammar-for-math-l-a-n-b-n-c-n-mid-n-ge-0 admonition">
+<p class="admonition-title"><strong>Question 13:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^n \mid n \ge 0 \}\)</span>.</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><p><strong>Not possible with a Context-Free Grammar (CFG).</strong></p>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language requires three separate components to have equal counts: <span class="math notranslate nohighlight">\(Count(a) = Count(b) = Count(c)\)</span>.</p></li>
+<li><p>A CFG pushdown automaton (PDA) can only simultaneously enforce the equality of two counts (e.g., <span class="math notranslate nohighlight">\(a^n b^n\)</span>) using its single stack.</p></li>
+<li><p>To enforce the third equality (<span class="math notranslate nohighlight">\(Count(c)=n\)</span>), the PDA would need a second stack.</p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^n \mid n \ge 0 \}\)</span> is a <strong>Context-Sensitive Language</strong> (CSL), it cannot be generated by a CFG.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-14-grammar-for-math-l-a-n-b-m-mid-n-m-n-ge-0-m-ge-0-more-math-a-s-than-math-b-s admonition">
+<p class="admonition-title"><strong>Question 14:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^m \mid n &gt; m, n \ge 0, m \ge 0 \}\)</span>. (More <span class="math notranslate nohighlight">\(a\)</span>’s than <span class="math notranslate nohighlight">\(b\)</span>’s)</p>
+<p><a href="#id5"><span class="problematic" id="id6">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A B \\
+A \to a A b \mid a \\
+B \to a B \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language requires a minimal string of one extra <span class="math notranslate nohighlight">\(a\)</span> (<span class="math notranslate nohighlight">\(a^{m+1} b^m\)</span>), followed by any number of additional <span class="math notranslate nohighlight">\(a\)</span>’s.</p></li>
+<li><p>The CFG needs to first match <span class="math notranslate nohighlight">\(a^m b^m\)</span> and then ensure the single extra <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
+<li><p>Use non-terminal <span class="math notranslate nohighlight">\(A\)</span> to enforce the <em>at least one extra</em> <span class="math notranslate nohighlight">\(a\)</span>: <span class="math notranslate nohighlight">\(A \to a A b\)</span> matches the $m$ pairs, and the minimal production <span class="math notranslate nohighlight">\(A \to a\)</span> guarantees the one extra $a$.</p></li>
+<li><p>Use non-terminal <span class="math notranslate nohighlight">\(B\)</span> to generate any arbitrary number of $a$’s at the end (the $a$’s not needed for matching $b$’s): <span class="math notranslate nohighlight">\(B \to a B \mid \epsilon\)</span>.</p></li>
+<li><p>Concatenate them: <span class="math notranslate nohighlight">\(S \to A B\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-15-grammar-for-math-l-a-n-b-m-mid-n-ne-m-n-ge-0-m-ge-0-unequal-numbers-of-math-a-s-and-math-b-s admonition">
+<p class="admonition-title"><strong>Question 15:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^m \mid n \ne m, n \ge 0, m \ge 0 \}\)</span>. (Unequal numbers of <span class="math notranslate nohighlight">\(a\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>’s)</p>
+<p><a href="#id7"><span class="problematic" id="id8">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A \mid B \\
+A \to a A b \mid a C \\
+B \to a B b \mid b C \\
+C \to a C \mid b C \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language is the union of two independent cases: <strong>Case A: More :math:`a`’s than :math:`b`’s</strong> (covered by $A$) OR <strong>Case B: More :math:`b`’s than :math:`a`’s</strong> (covered by $B$).</p></li>
+<li><p><strong>Case A (n &gt; m):</strong> Match the pairs with <span class="math notranslate nohighlight">\(A \to a A b\)</span>, and then use <span class="math notranslate nohighlight">\(A \to a C\)</span> to enforce one extra <span class="math notranslate nohighlight">\(a\)</span> followed by any remaining <span class="math notranslate nohighlight">\(a\)</span>’s or <span class="math notranslate nohighlight">\(b\)</span>’s generated by <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
+<li><p><strong>Case B (m &gt; n):</strong> Match the pairs with <span class="math notranslate nohighlight">\(B \to a B b\)</span>, and then use <span class="math notranslate nohighlight">\(B \to b C\)</span> to enforce one extra <span class="math notranslate nohighlight">\(b\)</span> followed by any remaining symbols.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C \to a C \mid b C \mid \epsilon\)</span> generates any string <span class="math notranslate nohighlight">\(\Sigma^*\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-16-grammar-for-math-l-a-n-b-n-c-m-d-m-mid-n-ge-0-m-ge-0 admonition">
+<p class="admonition-title"><strong>Question 16:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^m d^m \mid n \ge 0, m \ge 0 \}\)</span>.</p>
+<p><a href="#id9"><span class="problematic" id="id10">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A B \\
+A \to a A b \mid \epsilon \\
+B \to c B d \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language consists of two independent parts concatenated: <span class="math notranslate nohighlight">\((a^n b^n)\)</span> followed by <span class="math notranslate nohighlight">\((c^m d^m)\)</span>.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(A\)</span> for the first part: <span class="math notranslate nohighlight">\(A \to a A b \mid \epsilon\)</span>. This ensures <span class="math notranslate nohighlight">\(Count(a) = Count(b)\)</span>.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(B\)</span> for the second part: <span class="math notranslate nohighlight">\(B \to c B d \mid \epsilon\)</span>. This ensures <span class="math notranslate nohighlight">\(Count(c) = Count(d)\)</span>.</p></li>
+<li><p>Since the two parts are independent and adjacent, a CFG can handle it: <span class="math notranslate nohighlight">\(S \to A B\)</span>. This language is the intersection of two CFGs, but since they are distinct parts of the string, the grammar is simple.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-17-grammar-for-math-l-w-w-r-mid-w-in-a-b-even-length-palindromes admonition">
+<p class="admonition-title"><strong>Question 17:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w w^R \mid w \in \{a, b\}^* \}\)</span>. (Even-length palindromes)</p>
+<p><a href="#id11"><span class="problematic" id="id12">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[S \to a S a \mid b S b \mid \epsilon\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>This is the subset of palindromes that must have an <strong>even length</strong> (since <span class="math notranslate nohighlight">\(w w^R\)</span> is always $2|w|$).</p></li>
+<li><p>The recursive rules <span class="math notranslate nohighlight">\(S \to a S a \mid b S b\)</span> enforce the palindrome structure by adding identical symbols to the ends.</p></li>
+<li><p>The only base case is the empty string <span class="math notranslate nohighlight">\(S \to \epsilon\)</span>, which correctly generates the smallest even-length palindrome (length 0).</p></li>
+<li><p>The rules from Question 10 (Palindromes) <em>without</em> the $S to a mid b$ productions are exactly what is needed here.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-18-grammar-for-math-l-a-i-b-j-c-k-mid-i-j-text-or-j-k admonition">
+<p class="admonition-title"><strong>Question 18:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}\)</span>.</p>
+<p><a href="#id13"><span class="problematic" id="id14">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A \mid B \\
+A \to C D \\
+C \to a C b \mid \epsilon \\
+D \to c D \mid \epsilon \\
+B \to E F \\
+E \to a E \mid \epsilon \\
+F \to b F c \mid \epsilon\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>The language is the union of two CFGs: <strong>Case A</strong>: <span class="math notranslate nohighlight">\(i = j\)</span> (arbitrary <span class="math notranslate nohighlight">\(k\)</span>) OR <strong>Case B</strong>: <span class="math notranslate nohighlight">\(j = k\)</span> (arbitrary <span class="math notranslate nohighlight">\(i\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to A \mid B\)</span> separates the two cases.</p></li>
+<li><p><strong>Case A (:math:`i=j`):</strong> <span class="math notranslate nohighlight">\(A \to C D\)</span>. $C$ generates <span class="math notranslate nohighlight">\(a^i b^i\)</span> ($C to a C b mid epsilon$) and $D$ generates arbitrary $c$’s ($D to c D mid epsilon$).</p></li>
+<li><p><strong>Case B (:math:`j=k`):</strong> <span class="math notranslate nohighlight">\(B \to E F\)</span>. $E$ generates arbitrary $a$’s ($E to a E mid epsilon$) and $F$ generates <span class="math notranslate nohighlight">\(b^j c^j\)</span> ($F to b F c mid epsilon$).</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-19-grammar-for-math-l-a-n-b-n-c-m-d-m-mid-n-ge-1-m-ge-1 admonition">
+<p class="admonition-title"><strong>Question 19:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^m d^m \mid n \ge 1, m \ge 1 \}\)</span>.</p>
+<p><a href="#id15"><span class="problematic" id="id16">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A B \\
+A \to a A b \mid a b \\
+B \to c B d \mid c d\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>This is almost identical to Question 16, but with the constraint that $n ge 1$ and $m ge 1$ (no empty strings for $a^n b^n$ or $c^m d^m$).</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(A\)</span> for the <span class="math notranslate nohighlight">\(a^n b^n\)</span> part, guaranteeing $n ge 1$: <span class="math notranslate nohighlight">\(A \to a A b \mid a b\)</span>.</p></li>
+<li><p>Use <span class="math notranslate nohighlight">\(B\)</span> for the <span class="math notranslate nohighlight">\(c^m d^m\)</span> part, guaranteeing $m ge 1$: <span class="math notranslate nohighlight">\(B \to c B d \mid c d\)</span>.</p></li>
+<li><p>Concatenate them: <span class="math notranslate nohighlight">\(S \to A B\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-20-grammar-for-math-l-a-n-b-n-c-n-mid-n-ge-1 admonition">
+<p class="admonition-title"><strong>Question 20:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^n \mid n \ge 1 \}\)</span>.</p>
+<p><a href="#id17"><span class="problematic" id="id18">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><p><strong>Not possible with a Context-Free Grammar (CFG).</strong></p>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>This is the same language as Question 13, but excludes the empty string (<span class="math notranslate nohighlight">\(n=0\)</span>).</p></li>
+<li><p>The core constraint <span class="math notranslate nohighlight">\(Count(a) = Count(b) = Count(c)\)</span> requires the PDA to track three counts simultaneously, which is impossible with a single stack.</p></li>
+<li><p>This language is a classic example used in the Pumping Lemma for CFGs to prove it is <strong>not context-free</strong>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-21-grammar-for-math-l-w-mid-w-text-has-equal-numbers-of-a-text-s-and-b-text-s admonition">
+<p class="admonition-title"><strong>Question 21:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w \mid w \text{ has equal numbers of } a\text{'s and } b\text{'s} \}\)</span>.</p>
+<p><a href="#id19"><span class="problematic" id="id20">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[S \to S S \mid a S b \mid b S a \mid \epsilon\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>This is a classic non-regular CFG where the order of <span class="math notranslate nohighlight">\(a\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>’s does not matter, only that they cancel out to zero difference.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to S S\)</span> allows concatenation (e.g., <span class="math notranslate nohighlight">\(aabb\)</span> followed by <span class="math notranslate nohighlight">\(bbaa\)</span> is valid).</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to a S b\)</span> and <span class="math notranslate nohighlight">\(S \to b S a\)</span> ensure that one <span class="math notranslate nohighlight">\(a\)</span> and one <span class="math notranslate nohighlight">\(b\)</span> are generated together, preserving the equality count.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S \to \epsilon\)</span> is the base case (empty string is valid).</p></li>
+<li><p>This grammar generates strings like <span class="math notranslate nohighlight">\(ab, ba, aabb, abab, abba, baab\)</span>, etc., all with $N_a = N_b$.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-22-grammar-for-math-l-w-mid-n-a-w-n-b-w-more-math-a-s-than-math-b-s-any-order admonition">
+<p class="admonition-title"><strong>Question 22:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w \mid N_a(w) &gt; N_b(w) \}\)</span>. (More <span class="math notranslate nohighlight">\(a\)</span>’s than <span class="math notranslate nohighlight">\(b\)</span>’s, any order)</p>
+<p><a href="#id21"><span class="problematic" id="id22">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
+\[\begin{split}S \to A \\
+A \to a \mid a A \mid b A a A \mid a A b A\end{split}\]</div>
+<p><strong>Step-by-step (easy):</strong></p>
+<ol class="arabic">
+<li><p>This is a well-known example that is a CFG, but complex to construct. The goal is to ensure the final string has a net surplus of one or more <span class="math notranslate nohighlight">\(a\)</span>’s.</p></li>
+<li><p>We use recursion to ensure that all balanced pairs of <span class="math notranslate nohighlight">\(a\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>’s are generated, and a single <span class="math notranslate nohighlight">\(a\)</span> is left over.</p></li>
+<li><p>The rule <span class="math notranslate nohighlight">\(A \to a\)</span> ensures the minimum of one extra <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
+<li><p>The rules <span class="math notranslate nohighlight">\(A \to a A\)</span>, <span class="math notranslate nohighlight">\(A \to a A b A\)</span>, and <span class="math notranslate nohighlight">\(A \to b A a A\)</span> ensure that we can generate any arbitrary string while maintaining the overall property of $N_a &gt; N_b$. (A simpler form using an intermediate non-terminal is also possible but often more complex to prove correct.)</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition-question-23-cyk-algorithm-question-check-whether-the-string-math-w-aab-is-a-valid-member-of-the-grammar-math-g-where-the-productions-are-math-s-to-ab-mid-bc-math-a-to-ba-mid-a-math-b-to-cc-mid-b-math-c-to-ab-mid-a admonition">
+<p class="admonition-title"><strong>Question 23:</strong> CYK Algorithm Question: Check whether the string <span class="math notranslate nohighlight">\(w=aab\)</span> is a valid member of the grammar <span class="math notranslate nohighlight">\(G\)</span> where the productions are: <span class="math notranslate nohighlight">\(S \to AB \mid BC\)</span>, <span class="math notranslate nohighlight">\(A \to BA \mid a\)</span>, <span class="math notranslate nohighlight">\(B \to CC \mid b\)</span>, <span class="math notranslate nohighlight">\(C \to AB \mid a\)</span>.</p>
+<p><a href="#id23"><span class="problematic" id="id24">**</span></a>Solution (hidden):&lt;/b
+&gt;</p>
+<details>
+<summary><b>Show Solution</b></summary><p><strong>CYK Table:</strong></p>
+<p>The CYK table for <span class="math notranslate nohighlight">\(w = a_1 a_2 b_3\)</span> (length 3):</p>
+<div class="line-block">
+<div class="line">Length $l$ | 1 | 2 | 3 |</div>
+<div class="line">:—: | :—: | :—: | :—: |</div>
+<div class="line"><strong>$V_{i, 1}$</strong> | <span class="math notranslate nohighlight">\(V_{1,1}\)</span> ($a$) | <span class="math notranslate nohighlight">\(V_{2,1}\)</span> ($a$) | <span class="math notranslate nohighlight">\(V_{3,1}\)</span> ($b$) |</div>
+<div class="line"><strong>Sets</strong> | <span class="math notranslate nohighlight">\(\{A, C\}\)</span> | <span class="math notranslate nohighlight">\(\{A, C\}\)</span> | <span class="math notranslate nohighlight">\(\{B\}\)</span> |</div>
+<div class="line"><strong>$V_{i, 2}$</strong> | <span class="math notranslate nohighlight">\(V_{1,2}\)</span> ($aa$) | <span class="math notranslate nohighlight">\(V_{2,2}\)</span> ($ab$) | |</div>
+<div class="line"><strong>Sets</strong> | <span class="math notranslate nohighlight">\(\emptyset\)</span> | <span class="math notranslate nohighlight">\(\{S, A\}\)</span> | |</div>
+<div class="line"><strong>$V_{1, 3}$</strong> | <span class="math notranslate nohighlight">\(V_{1,3}\)</span> ($aab$) | | |</div>
+<div class="line"><strong>Sets</strong> | <span class="math notranslate nohighlight">\(\emptyset\)</span> | | |</div>
+</div>
+<p><strong>Detailed Calculation:</strong></p>
+<ol class="arabic">
+<li><p><strong>Length 1 ($V_{i, 1}$):</strong>
+* $V_{1, 1}$ (for $a$): ${A, C}$ (from $A to a, C to a$)
+* $V_{2, 1}$ (for $a$): ${A, C}$
+* $V_{3, 1}$ (for $b$): ${B}$ (from $B to b$)</p></li>
+<li><p><strong>Length 2 ($V_{i, 2}$):</strong>
+* $V_{1, 2}$ (for $a_1 a_2 = aa$): Check $V_{1, 1} V_{2, 1} = {A, C} {A, C}$. Productions $AA, AC, CA, CC$. Only $B to CC$ exists. $implies V_{1, 2} = {B}$. (Correction: checking $V_{1, 1} V_{2, 1}$ gives $AA, AC, CA, CC$. The given grammar only has $S to AB, BC$ etc.)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Let’s re-check $V_{1, 2}$: $V_{1, 1} V_{2, 1} = {A, C} {A, C}$.</p></li>
+<li><p>$A A$: Not possible.</p></li>
+<li><p>$A C$: Not possible.</p></li>
+<li><p>$C A$: Not possible.</p></li>
+<li><p>$C C$: Possible from $B to C C$. $implies V_{1, 2} = {B}$. (My earlier table entry was wrong).</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>$V_{2, 2}$ (for $a_2 b_3 = ab$): Check $V_{2, 1} V_{3, 1} = {A, C} {B}$. Productions $A B, C B$.</dt><dd><ul>
+<li><p>$A B$: Possible from $S to A B, C to A B$. $implies {S, C}$.</p></li>
+<li><p>$C B$: Not possible.</p></li>
+<li><p>$implies V_{2, 2} = {S, C}$.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p><strong>Length 3 ($V_{1, 3}$):</strong> Check all splits (k=1, 2):
+* <strong>Split 1:</strong> $V_{1, 1} V_{2, 2} = {A, C} {S, C}$. Productions $A S, A C, C S, C C$.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>$C C$: Possible from $B to C C$. $implies {B}$</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Split 2:</strong> $V_{1, 2} V_{3, 1} = {B} {B}$. Productions $B B$.</dt><dd><ul>
+<li><p>$B B$: Not possible.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>$implies V_{1, 3} = {B}$.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Conclusion:</strong></p>
+<p>Since the start symbol <span class="math notranslate nohighlight">\(S\)</span> is <strong>not</strong> in the set <span class="math notranslate nohighlight">\(V_{1, 3}\)</span> (the set for the full string $aab$), the string <span class="math notranslate nohighlight">\(aab\)</span> is <strong>NOT</strong> a valid member of the language generated by grammar <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<blockquote>
+<div><p>&lt;/details&gt;</p>
+</div></blockquote>
+</div>
+
 
            </div>
           </div>

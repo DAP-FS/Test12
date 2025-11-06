@@ -55,7 +55,6 @@ Theory of Computation
 
    modules/intro
    modules/lesson01
-   modules/.chapter03
    modules/context_free_languages
    modules/pushdownautomata
    modules/exercises
