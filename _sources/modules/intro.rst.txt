@@ -1,562 +1,1293 @@
 ==================
-Best Practices
+CFG Practice Problems
 ==================
 
+.. contents::
+   :local:
+   :depth: 2
 
-.. admonition:: **Question 1:** Construct a grammar that accepts the set of all strings of length 2 (:math:`\Sigma = \{a, b\}`).
+----
 
-    **Solution (hidden):**
+.. raw:: html
+
+   <style>
+     /* Enhanced color scheme and typography */
+     h2, h3 { 
+       color: #7B1113; 
+       border-bottom: 2px solid #7B1113;
+       padding-bottom: 0.3em;
+       margin-top: 1.5em;
+     }
+     
+     /* Question boxes with distinct styling */
+     .admonition {
+       border-radius: 8px;
+       padding: 1em 1.2em;
+       margin: 1.5em 0;
+       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+     }
+     
+     .admonition-title {
+       font-weight: 700;
+       font-size: 1.1em;
+       margin-bottom: 0.8em;
+       display: flex;
+       align-items: center;
+     }
+     
+     .admonition-title:before {
+       content: "📝";
+       margin-right: 0.5em;
+       font-size: 1.2em;
+     }
+     
+     /* Dropdown solution styling */
+     details {
+       background: #F6FFED;
+       border: 2px solid #52C41A;
+       border-radius: 8px;
+       padding: 1em;
+       margin: 1em 0;
+       transition: all 0.3s ease;
+     }
+     
+     details:hover {
+       box-shadow: 0 4px 12px rgba(82, 196, 26, 0.2);
+     }
+     
+     details summary {
+       cursor: pointer;
+       font-weight: 700;
+       color: #389e0d;
+       padding: 0.5em;
+       background: #f0fff4;
+       border-radius: 6px;
+       list-style: none;
+       display: flex;
+       align-items: center;
+       transition: background 0.2s ease;
+     }
+     
+     details summary:hover {
+       background: #d9f7be;
+     }
+     
+     details summary:before {
+       content: "▶";
+       margin-right: 0.8em;
+       transition: transform 0.3s ease;
+       font-size: 0.9em;
+     }
+     
+     details[open] summary:before {
+       transform: rotate(90deg);
+     }
+     
+     details[open] summary {
+       margin-bottom: 1em;
+       border-bottom: 2px solid #52C41A;
+     }
+     
+     /* Grammar production boxes */
+     .grammar-box {
+       background: linear-gradient(135deg, #E6F7FF 0%, #BAE7FF 100%);
+       border-left: 6px solid #1890FF;
+       padding: 1.2em;
+       margin: 1.2em 0;
+       border-radius: 8px;
+       font-family: 'Courier New', monospace;
+       font-size: 1.05em;
+       box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+     }
+     
+     .grammar-box strong {
+       color: #0050b3;
+       display: block;
+       margin-bottom: 0.8em;
+       font-size: 1.1em;
+     }
+     
+     /* Step-by-step explanation boxes */
+     .steps-box {
+       background: #FFFBE6;
+       border-left: 6px solid #FAAD14;
+       padding: 1.2em;
+       margin: 1.2em 0;
+       border-radius: 8px;
+       box-shadow: 0 2px 8px rgba(250, 173, 20, 0.15);
+     }
+     
+     .steps-box strong {
+       color: #d48806;
+       display: block;
+       margin-bottom: 0.5em;
+     }
+     
+     .steps-box ol {
+       margin: 0.5em 0 0 1.5em;
+       line-height: 1.8;
+     }
+     
+     .steps-box li {
+       margin-bottom: 0.6em;
+       color: #595959;
+     }
+     
+     /* Derivation trace boxes */
+     .derivation-box {
+       background: #F0F5FF;
+       border: 2px solid #597EF7;
+       padding: 1.2em;
+       margin: 1.2em 0;
+       border-radius: 8px;
+       font-family: 'Courier New', monospace;
+       box-shadow: 0 2px 8px rgba(89, 126, 247, 0.15);
+     }
+     
+     .derivation-box strong {
+       color: #2f54eb;
+       display: block;
+       margin-bottom: 0.6em;
+       font-family: -apple-system, sans-serif;
+     }
+     
+     /* Example boxes */
+     .example-box {
+       background: #FFF1F0;
+       border-left: 6px solid #FF4D4F;
+       padding: 1em;
+       margin: 1em 0;
+       border-radius: 6px;
+       font-style: italic;
+       color: #595959;
+     }
+     
+     /* CYK table styling */
+     .cyk-table {
+       margin: 1.5em auto;
+       border-collapse: separate;
+       border-spacing: 0;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+       border-radius: 8px;
+       overflow: hidden;
+     }
+     
+     .cyk-table th {
+       background: linear-gradient(135deg, #7B1113 0%, #a82729 100%);
+       color: white;
+       padding: 0.8em 1em;
+       font-weight: 700;
+       text-align: center;
+       border: 1px solid #7B1113;
+     }
+     
+     .cyk-table td {
+       padding: 0.8em 1em;
+       border: 1px solid #d9d9d9;
+       text-align: center;
+       background: white;
+       font-family: monospace;
+     }
+     
+     .cyk-table tr:nth-child(even) td {
+       background: #fafafa;
+     }
+     
+     .cyk-table tr:hover td {
+       background: #e6f7ff;
+     }
+     
+     /* Highlight boxes for important notes */
+     .highlight-note {
+       background: #FFF7E6;
+       border: 2px dashed #FFA940;
+       padding: 1em;
+       margin: 1em 0;
+       border-radius: 8px;
+       display: flex;
+       align-items: start;
+     }
+     
+     .highlight-note:before {
+       content: "💡";
+       font-size: 1.5em;
+       margin-right: 0.8em;
+       flex-shrink: 0;
+     }
+     
+     /* NOT possible indicator */
+     .not-possible {
+       background: #FFF1F0;
+       border: 3px solid #FF4D4F;
+       padding: 1.2em;
+       margin: 1.2em 0;
+       border-radius: 8px;
+       text-align: center;
+       font-weight: 700;
+       color: #cf1322;
+       font-size: 1.1em;
+     }
+     
+     .not-possible:before {
+       content: "⚠️ ";
+       font-size: 1.3em;
+     }
+     
+     /* Level indicators */
+     .level-indicator {
+       display: inline-block;
+       padding: 0.3em 0.8em;
+       border-radius: 20px;
+       font-size: 0.85em;
+       font-weight: 600;
+       margin-left: 0.5em;
+     }
+     
+     .level-basic {
+       background: #E6FFFB;
+       color: #006d75;
+       border: 1px solid #87E8DE;
+     }
+     
+     .level-intermediate {
+       background: #FFF7E6;
+       color: #d46b08;
+       border: 1px solid #FFD591;
+     }
+     
+     .level-advanced {
+       background: #FFF1F0;
+       color: #a8071a;
+       border: 1px solid #FFCCC7;
+     }
+     
+     /* Responsive design */
+     @media (max-width: 768px) {
+       .admonition, details, .grammar-box, .derivation-box {
+         padding: 0.8em;
+       }
+     }
+   </style>
+
+----
+
+Level 1: Basic Pattern Construction
+====================================
+
+.. admonition:: **Question 1:** Construct a grammar that accepts the set of all strings of length 2 over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-basic">BASIC</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₁:</strong>
+        
     .. math::
-        S \to X X \\
+        S \to XX \\
         X \to a \mid b
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. We want strings of exactly length 2.
-    2. Introduce a symbol :math:`X` that generates a single character (:math:`a` or :math:`b`).
-    3. The start symbol :math:`S` should produce two :math:`X` in sequence, so :math:`S \to X X`.
-    4. This allows all four strings: :math:`aa, ab, ba, bb`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Goal:</strong> Generate strings with exactly 2 characters.</li>
+        <li><strong>Strategy:</strong> Use a helper symbol X that generates one character (a or b).</li>
+        <li><strong>Construction:</strong> Start symbol S produces two X symbols in sequence: S → XX.</li>
+        <li><strong>Result:</strong> This generates all four possible strings: aa, ab, ba, bb.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "ab":</strong><br>
+        S ⇒ XX ⇒ aX ⇒ ab ✓<br><br>
+        <strong>For "ba":</strong><br>
+        S ⇒ XX ⇒ bX ⇒ ba ✓<br><br>
+        <strong>For "aa":</strong><br>
+        S ⇒ XX ⇒ aX ⇒ aa ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Intuition:</strong> Think of it like filling two blank spaces: _ _. Each blank can be filled with 'a' or 'b', giving us 2 × 2 = 4 total strings.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 2:** Grammar for :math:`L = \{ a^n b^m \mid n \ge 1, m \ge 1 \}`.
+----
 
-    **Solution (hidden):**
+.. admonition:: **Question 2:** Grammar for :math:`L = \{a^n b^m \mid n \geq 1, m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-basic">BASIC</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₂:</strong>
+        
     .. math::
-        S \to A B \\
-        A \to a A \mid a \\
-        B \to b B \mid b
+        S \to AB \\
+        A \to aA \mid a \\
+        B \to bB \mid b
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. The language is some positive number of :math:`a` followed by some positive number of :math:`b`.
-    2. Use :math:`A` to generate one or more :math:`a`'s (:math:`n \ge 1`): :math:`A \to a A \mid a`.
-    3. Use :math:`B` to generate one or more :math:`b`'s (:math:`m \ge 1`): :math:`B \to b B \mid b`.
-    4. The start symbol :math:`S` concatenates them: :math:`S \to A B`.
-    5. Example: to produce :math:`aaab`, expand :math:`S \to A B`, :math:`A \to a A \to a a A \to a a a`, and :math:`B \to b`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Pattern:</strong> Some number of a's (at least 1) followed by some number of b's (at least 1).</li>
+        <li><strong>Independence:</strong> The count of a's is independent of the count of b's.</li>
+        <li><strong>Variable A:</strong> Generates one or more a's. The rule A → a ensures minimum of 1, and A → aA allows more.</li>
+        <li><strong>Variable B:</strong> Similarly generates one or more b's.</li>
+        <li><strong>Concatenation:</strong> S → AB puts a-section before b-section.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivation for "aaabbb":</strong><br><br>
+        S ⇒ AB<br>
+        ⇒ (aA)B ⇒ (a(aA))B ⇒ (a(a(a)))B<br>
+        ⇒ aaaB<br>
+        ⇒ aaa(bB) ⇒ aaa(b(bB)) ⇒ aaa(b(b(b)))<br>
+        ⇒ aaabbb ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        The key insight is that n and m are <strong>independent</strong> – we handle them separately with different variables.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 3:** Grammar for :math:`L = \{ a^n b^n \mid n \ge 0 \}`.
+----
 
-    **Solution (hidden):**
+.. admonition:: **Question 3:** Grammar for :math:`L = \{a^n b^n \mid n \geq 0\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₃:</strong>
+        
     .. math::
-        S \to a S b \mid \epsilon
+        S \to aSb \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. We must produce equal numbers of :math:`a` and :math:`b`, with all :math:`a` before :math:`b`.
-    2. The rule :math:`S \to a S b` adds one :math:`a` at the left and one :math:`b` at the right together — that keeps the counts equal.
-    3. The base :math:`S \to \epsilon` handles the case :math:`n = 0` (empty string).
-    4. Example: For :math:`n=2`, expand :math:`S \to a S b \to a a S b b \to a a \epsilon b b = a a b b`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Challenge:</strong> Must have equal numbers of a's and b's.</li>
+        <li><strong>Key Idea:</strong> Add one 'a' at the left AND one 'b' at the right simultaneously.</li>
+        <li><strong>Recursive Rule:</strong> S → aSb wraps the current string with 'a' and 'b'.</li>
+        <li><strong>Base Case:</strong> S → ε handles n=0 (empty string).</li>
+        <li><strong>Why It Works:</strong> Each recursive step maintains the balance – we never add 'a' without adding 'b'.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivation for "aabb":</strong><br><br>
+        S ⇒ aSb<br>
+        ⇒ a(aSb)b<br>
+        ⇒ a(aεb)b<br>
+        ⇒ a(ab)b<br>
+        ⇒ aabb ✓
+        <br><br>
+        <strong>For empty string (n=0):</strong><br>
+        S ⇒ ε ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        This is the <strong>classic equal-count pattern</strong>. Think of it like balanced parentheses: every opening 'a' has a matching closing 'b'.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 4:** Set of strings of length at least 2 (:math:`\Sigma = \{a, b\}`).
+----
 
-    **Solution (hidden):**
+Level 2: Position-Based Patterns
+=================================
+
+.. admonition:: **Question 6:** Set of strings starting with :math:`a` and ending with :math:`b` over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-basic">BASIC</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₆:</strong>
+        
     .. math::
-        S \to X X Y \\
-        X \to a \mid b \\
-        Y \to a Y \mid b Y \mid \epsilon
+        S \to aXb \mid ab \\
+        X \to aX \mid bX \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. We must generate any string whose length is **≥ 2**.
-    2. Ensure at least two characters by requiring two occurrences of :math:`X` at the start: :math:`S \to X X Y`.
-    3. :math:`X` generates a single symbol (:math:`a` or :math:`b`). So :math:`X X` guarantees two symbols minimum.
-    4. :math:`Y` generates the rest of the string, which can be any length (including zero) from the set :math:`\Sigma^*`. The rules for :math:`Y` are equivalent to :math:`(a \mid b)^*`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Constraints:</strong> First symbol must be 'a', last symbol must be 'b'.</li>
+        <li><strong>Minimum String:</strong> "ab" is the shortest valid string (handled by S → ab).</li>
+        <li><strong>Longer Strings:</strong> Use S → aXb where X generates any middle part.</li>
+        <li><strong>Middle Part:</strong> X can generate any string from Σ* (including empty).</li>
+        <li><strong>Variable X:</strong> X → aX | bX | ε generates (a|b)* using left recursion.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "ab" (minimum):</strong><br>
+        S ⇒ ab ✓<br><br>
+        <strong>For "aabbb":</strong><br>
+        S ⇒ aXb<br>
+        ⇒ a(aX)b<br>
+        ⇒ a(a(bX))b<br>
+        ⇒ a(a(b(bX)))b<br>
+        ⇒ a(a(b(bε)))b<br>
+        ⇒ aabbb ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Intuition:</strong> Fix the first and last positions, then fill the middle with anything you want.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 5:** Set of strings of length at most 2 (:math:`\Sigma = \{a, b\}`).
+----
 
-    **Solution (hidden):
-    >
+.. admonition:: **Question 7:** Set of strings starting and ending with **different** symbols over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to \epsilon \mid X \mid X X \\
-        X \to a \mid b
-
-    **Step-by-step (easy):**
-
-    1. Strings allowed: length 0, 1, or 2.
-    2. Use the alternatives: empty string (:math:`\epsilon`), one symbol (:math:`X`), or two symbols (:math:`X X`).
-    3. Define :math:`X` as a single letter :math:`a` or :math:`b`.
-    4. This covers :math:`\{\epsilon, a, b, aa, ab, ba, bb\}`.
-
-        </details>
-
-.. admonition:: **Question 6:** Set of strings starting with :math:`a` and ending with :math:`b` (:math:`\Sigma = \{a, b\}`).
-
-    **Solution (hidden):**
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to a X b \mid a b \\
-        X \to a X \mid b X \mid \epsilon
-
-    **Step-by-step (easy):**
-
-    1. Every string must begin with :math:`a` and end with :math:`b`.
-    2. The base case is the minimal string :math:`ab`, handled by :math:`S \to a b`.
-    3. For longer strings, use :math:`S \to a X b`, where :math:`X` generates any string of length $\ge 1$.
-    4. The non-terminal :math:`X` generates any string from :math:`\Sigma^*` using the rules :math:`X \to a X \mid b X \mid \epsilon`. The overall grammar must include the minimal string :math:`ab`.
-
-        </details>
-
-.. admonition:: **Question 7:** Set of strings starting and ending with different symbols (:math:`\Sigma = \{a, b\}`).
-
-    **Solution (hidden):**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>Show Solution</b></summary>
-
+        <div class="grammar-box">
+        <strong>📋 Grammar G₇:</strong>
+        
     .. math::
         S \to A \mid B \\
-        A \to a X b \\
-        B \to b X a \\
-        X \to a X \mid b X \mid a \mid b \mid \epsilon
+        A \to aXb \\
+        B \to bXa \\
+        X \to aX \mid bX \mid a \mid b \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. The language is the union of two cases: (Starts with :math:`a` and ends with :math:`b`) OR (Starts with :math:`b` and ends with :math:`a`).
-    2. Use :math:`S \to A \mid B` to separate the cases.
-    3. :math:`A \to a X b` covers the first case. :math:`B \to b X a` covers the second case.
-    4. The non-terminal :math:`X` generates any string from :math:`\Sigma^*`, ensuring all strings of length $\ge 2$ (e.g., :math:`ab`, :math:`ba`) are covered. The rule :math:`X \to \epsilon` handles the length 2 strings, while :math:`X \to a \mid b` handles length 3 strings like :math:`aab` and :math:`baa`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Two Cases:</strong> Either starts with 'a' and ends with 'b', OR starts with 'b' and ends with 'a'.</li>
+        <li><strong>Union:</strong> S → A | B separates the two cases.</li>
+        <li><strong>Case A:</strong> A → aXb handles strings like "ab", "aab", "abbb", etc.</li>
+        <li><strong>Case B:</strong> B → bXa handles strings like "ba", "baa", "baaa", etc.</li>
+        <li><strong>Middle Part:</strong> X generates any sequence from Σ* for the middle.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "aabab" (Case A):</strong><br>
+        S ⇒ A ⇒ aXb<br>
+        ⇒ a(aX)b ⇒ a(a(bX))b ⇒ a(a(b(aX)))b<br>
+        ⇒ a(a(b(aε)))b ⇒ aabab ✓<br><br>
+        <strong>For "ba" (Case B - minimum):</strong><br>
+        S ⇒ B ⇒ bXa ⇒ bεa ⇒ ba ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        When you need mutually exclusive cases, use the <strong>union pattern</strong>: create separate variables for each case and combine them at the start symbol.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 8:** Set of all strings starting and ending with the same symbol (:math:`\Sigma = \{a, b\}`).
+----
 
-    **Solution (hidden):**
+.. admonition:: **Question 8:** Set of all strings starting and ending with the **same** symbol over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₈:</strong>
+        
     .. math::
-        S \to a X a \mid b X b \mid a \mid b \mid \epsilon \\
-        X \to a X \mid b X \mid \epsilon
+        S \to aXa \mid bXb \mid a \mid b \mid \epsilon \\
+        X \to aX \mid bX \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. This includes four sub-cases:
-        a. Strings of length $\ge 2$ starting and ending with :math:`a`: :math:`a X a`.
-        b. Strings of length $\ge 2$ starting and ending with :math:`b`: :math:`b X b`.
-        c. Strings of length 1 (:math:`a` or :math:`b`).
-        d. String of length 0 (:math:`\epsilon`).
-    2. The production :math:`S \to a \mid b \mid \epsilon` handles cases (c) and (d).
-    3. The productions :math:`S \to a X a \mid b X b` handle cases (a) and (b).
-    4. :math:`X \to a X \mid b X \mid \epsilon` generates any possible middle section :math:`\Sigma^*`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Four Sub-cases:</strong>
+            <ul>
+            <li>Strings of length ≥2 starting and ending with 'a': aXa</li>
+            <li>Strings of length ≥2 starting and ending with 'b': bXb</li>
+            <li>Single character strings: a or b</li>
+            <li>Empty string: ε</li>
+            </ul>
+        </li>
+        <li><strong>Wrap Pattern:</strong> aXa and bXb wrap any middle content with matching symbols.</li>
+        <li><strong>Edge Cases:</strong> Single symbols and empty string are explicit base cases.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "aabaa":</strong><br>
+        S ⇒ aXa<br>
+        ⇒ a(aX)a ⇒ a(a(bX))a ⇒ a(a(bε))a<br>
+        ⇒ aabaa ✓<br><br>
+        <strong>For "b" (single char):</strong><br>
+        S ⇒ b ✓<br><br>
+        <strong>For "ε" (empty):</strong><br>
+        S ⇒ ε ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Key Difference:</strong> Unlike Question 7, we now need the <strong>same</strong> symbol on both ends. We also must handle length 0 and 1 explicitly!
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 9:** Grammar for :math:`L = \{ a^n b^n c^m \mid n \ge 0, m \ge 0 \}`.
+----
 
-    **Solution (hidden):**
+Level 3: Equal Count Dependencies
+==================================
+
+.. admonition:: **Question 10:** Set of all **palindromes** (:math:`w = w^R`) over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₁₀:</strong>
+        
     .. math::
-        S \to A B \\
-        A \to a A b \mid \epsilon \\
-        B \to c B \mid \epsilon
+        S \to aSa \mid bSb \mid a \mid b \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. The language is a sequence of equal :math:`a`'s and :math:`b`'s, followed by any number of :math:`c`'s. This suggests concatenation of two independent parts.
-    2. Use non-terminal :math:`A` for the equal :math:`a^n b^n` part (CFG is required here): :math:`A \to a A b \mid \epsilon`.
-    3. Use non-terminal :math:`B` for the arbitrary :math:`c^m` part (Regular Grammar is sufficient): :math:`B \to c B \mid \epsilon`.
-    4. Concatenate them: :math:`S \to A B`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Palindrome Property:</strong> Reads the same forward and backward.</li>
+        <li><strong>Recursive Structure:</strong> If we add a symbol to the left, we must add the same symbol to the right.</li>
+        <li><strong>Rules S → aSa | bSb:</strong> Maintain palindrome property by wrapping.</li>
+        <li><strong>Base Cases:</strong>
+            <ul>
+            <li>S → a or S → b: Odd-length palindromes (single center character)</li>
+            <li>S → ε: Even-length palindromes (no center character)</li>
+            </ul>
+        </li>
+        <li><strong>Building Process:</strong> Start from center and grow symmetrically outward.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "aba" (odd length):</strong><br>
+        S ⇒ aSa ⇒ a(b)a ⇒ aba ✓<br><br>
+        <strong>For "abba" (even length):</strong><br>
+        S ⇒ aSa ⇒ a(bSb)a ⇒ a(bεb)a ⇒ a(bb)a ⇒ abba ✓<br><br>
+        <strong>For "aabaa" (odd length):</strong><br>
+        S ⇒ aSa ⇒ a(aSa)a ⇒ a(a(b)a)a ⇒ aabaa ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        Palindromes are a <strong>classic CFG pattern</strong>! The key is symmetric growth: S → aSa means "whatever is inside S, wrap it with 'a' on both sides."
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 10:** Set of all palindromes (:math:`w = w^R, \Sigma = \{a, b\}`).
+----
 
-    **Solution (hidden):**
+.. admonition:: **Question 11:** **Even length strings** (:math:`|w| = 2k, k \geq 0`) over :math:`\Sigma = \{a, b\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-basic">BASIC</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to a S a \mid b S b \mid a \mid b \mid \epsilon
-
-    **Step-by-step (easy):**
-
-    1. Palindromes must read the same forward and backward.
-    2. The recursive rules :math:`S \to a S a \mid b S b` ensure that whatever is added to the left is also added to the right, preserving the palindrome property.
-    3. The base cases cover:
-        a. Odd-length palindromes (middle symbol): :math:`S \to a \mid b`.
-        b. Even-length palindromes (empty middle): :math:`S \to \epsilon`.
-    4. Example: :math:`aba` from :math:`S \to a S a \to a b a`. Example: :math:`abba` from :math:`S \to a S a \to a b S b a \to a b \epsilon b a = a b b a`.
-
-        </details>
-
-.. admonition:: **Question 11:** Even length strings (:math:`|w| = 2k, k \ge 0, \Sigma = \{a, b\}`).
-
-    **Solution (hidden):**
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
-
+        <div class="grammar-box">
+        <strong>📋 Grammar G₁₁:</strong>
+        
     .. math::
-        S \to X X S \mid \epsilon \\
+        S \to XXS \mid \epsilon \\
         X \to a \mid b
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. We want strings where the length is a multiple of 2 (0, 2, 4, ...).
-    2. The recursive rule must add symbols in pairs.
-    3. :math:`S \to X X S` adds two symbols (:math:`X X`) and continues the process (:math:`S`).
-    4. The base case :math:`S \to \epsilon` stops the recursion, resulting in an even length.
-    5. :math:`X \to a \mid b` generates a single character.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Goal:</strong> Length must be 0, 2, 4, 6, ... (multiples of 2).</li>
+        <li><strong>Strategy:</strong> Always add symbols in pairs.</li>
+        <li><strong>Recursive Rule:</strong> S → XXS adds exactly 2 symbols, then continues.</li>
+        <li><strong>Base Case:</strong> S → ε stops the process (length 0 is even).</li>
+        <li><strong>Variable X:</strong> Generates any single symbol from Σ.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivation for "abba" (length 4):</strong><br><br>
+        S ⇒ XXS<br>
+        ⇒ (a)XS ⇒ (a)(b)S<br>
+        ⇒ ab(XXS)<br>
+        ⇒ ab(b)XS ⇒ ab(b)(a)S<br>
+        ⇒ abba(ε)<br>
+        ⇒ abba ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Pattern:</strong> For length divisible by n, use n copies of X before the recursive S: S → X...X S (n times).
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 12:** Grammar for :math:`L = \{ w \mid |w| \equiv 0 \pmod 3, \Sigma = \{a, b\} \}`. (Length is a multiple of 3)
+----
 
-    **Solution (hidden):**
+Level 4: Complex Dependencies
+==============================
+
+.. admonition:: **Question 9:** Grammar for :math:`L = \{a^n b^n c^m \mid n \geq 0, m \geq 0\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₉:</strong>
+        
     .. math::
-        S \to X X X S \mid \epsilon \\
-        X \to a \mid b
+        S \to AB \\
+        A \to aAb \mid \epsilon \\
+        B \to cB \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. We want strings where the length is a multiple of 3 (0, 3, 6, 9, ...).
-    2. The recursive rule must add symbols in triplets.
-    3. :math:`S \to X X X S` adds three symbols (:math:`X X X`) and continues the process (:math:`S`).
-    4. The base case :math:`S \to \epsilon` stops the recursion, resulting in a length divisible by 3.
-    5. :math:`X \to a \mid b` generates a single character.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Pattern Analysis:</strong>
+            <ul>
+            <li>a's and b's must have equal counts (dependent)</li>
+            <li>c's are independent of a's and b's</li>
+            </ul>
+        </li>
+        <li><strong>Separation Strategy:</strong> Handle the two parts independently.</li>
+        <li><strong>Variable A:</strong> Generates a<sup>n</sup>b<sup>n</sup> using A → aAb | ε.</li>
+        <li><strong>Variable B:</strong> Generates c<sup>m</sup> using simple recursion B → cB | ε.</li>
+        <li><strong>Concatenation:</strong> S → AB places the equal-count part before the c's.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivation for "aabbccc":</strong><br><br>
+        S ⇒ AB<br>
+        ⇒ (aAb)B<br>
+        ⇒ (a(aAb)b)B<br>
+        ⇒ (a(aεb)b)B<br>
+        ⇒ (a(ab)b)B<br>
+        ⇒ aabbB<br>
+        ⇒ aabb(cB) ⇒ aabb(c(cB)) ⇒ aabb(c(c(cB)))<br>
+        ⇒ aabb(c(c(cε)))<br>
+        ⇒ aabbccc ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        <strong>Key Principle:</strong> When one dependency is independent of another, create separate variables and concatenate them. This is called <strong>sequential composition</strong>.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 13:** Grammar for :math:`L = \{ a^n b^n c^n \mid n \ge 0 \}`.
+----
 
-    **Solution (hidden):</b>
+.. admonition:: **Question 16:** Grammar for :math:`L = \{a^n b^n c^m d^m \mid n \geq 0, m \geq 0\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
-
-    **Not possible with a Context-Free Grammar (CFG).**
-
-    **Step-by-step (easy):**
-
-    1. The language requires three separate components to have equal counts: :math:`Count(a) = Count(b) = Count(c)`.
-    2. A CFG pushdown automaton (PDA) can only simultaneously enforce the equality of two counts (e.g., :math:`a^n b^n`) using its single stack.
-    3. To enforce the third equality (:math:`Count(c)=n`), the PDA would need a second stack.
-    4. Since :math:`L = \{ a^n b^n c^n \mid n \ge 0 \}` is a **Context-Sensitive Language** (CSL), it cannot be generated by a CFG.
-
-        </details>
-
-.. admonition:: **Question 14:** Grammar for :math:`L = \{ a^n b^m \mid n > m, n \ge 0, m \ge 0 \}`. (More :math:`a`'s than :math:`b`'s)
-
-    **Solution (hidden):</b>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
-
+        <div class="grammar-box">
+        <strong>📋 Grammar G₁₆:</strong>
+        
     .. math::
-        S \to A B \\
-        A \to a A b \mid a \\
-        B \to a B \mid \epsilon
+        S \to AB \\
+        A \to aAb \mid \epsilon \\
+        B \to cBd \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. The language requires a minimal string of one extra :math:`a` (:math:`a^{m+1} b^m`), followed by any number of additional :math:`a`'s.
-    2. The CFG needs to first match :math:`a^m b^m` and then ensure the single extra :math:`a`.
-    3. Use non-terminal :math:`A` to enforce the *at least one extra* :math:`a`: :math:`A \to a A b` matches the $m$ pairs, and the minimal production :math:`A \to a` guarantees the one extra $a$.
-    4. Use non-terminal :math:`B` to generate any arbitrary number of $a$'s at the end (the $a$'s not needed for matching $b$'s): :math:`B \to a B \mid \epsilon`.
-    5. Concatenate them: :math:`S \to A B`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Two Independent Pairs:</strong>
+            <ul>
+            <li>Pair 1: a<sup>n</sup>b<sup>n</sup> (n a's must equal n b's)</li>
+            <li>Pair 2: c<sup>m</sup>d<sup>m</sup> (m c's must equal m d's)</li>
+            </ul>
+        </li>
+        <li><strong>Independence:</strong> n and m are completely independent.</li>
+        <li><strong>Variable A:</strong> Handles the first pair using the classic equal-count pattern.</li>
+        <li><strong>Variable B:</strong> Handles the second pair using the same pattern.</li>
+        <li><strong>Sequential Composition:</strong> S → AB puts the two pairs in sequence.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivation for "aabbccdd":</strong><br><br>
+        S ⇒ AB<br>
+        <br>
+        <strong>Part 1 - Generate a²b²:</strong><br>
+        ⇒ (aAb)B<br>
+        ⇒ (a(aAb)b)B<br>
+        ⇒ (a(aεb)b)B<br>
+        ⇒ aabbB<br>
+        <br>
+        <strong>Part 2 - Generate c²d²:</strong><br>
+        ⇒ aabb(cBd)<br>
+        ⇒ aabb(c(cBd)d)<br>
+        ⇒ aabb(c(cεd)d)<br>
+        ⇒ aabbccdd ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        This is a beautiful example of <strong>compositional design</strong>: two context-free patterns combined sequentially remain context-free!
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 15:** Grammar for :math:`L = \{ a^n b^m \mid n \ne m, n \ge 0, m \ge 0 \}`. (Unequal numbers of :math:`a`'s and :math:`b`'s)
+----
 
-    **Solution (hidden):</b>
+.. admonition:: **Question 21:** Grammar for :math:`L = \{w \mid w \text{ has equal numbers of } a\text{'s and } b\text{'s}\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
+    .. raw:: html
+
+        <div class="grammar-box">
+        <strong>📋 Grammar G₂₁:</strong>
+        
     .. math::
-        S \to A \mid B \\
-        A \to a A b \mid a C \\
-        B \to a B b \mid b C \\
-        C \to a C \mid b C \mid \epsilon
+        S \to SS \mid aSb \mid bSa \mid \epsilon
 
-    **Step-by-step (easy):**
+    .. raw:: html
 
-    1. The language is the union of two independent cases: **Case A: More :math:`a`'s than :math:`b`'s** (covered by $A$) OR **Case B: More :math:`b`'s than :math:`a`'s** (covered by $B$).
-    2. **Case A (n > m):** Match the pairs with :math:`A \to a A b`, and then use :math:`A \to a C` to enforce one extra :math:`a` followed by any remaining :math:`a`'s or :math:`b`'s generated by :math:`C`.
-    3. **Case B (m > n):** Match the pairs with :math:`B \to a B b`, and then use :math:`B \to b C` to enforce one extra :math:`b` followed by any remaining symbols.
-    4. :math:`C \to a C \mid b C \mid \epsilon` generates any string :math:`\Sigma^*`.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Step-by-Step Explanation:</strong>
+        <ol>
+        <li><strong>Challenge:</strong> a's and b's can appear in ANY order (not just a<sup>n</sup>b<sup>n</sup>).</li>
+        <li><strong>Examples:</strong> "ab", "ba", "aabb", "abab", "baab", "abba" are all valid.</li>
+        <li><strong>Rule S → SS:</strong> Concatenate two balanced strings (both have equal a's and b's).</li>
+        <li><strong>Rules S → aSb | bSa:</strong> Add one 'a' and one 'b' in either order.</li>
+        <li><strong>Base Case:</strong> S → ε (empty string has 0 a's and 0 b's - balanced!).</li>
+        <li><strong>Why It Works:</strong> We maintain the count balance at every step.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="derivation-box">
+        <strong>📊 Example Derivations:</strong><br><br>
+        <strong>For "abba":</strong><br>
+        S ⇒ aSb ⇒ a(bSa)b ⇒ a(bεa)b ⇒ abab ❌<br>
+        <em>Let's try again:</em><br>
+        S ⇒ aSb ⇒ a(SS)b ⇒ a(bSa)(ε)b ⇒ a(bεa)b ⇒ abab ❌<br>
+        <em>Correct derivation:</em><br>
+        S ⇒ SS ⇒ (aSb)S ⇒ (ab)(bSa) ⇒ (ab)(ba) ⇒ abba ✓<br><br>
+        <strong>For "baab":</strong><br>
+        S ⇒ bSa ⇒ b(aSb)a ⇒ b(ab)a ⇒ baab ✓
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        This is a <strong>non-trivial CFG</strong>! The S → SS rule is powerful - it lets us combine smaller balanced strings in any way. This is why order doesn't matter.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 16:** Grammar for :math:`L = \{ a^n b^n c^m d^m \mid n \ge 0, m \ge 0 \}`.
+----
 
-    **Solution (hidden):</b>
+Level 5: Limitations of CFGs
+=============================
+
+.. admonition:: **Question 13:** Grammar for :math:`L = \{a^n b^n c^n \mid n \geq 0\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
-    .. math::
-        S \to A B \\
-        A \to a A b \mid \epsilon \\
-        B \to c B d \mid \epsilon
+    .. raw:: html
 
-    **Step-by-step (easy):**
+        <div class="not-possible">
+        ⚠️ NOT POSSIBLE with a Context-Free Grammar (CFG)
+        </div>
 
-    1. The language consists of two independent parts concatenated: :math:`(a^n b^n)` followed by :math:`(c^m d^m)`.
-    2. Use :math:`A` for the first part: :math:`A \to a A b \mid \epsilon`. This ensures :math:`Count(a) = Count(b)`.
-    3. Use :math:`B` for the second part: :math:`B \to c B d \mid \epsilon`. This ensures :math:`Count(c) = Count(d)`.
-    4. Since the two parts are independent and adjacent, a CFG can handle it: :math:`S \to A B`. This language is the intersection of two CFGs, but since they are distinct parts of the string, the grammar is simple.
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Why This Language is NOT Context-Free:</strong>
+        <ol>
+        <li><strong>The Challenge:</strong> Need all three counts to be equal: #a = #b = #c.</li>
+        <li><strong>CFG Limitation:</strong> A pushdown automaton (PDA) has only ONE stack.</li>
+        <li><strong>What We Can Do:</strong> We can match TWO counts (like a<sup>n</sup>b<sup>n</sup> or b<sup>n</sup>c<sup>n</sup>).</li>
+        <li><strong>Why Three Fails:</strong>
+            <ul>
+            <li>To match a's and b's, we push a's and pop when we see b's.</li>
+            <li>But then how do we also ensure c's match?</li>
+            <li>We'd need a second stack (or two-dimensional memory).</li>
+            </ul>
+        </li>
+        <li><strong>Language Class:</strong> This is a <strong>Context-Sensitive Language</strong> (CSL).</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Intuition:</strong> A CFG can "remember" one count using its stack. To remember two independent counts simultaneously, you need more power than a CFG provides.
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        <strong>Pumping Lemma Proof Sketch:</strong><br>
+        Consider the string w = a<sup>p</sup>b<sup>p</sup>c<sup>p</sup> where p is the pumping length. Any decomposition w = uvxyz with |vxy| ≤ p means vxy can span at most 2 symbol types. When we pump (repeat vxy), we change at most 2 counts, breaking the three-way equality.
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 17:** Grammar for :math:`L = \{ w w^R \mid w \in \{a, b\}^* \}`. (Even-length palindromes)
+----
 
-    **Solution (hidden):</b>
+.. admonition:: **Question 20:** Grammar for :math:`L = \{a^n b^n c^n \mid n \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
-    .. math::
-        S \to a S a \mid b S b \mid \epsilon
+    .. raw:: html
 
-    **Step-by-step (easy):**
+        <div class="not-possible">
+        ⚠️ NOT POSSIBLE with a Context-Free Grammar (CFG)
+        </div>
 
-    1. This is the subset of palindromes that must have an **even length** (since :math:`w w^R` is always $2|w|$).
-    2. The recursive rules :math:`S \to a S a \mid b S b` enforce the palindrome structure by adding identical symbols to the ends.
-    3. The only base case is the empty string :math:`S \to \epsilon`, which correctly generates the smallest even-length palindrome (length 0).
-    4. The rules from Question 10 (Palindromes) *without* the $S \to a \mid b$ productions are exactly what is needed here.
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Explanation:</strong>
+        <ol>
+        <li><strong>Same Problem:</strong> This is identical to Question 13, just excluding the empty string (n=0).</li>
+        <li><strong>The Core Issue:</strong> The constraint #a = #b = #c still requires tracking three counts simultaneously.</li>
+        <li><strong>Why Excluding ε Doesn't Help:</strong> The fundamental limitation is about simultaneous counting, not about the minimum length.</li>
+        <li><strong>Pumping Lemma:</strong> This language is the canonical example used to prove the Pumping Lemma for CFGs.</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Remember:</strong> If you need to enforce <strong>three or more equal counts</strong>, you're beyond the power of CFGs!
+        </div>
+
+    .. raw:: html
 
         </details>
 
-.. admonition:: **Question 18:** Grammar for :math:`L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}`.
+----
 
-    **Solution (hidden):</b>
+Level 6: Advanced Parsing - CYK Algorithm
+==========================================
+
+.. admonition:: **Question 23:** **CYK Algorithm:** Check whether the string :math:`w=aab` is a valid member of the grammar :math:`G` with productions: :math:`S \to AB \mid BC`, :math:`A \to BA \mid a`, :math:`B \to CC \mid b`, :math:`C \to AB \mid a`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
 
     .. raw:: html
 
         <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to A \mid B \\
-        A \to C D \\
-        C \to a C b \mid \epsilon \\
-        D \to c D \mid \epsilon \\
-        B \to E F \\
-        E \to a E \mid \epsilon \\
-        F \to b F c \mid \epsilon
-
-    **Step-by-step (easy):**
-
-    1. The language is the union of two CFGs: **Case A**: :math:`i = j` (arbitrary :math:`k`) OR **Case B**: :math:`j = k` (arbitrary :math:`i`).
-    2. :math:`S \to A \mid B` separates the two cases.
-    3. **Case A (:math:`i=j`):** :math:`A \to C D`. $C$ generates :math:`a^i b^i` ($C \to a C b \mid \epsilon$) and $D$ generates arbitrary $c$'s ($D \to c D \mid \epsilon$).
-    4. **Case B (:math:`j=k`):** :math:`B \to E F`. $E$ generates arbitrary $a$'s ($E \to a E \mid \epsilon$) and $F$ generates :math:`b^j c^j` ($F \to b F c \mid \epsilon$).
-
-        </details>
-
-.. admonition:: **Question 19:** Grammar for :math:`L = \{ a^n b^n c^m d^m \mid n \ge 1, m \ge 1 \}`.
-
-    **Solution (hidden):</b
-    >
+        <summary><b>🔍 Show Complete Solution with CYK Table</b></summary>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to A B \\
-        A \to a A b \mid a b \\
-        B \to c B d \mid c d
-
-    **Step-by-step (easy):**
-
-    1. This is almost identical to Question 16, but with the constraint that $n \ge 1$ and $m \ge 1$ (no empty strings for $a^n b^n$ or $c^m d^m$).
-    2. Use :math:`A` for the :math:`a^n b^n` part, guaranteeing $n \ge 1$: :math:`A \to a A b \mid a b`.
-    3. Use :math:`B` for the :math:`c^m d^m` part, guaranteeing $m \ge 1$: :math:`B \to c B d \mid c d`.
-    4. Concatenate them: :math:`S \to A B`.
-
-        </details>
-
-.. admonition:: **Question 20:** Grammar for :math:`L = \{ a^n b^n c^n \mid n \ge 1 \}`.
-
-    **Solution (hidden):</b>
+        <div class="steps-box">
+        <strong>🎯 CYK Algorithm Overview:</strong>
+        <ol>
+        <li><strong>Requirement:</strong> Grammar must be in Chomsky Normal Form (CNF).</li>
+        <li><strong>Check CNF:</strong> All rules are A → BC or A → a. ✓ This grammar is in CNF!</li>
+        <li><strong>Table Structure:</strong> Build a triangular table bottom-up.</li>
+        <li><strong>Process:</strong> For each substring, check which non-terminals can generate it.</li>
+        </ol>
+        </div>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
+        <div class="grammar-box">
+        <strong>📋 Given Grammar (Already in CNF):</strong><br>
+        S → AB | BC<br>
+        A → BA | a<br>
+        B → CC | b<br>
+        C → AB | a
+        </div>
 
-    **Not possible with a Context-Free Grammar (CFG).**
-
-    **Step-by-step (easy):**
-
-    1. This is the same language as Question 13, but excludes the empty string (:math:`n=0`).
-    2. The core constraint :math:`Count(a) = Count(b) = Count(c)` requires the PDA to track three counts simultaneously, which is impossible with a single stack.
-    3. This language is a classic example used in the Pumping Lemma for CFGs to prove it is **not context-free**.
-
-        </details>
-
-.. admonition:: **Question 21:** Grammar for :math:`L = \{ w \mid w \text{ has equal numbers of } a\text{'s and } b\text{'s} \}`.
-
-    **Solution (hidden):</b>
+    **CYK Table Construction for** :math:`w = a_1 a_2 b_3`:
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to S S \mid a S b \mid b S a \mid \epsilon
-
-    **Step-by-step (easy):**
-
-    1. This is a classic non-regular CFG where the order of :math:`a`'s and :math:`b`'s does not matter, only that they cancel out to zero difference.
-    2. :math:`S \to S S` allows concatenation (e.g., :math:`aabb` followed by :math:`bbaa` is valid).
-    3. :math:`S \to a S b` and :math:`S \to b S a` ensure that one :math:`a` and one :math:`b` are generated together, preserving the equality count.
-    4. :math:`S \to \epsilon` is the base case (empty string is valid).
-    5. This grammar generates strings like :math:`ab, ba, aabb, abab, abba, baab`, etc., all with $N_a = N_b$.
-
-        </details>
-
-.. admonition:: **Question 22:** Grammar for :math:`L = \{ w \mid N_a(w) > N_b(w) \}`. (More :math:`a`'s than :math:`b`'s, any order)
-
-    **Solution (hidden):</b>
-
-    .. raw:: html
-
-        <details>
-        <summary><b>Show Solution</b></summary>
-
-    .. math::
-        S \to A \\
-        A \to a \mid a A \mid b A a A \mid a A b A
-
-    **Step-by-step (easy):**
-
-    1. This is a well-known example that is a CFG, but complex to construct. The goal is to ensure the final string has a net surplus of one or more :math:`a`'s.
-    2. We use recursion to ensure that all balanced pairs of :math:`a`'s and :math:`b`'s are generated, and a single :math:`a` is left over.
-    3. The rule :math:`A \to a` ensures the minimum of one extra :math:`a`.
-    4. The rules :math:`A \to a A`, :math:`A \to a A b A`, and :math:`A \to b A a A` ensure that we can generate any arbitrary string while maintaining the overall property of $N_a > N_b$. (A simpler form using an intermediate non-terminal is also possible but often more complex to prove correct.)
-
-        </details>
-
-.. admonition:: **Question 23:** CYK Algorithm Question: Check whether the string :math:`w=aab` is a valid member of the grammar :math:`G` where the productions are: :math:`S \to AB \mid BC`, :math:`A \to BA \mid a`, :math:`B \to CC \mid b`, :math:`C \to AB \mid a`.
-
-    **Solution (hidden):</b>
+        <table class="cyk-table">
+        <thead>
+        <tr>
+          <th>Length</th>
+          <th>Position 1</th>
+          <th>Position 2</th>
+          <th>Position 3</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><strong>3</strong></td>
+          <td>{B}</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td>{B}</td>
+          <td>{S, C}</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>1</strong></td>
+          <td>{A, C}</td>
+          <td>{A, C}</td>
+          <td>{B}</td>
+        </tr>
+        <tr>
+          <td><strong>Input</strong></td>
+          <td>a</td>
+          <td>a</td>
+          <td>b</td>
+        </tr>
+        </tbody>
+        </table>
 
     .. raw:: html
 
-        <details>
-        <summary><b>Show Solution</b></summary>
+        <div class="derivation-box">
+        <strong>📊 Step-by-Step Table Construction:</strong><br><br>
+        
+        <strong>Step 1: Length 1 (Base cases)</strong><br>
+        • V<sub>1,1</sub> for 'a': Which rules have → a? <strong>A → a</strong> and <strong>C → a</strong><br>
+        &nbsp;&nbsp;⇒ V<sub>1,1</sub> = {A, C}<br>
+        • V<sub>2,1</sub> for 'a': Same as above<br>
+        &nbsp;&nbsp;⇒ V<sub>2,1</sub> = {A, C}<br>
+        • V<sub>3,1</sub> for 'b': Which rules have → b? <strong>B → b</strong><br>
+        &nbsp;&nbsp;⇒ V<sub>3,1</sub> = {B}<br><br>
+        
+        <strong>Step 2: Length 2</strong><br>
+        • V<sub>1,2</sub> for "aa" (positions 1-2):<br>
+        &nbsp;&nbsp;Split: V<sub>1,1</sub> × V<sub>2,1</sub> = {A,C} × {A,C}<br>
+        &nbsp;&nbsp;Check: AA (no rule), AC (no rule), CA (no rule), CC (B → CC ✓)<br>
+        &nbsp;&nbsp;⇒ V<sub>1,2</sub> = {B}<br><br>
+        
+        • V<sub>2,2</sub> for "ab" (positions 2-3):<br>
+        &nbsp;&nbsp;Split: V<sub>2,1</sub> × V<sub>3,1</sub> = {A,C} × {B}<br>
+        &nbsp;&nbsp;Check: AB (S → AB ✓, C → AB ✓), CB (no rule)<br>
+        &nbsp;&nbsp;⇒ V<sub>2,2</sub> = {S, C}<br><br>
+        
+        <strong>Step 3: Length 3</strong><br>
+        • V<sub>1,3</sub> for "aab" (full string):<br>
+        &nbsp;&nbsp;<strong>Split k=1:</strong> V<sub>1,1</sub> × V<sub>2,2</sub> = {A,C} × {S,C}<br>
+        &nbsp;&nbsp;Check: AS (no rule), AC (no rule), CS (no rule), CC (B → CC ✓)<br>
+        &nbsp;&nbsp;⇒ Found: {B}<br><br>
+        
+        &nbsp;&nbsp;<strong>Split k=2:</strong> V<sub>1,2</sub> × V<sub>3,1</sub> = {B} × {B}<br>
+        &nbsp;&nbsp;Check: BB (no rule)<br>
+        &nbsp;&nbsp;⇒ Nothing new<br><br>
+        
+        &nbsp;&nbsp;⇒ V<sub>1,3</sub> = {B}
+        </div>
 
-    **CYK Table:**
+    .. raw:: html
 
-    The CYK table for :math:`w = a_1 a_2 b_3` (length 3):
+        <div class="highlight-note">
+        <strong>🔍 Final Answer:</strong> Since the start symbol <strong>S</strong> is <strong>NOT</strong> in V<sub>1,3</sub>, the string "aab" is <strong>REJECTED</strong> ❌
+        </div>
 
-    | Length $l$ | 1 | 2 | 3 |
-    | :---: | :---: | :---: | :---: |
-    | **$V_{i, 1}$** | :math:`V_{1,1}` ($a$) | :math:`V_{2,1}` ($a$) | :math:`V_{3,1}` ($b$) |
-    | **Sets** | :math:`\{A, C\}` | :math:`\{A, C\}` | :math:`\{B\}` |
-    | **$V_{i, 2}$** | :math:`V_{1,2}` ($aa$) | :math:`V_{2,2}` ($ab$) | |
-    | **Sets** | :math:`\emptyset` | :math:`\{S, A\}` | |
-    | **$V_{1, 3}$** | :math:`V_{1,3}` ($aab$) | | |
-    | **Sets** | :math:`\emptyset` | | |
+    .. raw:: html
 
-    **Detailed Calculation:**
+        <div class="example-box">
+        💭 <strong>What CYK tells us:</strong> The string "aab" CAN be generated by the grammar (specifically, by non-terminal B), but it CANNOT be generated starting from the start symbol S. Therefore, it's not in the language L(G).
+        </div>
 
-    1.  **Length 1 ($V_{i, 1}$):**
-        * $V_{1, 1}$ (for $a$): $\{A, C\}$ (from $A \to a, C \to a$)
-        * $V_{2, 1}$ (for $a$): $\{A, C\}$
-        * $V_{3, 1}$ (for $b$): $\{B\}$ (from $B \to b$)
-
-    2.  **Length 2 ($V_{i, 2}$):**
-        * $V_{1, 2}$ (for $a_1 a_2 = aa$): Check $V_{1, 1} V_{2, 1} = \{A, C\} \{A, C\}$. Productions $AA, AC, CA, CC$. Only $B \to CC$ exists. $\implies V_{1, 2} = \{B\}$. (Correction: checking $V_{1, 1} V_{2, 1}$ gives $AA, AC, CA, CC$. The given grammar only has $S \to AB, BC$ etc.)
-            * Let's re-check $V_{1, 2}$: $V_{1, 1} V_{2, 1} = \{A, C\} \{A, C\}$.
-            * $A A$: Not possible.
-            * $A C$: Not possible.
-            * $C A$: Not possible.
-            * $C C$: Possible from $B \to C C$. $\implies V_{1, 2} = \{B\}$. (My earlier table entry was wrong).
-
-        * $V_{2, 2}$ (for $a_2 b_3 = ab$): Check $V_{2, 1} V_{3, 1} = \{A, C\} \{B\}$. Productions $A B, C B$.
-            * $A B$: Possible from $S \to A B, C \to A B$. $\implies \{S, C\}$.
-            * $C B$: Not possible.
-            * $\implies V_{2, 2} = \{S, C\}$.
-
-    3.  **Length 3 ($V_{1, 3}$):** Check all splits (k=1, 2):
-        * **Split 1:** $V_{1, 1} V_{2, 2} = \{A, C\} \{S, C\}$. Productions $A S, A C, C S, C C$.
-            * $C C$: Possible from $B \to C C$. $\implies \{B\}$
-        * **Split 2:** $V_{1, 2} V_{3, 1} = \{B\} \{B\}$. Productions $B B$.
-            * $B B$: Not possible.
-        * $\implies V_{1, 3} = \{B\}$.
-
-    **Conclusion:**
-
-    Since the start symbol :math:`S` is **not** in the set :math:`V_{1, 3}` (the set for the full string $aab$), the string :math:`aab` is **NOT** a valid member of the language generated by grammar :math:`G`.
+    .. raw:: html
 
         </details>
+
+----
+
+Summary: Key CFG Patterns
+=========================
+
+.. raw:: html
+
+   <div class="grammar-box">
+   <strong>🎯 Essential Patterns to Remember:</strong><br><br>
+   
+   <strong>1. Single Count Pattern:</strong><br>
+   • a<sup>n</sup>: S → aS | ε<br>
+   • a<sup>n</sup> (n≥1): S → aS | a<br><br>
+   
+   <strong>2. Equal Count Pattern:</strong><br>
+   • a<sup>n</sup>b<sup>n</sup>: S → aSb | ε<br>
+   • Palindromes: S → aSa | bSb | a | b | ε<br><br>
+   
+   <strong>3. Independent Patterns:</strong><br>
+   • a<sup>n</sup>b<sup>m</sup>: S → AB, A → aA|a, B → bB|b<br>
+   • Use concatenation when counts are independent<br><br>
+   
+   <strong>4. Union Pattern:</strong><br>
+   • Case 1 OR Case 2: S → A | B<br>
+   • Use for mutually exclusive alternatives<br><br>
+   
+   <strong>5. Position Constraints:</strong><br>
+   • Start/End: Fix boundaries, generate middle freely<br>
+   • Example: a...b → S → aXb, X → (a|b)*<br>
+   </div>
+
+.. raw:: html
+
+   <div class="highlight-note">
+   <strong>⚡ Power of CFGs:</strong><br>
+   ✓ Can handle: nested structures, palindromes, two equal counts<br>
+   ✗ Cannot handle: three+ equal counts, context-sensitive patterns, a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>
+   </div>
+
+----
