@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Introduction to Context Free Grammer &mdash; Stanford CourseDocs Visual Edition</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Pushdown Automata (PDA)" href="pushdownautomata.html" />
+    <link rel="prev" title="Theory of Computation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #8C1515" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Docs: Theory of Computation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PDA.html">3. PDA Practice Problems</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #8C1515" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Docs: Theory of Computation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Introduction to Context Free Grammer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/Introduction_CFG.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-to-context-free-grammer">
+<h1><span class="section-number">1. </span>Introduction to Context Free Grammer<a class="headerlink" href="#introduction-to-context-free-grammer" title="Link to this heading"></a></h1>
+<p>Start here! This section builds <strong>intuition first</strong>, before diving into formal definitions.
+Keep your mind open — imagine, visualize, and connect.</p>
+<hr class="docutils" />
+<section id="what-is-context-free">
+<h2><span class="section-number">1.1. </span>What is Context-Free?<a class="headerlink" href="#what-is-context-free" title="Link to this heading"></a></h2>
+<p><strong>Real-World Analogy: HTML Tags</strong></p>
+<p>Think about nested HTML structure:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Hello <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>World<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Every opening <code class="docutils literal notranslate"><span class="pre">&lt;tag&gt;</span></code> has a matching closing <code class="docutils literal notranslate"><span class="pre">&lt;/tag&gt;</span></code>.</p>
+<div class="important admonition">
+<p class="admonition-title">⚠️ Key Insight</p>
+<p>A <strong>finite automaton (DFA/NFA)</strong> can’t verify this structure—it lacks <em>memory</em>.
+Matching nested tags requires <strong>unbounded memory</strong>, which <strong>only a stack</strong> can provide.</p>
+</div>
+<p>A <strong>Context-Free Grammar (CFG)</strong> is precisely this:
+a <strong>rule-based system</strong> that can <em>generate and verify</em> hierarchical, nested patterns.</p>
+</section>
+<hr class="docutils" />
+<section id="the-problem-why-cfgs-matter">
+<h2><span class="section-number">1.2. </span>The Problem: Why CFGs Matter ?<a class="headerlink" href="#the-problem-why-cfgs-matter" title="Link to this heading"></a></h2>
+<p><strong>Example: Balanced Parentheses</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 10.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>String</p></th>
+<th class="head"><p>Valid?</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">()</span></code></p></td>
+<td><p>✓</p></td>
+<td><p>Matched pair</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(())</span></code></p></td>
+<td><p>✓</p></td>
+<td><p>Nested pair</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(()())</span></code></p></td>
+<td><p>✓</p></td>
+<td><p>Mixed nesting</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(()</span></code></p></td>
+<td><p>✗</p></td>
+<td><p>Unclosed parenthesis</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">())</span></code></p></td>
+<td><p>✗</p></td>
+<td><p>Extra closing parenthesis</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<section id="can-a-dfa-verify-this">
+<h3><span class="section-number">1.2.1. </span>Can a DFA verify this?<a class="headerlink" href="#can-a-dfa-verify-this" title="Link to this heading"></a></h3>
+<p><strong>No.</strong></p>
+<p>A DFA cannot decide this language.</p>
+<div class="hint admonition">
+<p class="admonition-title">🧠 Intuition</p>
+<p>A DFA has <em>finite memory</em>.
+Balanced parentheses need remembering <em>an arbitrary number of opens</em> until they’re closed later — requiring a <strong>stack</strong>, not fixed states.</p>
+</div>
+<p>—</p>
+</section>
+</section>
+<section id="recipe-analogy-how-cfgs-work">
+<h2><span class="section-number">1.3. </span>Recipe Analogy: How CFGs Work ?<a class="headerlink" href="#recipe-analogy-how-cfgs-work" title="Link to this heading"></a></h2>
+<p>Think of a <strong>Context-Free Grammar (CFG)</strong> as a <em>recipe</em> that tells you how to <strong>build valid sentences</strong> from smaller ingredients.</p>
+<div style="background-color:#f7f9fb; padding:1em; border-left:5px solid #2b6cb0; border-radius:8px;">
+  <strong>Analogy:</strong> A CFG is like a cookbook — you start with a <em>main dish</em> (the start symbol) and repeatedly
+  replace ingredients (non-terminals) with their detailed instructions (production rules).
+</div><p>—</p>
+<p><strong>Grammar Rules</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Sentence → Subject Verb Object
+Subject  → &quot;The&quot; Noun
+Noun     → &quot;cat&quot; | &quot;dog&quot; | &quot;bird&quot;
+Verb     → &quot;chased&quot; | &quot;saw&quot;
+Object   → &quot;the&quot; Noun
+</pre></div>
+</div>
+<p>—</p>
+<p><strong>Let’s Generate a Sentence!</strong></p>
+<p>We start from the top rule and <strong>expand step by step</strong>.
+Each arrow <strong>⟹</strong> shows one <em>derivation step</em> — replacing a variable with its rule.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Step 1: Start with the start symbol
+<span class="hll">Sentence
+</span>⟹ Subject Verb Object
+<span class="hll">
+</span>Step 2: Expand Subject
+<span class="hll">⟹ &quot;The&quot; Noun Verb Object
+</span>
+Step 3: Choose a Noun
+⟹ &quot;The&quot; &quot;cat&quot; Verb Object
+
+Step 4: Expand Verb
+⟹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; Object
+
+Step 5: Expand Object
+⟹ &quot;The&quot; &quot;cat&quot; &quot;chased&quot; &quot;the&quot; &quot;bird&quot;
+</pre></div>
+</div>
+<p>—</p>
+<p>✅ <strong>Final Result:</strong> The cat chased the bird</p>
+<p>—</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Each step <strong>replaces</strong> one non-terminal (like <em>Sentence</em> or <em>Noun</em>) with its corresponding rule.</p></li>
+<li><p>You continue until <strong>only terminals remain</strong> — words that appear directly in the final sentence.</p></li>
+<li><p>This is how a <strong>CFG “generates”</strong> strings in a language.</p></li>
+</ul>
+</div>
+<p>—</p>
+</section>
+<section id="regular-vs-context-free">
+<h2><span class="section-number">1.4. </span>Regular vs. Context-Free<a class="headerlink" href="#regular-vs-context-free" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Quick Comparison</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Feature</strong></p></th>
+<th class="head"><p><strong>Regular Language</strong></p></th>
+<th class="head"><p><strong>Context-Free Language</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Memory</p></td>
+<td><p>Finite (no stack)</p></td>
+<td><p>Unbounded (stack)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tool</p></td>
+<td><p>DFA / NFA</p></td>
+<td><p>PDA</p></td>
+</tr>
+<tr class="row-even"><td><p>Can recognize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a*b*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">aⁿbⁿ</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Handles nesting?</p></td>
+<td><p>✗ No</p></td>
+<td><p>✓ Yes</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Every <strong>CFG</strong> has an equivalent <strong>Pushdown Automaton (PDA)</strong>.</p>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-688665014e5ac7a29aad8f8e01930b31f5644988.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph CFG_PDA {
+    rankdir=LR;
+    node [shape=box, style=&quot;rounded,filled&quot;, fillcolor=&quot;#E8F4F8&quot;];
+    CFG [label=&quot;Context-Free Grammar&quot;];
+    PDA [label=&quot;Pushdown Automaton&quot;];
+    CFL [label=&quot;Context-Free Language&quot;];
+    CFG -&gt; CFL;
+    CFL -&gt; PDA [label=&quot;Equivalent Representation&quot;];
+}</p></object></div>
+<p>—</p>
+</section>
+<section id="why-context-free">
+<h2><span class="section-number">1.5. </span>Why “Context-Free”?<a class="headerlink" href="#why-context-free" title="Link to this heading"></a></h2>
+<div class="shadow-sm p-3 bg-light rounded docutils container">
+<p>A rule applies <strong>regardless of context</strong> — that’s why it’s <em>context-free</em>.</p>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Noun → &quot;cat&quot;    ← applies anywhere “Noun” appears.
+</pre></div>
+</div>
+<p>Compare with context-sensitive rules:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>a Noun b → a &quot;cat&quot; b   ← applies only between “a” and “b”
+</pre></div>
+</div>
+<p>—</p>
+</section>
+<section id="real-world-applications">
+<h2><span class="section-number">1.6. </span>Real-World Applications<a class="headerlink" href="#real-world-applications" title="Link to this heading"></a></h2>
+<p><strong>1. Programming Languages</strong></p>
+<p>Every compiler (C, Java, Python) uses CFGs for parsing.</p>
+<p><strong>2. HTML/XML Parsing</strong></p>
+<p>Browsers verify nesting of tags using CFG-like structures.</p>
+<p><strong>3. Mathematical Expressions</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2 + 3 * (4 + 5)   ✓ valid
+2 + * 3 (4 + 5)   ✗ invalid
+</pre></div>
+</div>
+<p><strong>4. Natural Language</strong></p>
+<p>Grammar rules model sentence structure.</p>
+<p>—</p>
+</section>
+<section id="quick-check">
+<h2><span class="section-number">1.7. </span>Quick Check<a class="headerlink" href="#quick-check" title="Link to this heading"></a></h2>
+<p><strong>Q1.</strong> Can a DFA verify <code class="docutils literal notranslate"><span class="pre">(())</span></code>?</p>
+<div class="toggle admonition">
+<p class="admonition-title">💡 Solution</p>
+<p><strong>No.</strong> Requires unbounded memory (stack).</p>
+</div>
+<p><strong>Q2.</strong> What can CFGs do that DFAs can’t?</p>
+<div class="toggle admonition">
+<p class="admonition-title">💡 Solution</p>
+<p>Describe <strong>recursive</strong> and <strong>nested</strong> patterns — vital for programming languages.</p>
+</div>
+<p>—</p>
+</section>
+<section id="summary">
+<h2><span class="section-number">1.8. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>✅ CFGs describe <strong>recursive, nested</strong> languages</p>
+<p>✅ They use <strong>rule substitution</strong> (derivations)</p>
+<p>✅ <strong>More powerful than</strong> DFA/NFA</p>
+<p>✅ <strong>Less powerful than</strong> Turing Machines</p>
+<p>✅ Essential for <strong>parsers, compilers, and linguistics</strong></p>
+</section>
+<hr class="docutils" />
+<section id="definition-2-1-context-free-grammar">
+<h2><span class="section-number">1.9. </span>Definition 2.1 — Context-Free Grammar<a class="headerlink" href="#definition-2-1-context-free-grammar" title="Link to this heading"></a></h2>
+<p>A <strong>Context-Free Grammar (CFG)</strong> is a 4-tuple:</p>
+<div class="math notranslate nohighlight">
+\[G = (V, \Sigma, R, S)\]</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Meaning</strong></p></th>
+<th class="head"><p><strong>Example</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(V\)</span></p></td>
+<td><p>Variables (non-terminals)</p></td>
+<td><p><span class="math notranslate nohighlight">\(S, A\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\Sigma\)</span></p></td>
+<td><p>Terminals (alphabet)</p></td>
+<td><p><span class="math notranslate nohighlight">\(a, b, (, )\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R\)</span></p></td>
+<td><p>Production rules</p></td>
+<td><p><span class="math notranslate nohighlight">\(S \to aSb \mid \epsilon\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(S\)</span></p></td>
+<td><p>Start symbol</p></td>
+<td><p><span class="math notranslate nohighlight">\(S \in V\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Variables → UPPERCASE (e.g. <code class="docutils literal notranslate"><span class="pre">S</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code>)</p></li>
+<li><p>Terminals → lowercase or symbols (e.g. <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">(</span></code>)</p></li>
+<li><p>Multiple rules allowed: <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">→</span> <span class="pre">w₁</span> <span class="pre">|</span> <span class="pre">w₂</span> <span class="pre">|</span> <span class="pre">w₃</span></code></p></li>
+</ul>
+</div>
+<p>—</p>
+</section>
+<section id="example-cfg-balanced-parentheses">
+<h2><span class="section-number">1.10. </span>Example CFG — Balanced Parentheses<a class="headerlink" href="#example-cfg-balanced-parentheses" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>G = ({S}, {(,)}, R, S)
+where R = {S → ε | (S) | SS}
+</pre></div>
+</div>
+<p><strong>Rule meanings:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S → ε\)</span> : Empty string is valid</p></li>
+<li><p><span class="math notranslate nohighlight">\(S → (S)\)</span> : Wrap balanced string in parentheses</p></li>
+<li><p><span class="math notranslate nohighlight">\(S → SS\)</span> : Concatenate two balanced strings</p></li>
+</ul>
+<div class="hint admonition">
+<p class="admonition-title">✅ Try it yourself</p>
+<p>Derive <code class="docutils literal notranslate"><span class="pre">(())()</span></code> using the above grammar.</p>
+</div>
+<p>—</p>
+<p><strong>Hidden Answer (click to reveal):</strong></p>
+<div class="toggle admonition">
+<p class="admonition-title">💡 Solution</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">SS</span></code></p></li>
+<li><p>First <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">(S)</span> <span class="pre">⟹</span> <span class="pre">(())</span></code></p></li>
+<li><p>Second <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">⟹</span> <span class="pre">(S)</span> <span class="pre">⟹</span> <span class="pre">()</span></code></p></li>
+</ol>
+<p>✅ Combined: <code class="docutils literal notranslate"><span class="pre">(())()</span></code></p>
+</div>
+</section>
+<section id="self-check-interactive-quiz">
+<h2><span class="section-number">1.11. </span>Self-Check: Interactive Quiz<a class="headerlink" href="#self-check-interactive-quiz" title="Link to this heading"></a></h2>
+<p>Click each question to check your understanding!</p>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">🧩 Q1. Which of the following is <strong>NOT</strong> a context-free language?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aⁿbⁿ</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">aⁿbᵐ</span> <span class="pre">|</span> <span class="pre">n,</span> <span class="pre">m</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">(ⁿ)ⁿ</span> <span class="pre">|</span> <span class="pre">n</span> <span class="pre">≥</span> <span class="pre">0</span> <span class="pre">}</span></code></p></li>
+</ol>
+<div class="toggle admonition">
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>❌ <strong>Incorrect:</strong> a, c, and d are context-free.</p>
+<p>✅ <strong>Correct:</strong> (b) — <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">wwʳ</span> <span class="pre">|</span> <span class="pre">w</span> <span class="pre">∈</span> <span class="pre">{a,</span> <span class="pre">b}*</span> <span class="pre">}</span></code> is <strong>not</strong> context-free because it requires matching both halves — something a PDA cannot do.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">🧩 Q2. Which statement about CFGs is <strong>true</strong>?</p>
+<ol class="loweralpha simple">
+<li><p>CFGs can describe only linear patterns</p></li>
+<li><p>CFGs cannot describe recursion</p></li>
+<li><p>CFGs can describe nested structures like parentheses</p></li>
+<li><p>CFGs are less powerful than DFAs</p></li>
+</ol>
+<div class="toggle admonition">
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (c) CFGs handle recursive and nested patterns such as balanced parentheses.</p>
+<p>❌ The others misunderstand CFG power or structure.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">🧩 Q3. What type of automaton recognizes <strong>Context-Free Languages</strong>?</p>
+<ol class="loweralpha simple">
+<li><p>Finite Automaton (FA)</p></li>
+<li><p>Pushdown Automaton (PDA)</p></li>
+<li><p>Turing Machine (TM)</p></li>
+<li><p>Moore Machine</p></li>
+</ol>
+<div class="toggle admonition">
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) PDA — uses a <strong>stack</strong> to handle recursion and nested symbols.</p>
+<p>❌ FAs lack memory; TMs are more powerful; Moore machines output differently.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">🧩 Q4. In a CFG, which of the following is <strong>NOT</strong> true?</p>
+<ol class="loweralpha simple">
+<li><p>Each production replaces one variable at a time.</p></li>
+<li><p>The rules depend on surrounding symbols.</p></li>
+<li><p>Rules are applied regardless of context.</p></li>
+<li><p>The grammar is defined as a 4-tuple (V, Σ, R, S).</p></li>
+</ol>
+<div class="toggle admonition">
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) — describes <em>context-sensitive</em> grammars, not context-free ones.</p>
+<p>❌ Others are true for CFGs.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="exercise admonition">
+<p class="admonition-title">🧩 Q5. Which rule correctly defines <strong>balanced parentheses</strong>?</p>
+<ol class="loweralpha simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">S(S)</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S</span> <span class="pre">|</span> <span class="pre">S)</span> <span class="pre">|</span> <span class="pre">ε</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S(S))</span></code></p></li>
+</ol>
+<div class="toggle admonition">
+<p class="admonition-title">🔍 Reveal Answer</p>
+<p>✅ <strong>Correct:</strong> (b) <code class="docutils literal notranslate"><span class="pre">S</span> <span class="pre">→</span> <span class="pre">(S)</span> <span class="pre">|</span> <span class="pre">SS</span> <span class="pre">|</span> <span class="pre">ε</span></code> generates all valid balanced parentheses.</p>
+<p>❌ The others fail to produce the entire set or are malformed.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>💭 <strong>Keep Practicing !!</strong></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Theory of Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="2. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Little_Perspective.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

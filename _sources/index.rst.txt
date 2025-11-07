@@ -52,9 +52,7 @@ Theory of Computation
    :numbered:
    :caption: Index
 
-   modules/lesson01
-   modules/context_free_languages
+   modules/Introduction_CFG
+   modules/CFG
    modules/pushdownautomata
-   modules/chapter03
-   modules/chapter02
-   modules/intro
+   modules/PDA

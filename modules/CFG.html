@@ -1,0 +1,1298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. CFG Practice Problems &mdash; Stanford CourseDocs Visual Edition</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a5a24c5d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Pushdown Automata (PDA)" href="pushdownautomata.html" />
+    <link rel="prev" title="1. Introduction to Context Free Grammer" href="Introduction_CFG.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #8C1515" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Docs: Theory of Computation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Introduction_CFG.html">1. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. CFG Practice Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PDA.html">4. PDA Practice Problems</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #8C1515" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Docs: Theory of Computation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>CFG Practice Problems</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/CFG.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cfg-practice-problems">
+<h1><span class="section-number">2. </span>CFG Practice Problems<a class="headerlink" href="#cfg-practice-problems" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#level-1-basic-grammar-construction" id="id3">Level 1: Basic Grammar Construction</a></p></li>
+<li><p><a class="reference internal" href="#level-2-position-based-patterns" id="id4">Level 2: Position-Based Patterns</a></p></li>
+<li><p><a class="reference internal" href="#level-3-multiple-variable-dependencies" id="id5">Level 3: Multiple Variable Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#level-4-advanced-patterns" id="id6">Level 4: Advanced Patterns</a></p></li>
+<li><p><a class="reference internal" href="#level-5-fa-to-cfg-conversion" id="id7">Level 5: FA to CFG Conversion</a></p></li>
+<li><p><a class="reference internal" href="#level-6-chomsky-normal-form-cnf" id="id8">Level 6: Chomsky Normal Form (CNF)</a></p></li>
+<li><p><a class="reference internal" href="#level-7-cyk-algorithm" id="id9">Level 7: CYK Algorithm</a></p></li>
+<li><p><a class="reference internal" href="#level-8-language-classification" id="id10">Level 8: Language Classification</a></p></li>
+<li><p><a class="reference internal" href="#level-9-grammar-transformations" id="id11">Level 9: Grammar Transformations</a></p></li>
+<li><p><a class="reference internal" href="#level-8-language-classification-impossibilities" id="id12">Level 8: Language Classification &amp; Impossibilities</a></p></li>
+<li><p><a class="reference internal" href="#summary-what-makes-languages-non-context-free" id="id13">Summary: What Makes Languages Non-Context-Free</a></p></li>
+<li><p><a class="reference internal" href="#summary-cfg-patterns-reference" id="id14">Summary: CFG Patterns Reference</a></p></li>
+</ul>
+</nav>
+<hr class="docutils" />
+<style>
+  /* === General Typography and Layout === */
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+  }
+  h2, h3, h4 {
+    color: #7b1113; /* Stanford Maroon */
+    font-weight: 600;
+    margin-top: 1.8em;
+    margin-bottom: 0.6em;
+    text-align: left;
+  }
+  code, .code {
+    background-color: #f7f7f7;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+  p, li {
+    font-size: 16px;
+  }
+
+  /* === Collapsible Solution Blocks === */
+  details {
+    background-color: #fcfcfc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 12px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  summary {
+    font-weight: 600;
+    font-size: 17px;
+    color: #444;
+    cursor: pointer;
+    padding: 5px 0;
+  }
+  details[open] summary {
+    color: #7b1113;
+  }
+
+  /* === Admonitions (Hints, Tips) === */
+  .admonition.tip, .admonition.hint {
+    border-left: 4px solid #7b1113 !important;
+    background-color: #f9f9f9 !important;
+  }
+
+  /* === Mobile Optimization === */
+  @media (max-width: 600px) {
+    p, li {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    h2, h3, h4 {
+      font-size: 20px;
+    }
+    summary {
+      font-size: 16px;
+    }
+  }
+</style><hr class="docutils" />
+<section id="level-1-basic-grammar-construction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">2.1. </span>Level 1: Basic Grammar Construction</a><a class="headerlink" href="#level-1-basic-grammar-construction" title="Link to this heading"></a></h2>
+<p><strong>Question 01:</strong> Construct a CFG for all strings of length 2 over <span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → XX
+X → a | b
+</pre></div>
+</div>
+<p><strong>Derivation for “ab”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ XX
+⟹ aX
+⟹ ab ✓
+</pre></div>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-92b0a8a05d569571f7f2dee6c33da4afd4ed096e.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph G {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; X1 [label=&quot; &quot;];
+   S -&gt; X2 [label=&quot; &quot;];
+   X1 -&gt; a;
+   X2 -&gt; b;
+   {rank=same; X1; X2;}
+}</p></object></div>
+<p><strong>Valid strings:</strong> <cite>aa</cite>, <cite>ab</cite>, <cite>ba</cite>, <cite>bb</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Each X can independently produce ‘a’ or ‘b’, giving us 2 × 2 = 4 total combinations.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 02:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^n \mid n \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
+</pre></div>
+</div>
+<p><strong>Derivation for “aaabbb”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aSb
+⟹ a(aSb)b
+⟹ a(a(aSb)b)b
+⟹ a(a(ab)b)b
+⟹ aaabbb ✓
+</pre></div>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-f4c1ee4c332aca0d239df76deb59c9a80bcb66e6.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph G {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S1 [label=&quot;S&quot;];
+   S1 -&gt; a1;
+   S1 -&gt; S2 [label=&quot;S&quot;];
+   S1 -&gt; b1;
+   S2 -&gt; a2;
+   S2 -&gt; S3 [label=&quot;S&quot;];
+   S2 -&gt; b2;
+   S3 -&gt; a3;
+   S3 -&gt; b3;
+}</p></object></div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Each recursive step adds one ‘a’ at the left and one ‘b’ at the right, maintaining equality.
+The base case <cite>S → ab</cite> ensures at least one of each symbol.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 03:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m \mid n, m \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
+A → aA | a
+B → bB | b
+</pre></div>
+</div>
+<p><strong>Derivation for “aaabb”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ AB
+⟹ (aA)B
+⟹ (a(aA))B
+⟹ (a(a(a)))B
+⟹ aaaB
+⟹ aaa(bB)
+⟹ aaa(b(bB))
+⟹ aaa(b(b(b)))
+⟹ aaabbb ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Variables A and B are <strong>independent</strong>: A generates any number of a’s,
+B generates any number of b’s. Their concatenation gives the language.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 04:</strong> Construct a CFG for all <strong>even-length palindromes</strong> over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | ε
+</pre></div>
+</div>
+<p><strong>Derivation for “abba”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aSa
+⟹ a(bSb)a
+⟹ a(bεb)a
+⟹ a(bb)a
+⟹ abba ✓
+</pre></div>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-0ff45fc6f8481587c1382a27636cf5f64a27c097.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph G {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S1 [label=&quot;S&quot;];
+   S1 -&gt; a1 [label=&quot;a&quot;];
+   S1 -&gt; S2 [label=&quot;S&quot;];
+   S1 -&gt; a2 [label=&quot;a&quot;];
+   S2 -&gt; b1 [label=&quot;b&quot;];
+   S2 -&gt; eps [label=&quot;ε&quot;];
+   S2 -&gt; b2 [label=&quot;b&quot;];
+   eps [label=&quot;ε&quot;, shape=plaintext];
+   {rank=same; a1; S2; a2;}
+   {rank=same; b1; eps; b2;}
+}</p></object></div>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>The grammar builds palindromes from the <strong>center outward</strong>, ensuring symmetry.
+The base case ε gives even-length strings.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 05:</strong> Construct a CFG for all <strong>palindromes</strong> (odd and even) over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
+</pre></div>
+</div>
+<p><strong>Example strings:</strong> <cite>aba</cite>, <cite>abba</cite>, <cite>a</cite>, <cite>b</cite>, <cite>ε</cite></p>
+<p><strong>Derivation for “aba”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aSa
+⟹ a(b)a
+⟹ aba ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Unlike even-length palindromes, we need base cases for <strong>single characters</strong> (a, b)
+to handle odd-length palindromes like “aba” or “bab”.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-2-position-based-patterns">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">2.2. </span>Level 2: Position-Based Patterns</a><a class="headerlink" href="#level-2-position-based-patterns" title="Link to this heading"></a></h2>
+<p><strong>Question 06:</strong> Construct a CFG for strings <strong>starting with ‘a’</strong> and <strong>ending with ‘b’</strong> over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aXb | ab
+X → aX | bX | ε
+</pre></div>
+</div>
+<p><strong>Derivation for “aabbb”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aXb
+⟹ a(aX)b
+⟹ a(a(bX))b
+⟹ a(a(b(bX)))b
+⟹ a(a(b(bε)))b
+⟹ aabbb ✓
+</pre></div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>Fix the first and last positions, then fill the middle with any string (including empty).</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 07:</strong> Construct a CFG for strings <strong>starting and ending with different symbols</strong> over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aXb | bXa
+X → aX | bX | ε
+</pre></div>
+</div>
+<p><strong>Example strings:</strong> <cite>ab</cite>, <cite>ba</cite>, <cite>aab</cite>, <cite>bba</cite>, <cite>abba</cite></p>
+<p><strong>Derivation for “aab”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aXb
+⟹ a(aX)b
+⟹ a(aε)b
+⟹ aab ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Two cases: (1) starts with ‘a’, ends with ‘b’, or (2) starts with ‘b’, ends with ‘a’.
+The union is expressed by the two productions for S.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 08:</strong> Construct a CFG for strings <strong>starting and ending with the same symbol</strong> over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aXa | bXb | a | b | ε
+X → aX | bX | ε
+</pre></div>
+</div>
+<p><strong>Example strings:</strong> <cite>a</cite>, <cite>b</cite>, <cite>aa</cite>, <cite>bb</cite>, <cite>aba</cite>, <cite>bab</cite>, <cite>ε</cite></p>
+<p><strong>Derivation for “aba”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aXa
+⟹ a(bX)a
+⟹ a(bε)a
+⟹ aba ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Need to handle: (1) length ≥2 with same start/end, (2) single characters, (3) empty string.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-3-multiple-variable-dependencies">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">2.3. </span>Level 3: Multiple Variable Dependencies</a><a class="headerlink" href="#level-3-multiple-variable-dependencies" title="Link to this heading"></a></h2>
+<p><strong>Question 09:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m c^m \mid n, m \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AS&#39;
+A → aA | a
+S&#39; → bS&#39;c | bc
+</pre></div>
+</div>
+<p><strong>Derivation for “aabbcc”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ AS&#39;
+⟹ (aA)S&#39;
+⟹ (a(a))S&#39;
+⟹ aaS&#39;
+⟹ aa(bS&#39;c)
+⟹ aa(b(bc)c)
+⟹ aabbcc ✓
+</pre></div>
+</div>
+<div class="graphviz"><object data="../_images/graphviz-a25f1c4a0c17d966152c79191989c0fe33ab3aad.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph G {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A;
+   S -&gt; Sp [label=&quot;S'&quot;];
+   A -&gt; a1;
+   A -&gt; a2;
+   Sp -&gt; b1;
+   Sp -&gt; Sp2 [label=&quot;S'&quot;];
+   Sp -&gt; c1;
+   Sp2 -&gt; b2;
+   Sp2 -&gt; c2;
+}</p></object></div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>The count of ‘a’s is <strong>independent</strong> of b’s and c’s.
+Variable A handles a’s freely, while S’ enforces b^m c^m equality.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 10:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m c^n \mid n, m \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSc | B
+B → bB | b
+</pre></div>
+</div>
+<p><strong>Derivation for “aabcc”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ aSc
+⟹ a(aSc)c
+⟹ a(B)c
+⟹ a(bB)c
+⟹ a(bb)c
+⟹ aabbcc ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Here ‘a’ and ‘c’ must match (outer dependency), while ‘b’ count is independent (middle).
+S handles the a-c matching, B generates independent b’s.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 11:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^n c^m d^m \mid n, m \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → XY
+X → aXb | ab
+Y → cYd | cd
+</pre></div>
+</div>
+<p><strong>Derivation for “aabbccdd”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ XY
+⟹ (aXb)Y
+⟹ (a(ab)b)Y
+⟹ (aabb)Y
+⟹ aabb(cYd)
+⟹ aabb(c(cd)d)
+⟹ aabbccdd ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Two <strong>independent</strong> equal-count pairs in sequence.
+X handles first pair (a^n b^n), Y handles second pair (c^m d^m).</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 12:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^i b^j c^k \mid i = j \text{ or } j = k\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → A | B
+A → CD
+C → aCb | ab
+D → cD | c
+B → EF
+E → aE | a
+F → bFc | bc
+</pre></div>
+</div>
+<p><strong>Example strings:</strong>
+- <cite>aabbcc</cite> (i=j=2)
+- <cite>aaabcc</cite> (j=k=2)</p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>This is a <strong>union</strong> of two languages: L₁ where i=j (any k), and L₂ where j=k (any i).
+Non-deterministically choose which equality to enforce.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-4-advanced-patterns">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">2.4. </span>Level 4: Advanced Patterns</a><a class="headerlink" href="#level-4-advanced-patterns" title="Link to this heading"></a></h2>
+<p><strong>Question 13:</strong> Construct a CFG for strings with <strong>equal number of a’s and b’s</strong> over <span class="math notranslate nohighlight">\(\{a, b\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → SS | aSb | bSa | ε
+</pre></div>
+</div>
+<p><strong>Example strings:</strong> <cite>ab</cite>, <cite>ba</cite>, <cite>aabb</cite>, <cite>abab</cite>, <cite>baab</cite></p>
+<p><strong>Derivation for “abab”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ SS
+⟹ (aSb)S
+⟹ (ab)S
+⟹ (ab)(aSb)
+⟹ (ab)(ab)
+⟹ abab ✓
+</pre></div>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>Unlike a^n b^n, here a’s and b’s can be <strong>interleaved</strong> in any order.
+SS allows concatenation, aSb and bSa allow nesting/pairing.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 14:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m \mid n &gt; m, n,m \geq 1\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
+A → aAb | aA | a
+B → aB | ε
+</pre></div>
+</div>
+<p><strong>Key idea:</strong> A ensures at least one extra ‘a’, B adds more a’s if needed.</p>
+<p><strong>Derivation for “aaab”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S
+⟹ AB
+⟹ (aA)B
+⟹ (a(aAb))B
+⟹ (a(a(a)))B
+⟹ (aaab)ε
+⟹ aaab ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>To ensure n &gt; m: match m pairs (a,b), then ensure at least one extra ‘a’ remains.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 15:</strong> Construct a CFG for <span class="math notranslate nohighlight">\(L = \{a^n b^m \mid n \neq m\}\)</span>.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → A | B
+A → (grammar for n &gt; m from Q14)
+B → (grammar for n &lt; m - symmetric)
+</pre></div>
+</div>
+<p><strong>Example strings:</strong> <cite>aab</cite>, <cite>abb</cite>, <cite>aaab</cite>, <cite>abbb</cite></p>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>Union of two cases: (1) more a’s than b’s, (2) more b’s than a’s.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-5-fa-to-cfg-conversion">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">2.5. </span>Level 5: FA to CFG Conversion</a><a class="headerlink" href="#level-5-fa-to-cfg-conversion" title="Link to this heading"></a></h2>
+<p><strong>Question 16:</strong> Convert the following FA to CFG.</p>
+<p><strong>FA Description:</strong></p>
+<ul class="simple">
+<li><p>States: {q₀ (start, final), q₁}</p></li>
+<li><p>Alphabet: {a, b}</p></li>
+<li><p>Transitions: q₀ →ᵃ q₁, q₁ →ᵇ q₀</p></li>
+</ul>
+<div class="graphviz"><object data="../_images/graphviz-3cf5f568ef271e4a6fd6a7404712d672d1794020.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   q0 [label=&quot;q₀\n(Start,Final)&quot;, shape=doublecircle];
+   q1 [label=&quot;q₁&quot;];
+   q0 -&gt; q1 [label=&quot;a&quot;];
+   q1 -&gt; q0 [label=&quot;b&quot;];
+}</p></object></div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → aS₁ | ε
+S₁ → bS₀
+</pre></div>
+</div>
+<p><strong>Derivation for “abab”:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀
+⟹ aS₁
+⟹ a(bS₀)
+⟹ ab(aS₁)
+⟹ ab(a(bS₀))
+⟹ abab(ε)
+⟹ abab ✓
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Note</p>
+<p>For each state q, create variable Sᵩ. For transition (q, x, p), add Sᵩ → xSₚ.
+Final states get ε-productions.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 17:</strong> Convert FA accepting strings ending with “ab” to CFG.</p>
+<div class="graphviz"><object data="../_images/graphviz-b26eee35e9ad930868028b8d90e24f9285ce59e8.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   q0 [label=&quot;q₀\n(Start)&quot;];
+   q1 [label=&quot;q₁&quot;];
+   q2 [label=&quot;q₂\n(Final)&quot;, shape=doublecircle];
+   q0 -&gt; q0 [label=&quot;a,b&quot;];
+   q0 -&gt; q1 [label=&quot;a&quot;];
+   q1 -&gt; q2 [label=&quot;b&quot;];
+   q2 -&gt; q0 [label=&quot;a,b&quot;];
+}</p></object></div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S₀ → aS₀ | bS₀ | aS₁
+S₁ → bS₂
+S₂ → aS₀ | bS₀ | ε
+</pre></div>
+</div>
+<p><strong>Example:</strong> <cite>aaab</cite>, <cite>bab</cite>, <cite>ab</cite></p>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>The path must eventually reach q₁ then q₂ via ‘a’ then ‘b’ to accept.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-6-chomsky-normal-form-cnf">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">2.6. </span>Level 6: Chomsky Normal Form (CNF)</a><a class="headerlink" href="#level-6-chomsky-normal-form-cnf" title="Link to this heading"></a></h2>
+<p><strong>Question 18:</strong> Find maximum yield length for CNF grammar:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
+A → a
+B → b
+</pre></div>
+</div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="graphviz"><object data="../_images/graphviz-ba9064f3122f455928fd04786fc9d6e0afa69eb6.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph CFG {
+    rankdir=TB;
+    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+    S -&gt; A;
+    S -&gt; B;
+    A -&gt; a;
+    B -&gt; b;
+}</p></object></div>
+<p><strong>Derivation Tree for “ab”:</strong></p>
+<ul class="simple">
+<li><p>Longest path length = 2 = k</p></li>
+<li><p>Maximum yield length = 2^(k-1) = 2^1 = 2</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Concept Insight</p>
+<p>In CNF, each production is either A → BC or A → a.
+The maximum yield length formula is 2^(k-1) where k is the tree height.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 19:</strong> Find maximum yield length for:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
+A → EF
+B → C
+E → a
+F → b
+C → c
+</pre></div>
+</div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="graphviz"><object data="../_images/graphviz-8b9065d72c8953fbc3b3d68dd734f5296c266f3a.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph CFG {
+    rankdir=TB;
+    node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+    S -&gt; A;
+    S -&gt; B;
+    A -&gt; E;
+    A -&gt; F;
+    E -&gt; a;
+    F -&gt; b;
+    B -&gt; C;
+    C -&gt; c;
+}</p></object></div>
+<p><strong>Derivation for “abc”:</strong></p>
+<ul class="simple">
+<li><p>Longest path = 3 = k</p></li>
+<li><p>Maximum yield = 2^(k-1) = 2^2 = 4</p></li>
+</ul>
+<div class="hint admonition">
+<p class="admonition-title">Visual Tip</p>
+<p>Each level in CNF can double the number of leaves (maximum branching = 2).</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-7-cyk-algorithm">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">2.7. </span>Level 7: CYK Algorithm</a><a class="headerlink" href="#level-7-cyk-algorithm" title="Link to this heading"></a></h2>
+<p><strong>Question 20:</strong> Use CYK to check if “aab” belongs to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB | BC
+A → BA | a
+B → CC | b
+C → AB | a
+</pre></div>
+</div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="quiz admonition">
+<p class="admonition-title">CYK Table for “aab”</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Length</p></th>
+<th class="head"><p>Pos 1</p></th>
+<th class="head"><p>Pos 2</p></th>
+<th class="head"><p>Pos 3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>{A, C}</p></td>
+<td><p>{A, C}</p></td>
+<td><p>{B}</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>{B}</p></td>
+<td><p>{S, C}</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>{B}</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Step-by-step:</strong></p>
+<ol class="arabic">
+<li><p><strong>Length 1:</strong>
+- V₁,₁ for ‘a’: {A, C} (from A→a, C→a)
+- V₂,₁ for ‘a’: {A, C}
+- V₃,₁ for ‘b’: {B} (from B→b)</p></li>
+<li><p><strong>Length 2:</strong>
+- V₁,₂ for “aa”: Check {A,C}×{A,C} = {AA, AC, CA, CC}</p>
+<blockquote>
+<div><p>→ B→CC matches → {B}</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>V₂,₂ for “ab”: Check {A,C}×{B} = {AB, CB}
+→ S→AB, C→AB match → {S, C}</p></li>
+</ul>
+</li>
+<li><p><strong>Length 3:</strong>
+- V₁,₃ for “aab”:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Split k=1: {A,C}×{S,C} → CC gives {B}</p></li>
+<li><p>Split k=2: {B}×{B} → no rule</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Result: {B}</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Conclusion:</strong> S ∉ V₁,₃ → “aab” is <strong>REJECTED</strong> ✗</p>
+<div class="tip admonition">
+<p class="admonition-title">Insight</p>
+<p>CYK builds bottom-up: fill length-1 cells first, then length-2, etc.
+String is accepted only if S appears in the top-left cell.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-8-language-classification">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">2.8. </span>Level 8: Language Classification</a><a class="headerlink" href="#level-8-language-classification" title="Link to this heading"></a></h2>
+<p><strong>Question 21 (MCQ):</strong> Which language is NOT context-free?</p>
+<ol class="upperalpha simple">
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n \mid n \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n c^n \mid n \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{a^i b^j \mid i, j \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ww^R \mid w \in \{a,b\}^*\}\)</span></p></li>
+</ol>
+<details>
+<summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> B) <span class="math notranslate nohighlight">\(\{a^n b^n c^n\}\)</span> ✗</p>
+<p><strong>Reason:</strong></p>
+<ul class="simple">
+<li><p>Requires THREE equal counts simultaneously</p></li>
+<li><p>PDA has only ONE stack</p></li>
+<li><p>Can handle at most TWO dependencies (like a^n b^n)</p></li>
+<li><p>This is a <strong>Context-Sensitive Language</strong> (CSL)</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Pumping Lemma Proof Sketch</p>
+<p>Consider w = a^p b^p c^p. Any decomposition with <a href="#id1"><span class="problematic" id="id2">|vxy|</span></a> ≤ p means vxy spans
+at most 2 symbol types. Pumping breaks the three-way equality.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 22 (MCQ):</strong> Which statement about CFGs is TRUE?</p>
+<ol class="upperalpha simple">
+<li><p>Every CFG can be converted to CNF</p></li>
+<li><p>CNF has productions of form A → BC or A → a only</p></li>
+<li><p>CFLs are closed under union and concatenation</p></li>
+<li><p>All of the above</p></li>
+</ol>
+<details>
+<summary><strong>✅ ANSWER</strong></summary><p><strong>Answer:</strong> D) All of the above ✓</p>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><strong>A:</strong> True - any CFG can be normalized to CNF</p></li>
+<li><p><strong>B:</strong> True - definition of CNF</p></li>
+<li><p><strong>C:</strong> True - CFLs are closed under union, concatenation, and Kleene star</p></li>
+</ul>
+</details><hr class="docutils" />
+<p><strong>Question 23:</strong> Prove that <span class="math notranslate nohighlight">\(L = \{ww \mid w \in \{a,b\}^*\}\)</span> is NOT context-free.</p>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><div class="quiz admonition">
+<p class="admonition-title">Proof</p>
+<p><strong>Why Copying Fails:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>The Challenge:</strong> Need exact forward copy (not reverse)</p></li>
+<li><p><strong>Contrast with ww^R:</strong>
+- ww^R (palindrome): PDA can verify using stack (LIFO matches reverse)
+- ww (copy): Need to verify forward copy</p></li>
+<li><p><strong>PDA Limitation:</strong>
+- LIFO structure can only compare in reverse order
+- Cannot “remember” first half AND compare in forward order</p></li>
+<li><p><strong>Pumping Lemma:</strong>
+- Consider w = a^p b^p a^p b^p
+- Any pumping breaks the ww structure</p></li>
+</ol>
+</div>
+<p><strong>Conclusion:</strong> Copying requires more power than a PDA provides.</p>
+<div class="tip admonition">
+<p class="admonition-title">Key Insight</p>
+<p><strong>ww^R is CFL</strong> but <strong>ww is NOT CFL</strong>. The difference is comparison order!</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-9-grammar-transformations">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">2.9. </span>Level 9: Grammar Transformations</a><a class="headerlink" href="#level-9-grammar-transformations" title="Link to this heading"></a></h2>
+<p><strong>Question 24:</strong> Eliminate ε-productions from:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A
+A → bA | ε
+</pre></div>
+</div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>Step 1: Find nullable variables</strong></p>
+<ul class="simple">
+<li><p>A is nullable (A → ε directly)</p></li>
+<li><p>S is not nullable</p></li>
+</ul>
+<p><strong>Step 2: Generate new productions</strong></p>
+<p>Original productions with nullable A:</p>
+<ul class="simple">
+<li><p>S → aS (no A, keep as-is)</p></li>
+<li><p>S → A (A is nullable, so add S → ε)</p></li>
+</ul>
+<p>For A:</p>
+<ul class="simple">
+<li><p>A → bA (A is nullable, so add A → b)</p></li>
+<li><p>Remove A → ε</p></li>
+</ul>
+<p><strong>Final grammar:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aS | A | ε
+A → bA | b
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Concept Note</p>
+<p>For each production with a nullable variable, create versions with and without it.</p>
+</div>
+</details><hr class="docutils" />
+<p><strong>Question 25:</strong> Convert to Chomsky Normal Form:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
+</pre></div>
+</div>
+<details>
+<summary><strong>📘 SOLUTION (Click to Expand)</strong></summary><p><strong>Step 1: Eliminate terminals in length &gt; 1 productions</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → ASB | AB
+A → a
+B → b
+</pre></div>
+</div>
+<p><strong>Step 2: Break productions with length &gt; 2</strong></p>
+<p>S → ASB has length 3, need to split:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AX | AB
+X → SB
+A → a
+B → b
+</pre></div>
+</div>
+<p><strong>Final CNF:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AX | AB
+X → SB
+A → a
+B → b
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">CNF Requirements</p>
+<p>All productions must be:
+- A → BC (two non-terminals), or
+- A → a (single terminal)</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="level-8-language-classification-impossibilities">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">2.10. </span>Level 8: Language Classification &amp; Impossibilities</a><a class="headerlink" href="#level-8-language-classification-impossibilities" title="Link to this heading"></a></h2>
+<div class="admonition-question-26-classification-which-of-the-following-languages-can-be-accepted-by-a-pda-is-context-free admonition">
+<p class="admonition-title"><strong>Question 26 (Classification):</strong> Which of the following languages can be accepted by a PDA (is context-free)?</p>
+<ol class="upperalpha simple">
+<li><p><span class="math notranslate nohighlight">\(L = \{a^n b^n c^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L = \{a^n b^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L = \{ww^R \mid w \in \{a,b\}^*\}\)</span></p></li>
+<li><p>All of the above</p></li>
+</ol>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+Answer: Only B and C are CFLs
+</div><div class="steps-box">
+<strong>🎯 Analysis:</strong>
+<ol>
+<li><strong>A) a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>:</strong> ✗ NOT context-free
+    <ul>
+    <li>Requires THREE equal counts simultaneously</li>
+    <li>PDA has only ONE stack</li>
+    <li>Can match at most TWO counts</li>
+    <li>This is Context-Sensitive (needs LBA)</li>
+    </ul>
+</li>
+<li><strong>B) a<sup>n</sup>b<sup>n</sup>:</strong> ✓ Context-free
+    <ul>
+    <li>Classic CFL pattern</li>
+    <li>Push for a's, pop for b's</li>
+    <li>PDA can handle this easily</li>
+    </ul>
+</li>
+<li><strong>C) ww<sup>R</sup>:</strong> ✓ Context-free
+    <ul>
+    <li>Even-length palindromes</li>
+    <li>Push first half, match second half</li>
+    <li>Non-deterministically guess middle</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Key Pattern:</strong> PDAs can handle TWO equal counts or palindromes, but NOT three equal counts.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-27-impossibility-prove-that-math-l-a-n-mid-n-geq-0-factorial-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 27 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^{n!} \mid n \geq 0\}\)</span> (factorial) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Factorial Growth Fails:</strong>
+<ol>
+<li><strong>Language Description:</strong> Strings with 1, 1, 2, 6, 24, 120,... a's</li>
+<li><strong>Growth Rate:</strong> Factorial grows faster than exponential</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>PDAs can handle LINEAR relationships (a<sup>n</sup>b<sup>n</sup>)</li>
+    <li>Cannot handle SUPER-EXPONENTIAL growth</li>
+    <li>Stack can only count linearly</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Proof:</strong>
+    <ul>
+    <li>Let p be pumping length</li>
+    <li>Consider w = a<sup>p!</sup></li>
+    <li>Pumping adds/removes linear amount k</li>
+    <li>p! + k is not a factorial for suitable k</li>
+    <li>Gap between consecutive factorials grows too fast</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Pattern:</strong> Languages with non-polynomial growth (factorial, exponential of exponential) are NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-28-impossibility-prove-that-math-l-a-n-m-mid-n-m-geq-1-exponential-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 28 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^{n^m} \mid n, m \geq 1\}\)</span> (exponential) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Exponential Powers Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong>
+    <ul>
+    <li>n=2, m=2: a<sup>4</sup></li>
+    <li>n=2, m=3: a<sup>8</sup></li>
+    <li>n=3, m=2: a<sup>9</sup></li>
+    </ul>
+</li>
+<li><strong>The Challenge:</strong>
+    <ul>
+    <li>Not all powers are included (only those of form n<sup>m</sup>)</li>
+    <li>Cannot distinguish n<sup>m</sup> from other numbers</li>
+    <li>PDA cannot verify this property</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Would need to verify: "Is |w| expressible as n<sup>m</sup>?"</li>
+    <li>Requires arithmetic computation beyond linear counting</li>
+    <li>Stack provides only linear counting mechanism</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>General Principle:</strong> Languages requiring arithmetic verification (perfect squares, primes, exponentials) are NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-29-impossibility-prove-that-math-l-a-n-mid-n-text-is-prime-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 29 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^n \mid n \text{ is prime}\}\)</span> is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Prime Numbers Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong> Strings with 2, 3, 5, 7, 11, 13,... a's (only primes)</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>PDAs cannot perform primality testing</li>
+    <li>No way to verify divisibility properties using a stack</li>
+    <li>Would require checking: "Is |w| not divisible by any 2 ≤ k < |w|?"</li>
+    <li>This needs unbounded divisibility checks</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Approach:</strong>
+    <ul>
+    <li>Consider a large prime p</li>
+    <li>Pumping w = a<sup>p</sup> gives uv<sup>i</sup>xy<sup>i</sup>z</li>
+    <li>Length = p + (i-1)|vy|</li>
+    <li>Can choose i to make this composite</li>
+    <li>For example, i = p+1 gives p + p·|vy| = p(1 + |vy|) which is composite</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Key Insight:</strong> Prime detection requires arithmetic beyond simple counting - it needs divisibility testing which PDAs cannot perform.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-30-impossibility-prove-that-math-l-ww-mid-w-in-a-b-exact-copy-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 30 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{ww \mid w \in \{a,b\}^*\}\)</span> (exact copy) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Copying (Forward) Fails:</strong>
+<ol>
+<li><strong>The Challenge:</strong> Need to verify second half is EXACT copy of first</li>
+<li><strong>Contrast with ww<sup>R</sup>:</strong>
+    <ul>
+    <li><strong>ww<sup>R</sup> (palindrome):</strong> ✓ CFL - can use stack to verify reverse</li>
+    <li><strong>ww (copy):</strong> ✗ NOT CFL - would need to verify forward copy</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>LIFO (Last-In-First-Out) structure of stack</li>
+    <li>Can only compare in REVERSE order</li>
+    <li>Cannot "remember" first half in forward order AND compare</li>
+    <li>Would need FIFO queue or two stacks (= Turing Machine)</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Proof:</strong>
+    <ul>
+    <li>Consider w = a<sup>p</sup>b<sup>p</sup>a<sup>p</sup>b<sup>p</sup></li>
+    <li>Any decomposition uvxyz with |vxy| ≤ p</li>
+    <li>vxy lies entirely in one or two adjacent blocks</li>
+    <li>Pumping disrupts the ww pattern</li>
+    <li>Cannot maintain exact duplication</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Critical Distinction:</strong> The ORDER of comparison matters!
+<ul>
+<li>ww<sup>R</sup> is CFL (reverse comparison via stack)</li>
+<li>ww is NOT CFL (forward comparison impossible with single stack)</li>
+</ul>
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-31-impossibility-prove-that-math-l-w-n-mid-w-in-a-b-n-geq-1-n-copies-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 31 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{w^n \mid w \in \{a,b\}^*, n \geq 1\}\)</span> (n copies) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Multiple Copies Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong>
+    <ul>
+    <li>Examples: aa, abab, aabaabab (w=ab, n=2)</li>
+    <li>Need to verify ALL copies are identical</li>
+    </ul>
+</li>
+<li><strong>Special Cases:</strong>
+    <ul>
+    <li><strong>n=1:</strong> w<sup>1</sup> = all strings (trivially CFL)</li>
+    <li><strong>n=2:</strong> ww (NOT CFL as proven in Q30)</li>
+    <li><strong>n=3:</strong> www (even harder than ww)</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Cannot verify multiple identical copies</li>
+    <li>Would need to compare first copy with second, AND with third, etc.</li>
+    <li>Even checking www requires comparing THREE segments</li>
+    <li>PDA can only track one relationship at a time</li>
+    </ul>
+</li>
+<li><strong>Proof Approach:</strong>
+    <ul>
+    <li>If w<sup>n</sup> were CFL, then ww (n=2 case) would be CFL</li>
+    <li>But ww is NOT CFL (proven)</li>
+    <li>Therefore w<sup>n</sup> is NOT CFL</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Pattern:</strong> Any language requiring comparison of multiple forward copies is NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-32-impossibility-is-math-l-www-r-mid-w-in-a-b-context-free admonition">
+<p class="admonition-title"><strong>Question 32 (Impossibility):</strong> Is <span class="math notranslate nohighlight">\(L = \{www^R \mid w \in \{a,b\}^*\}\)</span> context-free?</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why www<sup>R</sup> Fails:</strong>
+<ol>
+<li><strong>Language Description:</strong> Three copies of w, with last one reversed
+    <ul>
+    <li>Example: w = ab → string is "ab ab ba"</li>
+    <li>Need first two copies to match (forward) AND third to be reverse</li>
+    </ul>
+</li>
+<li><strong>Two Challenges Combined:</strong>
+    <ul>
+    <li><strong>Challenge 1:</strong> Verify first two copies are identical (like ww)</li>
+    <li><strong>Challenge 2:</strong> Verify third copy is reverse (like ww<sup>R</sup>)</li>
+    <li>While ww<sup>R</sup> alone is CFL, adding ww pattern makes it non-CFL</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Cannot simultaneously:
+        <ul>
+        <li>Compare first two w's (forward comparison - impossible)</li>
+        <li>AND verify third w matches in reverse</li>
+        </ul>
+    </li>
+    <li>Would need to "remember" first w in forward order</li>
+    <li>While also preparing to match reverse of second w</li>
+    <li>This requires more than one stack's worth of memory</li>
+    </ul>
+</li>
+<li><strong>Formal Proof Sketch:</strong>
+    <ul>
+    <li>If www<sup>R</sup> were CFL, could intersect with regular language a<sup>*</sup>b<sup>*</sup>a<sup>*</sup>b<sup>*</sup>b<sup>*</sup>a<sup>*</sup></li>
+    <li>Would give {a<sup>n</sup>b<sup>n</sup>a<sup>n</sup>b<sup>n</sup>b<sup>n</sup>a<sup>n</sup>}</li>
+    <li>This is similar to crossed dependencies - NOT CFL</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Key Insight:</strong> Adding forward-copy constraint (ww) to palindrome pattern (ww<sup>R</sup>) creates a language beyond CFL power.
+</div></details></div>
+</section>
+<hr class="docutils" />
+<section id="summary-what-makes-languages-non-context-free">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">2.11. </span>Summary: What Makes Languages Non-Context-Free</a><a class="headerlink" href="#summary-what-makes-languages-non-context-free" title="Link to this heading"></a></h2>
+<div class="pda-box">
+<strong>🎯 Patterns That CANNOT Be Handled by PDAs:</strong><br><br>
+
+<strong>1. Three or More Equal Counts:</strong><br>
+• a<sup>n</sup>b<sup>n</sup>c<sup>n</sup> - needs to track three relationships<br>
+• Requires more than one stack<br><br>
+
+<strong>2. Forward Copying:</strong><br>
+• ww - needs to remember and compare in same direction<br>
+• w<sup>n</sup> - multiple forward copies<br>
+• Stack is LIFO, can only compare in reverse<br><br>
+
+<strong>3. Arithmetic Properties:</strong><br>
+• Primes: a<sup>n</sup> where n is prime<br>
+• Perfect squares: a<sup>n²</sup><br>
+• Factorials: a<sup>n!</sup><br>
+• Exponentials: a<sup>n^m</sup><br>
+• Requires divisibility testing or complex arithmetic<br><br>
+
+<strong>4. Crossed Dependencies:</strong><br>
+• a<sup>i</sup>b<sup>j</sup>c<sup>k</sup>d<sup>l</sup> where i=k AND j=l<br>
+• Two independent equalities that "cross" each other<br><br>
+
+<strong>5. Mixed Constraints:</strong><br>
+• www<sup>R</sup> - combines copying with reverse<br>
+• Multiple simultaneous conditions
+</div><div class="highlight-note">
+<strong>⚡ Why These Fail:</strong><br><br>
+
+<strong>PDA Limitations:</strong><br>
+• Only ONE stack (LIFO structure)<br>
+• Can track at most ONE relationship<br>
+• Can compare only in REVERSE order<br>
+• Cannot perform arithmetic beyond counting<br><br>
+
+<strong>What's Needed:</strong><br>
+• Two stacks → Linear Bounded Automaton (LBA)<br>
+• Full tape → Turing Machine<br>
+• Multiple simultaneous counters → Beyond CFLs
+</div><div class="steps-box">
+<strong>🎓 Proof Techniques:</strong><br>
+<ol>
+<li><strong>Pumping Lemma for CFLs:</strong> Show no matter how you pump, language membership breaks</li>
+<li><strong>Closure Properties:</strong> Show if L were CFL, then intersecting with regular language gives known non-CFL</li>
+<li><strong>Reduction:</strong> Show if L were CFL, then another known non-CFL would also be CFL (contradiction)</li>
+<li><strong>Direct Argument:</strong> Show inherent limitation of PDA (like LIFO for ww)</li>
+</ol>
+</div><hr class="docutils" />
+</section>
+<hr class="docutils" />
+<section id="summary-cfg-patterns-reference">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">2.12. </span>Summary: CFG Patterns Reference</a><a class="headerlink" href="#summary-cfg-patterns-reference" title="Link to this heading"></a></h2>
+<div class="hint admonition">
+<p class="admonition-title">Essential Grammar Patterns</p>
+<p><strong>1. Equal Count (a^n b^n):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSb | ab
+</pre></div>
+</div>
+<p><strong>2. Palindromes:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aSa | bSb | a | b | ε
+</pre></div>
+</div>
+<p><strong>3. Independent Counts (a^n b^m):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → AB
+A → aA | a
+B → bB | b
+</pre></div>
+</div>
+<p><strong>4. Nested Dependencies (a^n b^n c^m d^m):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → XY
+X → aXb | ab
+Y → cYd | cd
+</pre></div>
+</div>
+<p><strong>5. Position Constraints:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>S → aXb  (starts &#39;a&#39;, ends &#39;b&#39;)
+X → aX | bX | ε
+</pre></div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">What CFGs Can and Cannot Do</p>
+<p><strong>✓ CFGs CAN handle:</strong></p>
+<ul class="simple">
+<li><p>Two equal counts (a^n b^n)</p></li>
+<li><p>Palindromes (ww^R)</p></li>
+<li><p>Balanced structures (parentheses)</p></li>
+<li><p>Nested dependencies</p></li>
+<li><p>Position constraints</p></li>
+</ul>
+<p><strong>✗ CFGs CANNOT handle:</strong></p>
+<ul class="simple">
+<li><p>Three equal counts (a^n b^n c^n)</p></li>
+<li><p>Copying (ww)</p></li>
+<li><p>Crossed dependencies</p></li>
+<li><p>Non-linear counting (primes, squares)</p></li>
+<li><p>Context-sensitive patterns</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Introduction_CFG.html" class="btn btn-neutral float-left" title="1. Introduction to Context Free Grammer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pushdownautomata.html" class="btn btn-neutral float-right" title="3. Pushdown Automata (PDA)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Little_Perspective.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
