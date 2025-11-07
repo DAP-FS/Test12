@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Stanford CourseDocs Visual Edition</title>
+  <title>1. Best Practices &mdash; Stanford CourseDocs Visual Edition</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -32,7 +32,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Introduction to Context Free Grammer" href="context_free_languages.html" />
+    <link rel="next" title="2. Introduction to Context Free Grammer" href="context_free_languages.html" />
     <link rel="prev" title="Theory of Computation" href="../index.html" /> 
 </head>
 
@@ -56,10 +56,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Index</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">1. Introduction to Context Free Grammer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">2. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exercises.html">3. Practice Excercises</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context_free_languages.html">2. Introduction to Context Free Grammer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">4. Practice Excercises</a></li>
 </ul>
 
         </div>
@@ -76,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Best Practices</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/modules/intro.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,7 +87,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="admonition-question-1-construct-a-grammar-that-accepts-the-set-of-all-strings-of-length-2-math-sigma-a-b admonition">
+  <section id="best-practices">
+<h1><span class="section-number">1. </span>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h1>
+<div class="admonition-question-1-construct-a-grammar-that-accepts-the-set-of-all-strings-of-length-2-math-sigma-a-b admonition">
 <p class="admonition-title"><strong>Question 1:</strong> Construct a grammar that accepts the set of all strings of length 2 (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
 <p><strong>Solution (hidden):</strong></p>
 <details>
@@ -166,7 +169,7 @@ Y \to a Y \mid b Y \mid \epsilon\end{split}\]</div>
 </div>
 <div class="admonition-question-5-set-of-strings-of-length-at-most-2-math-sigma-a-b admonition">
 <p class="admonition-title"><strong>Question 5:</strong> Set of strings of length at most 2 (<span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span>).</p>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Solution (hidden):&lt;/b
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Solution (hidden):
 &gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
@@ -339,8 +342,7 @@ X \to a \mid b\end{split}\]</div>
 </div>
 <div class="admonition-question-13-grammar-for-math-l-a-n-b-n-c-n-mid-n-ge-0 admonition">
 <p class="admonition-title"><strong>Question 13:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^n \mid n \ge 0 \}\)</span>.</p>
-<p><a href="#id3"><span class="problematic" id="id4">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id3"><span class="problematic" id="id4">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><p><strong>Not possible with a Context-Free Grammar (CFG).</strong></p>
 <p><strong>Step-by-step (easy):</strong></p>
@@ -357,8 +359,7 @@ X \to a \mid b\end{split}\]</div>
 </div>
 <div class="admonition-question-14-grammar-for-math-l-a-n-b-m-mid-n-m-n-ge-0-m-ge-0-more-math-a-s-than-math-b-s admonition">
 <p class="admonition-title"><strong>Question 14:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^m \mid n &gt; m, n \ge 0, m \ge 0 \}\)</span>. (More <span class="math notranslate nohighlight">\(a\)</span>’s than <span class="math notranslate nohighlight">\(b\)</span>’s)</p>
-<p><a href="#id5"><span class="problematic" id="id6">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id5"><span class="problematic" id="id6">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[\begin{split}S \to A B \\
@@ -379,8 +380,7 @@ B \to a B \mid \epsilon\end{split}\]</div>
 </div>
 <div class="admonition-question-15-grammar-for-math-l-a-n-b-m-mid-n-ne-m-n-ge-0-m-ge-0-unequal-numbers-of-math-a-s-and-math-b-s admonition">
 <p class="admonition-title"><strong>Question 15:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^m \mid n \ne m, n \ge 0, m \ge 0 \}\)</span>. (Unequal numbers of <span class="math notranslate nohighlight">\(a\)</span>’s and <span class="math notranslate nohighlight">\(b\)</span>’s)</p>
-<p><a href="#id7"><span class="problematic" id="id8">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id7"><span class="problematic" id="id8">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[\begin{split}S \to A \mid B \\
@@ -401,8 +401,7 @@ C \to a C \mid b C \mid \epsilon\end{split}\]</div>
 </div>
 <div class="admonition-question-16-grammar-for-math-l-a-n-b-n-c-m-d-m-mid-n-ge-0-m-ge-0 admonition">
 <p class="admonition-title"><strong>Question 16:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^m d^m \mid n \ge 0, m \ge 0 \}\)</span>.</p>
-<p><a href="#id9"><span class="problematic" id="id10">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id9"><span class="problematic" id="id10">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[\begin{split}S \to A B \\
@@ -422,8 +421,7 @@ B \to c B d \mid \epsilon\end{split}\]</div>
 </div>
 <div class="admonition-question-17-grammar-for-math-l-w-w-r-mid-w-in-a-b-even-length-palindromes admonition">
 <p class="admonition-title"><strong>Question 17:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w w^R \mid w \in \{a, b\}^* \}\)</span>. (Even-length palindromes)</p>
-<p><a href="#id11"><span class="problematic" id="id12">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id11"><span class="problematic" id="id12">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[S \to a S a \mid b S b \mid \epsilon\]</div>
@@ -441,8 +439,7 @@ B \to c B d \mid \epsilon\end{split}\]</div>
 </div>
 <div class="admonition-question-18-grammar-for-math-l-a-i-b-j-c-k-mid-i-j-text-or-j-k admonition">
 <p class="admonition-title"><strong>Question 18:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}\)</span>.</p>
-<p><a href="#id13"><span class="problematic" id="id14">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id13"><span class="problematic" id="id14">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[\begin{split}S \to A \mid B \\
@@ -487,8 +484,7 @@ B \to c B d \mid c d\end{split}\]</div>
 </div>
 <div class="admonition-question-20-grammar-for-math-l-a-n-b-n-c-n-mid-n-ge-1 admonition">
 <p class="admonition-title"><strong>Question 20:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ a^n b^n c^n \mid n \ge 1 \}\)</span>.</p>
-<p><a href="#id17"><span class="problematic" id="id18">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id17"><span class="problematic" id="id18">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><p><strong>Not possible with a Context-Free Grammar (CFG).</strong></p>
 <p><strong>Step-by-step (easy):</strong></p>
@@ -504,8 +500,7 @@ B \to c B d \mid c d\end{split}\]</div>
 </div>
 <div class="admonition-question-21-grammar-for-math-l-w-mid-w-text-has-equal-numbers-of-a-text-s-and-b-text-s admonition">
 <p class="admonition-title"><strong>Question 21:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w \mid w \text{ has equal numbers of } a\text{'s and } b\text{'s} \}\)</span>.</p>
-<p><a href="#id19"><span class="problematic" id="id20">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id19"><span class="problematic" id="id20">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[S \to S S \mid a S b \mid b S a \mid \epsilon\]</div>
@@ -524,8 +519,7 @@ B \to c B d \mid c d\end{split}\]</div>
 </div>
 <div class="admonition-question-22-grammar-for-math-l-w-mid-n-a-w-n-b-w-more-math-a-s-than-math-b-s-any-order admonition">
 <p class="admonition-title"><strong>Question 22:</strong> Grammar for <span class="math notranslate nohighlight">\(L = \{ w \mid N_a(w) &gt; N_b(w) \}\)</span>. (More <span class="math notranslate nohighlight">\(a\)</span>’s than <span class="math notranslate nohighlight">\(b\)</span>’s, any order)</p>
-<p><a href="#id21"><span class="problematic" id="id22">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id21"><span class="problematic" id="id22">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><div class="math notranslate nohighlight">
 \[\begin{split}S \to A \\
@@ -544,8 +538,7 @@ A \to a \mid a A \mid b A a A \mid a A b A\end{split}\]</div>
 </div>
 <div class="admonition-question-23-cyk-algorithm-question-check-whether-the-string-math-w-aab-is-a-valid-member-of-the-grammar-math-g-where-the-productions-are-math-s-to-ab-mid-bc-math-a-to-ba-mid-a-math-b-to-cc-mid-b-math-c-to-ab-mid-a admonition">
 <p class="admonition-title"><strong>Question 23:</strong> CYK Algorithm Question: Check whether the string <span class="math notranslate nohighlight">\(w=aab\)</span> is a valid member of the grammar <span class="math notranslate nohighlight">\(G\)</span> where the productions are: <span class="math notranslate nohighlight">\(S \to AB \mid BC\)</span>, <span class="math notranslate nohighlight">\(A \to BA \mid a\)</span>, <span class="math notranslate nohighlight">\(B \to CC \mid b\)</span>, <span class="math notranslate nohighlight">\(C \to AB \mid a\)</span>.</p>
-<p><a href="#id23"><span class="problematic" id="id24">**</span></a>Solution (hidden):&lt;/b
-&gt;</p>
+<p><a href="#id23"><span class="problematic" id="id24">**</span></a>Solution (hidden):&lt;/b&gt;</p>
 <details>
 <summary><b>Show Solution</b></summary><p><strong>CYK Table:</strong></p>
 <p>The CYK table for <span class="math notranslate nohighlight">\(w = a_1 a_2 b_3\)</span> (length 3):</p>
@@ -613,13 +606,14 @@ A \to a \mid a A \mid b A a A \mid a A b A\end{split}\]</div>
 <div><p>&lt;/details&gt;</p>
 </div></blockquote>
 </div>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="Theory of Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="context_free_languages.html" class="btn btn-neutral float-right" title="1. Introduction to Context Free Grammer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="context_free_languages.html" class="btn btn-neutral float-right" title="2. Introduction to Context Free Grammer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

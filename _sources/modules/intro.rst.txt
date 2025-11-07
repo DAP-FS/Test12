@@ -1,3 +1,8 @@
+==================
+Best Practices
+==================
+
+
 .. admonition:: **Question 1:** Construct a grammar that accepts the set of all strings of length 2 (:math:`\Sigma = \{a, b\}`).
 
     **Solution (hidden):**
@@ -90,7 +95,7 @@
 
 .. admonition:: **Question 5:** Set of strings of length at most 2 (:math:`\Sigma = \{a, b\}`).
 
-    **Solution (hidden):</b
+    **Solution (hidden):
     >
 
     .. raw:: html
@@ -277,8 +282,7 @@
 
 .. admonition:: **Question 13:** Grammar for :math:`L = \{ a^n b^n c^n \mid n \ge 0 \}`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -298,8 +302,7 @@
 
 .. admonition:: **Question 14:** Grammar for :math:`L = \{ a^n b^m \mid n > m, n \ge 0, m \ge 0 \}`. (More :math:`a`'s than :math:`b`'s)
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -323,8 +326,7 @@
 
 .. admonition:: **Question 15:** Grammar for :math:`L = \{ a^n b^m \mid n \ne m, n \ge 0, m \ge 0 \}`. (Unequal numbers of :math:`a`'s and :math:`b`'s)
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -348,8 +350,7 @@
 
 .. admonition:: **Question 16:** Grammar for :math:`L = \{ a^n b^n c^m d^m \mid n \ge 0, m \ge 0 \}`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -372,8 +373,7 @@
 
 .. admonition:: **Question 17:** Grammar for :math:`L = \{ w w^R \mid w \in \{a, b\}^* \}`. (Even-length palindromes)
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -394,8 +394,7 @@
 
 .. admonition:: **Question 18:** Grammar for :math:`L = \{ a^i b^j c^k \mid i = j \text{ or } j = k \}`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -446,8 +445,7 @@
 
 .. admonition:: **Question 20:** Grammar for :math:`L = \{ a^n b^n c^n \mid n \ge 1 \}`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -466,8 +464,7 @@
 
 .. admonition:: **Question 21:** Grammar for :math:`L = \{ w \mid w \text{ has equal numbers of } a\text{'s and } b\text{'s} \}`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -489,8 +486,7 @@
 
 .. admonition:: **Question 22:** Grammar for :math:`L = \{ w \mid N_a(w) > N_b(w) \}`. (More :math:`a`'s than :math:`b`'s, any order)
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
@@ -512,8 +508,7 @@
 
 .. admonition:: **Question 23:** CYK Algorithm Question: Check whether the string :math:`w=aab` is a valid member of the grammar :math:`G` where the productions are: :math:`S \to AB \mid BC`, :math:`A \to BA \mid a`, :math:`B \to CC \mid b`, :math:`C \to AB \mid a`.
 
-    **Solution (hidden):</b
-    >
+    **Solution (hidden):</b>
 
     .. raw:: html
 
