@@ -276,6 +276,20 @@ CFG Practice Problems
         S ⟹ aSb ⟹ a(aSb)b ⟹ a(a(aSb)b)b ⟹ a(a(ab)b)b ⟹ aaabbb ✓
         </div>
 
+    .. graphviz::
+
+       digraph Q2 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9", fontname="Arial"];
+          S1 [label="S"];
+          S1 -> a1 [label="a"];
+          S1 -> S2 [label="S"];
+          S1 -> b1 [label="b"];
+          S2 -> a2 [label="a"];
+          S2 -> ab [label="ab"];
+          {rank=same; a1; S2; b1;}
+       }
+
     .. raw:: html
 
         <div class="highlight-note">
@@ -330,6 +344,24 @@ CFG Practice Problems
         S ⟹ AB ⟹ (aA)B ⟹ (a(aA))B ⟹ (aaa)B ⟹ aaa(bB) ⟹ aaa(b(b)) ⟹ aaabb ✓
         </div>
 
+    .. graphviz::
+
+       digraph Q3 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> A;
+          S -> B;
+          A -> a1;
+          A -> A2 [label="A"];
+          A2 -> a2;
+          A2 -> A3 [label="A"];
+          A3 -> a3;
+          B -> b1;
+          B -> B2 [label="B"];
+          B2 -> b2;
+          {rank=same; a1; A2; b1;}
+       }
+
     .. raw:: html
 
         <div class="highlight-note">
@@ -381,6 +413,23 @@ CFG Practice Problems
         <div class="cfg-box">
         S ⟹ aSa ⟹ a(bSb)a ⟹ a(bεb)a ⟹ a(bb)a ⟹ abba ✓
         </div>
+
+    .. graphviz::
+
+       digraph Q4 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S1 [label="S"];
+          S1 -> a1 [label="a"];
+          S1 -> S2 [label="S"];
+          S1 -> a2 [label="a"];
+          S2 -> b1 [label="b"];
+          S2 -> eps [label="ε"];
+          S2 -> b2 [label="b"];
+          eps [label="ε", shape=plaintext];
+          {rank=same; a1; S2; a2;}
+          {rank=same; b1; eps; b2;}
+       }
 
     .. raw:: html
 
@@ -664,6 +713,23 @@ CFG Practice Problems
         S ⟹ AS' ⟹ (aA)S' ⟹ (aa)S' ⟹ aa(bS'c) ⟹ aa(b(bc)c) ⟹ aabbcc ✓
         </div>
 
+    .. graphviz::
+
+       digraph Q9 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> A;
+          S -> Sp [label="S'"];
+          A -> a1;
+          A -> A2 [label="A"];
+          A2 -> a2;
+          Sp -> b1;
+          Sp -> Sp2 [label="S'"];
+          Sp -> c1;
+          Sp2 -> b2;
+          Sp2 -> c2;
+       }
+
     .. raw:: html
 
         <div class="highlight-note">
@@ -721,6 +787,21 @@ CFG Practice Problems
         <div class="cfg-box">
         S ⟹ aSc ⟹ a(aSc)c ⟹ a(B)c ⟹ a(bB)c ⟹ a(bb)cc ⟹ aabbcc ✓
         </div>
+
+    .. graphviz::
+
+       digraph Q10 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S1 [label="S"];
+          S1 -> a1 [label="a"];
+          S1 -> S2 [label="S"];
+          S1 -> c1 [label="c"];
+          S2 -> B;
+          B -> b1;
+          B -> B2 [label="B"];
+          B2 -> b2;
+       }
 
     .. raw:: html
 
@@ -780,6 +861,23 @@ CFG Practice Problems
         <div class="cfg-box">
         S ⟹ XY ⟹ (aXb)Y ⟹ (a(ab)b)Y ⟹ (aabb)Y ⟹ aabb(cYd) ⟹ aabb(c(cd)d) ⟹ aabbccdd ✓
         </div>
+
+    .. graphviz::
+
+       digraph Q11 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> X;
+          S -> Y;
+          X -> a1 [label="a"];
+          X -> Xp [label="X"];
+          X -> b1 [label="b"];
+          Xp -> ab [label="ab"];
+          Y -> c1 [label="c"];
+          Y -> Yp [label="Y"];
+          Y -> d1 [label="d"];
+          Yp -> cd [label="cd"];
+       }
 
     .. raw:: html
 
@@ -841,6 +939,27 @@ CFG Practice Problems
         </div>
 
     **Examples:** aabbcc (i=j=2), aaabcc (j=k=2)
+
+    .. graphviz::
+
+       digraph Q12 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> A [label="Path 1"];
+          S -> B [label="Path 2"];
+          A -> C;
+          A -> D;
+          C -> aC [label="a"];
+          C -> Cp [label="C"];
+          C -> bC [label="b"];
+          Cp -> ab [label="ab"];
+          B -> E;
+          B -> F;
+          E -> a [label="a"];
+          F -> bF [label="b"];
+          F -> Fp [label="F"];
+          F -> c [label="c"];
+       }
 
     .. raw:: html
 
@@ -1018,7 +1137,20 @@ CFG Practice Problems
 
 ----
 
-.. admonition:: **Question 16:** Convert the following FA to CFG: States {q₀ (start, final), q₁}, Transitions: q₀ →ᵃ q₁, q₁ →ᵇ q₀.
+.. admonition:: **Question 16:** Convert the following FA to CFG.
+
+    **FA Description:** States {q₀ (start, final), q₁}, Alphabet {a, b}, Transitions: q₀ →ᵃ q₁, q₁ →ᵇ q₀
+
+    .. graphviz::
+
+       digraph FA16 {
+          rankdir=LR;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          q0 [label="q₀\n(Start,Final)", shape=doublecircle];
+          q1 [label="q₁"];
+          q0 -> q1 [label="a"];
+          q1 -> q0 [label="b"];
+       }
 
     .. raw:: html
 
@@ -1077,6 +1209,20 @@ CFG Practice Problems
 ----
 
 .. admonition:: **Question 17:** Convert FA accepting strings ending with "ab" to CFG.
+
+    .. graphviz::
+
+       digraph FA17 {
+          rankdir=LR;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          q0 [label="q₀\n(Start)"];
+          q1 [label="q₁"];
+          q2 [label="q₂\n(Final)", shape=doublecircle];
+          q0 -> q0 [label="a,b"];
+          q0 -> q1 [label="a"];
+          q1 -> q2 [label="b"];
+          q2 -> q0 [label="a,b"];
+       }
 
     .. raw:: html
 
@@ -1160,6 +1306,17 @@ CFG Practice Problems
         </ol>
         </div>
 
+    .. graphviz::
+
+       digraph Q18 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> A;
+          S -> B;
+          A -> a;
+          B -> b;
+       }
+
     .. raw:: html
 
         <div class="cfg-box">
@@ -1209,6 +1366,21 @@ CFG Practice Problems
         <li><strong>Calculation:</strong> 2<sup>3-1</sup> = 2<sup>2</sup> = 4</li>
         </ol>
         </div>
+
+    .. graphviz::
+
+       digraph Q19 {
+          rankdir=TB;
+          node [shape=circle, style=filled, fillcolor="#f9f9f9"];
+          S -> A;
+          S -> B;
+          A -> E;
+          A -> F;
+          B -> C;
+          E -> a;
+          F -> b;
+          C -> c;
+       }
 
     .. raw:: html
 
@@ -1286,7 +1458,12 @@ CFG Practice Problems
 
 ----
 
-.. admonition:: **Question 21 (MCQ):** Which language is NOT context-free? A) :math:`\{a^n b^n \mid n \geq 0\}` B) :math:`\{a^n b^n c^n \mid n \geq 0\}` C) :math:`\{a^i b^j \mid i, j \geq 0\}` D) :math:`\{ww^R \mid w \in \{a,b\}^*\}`
+.. admonition:: **Question 21 (MCQ):** Which language is NOT context-free?
+
+    A) :math:`\{a^n b^n \mid n \geq 0\}`
+    B) :math:`\{a^n b^n c^n \mid n \geq 0\}`
+    C) :math:`\{a^i b^j \mid i, j \geq 0\}`
+    D) :math:`\{ww^R \mid w \in \{a,b\}^*\}`
 
     .. raw:: html
 
@@ -1336,7 +1513,12 @@ CFG Practice Problems
 
 ----
 
-.. admonition:: **Question 22 (MCQ):** Which statement about CFGs is TRUE? A) Every CFG can be converted to CNF B) CNF has productions of form A → BC or A → a only C) CFLs are closed under union and concatenation D) All of the above
+.. admonition:: **Question 22 (MCQ):** Which statement about CFGs is TRUE?
+
+    A) Every CFG can be converted to CNF
+    B) CNF has productions of form A → BC or A → a only
+    C) CFLs are closed under union and concatenation
+    D) All of the above
 
     .. raw:: html
 
@@ -1557,7 +1739,12 @@ CFG Practice Problems
 
 ----
 
-.. admonition:: **Question 26 (Classification):** Which languages can be accepted by a CFG? A) :math:`\{a^n b^n c^n \mid n \geq 1\}` B) :math:`\{a^n b^n \mid n \geq 1\}` C) :math:`\{ww^R \mid w \in \{a,b\}^*\}` D) All of the above
+.. admonition:: **Question 26 (Classification):** Which languages can be accepted by a CFG?
+
+    A) :math:`\{a^n b^n c^n \mid n \geq 1\}`
+    B) :math:`\{a^n b^n \mid n \geq 1\}`
+    C) :math:`\{ww^R \mid w \in \{a,b\}^*\}`
+    D) All of the above
 
     .. raw:: html
 
@@ -2025,17 +2212,4 @@ Summary: CFG Patterns & Limitations
    <div class="highlight-note">
    <strong>✓ CFGs CAN handle:</strong><br>
    • Two equal counts (a<sup>n</sup>b<sup>n</sup>)<br>
-   • Palindromes (ww<sup>R</sup>)<br>
-   • Balanced structures (parentheses)<br>
-   • Nested dependencies<br>
-   • Position constraints<br><br>
-   
-   <strong>✗ CFGs CANNOT handle:</strong><br>
-   • Three equal counts (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>)<br>
-   • Copying (ww)<br>
-   • Crossed dependencies<br>
-   • Non-linear counting (primes, squares, factorials)<br>
-   • Context-sensitive patterns
-   </div>
-
-----
+   • Palin

@@ -306,7 +306,19 @@ S → aSb | ab
 </div><p><strong>Derivation for “aaabbb”:</strong></p>
 <div class="cfg-box">
 S ⟹ aSb ⟹ a(aSb)b ⟹ a(a(aSb)b)b ⟹ a(a(ab)b)b ⟹ aaabbb ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-85123011d30de22c926ca994c1bb43ba7fb3a6fa.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q2 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;, fontname=&quot;Arial&quot;];
+   S1 [label=&quot;S&quot;];
+   S1 -&gt; a1 [label=&quot;a&quot;];
+   S1 -&gt; S2 [label=&quot;S&quot;];
+   S1 -&gt; b1 [label=&quot;b&quot;];
+   S2 -&gt; a2 [label=&quot;a&quot;];
+   S2 -&gt; ab [label=&quot;ab&quot;];
+   {rank=same; a1; S2; b1;}
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> Each recursive step adds one 'a' at the left and one 'b' at the right, maintaining equality.
 </div></details></div>
 <hr class="docutils" />
@@ -330,7 +342,23 @@ B → bB | b
 </div><p><strong>Derivation for “aaabb”:</strong></p>
 <div class="cfg-box">
 S ⟹ AB ⟹ (aA)B ⟹ (a(aA))B ⟹ (aaa)B ⟹ aaa(bB) ⟹ aaa(b(b)) ⟹ aaabb ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-6d41f0aff4900c9a6b57663651ee5bc930df586a.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q3 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A;
+   S -&gt; B;
+   A -&gt; a1;
+   A -&gt; A2 [label=&quot;A&quot;];
+   A2 -&gt; a2;
+   A2 -&gt; A3 [label=&quot;A&quot;];
+   A3 -&gt; a3;
+   B -&gt; b1;
+   B -&gt; B2 [label=&quot;B&quot;];
+   B2 -&gt; b2;
+   {rank=same; a1; A2; b1;}
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> Variables A and B are independent: A generates any number of a's, B generates any number of b's.
 </div></details></div>
 <hr class="docutils" />
@@ -352,7 +380,22 @@ S → aSa | bSb | ε
 </div><p><strong>Derivation for “abba”:</strong></p>
 <div class="cfg-box">
 S ⟹ aSa ⟹ a(bSb)a ⟹ a(bεb)a ⟹ a(bb)a ⟹ abba ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-4ecae23a28c20539be25687e885fb2316b7a871d.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q4 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S1 [label=&quot;S&quot;];
+   S1 -&gt; a1 [label=&quot;a&quot;];
+   S1 -&gt; S2 [label=&quot;S&quot;];
+   S1 -&gt; a2 [label=&quot;a&quot;];
+   S2 -&gt; b1 [label=&quot;b&quot;];
+   S2 -&gt; eps [label=&quot;ε&quot;];
+   S2 -&gt; b2 [label=&quot;b&quot;];
+   eps [label=&quot;ε&quot;, shape=plaintext];
+   {rank=same; a1; S2; a2;}
+   {rank=same; b1; eps; b2;}
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> The grammar builds palindromes from the center outward, ensuring symmetry. The base case ε gives even-length strings.
 </div></details></div>
 <hr class="docutils" />
@@ -480,7 +523,22 @@ S' → bS'c | bc
 </div><p><strong>Derivation for “aabbcc”:</strong></p>
 <div class="cfg-box">
 S ⟹ AS' ⟹ (aA)S' ⟹ (aa)S' ⟹ aa(bS'c) ⟹ aa(b(bc)c) ⟹ aabbcc ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-5d9c6af381248ee807390ca2936dc942c7c8c04b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q9 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A;
+   S -&gt; Sp [label=&quot;S'&quot;];
+   A -&gt; a1;
+   A -&gt; A2 [label=&quot;A&quot;];
+   A2 -&gt; a2;
+   Sp -&gt; b1;
+   Sp -&gt; Sp2 [label=&quot;S'&quot;];
+   Sp -&gt; c1;
+   Sp2 -&gt; b2;
+   Sp2 -&gt; c2;
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> The count of 'a's is independent of b's and c's. Variable A handles a's freely, while S' enforces b<sup>m</sup>c<sup>m</sup> equality.
 </div></details></div>
 <hr class="docutils" />
@@ -508,7 +566,20 @@ B → bB | b
 </div><p><strong>Derivation for “aabcc”:</strong></p>
 <div class="cfg-box">
 S ⟹ aSc ⟹ a(aSc)c ⟹ a(B)c ⟹ a(bB)c ⟹ a(bb)cc ⟹ aabbcc ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-f231402cf06d4796d7896b217fca37bbe50abc35.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q10 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S1 [label=&quot;S&quot;];
+   S1 -&gt; a1 [label=&quot;a&quot;];
+   S1 -&gt; S2 [label=&quot;S&quot;];
+   S1 -&gt; c1 [label=&quot;c&quot;];
+   S2 -&gt; B;
+   B -&gt; b1;
+   B -&gt; B2 [label=&quot;B&quot;];
+   B2 -&gt; b2;
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> 'a' and 'c' must match (outer dependency), while 'b' count is independent (middle). S handles the a-c matching, B generates independent b's.
 </div></details></div>
 <hr class="docutils" />
@@ -537,7 +608,22 @@ Y → cYd | cd
 </div><p><strong>Derivation for “aabbccdd”:</strong></p>
 <div class="cfg-box">
 S ⟹ XY ⟹ (aXb)Y ⟹ (a(ab)b)Y ⟹ (aabb)Y ⟹ aabb(cYd) ⟹ aabb(c(cd)d) ⟹ aabbccdd ✓
-</div><div class="highlight-note">
+</div><div class="graphviz"><object data="../_images/graphviz-c460d2147346b5fdd43523200ff86baa24682604.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q11 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; X;
+   S -&gt; Y;
+   X -&gt; a1 [label=&quot;a&quot;];
+   X -&gt; Xp [label=&quot;X&quot;];
+   X -&gt; b1 [label=&quot;b&quot;];
+   Xp -&gt; ab [label=&quot;ab&quot;];
+   Y -&gt; c1 [label=&quot;c&quot;];
+   Y -&gt; Yp [label=&quot;Y&quot;];
+   Y -&gt; d1 [label=&quot;d&quot;];
+   Yp -&gt; cd [label=&quot;cd&quot;];
+}</p></object></div>
+<div class="highlight-note">
 <strong>💡 Key Insight:</strong> Two independent equal-count pairs in sequence. X handles first pair (a<sup>n</sup>b<sup>n</sup>), Y handles second pair (c<sup>m</sup>d<sup>m</sup>).
 </div></details></div>
 <hr class="docutils" />
@@ -572,6 +658,25 @@ F → bFc | bc
 <li><strong>Non-deterministic choice:</strong> S → A | B picks which equality to enforce</li>
 </ol>
 </div><p><strong>Examples:</strong> aabbcc (i=j=2), aaabcc (j=k=2)</p>
+<div class="graphviz"><object data="../_images/graphviz-89deb3feb10edc110bb20e5ce4933c1820ff07b7.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q12 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A [label=&quot;Path 1&quot;];
+   S -&gt; B [label=&quot;Path 2&quot;];
+   A -&gt; C;
+   A -&gt; D;
+   C -&gt; aC [label=&quot;a&quot;];
+   C -&gt; Cp [label=&quot;C&quot;];
+   C -&gt; bC [label=&quot;b&quot;];
+   Cp -&gt; ab [label=&quot;ab&quot;];
+   B -&gt; E;
+   B -&gt; F;
+   E -&gt; a [label=&quot;a&quot;];
+   F -&gt; bF [label=&quot;b&quot;];
+   F -&gt; Fp [label=&quot;F&quot;];
+   F -&gt; c [label=&quot;c&quot;];
+}</p></object></div>
 <div class="highlight-note">
 <strong>💡 Key Insight:</strong> This is a union of two languages: L₁ where i=j (any k), and L₂ where j=k (any i). Non-deterministically choose which equality to enforce.
 </div></details></div>
@@ -653,8 +758,18 @@ S → A | B<br><br>
 <strong>💡 Key Insight:</strong> Union of two cases: (1) more a's than b's, (2) more b's than a's.
 </div></details></div>
 <hr class="docutils" />
-<div class="admonition-question-16-convert-the-following-fa-to-cfg-states-q0-start-final-q1-transitions-q0-a-q1-q1-b-q0 admonition">
-<p class="admonition-title"><strong>Question 16:</strong> Convert the following FA to CFG: States {q₀ (start, final), q₁}, Transitions: q₀ →ᵃ q₁, q₁ →ᵇ q₀.</p>
+<div class="admonition-question-16-convert-the-following-fa-to-cfg admonition">
+<p class="admonition-title"><strong>Question 16:</strong> Convert the following FA to CFG.</p>
+<p><strong>FA Description:</strong> States {q₀ (start, final), q₁}, Alphabet {a, b}, Transitions: q₀ →ᵃ q₁, q₁ →ᵇ q₀</p>
+<div class="graphviz"><object data="../_images/graphviz-e64ae2b9f350d0c4c873f4f6b54c969b5caa2a39.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA16 {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   q0 [label=&quot;q₀\n(Start,Final)&quot;, shape=doublecircle];
+   q1 [label=&quot;q₁&quot;];
+   q0 -&gt; q1 [label=&quot;a&quot;];
+   q1 -&gt; q0 [label=&quot;b&quot;];
+}</p></object></div>
 <span class="level-indicator level-intermediate">INTERMEDIATE</span><p><strong>Solution:</strong></p>
 <details>
 <summary><b>🔍 Show Complete Solution</b></summary><div class="cfg-box">
@@ -683,6 +798,18 @@ S₀ ⟹ aS₁ ⟹ a(bS₀) ⟹ ab(aS₁) ⟹ ab(a(bS₀)) ⟹ abab(ε) ⟹ abab
 <hr class="docutils" />
 <div class="admonition-question-17-convert-fa-accepting-strings-ending-with-ab-to-cfg admonition">
 <p class="admonition-title"><strong>Question 17:</strong> Convert FA accepting strings ending with “ab” to CFG.</p>
+<div class="graphviz"><object data="../_images/graphviz-63f53206ae20451907703edb5840eb9585ae62a0.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph FA17 {
+   rankdir=LR;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   q0 [label=&quot;q₀\n(Start)&quot;];
+   q1 [label=&quot;q₁&quot;];
+   q2 [label=&quot;q₂\n(Final)&quot;, shape=doublecircle];
+   q0 -&gt; q0 [label=&quot;a,b&quot;];
+   q0 -&gt; q1 [label=&quot;a&quot;];
+   q1 -&gt; q2 [label=&quot;b&quot;];
+   q2 -&gt; q0 [label=&quot;a,b&quot;];
+}</p></object></div>
 <span class="level-indicator level-intermediate">INTERMEDIATE</span><p><strong>Solution:</strong></p>
 <details>
 <summary><b>🔍 Show Complete Solution</b></summary><div class="cfg-box">
@@ -726,7 +853,16 @@ S₂ → aS₀ | bS₀ | ε
 <li><strong>Formula:</strong> Maximum yield length = 2<sup>k-1</sup></li>
 <li><strong>Calculation:</strong> 2<sup>2-1</sup> = 2<sup>1</sup> = 2</li>
 </ol>
-</div><div class="cfg-box">
+</div><div class="graphviz"><object data="../_images/graphviz-8911856a62bfa312587e88a7908452585afc5e52.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q18 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A;
+   S -&gt; B;
+   A -&gt; a;
+   B -&gt; b;
+}</p></object></div>
+<div class="cfg-box">
 <strong>Result:</strong> Maximum yield length = 2
 </div><div class="highlight-note">
 <strong>💡 Key Insight:</strong> In CNF, each production is either A → BC or A → a. The maximum yield length formula is 2<sup>k-1</sup> where k is the tree height.
@@ -751,7 +887,20 @@ S₂ → aS₀ | bS₀ | ε
 <li><strong>Formula:</strong> Maximum yield = 2<sup>k-1</sup></li>
 <li><strong>Calculation:</strong> 2<sup>3-1</sup> = 2<sup>2</sup> = 4</li>
 </ol>
-</div><div class="cfg-box">
+</div><div class="graphviz"><object data="../_images/graphviz-f4f511da9a10112ff458cc62a38ea973a06be2d2.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph Q19 {
+   rankdir=TB;
+   node [shape=circle, style=filled, fillcolor=&quot;#f9f9f9&quot;];
+   S -&gt; A;
+   S -&gt; B;
+   A -&gt; E;
+   A -&gt; F;
+   B -&gt; C;
+   E -&gt; a;
+   F -&gt; b;
+   C -&gt; c;
+}</p></object></div>
+<div class="cfg-box">
 <strong>Result:</strong> Maximum yield length = 4
 </div><div class="highlight-note">
 <strong>💡 Key Insight:</strong> Each level in CNF can double the number of leaves (maximum branching = 2).
@@ -790,8 +939,14 @@ S₂ → aS₀ | bS₀ | ε
 <strong>💡 Key Insight:</strong> CYK builds bottom-up: fill length-1 cells first, then length-2, etc. String is accepted only if S appears in the top-left cell.
 </div></details></div>
 <hr class="docutils" />
-<div class="admonition-question-21-mcq-which-language-is-not-context-free-a-math-a-n-b-n-mid-n-geq-0-b-math-a-n-b-n-c-n-mid-n-geq-0-c-math-a-i-b-j-mid-i-j-geq-0-d-math-ww-r-mid-w-in-a-b admonition">
-<p class="admonition-title"><strong>Question 21 (MCQ):</strong> Which language is NOT context-free? A) <span class="math notranslate nohighlight">\(\{a^n b^n \mid n \geq 0\}\)</span> B) <span class="math notranslate nohighlight">\(\{a^n b^n c^n \mid n \geq 0\}\)</span> C) <span class="math notranslate nohighlight">\(\{a^i b^j \mid i, j \geq 0\}\)</span> D) <span class="math notranslate nohighlight">\(\{ww^R \mid w \in \{a,b\}^*\}\)</span></p>
+<div class="admonition-question-21-mcq-which-language-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 21 (MCQ):</strong> Which language is NOT context-free?</p>
+<ol class="upperalpha simple">
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n \mid n \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n c^n \mid n \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{a^i b^j \mid i, j \geq 0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ww^R \mid w \in \{a,b\}^*\}\)</span></p></li>
+</ol>
 <span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
 <details>
 <summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
@@ -815,8 +970,14 @@ Answer: B) {a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>} is NOT CFL
 💭 <strong>Pumping Lemma Proof:</strong> Consider w = a<sup>p</sup>b<sup>p</sup>c<sup>p</sup>. Any decomposition with |vxy| ≤ p means vxy spans at most 2 symbol types. Pumping breaks the three-way equality.
 </div></details></div>
 <hr class="docutils" />
-<div class="admonition-question-22-mcq-which-statement-about-cfgs-is-true-a-every-cfg-can-be-converted-to-cnf-b-cnf-has-productions-of-form-a-bc-or-a-a-only-c-cfls-are-closed-under-union-and-concatenation-d-all-of-the-above admonition">
-<p class="admonition-title"><strong>Question 22 (MCQ):</strong> Which statement about CFGs is TRUE? A) Every CFG can be converted to CNF B) CNF has productions of form A → BC or A → a only C) CFLs are closed under union and concatenation D) All of the above</p>
+<div class="admonition-question-22-mcq-which-statement-about-cfgs-is-true admonition">
+<p class="admonition-title"><strong>Question 22 (MCQ):</strong> Which statement about CFGs is TRUE?</p>
+<ol class="upperalpha simple">
+<li><p>Every CFG can be converted to CNF</p></li>
+<li><p>CNF has productions of form A → BC or A → a only</p></li>
+<li><p>CFLs are closed under union and concatenation</p></li>
+<li><p>All of the above</p></li>
+</ol>
 <span class="level-indicator level-intermediate">INTERMEDIATE</span><p><strong>Solution:</strong></p>
 <details>
 <summary><b>🔍 Show Complete Solution</b></summary><div class="cfg-box">
@@ -936,8 +1097,14 @@ B → b
 <strong>💡 Key Insight:</strong> All productions must be: A → BC (two non-terminals), or A → a (single terminal).
 </div></details></div>
 <hr class="docutils" />
-<div class="admonition-question-26-classification-which-languages-can-be-accepted-by-a-cfg-a-math-a-n-b-n-c-n-mid-n-geq-1-b-math-a-n-b-n-mid-n-geq-1-c-math-ww-r-mid-w-in-a-b-d-all-of-the-above admonition">
-<p class="admonition-title"><strong>Question 26 (Classification):</strong> Which languages can be accepted by a CFG? A) <span class="math notranslate nohighlight">\(\{a^n b^n c^n \mid n \geq 1\}\)</span> B) <span class="math notranslate nohighlight">\(\{a^n b^n \mid n \geq 1\}\)</span> C) <span class="math notranslate nohighlight">\(\{ww^R \mid w \in \{a,b\}^*\}\)</span> D) All of the above</p>
+<div class="admonition-question-26-classification-which-languages-can-be-accepted-by-a-cfg admonition">
+<p class="admonition-title"><strong>Question 26 (Classification):</strong> Which languages can be accepted by a CFG?</p>
+<ol class="upperalpha simple">
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n c^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{a^n b^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\{ww^R \mid w \in \{a,b\}^*\}\)</span></p></li>
+<li><p>All of the above</p></li>
+</ol>
 <span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
 <details>
 <summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
@@ -1222,19 +1389,7 @@ S → aXb (starts 'a', ends 'b'), X → aX | bX | ε
 </div><div class="highlight-note">
 <strong>✓ CFGs CAN handle:</strong><br>
 • Two equal counts (a<sup>n</sup>b<sup>n</sup>)<br>
-• Palindromes (ww<sup>R</sup>)<br>
-• Balanced structures (parentheses)<br>
-• Nested dependencies<br>
-• Position constraints<br><br>
-
-<strong>✗ CFGs CANNOT handle:</strong><br>
-• Three equal counts (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>)<br>
-• Copying (ww)<br>
-• Crossed dependencies<br>
-• Non-linear counting (primes, squares, factorials)<br>
-• Context-sensitive patterns
-</div><hr class="docutils" />
-</section>
+• Palin</section>
 </section>
 
 
