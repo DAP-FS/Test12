@@ -1285,11 +1285,10 @@ Summary: Key CFG Patterns
 .. raw:: html
 
    <div class="highlight-note">
-   <strong>⚡ Power of CFGs:</strong><br>
-   
-   ✓ Can handle: nested structures, palindromes, two equal counts<br>
-
-   ✗ Cannot handle: three+ equal counts, context-sensitive patterns, a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>
+     <strong>⚡ Power of CFGs:</strong><br><br>
+     ✓ <strong>Can handle:</strong> nested structures, palindromes, two equal counts<br>
+     ✗ <strong>Cannot handle:</strong> three or more equal counts, context-sensitive patterns, \( a^n b^n c^n \)
    </div>
+
 
 ----
