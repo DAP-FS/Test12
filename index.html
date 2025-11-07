@@ -54,12 +54,75 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/Introduction_CFG.html">1. Introduction to Context Free Grammer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/CFG.html">2. CFG Practice Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/PDA.html">4. PDA Practice Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/Introduction_CFG.html">1. Introduction to Context Free Grammer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#what-is-context-free">1.1. What is Context-Free?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#the-problem-why-cfgs-matter">1.2. The Problem: Why CFGs Matter ?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/Introduction_CFG.html#can-a-dfa-verify-this">1.2.1. Can a DFA verify this?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#recipe-analogy-how-cfgs-work">1.3. Recipe Analogy: How CFGs Work ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#regular-vs-context-free">1.4. Regular vs. Context-Free</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#why-context-free">1.5. Why “Context-Free”?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#real-world-applications">1.6. Real-World Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#quick-check">1.7. Quick Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#summary">1.8. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#definition-2-1-context-free-grammar">1.9. Definition 2.1 — Context-Free Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#example-cfg-balanced-parentheses">1.10. Example CFG — Balanced Parentheses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#self-check-interactive-quiz">1.11. Self-Check: Interactive Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/CFG.html">2. CFG Practice Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/CFG.html#summary-cfg-patterns-limitations">2.1. Summary: CFG Patterns &amp; Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/pushdownautomata.html">3. Pushdown Automata (PDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#introduction">3.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#why-pda">3.2. Why PDA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#formal-definition">3.3. Formal Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#transition-notation-explained">3.4. Transition Notation Explained</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-modes">3.5. Acceptance Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-1-balanced-parentheses">3.6. PDA Example 1: Balanced Parentheses “()”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#state-diagram">3.6.1. State Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-check">3.6.2. Acceptance Check — “(())”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#rejection-check">3.6.3. Rejection Check — “(()”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-2-language-anbn">3.7. PDA Example 2: Language aⁿbⁿ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#id1">3.7.1. State Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-check-aaabbb">3.7.2. Acceptance Check — “aaabbb”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#rejection-check-aabbb">3.7.3. Rejection Check — “aabbb”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-3-palindromes-wcw">3.8. PDA Example 3: Palindromes WcWᴿ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#id2">3.8.1. State Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-check-abcba">3.8.2. Acceptance Check — “abcba”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#rejection-check-abcda">3.8.3. Rejection Check — “abcda”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-4-equal-count-anbn-any-order">3.9. PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#id3">3.9.1. State Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-check-aabb">3.9.2. Acceptance Check — “aabb”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-check-abab">3.9.3. Acceptance Check — “abab”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules/pushdownautomata.html#rejection-check-aaab">3.9.4. Rejection Check — “aaab”</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#summary-table-comparing-all-examples">3.10. Summary Table — Comparing All Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#key-principles-for-reading-transitions">3.11. Key Principles for Reading Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#summary">3.12. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/PDA.html">4. PDA Practice Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-1-basic-stack-operations">4.1. Level 1: Basic Stack Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-2-complex-patterns">4.2. Level 2: Complex Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-3-limitations-impossibilities">4.3. Level 3: Limitations &amp; Impossibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-4-special-applications">4.4. Level 4: Special Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-8-language-classification-impossibilities">4.5. Level 8: Language Classification &amp; Impossibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#summary-what-makes-languages-non-context-free">4.6. Summary: What Makes Languages Non-Context-Free</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#summary-pda-design-patterns">4.7. Summary: PDA Design Patterns</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -90,55 +153,186 @@
 <h1>Theory of Computation<a class="headerlink" href="#theory-of-computation" title="Link to this heading"></a></h1>
 <style>
   body {
-    background-color: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
   }
+
   h1 {
-    color: #800000;  /* Deep maroon */
+    color: #7b1113;
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 2em 0 0.5em 0;
+    text-align: center;
+  }
+
+  h2 {
+    color: #7b1113;
+    font-size: 1.4em;
     font-weight: 600;
-    text-align: left;   /* Left aligned now */
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin: 1.5em 0 0.8em 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5em;
   }
-  .brand-logo {
-    width: 40px;
-    height: 40px;
-    image-rendering: pixelated;
-    border-radius: 6px;
-    vertical-align: middle;
+
+  p {
+    margin: 1em 0;
+    font-size: 1.05em;
   }
-  .toc-title {
-    color: #333333;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+
+  .intro {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 2em;
+    background: #fafafa;
+    border-left: 4px solid #7b1113;
+    text-align: center;
   }
-  .toctree-wrapper ul {
-    list-style-type: none;
-    padding-left: 0;
+
+  .intro p {
+    margin: 0.8em 0;
+    font-size: 1em;
   }
-  .toctree-wrapper li {
-    margin: 8px 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
   }
-  a {
-    color: #800000;
+
+  li {
+    margin: 0.6em 0;
+    padding-left: 1.5em;
+    position: relative;
+  }
+
+  li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #7b1113;
+    font-weight: bold;
+  }
+
+  .toc {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 2em;
+  }
+
+  .toc a {
+    color: #7b1113;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1.1em;
   }
-  a:hover {
+
+  .toc a:hover {
     text-decoration: underline;
   }
-</style><div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Index</span></p>
+
+  .footer {
+    text-align: center;
+    margin-top: 3em;
+    padding: 2em;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.2em; }
+    .intro, .toc { padding: 1.5em; }
+  }
+</style>
+
+<div class="intro">
+  <p style="font-size: 2em; margin: 0 0 0.5em 0;">🐼</p>
+  <h1 style="margin: 0; font-size: 1.8em;"></h1>
+</div></section>
+<hr class="docutils" />
+<section id="how-to-use">
+<h1>How to Use<a class="headerlink" href="#how-to-use" title="Link to this heading"></a></h1>
+<div class="toc">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules/Introduction_CFG.html">1. Introduction to Context Free Grammer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/CFG.html">2. CFG Practice Problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/pushdownautomata.html">3. Pushdown Automata (PDA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/PDA.html">4. PDA Practice Problems</a></li>
+
+<li><strong>Learn by doing:</strong> Try solving each problem first. Only check solutions after genuine effort.</li>
+<li><strong>Understand patterns:</strong> Don't memorize—understand why each grammar works. This lets you solve new problems.</li>
+<li><strong>Study PDA after CFG:</strong> Compare PDA solutions with equivalent CFG solutions. They recognize what grammars generate.</li>
+<li><strong>Trace derivations:</strong> Manually trace through each example. Draw derivation trees on paper.</li>
+<li><strong>Study impossibilities:</strong> Questions 26-32 prove what PDAs/CFGs cannot do. This knowledge is as important as knowing what they can do.</li>
+</ul>
+</div></section>
+<hr class="docutils" />
+<section id="resources">
+<h1>Resources<a class="headerlink" href="#resources" title="Link to this heading"></a></h1>
+<div class="toc">
+<ul>
+<li><strong>CFG Problems:</strong> Complete solutions, derivations, and visual diagrams</li>
+<li><strong>PDA Problems:</strong> Stack operations, transitions, and acceptance conditions</li>
+<li><strong>Visual Diagrams:</strong> Graphviz trees and finite automata for every concept</li>
+<li><strong>Key Insights:</strong> Pattern recognition to solve similar problems independently</li>
+</ul>
+</div></section>
+<hr class="docutils" />
+<section id="navigation">
+<h1>Navigation<a class="headerlink" href="#navigation" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/Introduction_CFG.html">1. Introduction to Context Free Grammer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#what-is-context-free">1.1. What is Context-Free?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#the-problem-why-cfgs-matter">1.2. The Problem: Why CFGs Matter ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#recipe-analogy-how-cfgs-work">1.3. Recipe Analogy: How CFGs Work ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#regular-vs-context-free">1.4. Regular vs. Context-Free</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#why-context-free">1.5. Why “Context-Free”?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#real-world-applications">1.6. Real-World Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#quick-check">1.7. Quick Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#summary">1.8. Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#definition-2-1-context-free-grammar">1.9. Definition 2.1 — Context-Free Grammar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#example-cfg-balanced-parentheses">1.10. Example CFG — Balanced Parentheses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/Introduction_CFG.html#self-check-interactive-quiz">1.11. Self-Check: Interactive Quiz</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/CFG.html">2. CFG Practice Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/CFG.html#summary-cfg-patterns-limitations">2.1. Summary: CFG Patterns &amp; Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/pushdownautomata.html">3. Pushdown Automata (PDA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#introduction">3.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#why-pda">3.2. Why PDA?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#formal-definition">3.3. Formal Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#transition-notation-explained">3.4. Transition Notation Explained</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#acceptance-modes">3.5. Acceptance Modes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-1-balanced-parentheses">3.6. PDA Example 1: Balanced Parentheses “()”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-2-language-anbn">3.7. PDA Example 2: Language aⁿbⁿ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-3-palindromes-wcw">3.8. PDA Example 3: Palindromes WcWᴿ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#pda-example-4-equal-count-anbn-any-order">3.9. PDA Example 4: Equal Count aⁿbⁿ (Any Order)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#summary-table-comparing-all-examples">3.10. Summary Table — Comparing All Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#key-principles-for-reading-transitions">3.11. Key Principles for Reading Transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/pushdownautomata.html#summary">3.12. Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/PDA.html">4. PDA Practice Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-1-basic-stack-operations">4.1. Level 1: Basic Stack Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-2-complex-patterns">4.2. Level 2: Complex Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-3-limitations-impossibilities">4.3. Level 3: Limitations &amp; Impossibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-4-special-applications">4.4. Level 4: Special Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#level-8-language-classification-impossibilities">4.5. Level 8: Language Classification &amp; Impossibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#summary-what-makes-languages-non-context-free">4.6. Summary: What Makes Languages Non-Context-Free</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/PDA.html#summary-pda-design-patterns">4.7. Summary: PDA Design Patterns</a></li>
+</ul>
+</li>
 </ul>
 </div>
-</section>
+<hr class="docutils" />
+<div class="footer">
+<p>Practice Hub | Designed for understanding, not memorizing</p>
+<p>Each problem includes complete solutions, derivations, and visual explanations</p>
+</div></section>
 
 
            </div>

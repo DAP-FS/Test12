@@ -1,58 +1,164 @@
 Theory of Computation
-==============================================
+=====================
 
 .. raw:: html
 
    <style>
      body {
-       background-color: #fafafa;
-       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+       background: #ffffff;
+       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       color: #333;
+       line-height: 1.6;
+       margin: 0;
+       padding: 0;
      }
+     
      h1 {
-       color: #800000;  /* Deep maroon */
+       color: #7b1113;
+       font-size: 2.2em;
+       font-weight: 700;
+       margin: 2em 0 0.5em 0;
+       text-align: center;
+     }
+     
+     h2 {
+       color: #7b1113;
+       font-size: 1.4em;
        font-weight: 600;
-       text-align: left;   /* Left aligned now */
-       display: flex;
-       align-items: center;
-       gap: 10px;
+       margin: 1.5em 0 0.8em 0;
+       border-bottom: 1px solid #ddd;
+       padding-bottom: 0.5em;
      }
-     .brand-logo {
-       width: 40px;
-       height: 40px;
-       image-rendering: pixelated;
-       border-radius: 6px;
-       vertical-align: middle;
+     
+     p {
+       margin: 1em 0;
+       font-size: 1.05em;
      }
-     .toc-title {
-       color: #333333;
-       font-weight: 500;
-       text-transform: uppercase;
-       letter-spacing: 1px;
+     
+     .intro {
+       max-width: 800px;
+       margin: 2em auto;
+       padding: 2em;
+       background: #fafafa;
+       border-left: 4px solid #7b1113;
+       text-align: center;
      }
-     .toctree-wrapper ul {
-       list-style-type: none;
-       padding-left: 0;
+     
+     .intro p {
+       margin: 0.8em 0;
+       font-size: 1em;
      }
-     .toctree-wrapper li {
-       margin: 8px 0;
+     
+     ul {
+       list-style: none;
+       padding: 0;
      }
-     a {
-       color: #800000;
+     
+     li {
+       margin: 0.6em 0;
+       padding-left: 1.5em;
+       position: relative;
+     }
+     
+     li:before {
+       content: "→";
+       position: absolute;
+       left: 0;
+       color: #7b1113;
+       font-weight: bold;
+     }
+     
+     .toc {
+       max-width: 800px;
+       margin: 2em auto;
+       padding: 2em;
+     }
+     
+     .toc a {
+       color: #7b1113;
        text-decoration: none;
        font-weight: 500;
+       font-size: 1.1em;
      }
-     a:hover {
+     
+     .toc a:hover {
        text-decoration: underline;
+     }
+     
+     .footer {
+       text-align: center;
+       margin-top: 3em;
+       padding: 2em;
+       border-top: 1px solid #ddd;
+       color: #666;
+       font-size: 0.95em;
+     }
+     
+     @media (max-width: 768px) {
+       h1 { font-size: 1.8em; }
+       h2 { font-size: 1.2em; }
+       .intro, .toc { padding: 1.5em; }
      }
    </style>
 
+   <div class="intro">
+     <p style="font-size: 2em; margin: 0 0 0.5em 0;">🐼</p>
+     <h1 style="margin: 0; font-size: 1.8em;"></h1>
+   </div>
+
+----
+
+How to Use
+==========
+
+.. raw:: html
+
+   <div class="toc">
+   <ul>
+  
+   <li><strong>Learn by doing:</strong> Try solving each problem first. Only check solutions after genuine effort.</li>
+   <li><strong>Understand patterns:</strong> Don't memorize—understand why each grammar works. This lets you solve new problems.</li>
+   <li><strong>Study PDA after CFG:</strong> Compare PDA solutions with equivalent CFG solutions. They recognize what grammars generate.</li>
+   <li><strong>Trace derivations:</strong> Manually trace through each example. Draw derivation trees on paper.</li>
+   <li><strong>Study impossibilities:</strong> Questions 26-32 prove what PDAs/CFGs cannot do. This knowledge is as important as knowing what they can do.</li>
+   </ul>
+   </div>
+
+----
+
+Resources
+=========
+
+.. raw:: html
+
+   <div class="toc">
+   <ul>
+   <li><strong>CFG Problems:</strong> Complete solutions, derivations, and visual diagrams</li>
+   <li><strong>PDA Problems:</strong> Stack operations, transitions, and acceptance conditions</li>
+   <li><strong>Visual Diagrams:</strong> Graphviz trees and finite automata for every concept</li>
+   <li><strong>Key Insights:</strong> Pattern recognition to solve similar problems independently</li>
+   </ul>
+   </div>
+
+----
+
+Navigation
+==========
+
 .. toctree::
    :maxdepth: 2
-   :titlesonly:
-   :numbered:
-   :caption: Index
+   :caption: Modules
 
    modules/Introduction_CFG
    modules/CFG
    modules/pushdownautomata
    modules/PDA
+
+----
+
+.. raw:: html
+
+   <div class="footer">
+   <p>Practice Hub | Designed for understanding, not memorizing</p>
+   <p>Each problem includes complete solutions, derivations, and visual explanations</p>
+   </div>
