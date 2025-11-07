@@ -52,10 +52,9 @@ Theory of Computation
    :numbered:
    :caption: Index
 
-
-   modules/intro
    modules/lesson01
    modules/context_free_languages
    modules/pushdownautomata
+   modules/intro
    modules/exercises
    modules/summary
