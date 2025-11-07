@@ -11,72 +11,91 @@ PDA Practice Problems
 .. raw:: html
 
    <style>
-     /* Enhanced color scheme and typography */
-     h2, h3 { 
-       color: #7B1113; 
-       border-bottom: 2px solid #7B1113;
-       padding-bottom: 0.3em;
-       margin-top: 1.5em;
+     /* Mobile-first responsive design with eye-friendly colors */
+     * {
+       box-sizing: border-box;
      }
      
-     /* Question boxes with distinct styling */
+     body {
+       line-height: 1.7;
+       font-size: 16px;
+       color: #2C3E50;
+       background: #FAFBFC;
+     }
+     
+     /* Headers - Consistent, calm dark blue */
+     h2, h3 { 
+       color: #1A365D;
+       border-bottom: 2px solid #4A90A4;
+       padding-bottom: 0.4em;
+       margin-top: 1.8em;
+       font-weight: 600;
+     }
+     
+     /* Question boxes - Soft background, no harsh borders */
      .admonition {
-       border-radius: 8px;
-       padding: 1em 1.2em;
+       background: #FFFFFF;
+       border-left: 4px solid #4A90A4;
+       border-radius: 6px;
+       padding: 1.2em;
        margin: 1.5em 0;
-       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
      }
      
      .admonition-title {
-       font-weight: 700;
-       font-size: 1.1em;
+       font-weight: 600;
+       font-size: 1.05em;
        margin-bottom: 0.8em;
+       color: #2C3E50;
        display: flex;
        align-items: center;
      }
      
      .admonition-title:before {
        content: "📝";
-       margin-right: 0.5em;
+       margin-right: 0.6em;
        font-size: 1.2em;
      }
      
-     /* Dropdown solution styling */
+     /* Dropdown solution - Soft green scheme */
      details {
-       background: #F6FFED;
-       border: 2px solid #52C41A;
-       border-radius: 8px;
-       padding: 1em;
+       background: #F7FAF9;
+       border: 1px solid #A8D5BA;
+       border-radius: 6px;
+       padding: 0.8em;
        margin: 1em 0;
-       transition: all 0.3s ease;
+       transition: all 0.2s ease;
      }
      
      details:hover {
-       box-shadow: 0 4px 12px rgba(82, 196, 26, 0.2);
+       box-shadow: 0 2px 6px rgba(82, 196, 26, 0.12);
      }
      
      details summary {
        cursor: pointer;
-       font-weight: 700;
-       color: #389e0d;
-       padding: 0.5em;
-       background: #f0fff4;
-       border-radius: 6px;
+       font-weight: 600;
+       color: #2D6A4F;
+       padding: 0.8em;
+       background: #EDF7F0;
+       border-radius: 4px;
        list-style: none;
        display: flex;
        align-items: center;
-       transition: background 0.2s ease;
+       transition: background 0.15s ease;
+       -webkit-tap-highlight-color: transparent;
      }
      
-     details summary:hover {
-       background: #d9f7be;
+     details summary:hover,
+     details summary:active {
+       background: #D8F3DC;
      }
      
      details summary:before {
        content: "▶";
        margin-right: 0.8em;
-       transition: transform 0.3s ease;
-       font-size: 0.9em;
+       transition: transform 0.2s ease;
+       font-size: 0.85em;
+       color: #40916C;
      }
      
      details[open] summary:before {
@@ -85,226 +104,267 @@ PDA Practice Problems
      
      details[open] summary {
        margin-bottom: 1em;
-       border-bottom: 2px solid #52C41A;
+       border-bottom: 1px solid #A8D5BA;
      }
      
-     /* PDA transition boxes */
+     /* PDA boxes - Calm blue */
      .pda-box {
-       background: linear-gradient(135deg, #E6F7FF 0%, #BAE7FF 100%);
-       border-left: 6px solid #1890FF;
+       background: #F0F7FA;
+       border-left: 4px solid #4A90A4;
        padding: 1.2em;
        margin: 1.2em 0;
-       border-radius: 8px;
-       font-family: 'Courier New', monospace;
-       font-size: 1.05em;
-       box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+       border-radius: 6px;
+       font-family: 'Courier New', Consolas, monospace;
+       font-size: 0.95em;
+       line-height: 1.8;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
      }
      
      .pda-box strong {
-       color: #0050b3;
+       color: #1A365D;
        display: block;
-       margin-bottom: 0.8em;
-       font-size: 1.1em;
-       font-family: -apple-system, sans-serif;
+       margin-bottom: 0.7em;
+       font-size: 1em;
+       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+       font-weight: 600;
      }
      
      /* Transition notation */
      .transition-notation {
-       background: #F0F5FF;
-       border: 2px solid #597EF7;
+       background: #FFF9F0;
+       border: 1px solid #E3C29C;
        padding: 1em;
        margin: 1em 0;
-       border-radius: 8px;
+       border-radius: 6px;
        font-family: 'Courier New', monospace;
-       color: #2f54eb;
+       color: #6B5C3B;
        font-weight: 600;
+       font-size: 0.92em;
      }
      
-     /* Step-by-step explanation boxes */
+     /* Step boxes - Warm beige */
      .steps-box {
-       background: #FFFBE6;
-       border-left: 6px solid #FAAD14;
+       background: #FFFCF5;
+       border-left: 4px solid #D4A574;
        padding: 1.2em;
        margin: 1.2em 0;
-       border-radius: 8px;
-       box-shadow: 0 2px 8px rgba(250, 173, 20, 0.15);
+       border-radius: 6px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
      }
      
      .steps-box strong {
-       color: #d48806;
+       color: #6B5C3B;
        display: block;
-       margin-bottom: 0.5em;
+       margin-bottom: 0.6em;
+       font-weight: 600;
      }
      
-     .steps-box ol {
-       margin: 0.5em 0 0 1.5em;
+     .steps-box ol, .steps-box ul {
+       margin: 0.5em 0 0 1.3em;
        line-height: 1.8;
+       padding-left: 0.5em;
      }
      
      .steps-box li {
-       margin-bottom: 0.6em;
-       color: #595959;
+       margin-bottom: 0.8em;
+       color: #495057;
      }
      
-     /* Trace table styling */
+     /* Trace tables - Clean, minimal */
      .trace-table {
-       margin: 1.5em auto;
-       border-collapse: separate;
-       border-spacing: 0;
-       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-       border-radius: 8px;
-       overflow: hidden;
+       margin: 1.5em 0;
+       border-collapse: collapse;
        width: 100%;
+       font-size: 0.88em;
+       background: white;
+       border-radius: 6px;
+       overflow: hidden;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
      }
      
      .trace-table th {
-       background: linear-gradient(135deg, #7B1113 0%, #a82729 100%);
+       background: #4A90A4;
        color: white;
-       padding: 0.8em 1em;
-       font-weight: 700;
-       text-align: center;
-       border: 1px solid #7B1113;
+       padding: 0.9em 0.6em;
+       font-weight: 600;
+       text-align: left;
+       font-size: 0.9em;
      }
      
      .trace-table td {
-       padding: 0.8em 1em;
-       border: 1px solid #d9d9d9;
-       text-align: center;
-       background: white;
-       font-family: monospace;
-       font-size: 0.95em;
-     }
-     
-     .trace-table tr:nth-child(even) td {
-       background: #fafafa;
-     }
-     
-     .trace-table tr:hover td {
-       background: #e6f7ff;
-     }
-     
-     /* Stack visualization */
-     .stack-viz {
-       background: #FFF7E6;
-       border: 2px solid #FFA940;
-       padding: 1.2em;
-       margin: 1.2em 0;
-       border-radius: 8px;
-       box-shadow: 0 2px 8px rgba(255, 169, 64, 0.15);
-     }
-     
-     .stack-viz strong {
-       color: #d46b08;
-       display: block;
-       margin-bottom: 0.8em;
-       font-family: -apple-system, sans-serif;
-     }
-     
-     .stack-viz pre {
-       background: white;
-       padding: 1em;
-       border-radius: 6px;
-       border: 1px solid #FFD591;
+       padding: 0.8em 0.6em;
+       border-bottom: 1px solid #E9ECEF;
+       text-align: left;
        font-family: 'Courier New', monospace;
-       line-height: 1.6;
+       font-size: 0.9em;
+       color: #495057;
      }
      
-     /* Example boxes */
+     .trace-table tr:last-child td {
+       border-bottom: none;
+     }
+     
+     .trace-table tr:nth-child(even) {
+       background: #F8F9FA;
+     }
+     
+     /* Example boxes - Soft rose */
      .example-box {
-       background: #FFF1F0;
-       border-left: 6px solid #FF4D4F;
+       background: #FFF5F5;
+       border-left: 4px solid #E09F9F;
        padding: 1em;
        margin: 1em 0;
        border-radius: 6px;
        font-style: italic;
-       color: #595959;
+       color: #5A4949;
+       font-size: 0.95em;
      }
      
-     /* Highlight boxes for important notes */
+     /* Highlight notes - Amber */
      .highlight-note {
-       background: #FFF7E6;
-       border: 2px dashed #FFA940;
+       background: #FFFCF0;
+       border: 1px dashed #D4A574;
        padding: 1em;
        margin: 1em 0;
-       border-radius: 8px;
+       border-radius: 6px;
        display: flex;
        align-items: start;
+       line-height: 1.6;
      }
      
      .highlight-note:before {
        content: "💡";
-       font-size: 1.5em;
+       font-size: 1.4em;
        margin-right: 0.8em;
        flex-shrink: 0;
      }
      
-     /* Acceptance indicator */
+     /* Acceptance - Calm green */
      .accepted {
-       background: #F6FFED;
-       border: 3px solid #52C41A;
+       background: #F0F9F4;
+       border: 2px solid #6EBF8B;
        padding: 1em;
        margin: 1em 0;
-       border-radius: 8px;
+       border-radius: 6px;
        text-align: center;
-       font-weight: 700;
-       color: #389e0d;
-       font-size: 1.1em;
+       font-weight: 600;
+       color: #2D6A4F;
+       font-size: 1em;
      }
      
      .accepted:before {
        content: "✓ ";
-       font-size: 1.3em;
+       font-size: 1.2em;
+       margin-right: 0.3em;
      }
      
+     /* Rejection - Muted red */
      .rejected {
-       background: #FFF1F0;
-       border: 3px solid #FF4D4F;
+       background: #FFF5F5;
+       border: 2px solid #E09F9F;
        padding: 1em;
        margin: 1em 0;
-       border-radius: 8px;
+       border-radius: 6px;
        text-align: center;
-       font-weight: 700;
-       color: #cf1322;
-       font-size: 1.1em;
+       font-weight: 600;
+       color: #8B4049;
+       font-size: 1em;
      }
      
      .rejected:before {
        content: "✗ ";
+       font-size: 1.2em;
+       margin-right: 0.3em;
+     }
+     
+     /* Not possible indicator */
+     .not-possible {
+       background: #FFF5F5;
+       border: 3px solid #E09F9F;
+       padding: 1.2em;
+       margin: 1.2em 0;
+       border-radius: 8px;
+       text-align: center;
+       font-weight: 700;
+       color: #8B4049;
+       font-size: 1.1em;
+     }
+     
+     .not-possible:before {
+       content: "⚠️ ";
        font-size: 1.3em;
      }
      
      /* Level indicators */
      .level-indicator {
        display: inline-block;
-       padding: 0.3em 0.8em;
-       border-radius: 20px;
-       font-size: 0.85em;
+       padding: 0.25em 0.7em;
+       border-radius: 12px;
+       font-size: 0.8em;
        font-weight: 600;
        margin-left: 0.5em;
+       letter-spacing: 0.02em;
      }
      
      .level-basic {
-       background: #E6FFFB;
-       color: #006d75;
-       border: 1px solid #87E8DE;
+       background: #E8F4F8;
+       color: #2B6777;
+       border: 1px solid #8BB8C7;
      }
      
      .level-intermediate {
        background: #FFF7E6;
-       color: #d46b08;
-       border: 1px solid #FFD591;
+       color: #8B6914;
+       border: 1px solid #D4A574;
      }
      
      .level-advanced {
-       background: #FFF1F0;
-       color: #a8071a;
-       border: 1px solid #FFCCC7;
+       background: #FFE9E9;
+       color: #8B4049;
+       border: 1px solid #E09F9F;
      }
      
-     /* Responsive design */
+     /* Mobile optimizations */
      @media (max-width: 768px) {
-       .admonition, details, .pda-box, .stack-viz {
-         padding: 0.8em;
+       body {
+         font-size: 15px;
+       }
+       
+       .admonition, details, .pda-box {
+         padding: 1em;
+       }
+       
+       .trace-table {
+         font-size: 0.8em;
+       }
+       
+       .trace-table th,
+       .trace-table td {
+         padding: 0.6em 0.4em;
+       }
+       
+       h2, h3 {
+         font-size: 1.3em;
+       }
+       
+       .level-indicator {
+         display: block;
+         margin: 0.5em 0 0 0;
+         width: fit-content;
+       }
+     }
+     
+     @media (max-width: 480px) {
+       body {
+         font-size: 14px;
+       }
+       
+       .trace-table {
+         font-size: 0.75em;
+       }
+       
+       .pda-box {
+         font-size: 0.88em;
        }
      }
    </style>
@@ -314,7 +374,7 @@ PDA Practice Problems
 Level 1: Basic Stack Operations
 ================================
 
-.. admonition:: **Question 1:** Design a PDA that accepts the language :math:`L = \{a^n b^n \mid n \geq 1\}`.
+.. admonition:: **Question 1:** Design a PDA for :math:`L = \{a^n b^n \mid n \geq 1\}`.
 
     .. raw:: html
 
@@ -333,21 +393,12 @@ Level 1: Basic Stack Operations
         <strong>📋 PDA Definition:</strong>
         
     - **States:** :math:`Q = \{q_0, q_1, q_2\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, A\}`
-    - **Start state:** :math:`q_0`
-    - **Start stack symbol:** :math:`Z_0`
-    - **Final state:** :math:`F = \{q_2\}`
+    - **Input:** :math:`\Sigma = \{a, b\}`
+    - **Stack:** :math:`\Gamma = \{Z_0, A\}`
+    - **Start:** :math:`q_0`, **Final:** :math:`F = \{q_2\}`
 
     .. raw:: html
 
-        </div>
-
-    .. raw:: html
-
-        <div class="transition-notation">
-        <strong>Transition Function δ:</strong><br>
-        Format: (current_state, input_symbol, stack_top) → (next_state, stack_action)
         </div>
 
     **Transitions:**
@@ -355,117 +406,28 @@ Level 1: Basic Stack Operations
     .. raw:: html
 
         <div class="pda-box">
-        <strong>1. Push Phase (Read a's):</strong><br>
-        δ(q₀, a, Z₀) = (q₀, AZ₀)  &nbsp;&nbsp; // First 'a': push A<br>
-        δ(q₀, a, A) = (q₀, AA)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // More 'a's: push A<br><br>
-        
-        <strong>2. Switch Phase (First b):</strong><br>
-        δ(q₀, b, A) = (q₁, ε)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Pop one A for first 'b'<br><br>
-        
-        <strong>3. Pop Phase (Read b's):</strong><br>
-        δ(q₁, b, A) = (q₁, ε)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Pop A for each 'b'<br><br>
-        
-        <strong>4. Accept:</strong><br>
-        δ(q₁, ε, Z₀) = (q₂, Z₀)  &nbsp;&nbsp;&nbsp; // Stack empty → accept
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // First 'a'<br>
+        δ(q₀, a, A) = (q₀, AA) // More 'a's<br>
+        δ(q₀, b, A) = (q₁, ε) // First 'b', switch<br>
+        δ(q₁, b, A) = (q₁, ε) // More 'b's<br>
+        δ(q₁, ε, Z₀) = (q₂, Z₀) // Accept
         </div>
 
     .. raw:: html
 
         <div class="steps-box">
-        <strong>🎯 Step-by-Step Explanation:</strong>
+        <strong>🎯 Strategy:</strong>
         <ol>
-        <li><strong>Strategy:</strong> Push one symbol for each 'a', pop one for each 'b'.</li>
-        <li><strong>Phase 1:</strong> While reading 'a's, push 'A' onto stack (state q₀).</li>
-        <li><strong>Phase 2:</strong> When first 'b' arrives, switch to popping mode (q₀ → q₁).</li>
-        <li><strong>Phase 3:</strong> For remaining 'b's, pop 'A' from stack (state q₁).</li>
-        <li><strong>Acceptance:</strong> If stack is empty when input ends, accept.</li>
+        <li>Push A for each 'a' read</li>
+        <li>Pop A for each 'b' read</li>
+        <li>Accept if stack empties exactly when input ends</li>
         </ol>
         </div>
-
-    **Example Trace for "aaabbb":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr>
-          <th>Step</th>
-          <th>State</th>
-          <th>Remaining Input</th>
-          <th>Stack (Top→Bottom)</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>0</td>
-          <td>q₀</td>
-          <td>aaabbb</td>
-          <td>Z₀</td>
-          <td>Initial</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>q₀</td>
-          <td>aabbb</td>
-          <td>A Z₀</td>
-          <td>Push A (read 'a')</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>q₀</td>
-          <td>abbb</td>
-          <td>A A Z₀</td>
-          <td>Push A (read 'a')</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>q₀</td>
-          <td>bbb</td>
-          <td>A A A Z₀</td>
-          <td>Push A (read 'a')</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>q₁</td>
-          <td>bb</td>
-          <td>A A Z₀</td>
-          <td>Pop A (read 'b', switch)</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>q₁</td>
-          <td>b</td>
-          <td>A Z₀</td>
-          <td>Pop A (read 'b')</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>q₁</td>
-          <td>ε</td>
-          <td>Z₀</td>
-          <td>Pop A (read 'b')</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>q₂</td>
-          <td>ε</td>
-          <td>Z₀</td>
-          <td>Accept (ε-transition)</td>
-        </tr>
-        </tbody>
-        </table>
 
     .. raw:: html
 
         <div class="accepted">
-        STRING "aaabbb" IS ACCEPTED
-        </div>
-
-    .. raw:: html
-
-        <div class="highlight-note">
-        <strong>Key Insight:</strong> The stack acts as a counter. Each 'a' increments (push), each 'b' decrements (pop). If we reach empty stack with empty input, counts were equal!
+        Example: "aaabbb" is ACCEPTED
         </div>
 
     .. raw:: html
@@ -474,7 +436,7 @@ Level 1: Basic Stack Operations
 
 ----
 
-.. admonition:: **Question 2:** Design a PDA that accepts the language :math:`L = \{w w^R \mid w \in \{a,b\}^*\}` (even-length palindromes).
+.. admonition:: **Question 2:** Design a PDA for :math:`L = \{ww^R \mid w \in \{a,b\}^*\}` (even palindromes).
 
     .. raw:: html
 
@@ -493,11 +455,8 @@ Level 1: Basic Stack Operations
         <strong>📋 PDA Definition:</strong>
         
     - **States:** :math:`Q = \{q_0, q_1, q_2\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, a, b\}`
-    - **Start state:** :math:`q_0`
-    - **Start stack symbol:** :math:`Z_0`
-    - **Final state:** :math:`F = \{q_2\}`
+    - **Input:** :math:`\Sigma = \{a, b\}`
+    - **Stack:** :math:`\Gamma = \{Z_0, a, b\}`
 
     .. raw:: html
 
@@ -508,617 +467,7 @@ Level 1: Basic Stack Operations
     .. raw:: html
 
         <div class="pda-box">
-        <strong>1. Push First Half:</strong><br>
-        δ(q₀, a, Z₀) = (q₀, aZ₀)  &nbsp; // Push 'a'<br>
-        δ(q₀, b, Z₀) = (q₀, bZ₀)  &nbsp; // Push 'b'<br>
-        δ(q₀, a, a) = (q₀, aa)  &nbsp;&nbsp;&nbsp; // Push more 'a's<br>
-        δ(q₀, a, b) = (q₀, ab)  &nbsp;&nbsp;&nbsp; // Push 'a' on top of 'b'<br>
-        δ(q₀, b, a) = (q₀, ba)  &nbsp;&nbsp;&nbsp; // Push 'b' on top of 'a'<br>
-        δ(q₀, b, b) = (q₀, bb)  &nbsp;&nbsp;&nbsp; // Push more 'b's<br><br>
-        
-        <strong>2. Non-deterministic Switch:</strong><br>
-        δ(q₀, ε, a) = (q₁, a)  &nbsp;&nbsp;&nbsp;&nbsp; // Guess middle, keep 'a'<br>
-        δ(q₀, ε, b) = (q₁, b)  &nbsp;&nbsp;&nbsp;&nbsp; // Guess middle, keep 'b'<br><br>
-        
-        <strong>3. Match Second Half:</strong><br>
-        δ(q₁, a, a) = (q₁, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // Match 'a' with 'a'<br>
-        δ(q₁, b, b) = (q₁, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // Match 'b' with 'b'<br><br>
-        
-        <strong>4. Accept:</strong><br>
-        δ(q₁, ε, Z₀) = (q₂, Z₀)  &nbsp; // Empty stack → accept
-        </div>
-
-    .. raw:: html
-
-        <div class="steps-box">
-        <strong>🎯 Step-by-Step Explanation:</strong>
-        <ol>
-        <li><strong>Even-Length Requirement:</strong> ww<sup>R</sup> means string reads same forwards and backwards.</li>
-        <li><strong>Strategy:</strong> Push first half onto stack, then match second half by popping.</li>
-        <li><strong>Non-determinism:</strong> PDA must "guess" where the middle is (ε-transition).</li>
-        <li><strong>Phase 1:</strong> Push symbols onto stack (building w).</li>
-        <li><strong>Phase 2:</strong> Non-deterministically switch to matching mode.</li>
-        <li><strong>Phase 3:</strong> Pop and match remaining input (verifying w<sup>R</sup>).</li>
-        </ol>
-        </div>
-
-    **Example Trace for "abba":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr>
-          <th>Step</th>
-          <th>State</th>
-          <th>Input</th>
-          <th>Stack</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>0</td>
-          <td>q₀</td>
-          <td>abba</td>
-          <td>Z₀</td>
-          <td>Initial</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>q₀</td>
-          <td>bba</td>
-          <td>a Z₀</td>
-          <td>Push 'a'</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>q₀</td>
-          <td>ba</td>
-          <td>b a Z₀</td>
-          <td>Push 'b'</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>q₁</td>
-          <td>ba</td>
-          <td>b a Z₀</td>
-          <td>Guess middle (ε)</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>q₁</td>
-          <td>a</td>
-          <td>a Z₀</td>
-          <td>Match 'b' (pop)</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>q₁</td>
-          <td>ε</td>
-          <td>Z₀</td>
-          <td>Match 'a' (pop)</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>q₂</td>
-          <td>ε</td>
-          <td>Z₀</td>
-          <td>Accept</td>
-        </tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="accepted">
-        STRING "abba" IS ACCEPTED
-        </div>
-
-    .. raw:: html
-
-        <div class="highlight-note">
-        <strong>Non-determinism:</strong> The PDA doesn't know where the middle is, so it tries all possibilities. One path will succeed if the string is a palindrome!
-        </div>
-
-    .. raw:: html
-
-        </details>
-
-----
-
-Level 2: Multiple Variable Dependencies
-========================================
-
-.. admonition:: **Question 3:** Design a PDA that accepts :math:`L = \{a^n b^m c^m \mid n, m \geq 1\}`.
-
-    .. raw:: html
-
-        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
-
-    **Solution:**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>🔍 Show Complete Solution</b></summary>
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>📋 PDA Definition:</strong>
-        
-    - **States:** :math:`Q = \{q_0, q_1, q_2, q_3\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b, c\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, B\}`
-    - **Start state:** :math:`q_0`
-    - **Final state:** :math:`F = \{q_3\}`
-
-    .. raw:: html
-
-        </div>
-
-    **Transitions:**
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>1. Skip a's (n independent):</strong><br>
-        δ(q₀, a, Z₀) = (q₀, Z₀)  &nbsp; // Read 'a', don't push<br>
-        δ(q₀, a, B) = (q₀, B)  &nbsp;&nbsp;&nbsp; // Keep reading 'a's<br><br>
-        
-        <strong>2. Start Pushing b's (m must equal c's):</strong><br>
-        δ(q₀, b, Z₀) = (q₁, BZ₀)  &nbsp; // First 'b': push B<br>
-        δ(q₁, b, B) = (q₁, BB)  &nbsp;&nbsp;&nbsp;&nbsp; // More 'b's: push B<br><br>
-        
-        <strong>3. Pop for c's:</strong><br>
-        δ(q₁, c, B) = (q₂, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // First 'c': pop B<br>
-        δ(q₂, c, B) = (q₂, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // More 'c's: pop B<br><br>
-        
-        <strong>4. Accept:</strong><br>
-        δ(q₂, ε, Z₀) = (q₃, Z₀)
-        </div>
-
-    .. raw:: html
-
-        <div class="steps-box">
-        <strong>🎯 Key Strategy:</strong>
-        <ol>
-        <li><strong>Independence:</strong> Count of 'a's is independent of 'b's and 'c's.</li>
-        <li><strong>Dependency:</strong> Count of 'b's MUST equal count of 'c's.</li>
-        <li><strong>Solution:</strong> Ignore 'a's (just consume), push for 'b's, pop for 'c's.</li>
-        <li><strong>Why It Works:</strong> We only use the stack to track the b/c relationship!</li>
-        </ol>
-        </div>
-
-    **Example Trace for "aabbcc":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr>
-          <th>Step</th>
-          <th>State</th>
-          <th>Input</th>
-          <th>Stack</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>aabbcc</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>abbcc</td><td>Z₀</td><td>Read 'a' (no push)</td></tr>
-        <tr><td>2</td><td>q₀</td><td>bbcc</td><td>Z₀</td><td>Read 'a' (no push)</td></tr>
-        <tr><td>3</td><td>q₁</td><td>bcc</td><td>B Z₀</td><td>Push B (first 'b')</td></tr>
-        <tr><td>4</td><td>q₁</td><td>cc</td><td>B B Z₀</td><td>Push B (second 'b')</td></tr>
-        <tr><td>5</td><td>q₂</td><td>c</td><td>B Z₀</td><td>Pop B (first 'c')</td></tr>
-        <tr><td>6</td><td>q₂</td><td>ε</td><td>Z₀</td><td>Pop B (second 'c')</td></tr>
-        <tr><td>7</td><td>q₃</td><td>ε</td><td>Z₀</td><td>Accept</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="accepted">
-        STRING "aabbcc" IS ACCEPTED
-        </div>
-
-    .. raw:: html
-
-        <div class="example-box">
-        💭 <strong>Pattern:</strong> When one part is independent, simply consume it without stack operations. Use the stack only for dependent parts!
-        </div>
-
-    .. raw:: html
-
-        </details>
-
-----
-
-.. admonition:: **Question 4:** Design a PDA that accepts :math:`L = \{a^n b^m c^n \mid n, m \geq 1\}`.
-
-    .. raw:: html
-
-        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
-
-    **Solution:**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>🔍 Show Complete Solution</b></summary>
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>📋 PDA Definition:</strong>
-        
-    - **States:** :math:`Q = \{q_0, q_1, q_2, q_3\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b, c\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, A\}`
-    - **Start state:** :math:`q_0`
-    - **Final state:** :math:`F = \{q_3\}`
-
-    .. raw:: html
-
-        </div>
-
-    **Transitions:**
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>1. Push a's (n will be matched with c's):</strong><br>
-        δ(q₀, a, Z₀) = (q₀, AZ₀)  &nbsp; // First 'a': push A<br>
-        δ(q₀, a, A) = (q₀, AA)  &nbsp;&nbsp;&nbsp; // More 'a's: push A<br><br>
-        
-        <strong>2. Skip b's (m independent):</strong><br>
-        δ(q₀, b, A) = (q₁, A)  &nbsp;&nbsp;&nbsp;&nbsp; // First 'b': switch state<br>
-        δ(q₁, b, A) = (q₁, A)  &nbsp;&nbsp;&nbsp;&nbsp; // More 'b's: keep reading<br><br>
-        
-        <strong>3. Pop for c's (match with a's):</strong><br>
-        δ(q₁, c, A) = (q₂, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // First 'c': pop A<br>
-        δ(q₂, c, A) = (q₂, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // More 'c's: pop A<br><br>
-        
-        <strong>4. Accept:</strong><br>
-        δ(q₂, ε, Z₀) = (q₃, Z₀)
-        </div>
-
-    .. raw:: html
-
-        <div class="steps-box">
-        <strong>🎯 Key Strategy:</strong>
-        <ol>
-        <li><strong>Pattern:</strong> a's must equal c's, but b's are independent.</li>
-        <li><strong>Solution:</strong> Push for 'a's, ignore 'b's, pop for 'c's.</li>
-        <li><strong>Difference from Q3:</strong> Here the OUTER symbols (a and c) are dependent, not the middle ones!</li>
-        </ol>
-        </div>
-
-    **Example Trace for "aabbbc":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr>
-          <th>Step</th>
-          <th>State</th>
-          <th>Input</th>
-          <th>Stack</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>aabbc</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>abbc</td><td>A Z₀</td><td>Push A (read 'a')</td></tr>
-        <tr><td>2</td><td>q₀</td><td>bbc</td><td>A A Z₀</td><td>Push A (read 'a')</td></tr>
-        <tr><td>3</td><td>q₁</td><td>bc</td><td>A A Z₀</td><td>Read 'b' (no stack change)</td></tr>
-        <tr><td>4</td><td>q₁</td><td>c</td><td>A A Z₀</td><td>Read 'b' (no stack change)</td></tr>
-        <tr><td>5</td><td>q₂</td><td>ε</td><td>A Z₀</td><td>Pop A (read 'c')</td></tr>
-        <tr><td>6</td><td>STUCK</td><td>ε</td><td>A Z₀</td><td>❌ Unmatched 'a'</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="rejected">
-        STRING "aabbc" IS REJECTED (Only 1 'c' but 2 'a's)
-        </div>
-
-    **Correct Example for "aabcc":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr><th>Step</th><th>State</th><th>Input</th><th>Stack</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>aabcc</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>abcc</td><td>A Z₀</td><td>Push A</td></tr>
-        <tr><td>2</td><td>q₀</td><td>bcc</td><td>A A Z₀</td><td>Push A</td></tr>
-        <tr><td>3</td><td>q₁</td><td>cc</td><td>A A Z₀</td><td>Read 'b'</td></tr>
-        <tr><td>4</td><td>q₂</td><td>c</td><td>A Z₀</td><td>Pop A</td></tr>
-        <tr><td>5</td><td>q₂</td><td>ε</td><td>Z₀</td><td>Pop A</td></tr>
-        <tr><td>6</td><td>q₃</td><td>ε</td><td>Z₀</td><td>Accept</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="accepted">
-        STRING "aabcc" IS ACCEPTED
-        </div>
-
-    .. raw:: html
-
-        </details>
-
-----
-
-.. admonition:: **Question 5:** Design a PDA for :math:`L = \{a^n b^n c^m d^m \mid n, m \geq 1\}`.
-
-    .. raw:: html
-
-        <span class="level-indicator level-advanced">ADVANCED</span>
-
-    **Solution:**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>🔍 Show Complete Solution</b></summary>
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>📋 PDA Definition:</strong>
-        
-    - **States:** :math:`Q = \{q_0, q_1, q_2, q_3, q_4\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b, c, d\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, A, C\}`
-    - **Start state:** :math:`q_0`
-    - **Final state:** :math:`F = \{q_4\}`
-
-    .. raw:: html
-
-        </div>
-
-    **Transitions:**
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>1. First Pair (a<sup>n</sup>b<sup>n</sup>):</strong><br>
-        δ(q₀, a, Z₀) = (q₀, AZ₀)  &nbsp; // Push A for 'a'<br>
-        δ(q₀, a, A) = (q₀, AA)<br>
-        δ(q₀, b, A) = (q₁, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // Pop A for 'b'<br>
-        δ(q₁, b, A) = (q₁, ε)<br><br>
-        
-        <strong>2. Second Pair (c<sup>m</sup>d<sup>m</sup>):</strong><br>
-        δ(q₁, c, Z₀) = (q₂, CZ₀)  &nbsp; // Push C for 'c'<br>
-        δ(q₂, c, C) = (q₂, CC)<br>
-        δ(q₂, d, C) = (q₃, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // Pop C for 'd'<br>
-        δ(q₃, d, C) = (q₃, ε)<br><br>
-        
-        <strong>3. Accept:</strong><br>
-        δ(q₃, ε, Z₀) = (q₄, Z₀)
-        </div>
-
-    .. raw:: html
-
-        <div class="steps-box">
-        <strong>🎯 Key Strategy:</strong>
-        <ol>
-        <li><strong>Two Independent Pairs:</strong> (a,b) and (c,d) are separate equal-count pairs.</li>
-        <li><strong>Sequential Processing:</strong> First handle a<sup>n</sup>b<sup>n</sup>, then handle c<sup>m</sup>d<sup>m</sup>.</li>
-        <li><strong>Stack Reuse:</strong> After first pair is balanced (stack returns to Z₀), we use stack again for second pair.</li>
-        <li><strong>Different Stack Symbols:</strong> Use A for first pair, C for second pair to avoid confusion.</li>
-        </ol>
-        </div>
-
-    **Example Trace for "aabbccdd":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr><th>Step</th><th>State</th><th>Input</th><th>Stack</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>aabbccdd</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>abbccdd</td><td>A Z₀</td><td>Push A</td></tr>
-        <tr><td>2</td><td>q₀</td><td>bbccdd</td><td>A A Z₀</td><td>Push A</td></tr>
-        <tr><td>3</td><td>q₁</td><td>bccdd</td><td>A Z₀</td><td>Pop A</td></tr>
-        <tr><td>4</td><td>q₁</td><td>ccdd</td><td>Z₀</td><td>Pop A</td></tr>
-        <tr><td>5</td><td>q₂</td><td>cdd</td><td>C Z₀</td><td>Push C</td></tr>
-        <tr><td>6</td><td>q₂</td><td>dd</td><td>C C Z₀</td><td>Push C</td></tr>
-        <tr><td>7</td><td>q₃</td><td>d</td><td>C Z₀</td><td>Pop C</td></tr>
-        <tr><td>8</td><td>q₃</td><td>ε</td><td>Z₀</td><td>Pop C</td></tr>
-        <tr><td>9</td><td>q₄</td><td>ε</td><td>Z₀</td><td>Accept</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="accepted">
-        STRING "aabbccdd" IS ACCEPTED
-        </div>
-
-    .. raw:: html
-
-        <div class="highlight-note">
-        <strong>Sequential Independence:</strong> This works because the two equal-count patterns appear in sequence, not nested. We can handle them one after another!
-        </div>
-
-    .. raw:: html
-
-        </details>
-
-----
-
-Level 3: Complex Patterns
-==========================
-
-.. admonition:: **Question 6:** Design a PDA for :math:`L = \{w \mid N_a(w) = N_b(w), w \in \{a,b\}^*\}` (equal a's and b's in any order).
-
-    .. raw:: html
-
-        <span class="level-indicator level-advanced">ADVANCED</span>
-
-    **Solution:**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>🔍 Show Complete Solution</b></summary>
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>📋 PDA Definition:</strong>
-        
-    - **States:** :math:`Q = \{q_0, q_1\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, A, B\}`
-    - **Start state:** :math:`q_0`
-    - **Final state:** :math:`F = \{q_1\}`
-
-    .. raw:: html
-
-        </div>
-
-    **Transitions:**
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>1. Handle 'a' (multiple cases):</strong><br>
-        δ(q₀, a, Z₀) = (q₀, AZ₀)  &nbsp; // First 'a': push A<br>
-        δ(q₀, a, A) = (q₀, AA)  &nbsp;&nbsp;&nbsp; // More 'a's: push A<br>
-        δ(q₀, a, B) = (q₀, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // 'a' cancels 'b': pop B<br><br>
-        
-        <strong>2. Handle 'b' (multiple cases):</strong><br>
-        δ(q₀, b, Z₀) = (q₀, BZ₀)  &nbsp; // First 'b': push B<br>
-        δ(q₀, b, B) = (q₀, BB)  &nbsp;&nbsp;&nbsp; // More 'b's: push B<br>
-        δ(q₀, b, A) = (q₀, ε)  &nbsp;&nbsp;&nbsp;&nbsp; // 'b' cancels 'a': pop A<br><br>
-        
-        <strong>3. Accept:</strong><br>
-        δ(q₀, ε, Z₀) = (q₁, Z₀)  &nbsp; // Balanced → accept
-        </div>
-
-    .. raw:: html
-
-        <div class="steps-box">
-        <strong>🎯 Key Strategy:</strong>
-        <ol>
-        <li><strong>Challenge:</strong> a's and b's can be interleaved in ANY order (not just a<sup>n</sup>b<sup>n</sup>).</li>
-        <li><strong>Solution:</strong> Use stack as a "balance tracker":
-            <ul>
-            <li>If 'a' arrives and B is on top: they cancel (pop B)</li>
-            <li>If 'a' arrives and A is on top: add to a-count (push A)</li>
-            <li>If 'b' arrives and A is on top: they cancel (pop A)</li>
-            <li>If 'b' arrives and B is on top: add to b-count (push B)</li>
-            </ul>
-        </li>
-        <li><strong>Acceptance:</strong> Stack must return to Z₀ (all balanced out).</li>
-        </ol>
-        </div>
-
-    **Example Trace for "abba":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr><th>Step</th><th>State</th><th>Input</th><th>Stack</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>abba</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>bba</td><td>A Z₀</td><td>Push A (read 'a')</td></tr>
-        <tr><td>2</td><td>q₀</td><td>ba</td><td>Z₀</td><td>Pop A (cancel with 'b')</td></tr>
-        <tr><td>3</td><td>q₀</td><td>a</td><td>B Z₀</td><td>Push B (read 'b')</td></tr>
-        <tr><td>4</td><td>q₀</td><td>ε</td><td>Z₀</td><td>Pop B (cancel with 'a')</td></tr>
-        <tr><td>5</td><td>q₁</td><td>ε</td><td>Z₀</td><td>Accept</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="accepted">
-        STRING "abba" IS ACCEPTED
-        </div>
-
-    **Example Trace for "aabbb" (should reject):**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr><th>Step</th><th>State</th><th>Input</th><th>Stack</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>aabbb</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>abbb</td><td>A Z₀</td><td>Push A</td></tr>
-        <tr><td>2</td><td>q₀</td><td>bbb</td><td>A A Z₀</td><td>Push A</td></tr>
-        <tr><td>3</td><td>q₀</td><td>bb</td><td>A Z₀</td><td>Pop A (cancel)</td></tr>
-        <tr><td>4</td><td>q₀</td><td>b</td><td>Z₀</td><td>Pop A (cancel)</td></tr>
-        <tr><td>5</td><td>q₀</td><td>ε</td><td>B Z₀</td><td>Push B (extra 'b')</td></tr>
-        <tr><td>6</td><td>STUCK</td><td>ε</td><td>B Z₀</td><td>❌ Stack not empty</td></tr>
-        </tbody>
-        </table>
-
-    .. raw:: html
-
-        <div class="rejected">
-        STRING "aabbb" IS REJECTED (3 b's but only 2 a's)
-        </div>
-
-    .. raw:: html
-
-        <div class="highlight-note">
-        <strong>Cancellation Pattern:</strong> This is like adding/subtracting. Each 'a' is +1, each 'b' is -1. If we end at 0 (empty stack), counts are equal!
-        </div>
-
-    .. raw:: html
-
-        </details>
-
-----
-
-.. admonition:: **Question 7:** Design a PDA for :math:`L = \{ww^R c w \mid w \in \{a,b\}^*\}`.
-
-    .. raw:: html
-
-        <span class="level-indicator level-advanced">ADVANCED</span>
-
-    **Solution:**
-
-    .. raw:: html
-
-        <details>
-        <summary><b>🔍 Show Complete Solution</b></summary>
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>📋 PDA Definition:</strong>
-        
-    - **States:** :math:`Q = \{q_0, q_1, q_2, q_3\}`
-    - **Input alphabet:** :math:`\Sigma = \{a, b, c\}`
-    - **Stack alphabet:** :math:`\Gamma = \{Z_0, a, b\}`
-
-    .. raw:: html
-
-        </div>
-
-    **Transitions:**
-
-    .. raw:: html
-
-        <div class="pda-box">
-        <strong>1. Push first w:</strong><br>
+        <strong>Push Phase:</strong><br>
         δ(q₀, a, Z₀) = (q₀, aZ₀)<br>
         δ(q₀, b, Z₀) = (q₀, bZ₀)<br>
         δ(q₀, a, a) = (q₀, aa)<br>
@@ -1126,65 +475,31 @@ Level 3: Complex Patterns
         δ(q₀, b, a) = (q₀, ba)<br>
         δ(q₀, b, b) = (q₀, bb)<br><br>
         
-        <strong>2. Non-deterministically guess middle (start matching w<sup>R</sup>):</strong><br>
+        <strong>Guess Middle (ε-transition):</strong><br>
         δ(q₀, ε, a) = (q₁, a)<br>
         δ(q₀, ε, b) = (q₁, b)<br><br>
         
-        <strong>3. Match w<sup>R</sup> by popping:</strong><br>
+        <strong>Match Phase:</strong><br>
         δ(q₁, a, a) = (q₁, ε)<br>
-        δ(q₁, b, b) = (q₁, ε)<br><br>
-        
-        <strong>4. Read marker 'c':</strong><br>
-        δ(q₁, c, Z₀) = (q₂, Z₀)<br><br>
-        
-        <strong>5. Ignore remaining w:</strong><br>
-        δ(q₂, a, Z₀) = (q₂, Z₀)<br>
-        δ(q₂, b, Z₀) = (q₂, Z₀)<br><br>
-        
-        <strong>6. Accept:</strong><br>
-        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        δ(q₁, b, b) = (q₁, ε)<br>
+        δ(q₁, ε, Z₀) = (q₂, Z₀)
         </div>
 
     .. raw:: html
 
         <div class="steps-box">
-        <strong>🎯 Key Strategy:</strong>
+        <strong>🎯 Strategy:</strong>
         <ol>
-        <li><strong>Pattern:</strong> ww<sup>R</sup>cw means: string w, then its reverse, then marker 'c', then w again.</li>
-        <li><strong>Phase 1:</strong> Push first w onto stack.</li>
-        <li><strong>Phase 2:</strong> Match w<sup>R</sup> by popping (palindrome check).</li>
-        <li><strong>Phase 3:</strong> Read marker 'c'.</li>
-        <li><strong>Phase 4:</strong> Simply consume remaining w (we already verified it in phase 1!).</li>
+        <li>Push first half onto stack</li>
+        <li>Non-deterministically guess middle point</li>
+        <li>Match second half by popping and comparing</li>
         </ol>
         </div>
-
-    **Example Trace for "abacab":**
-
-    .. raw:: html
-
-        <table class="trace-table">
-        <thead>
-        <tr><th>Step</th><th>State</th><th>Input</th><th>Stack</th><th>Action</th></tr>
-        </thead>
-        <tbody>
-        <tr><td>0</td><td>q₀</td><td>abacab</td><td>Z₀</td><td>Initial</td></tr>
-        <tr><td>1</td><td>q₀</td><td>bacab</td><td>a Z₀</td><td>Push 'a' (w)</td></tr>
-        <tr><td>2</td><td>q₁</td><td>bacab</td><td>a Z₀</td><td>Guess (ε-transition)</td></tr>
-        <tr><td>3</td><td>q₀</td><td>acab</td><td>b a Z₀</td><td>Push 'b' (w)</td></tr>
-        <tr><td>4</td><td>q₁</td><td>acab</td><td>b a Z₀</td><td>Guess (ε)</td></tr>
-        <tr><td>5</td><td>q₁</td><td>cab</td><td>a Z₀</td><td>Match 'b' (w<sup>R</sup>)</td></tr>
-        <tr><td>6</td><td>q₁</td><td>ab</td><td>Z₀</td><td>Match 'a' (w<sup>R</sup>)</td></tr>
-        <tr><td>7</td><td>q₂</td><td>ab</td><td>Z₀</td><td>Read marker 'c'</td></tr>
-        <tr><td>8</td><td>q₂</td><td>b</td><td>Z₀</td><td>Consume 'a' (final w)</td></tr>
-        <tr><td>9</td><td>q₂</td><td>ε</td><td>Z₀</td><td>Consume 'b' (final w)</td></tr>
-        <tr><td>10</td><td>q₃</td><td>ε</td><td>Z₀</td><td>Accept</td></tr>
-        </tbody>
-        </table>
 
     .. raw:: html
 
         <div class="accepted">
-        STRING "abacab" (w="ab") IS ACCEPTED
+        Example: "abba" is ACCEPTED
         </div>
 
     .. raw:: html
@@ -1193,35 +508,1192 @@ Level 3: Complex Patterns
 
 ----
 
-**Continue with Questions 8-20...**
+.. admonition:: **Question 3:** Design a PDA for :math:`L = \{a^n b^m c^m \mid n,m \geq 1\}`.
 
-Due to space constraints, I'll provide the remaining questions in a condensed format:
+    .. raw:: html
 
-.. admonition:: **Question 8:** PDA for :math:`L = \{a^i b^j c^k \mid i = j \text{ or } j = k\}` (union of two CFLs)
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
 
-.. admonition:: **Question 9:** PDA for :math:`L = \{a^{2n} b^n \mid n \geq 1\}` (2:1 ratio)
+    **Solution:**
 
-.. admonition:: **Question 10:** PDA for :math:`L = \{a^n b^{2n} \mid n \geq 1\}` (1:2 ratio)
+    .. raw:: html
 
-.. admonition:: **Question 11:** PDA for balanced parentheses with 2 types: :math:`\{(), []\}`
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
 
-.. admonition:: **Question 12:** PDA for :math:`L = \{wcw^R \mid w \in \{a,b\}^*\}` (palindromes with center marker)
+    .. raw:: html
 
-.. admonition:: **Question 13:** PDA for :math:`L = \{a^n b^m \mid n > m, n,m \geq 1\}` (more a's than b's)
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, Z₀) // Skip a's<br>
+        δ(q₀, a, B) = (q₀, B)<br>
+        δ(q₀, b, Z₀) = (q₁, BZ₀) // Push for b's<br>
+        δ(q₁, b, B) = (q₁, BB)<br>
+        δ(q₁, c, B) = (q₂, ε) // Pop for c's<br>
+        δ(q₂, c, B) = (q₂, ε)<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
 
-.. admonition:: **Question 14:** PDA for :math:`L = \{a^n b^m \mid n < m, n,m \geq 1\}` (more b's than a's)
+    .. raw:: html
 
-.. admonition:: **Question 15:** PDA for :math:`L = \{a^n b^m \mid n \neq m\}` (unequal counts)
+        <div class="steps-box">
+        <strong>🎯 Key Insight:</strong>
+        <ul>
+        <li>'a' count is independent - just consume</li>
+        <li>'b' and 'c' must be equal - use stack</li>
+        </ul>
+        </div>
 
-.. admonition:: **Question 16:** PDA for :math:`L = \{www \mid w \in \{a,b\}^*\}` - **NOT POSSIBLE** (prove using pumping lemma)
+    .. raw:: html
 
-.. admonition:: **Question 17:** PDA for :math:`L = \{a^n b^n c^n \mid n \geq 1\}` - **NOT POSSIBLE** (classic non-CFL)
+        <div class="accepted">
+        Example: "aabbcc" is ACCEPTED
+        </div>
 
-.. admonition:: **Question 18:** PDA for :math:`L = \{w \mid N_a(w) > N_b(w)\}` (strictly more a's)
+    .. raw:: html
 
-.. admonition:: **Question 19:** PDA for arithmetic expressions validation: :math:`\{a+a, (a+a)*a, ...\}`
+        </details>
 
-.. admonition:: **Question 20:** PDA for :math:`L = \{a^i b^j c^k d^l \mid i=k \text{ and } j=l\}` (two independent pairs)
+----
+
+.. admonition:: **Question 4:** Design a PDA for :math:`L = \{a^n b^m c^n \mid n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // Push for a's<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, b, A) = (q₁, A) // Skip b's<br>
+        δ(q₁, b, A) = (q₁, A)<br>
+        δ(q₁, c, A) = (q₂, ε) // Pop for c's<br>
+        δ(q₂, c, A) = (q₂, ε)<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Key Insight:</strong>
+        <ul>
+        <li>'a' and 'c' must be equal - use stack</li>
+        <li>'b' count is independent - just consume</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabcc" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 5:** Design a PDA for :math:`L = \{a^n b^n c^m d^m \mid n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>First Pair:</strong><br>
+        δ(q₀, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, b, A) = (q₁, ε)<br>
+        δ(q₁, b, A) = (q₁, ε)<br><br>
+        
+        <strong>Second Pair:</strong><br>
+        δ(q₁, c, Z₀) = (q₂, CZ₀)<br>
+        δ(q₂, c, C) = (q₂, CC)<br>
+        δ(q₂, d, C) = (q₃, ε)<br>
+        δ(q₃, d, C) = (q₃, ε)<br>
+        δ(q₃, ε, Z₀) = (q₄, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Sequential Pattern:</strong>
+        <ol>
+        <li>Handle first pair (a<sup>n</sup>b<sup>n</sup>) completely</li>
+        <li>Stack returns to Z₀</li>
+        <li>Handle second pair (c<sup>m</sup>d<sup>m</sup>) independently</li>
+        <li>Use different stack symbols (A and C)</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabbccdd" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+Level 2: Complex Patterns
+==========================
+
+.. admonition:: **Question 6:** Design a PDA for :math:`L = \{w \mid N_a(w) = N_b(w), w \in \{a,b\}^*\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // First 'a'<br>
+        δ(q₀, a, A) = (q₀, AA) // More 'a's<br>
+        δ(q₀, a, B) = (q₀, ε) // Cancel with 'b'<br>
+        δ(q₀, b, Z₀) = (q₀, BZ₀) // First 'b'<br>
+        δ(q₀, b, B) = (q₀, BB) // More 'b's<br>
+        δ(q₀, b, A) = (q₀, ε) // Cancel with 'a'<br>
+        δ(q₀, ε, Z₀) = (q₁, Z₀) // Accept
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Cancellation Strategy:</strong>
+        <ul>
+        <li>If 'a' arrives and B on top: cancel (pop B)</li>
+        <li>If 'a' arrives and A on top: add to count (push A)</li>
+        <li>If 'b' arrives and A on top: cancel (pop A)</li>
+        <li>If 'b' arrives and B on top: add to count (push B)</li>
+        <li>Accept when stack returns to Z₀</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "abba" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 7:** Design a PDA for :math:`L = \{wcw^R \mid w \in \{a,b\}^*\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Push w:</strong><br>
+        δ(q₀, a, Z₀) = (q₀, aZ₀)<br>
+        δ(q₀, b, Z₀) = (q₀, bZ₀)<br>
+        δ(q₀, a, a) = (q₀, aa)<br>
+        δ(q₀, a, b) = (q₀, ab)<br>
+        δ(q₀, b, a) = (q₀, ba)<br>
+        δ(q₀, b, b) = (q₀, bb)<br><br>
+        
+        <strong>Read center marker:</strong><br>
+        δ(q₀, c, a) = (q₁, a)<br>
+        δ(q₀, c, b) = (q₁, b)<br><br>
+        
+        <strong>Match w<sup>R</sup>:</strong><br>
+        δ(q₁, a, a) = (q₁, ε)<br>
+        δ(q₁, b, b) = (q₁, ε)<br>
+        δ(q₁, ε, Z₀) = (q₂, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Center Marker Pattern:</strong>
+        <ol>
+        <li>Push all symbols before 'c'</li>
+        <li>Read center marker 'c'</li>
+        <li>Match reverse by popping</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "abcba" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 8:** Design a PDA for :math:`L = \{a^i b^j c^k \mid i=j \text{ or } j=k\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Non-deterministically choose:</strong><br><br>
+        
+        <strong>Path 1 (i=j):</strong><br>
+        δ(q₀, a, Z₀) = (q₁, AZ₀)<br>
+        δ(q₁, a, A) = (q₁, AA)<br>
+        δ(q₁, b, A) = (q₂, ε)<br>
+        δ(q₂, b, A) = (q₂, ε)<br>
+        δ(q₂, c, Z₀) = (q₂, Z₀)<br>
+        δ(q₂, ε, Z₀) = (q₅, Z₀)<br><br>
+        
+        <strong>Path 2 (j=k):</strong><br>
+        δ(q₀, a, Z₀) = (q₃, Z₀)<br>
+        δ(q₃, b, Z₀) = (q₃, BZ₀)<br>
+        δ(q₃, b, B) = (q₃, BB)<br>
+        δ(q₃, c, B) = (q₄, ε)<br>
+        δ(q₄, c, B) = (q₄, ε)<br>
+        δ(q₄, ε, Z₀) = (q₅, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Union of Two Languages:</strong>
+        <ul>
+        <li>Non-deterministically choose which equality to enforce</li>
+        <li>Path 1: Match a's with b's, ignore c's</li>
+        <li>Path 2: Ignore a's, match b's with c's</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Examples: "aabbc" (i=j) or "abbcc" (j=k) ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 9:** Design a PDA for :math:`L = \{a^{2n} b^n \mid n \geq 1\}` (2:1 ratio).
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // First 'a'<br>
+        δ(q₀, a, A) = (q₁, A) // Second 'a', don't push<br>
+        δ(q₁, a, A) = (q₀, AA) // Third 'a', push<br>
+        δ(q₁, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, b, A) = (q₂, ε) // Pop for 'b'<br>
+        δ(q₁, b, A) = (q₂, ε)<br>
+        δ(q₂, b, A) = (q₂, ε)<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Ratio Strategy:</strong>
+        <ol>
+        <li>Push A for every two 'a's read (alternate states)</li>
+        <li>Pop A for each 'b' read</li>
+        <li>This maintains 2:1 ratio</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aaaab" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 10:** Design a PDA for :math:`L = \{a^n b^{2n} \mid n \geq 1\}` (1:2 ratio).
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AAZ₀) // Push two A's<br>
+        δ(q₀, a, A) = (q₀, AAA) // For each 'a'<br>
+        δ(q₀, b, A) = (q₁, ε) // Pop for 'b'<br>
+        δ(q₁, b, A) = (q₁, ε)<br>
+        δ(q₁, ε, Z₀) = (q₂, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Double Push Strategy:</strong>
+        <ul>
+        <li>Push TWO A's for each 'a' read</li>
+        <li>Pop one A for each 'b' read</li>
+        <li>Ratio automatically becomes 1:2</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabbbb" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 11:** Design a PDA for balanced parentheses: :math:`L = \{w \mid w \text{ has balanced } (), []\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, '(', Z₀) = (q₀, '('Z₀) // Push '('<br>
+        δ(q₀, '[', Z₀) = (q₀, '['Z₀) // Push '['<br>
+        δ(q₀, '(', '(') = (q₀, '(''(')<br>
+        δ(q₀, '(', '[') = (q₀, '(''[')<br>
+        δ(q₀, '[', '(') = (q₀, '['(')<br>
+        δ(q₀, '[', '[') = (q₀, '['[')<br>
+        δ(q₀, ')', '(') = (q₀, ε) // Match<br>
+        δ(q₀, ']', '[') = (q₀, ε) // Match<br>
+        δ(q₀, ε, Z₀) = (q₁, Z₀) // Accept
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Multi-Bracket Strategy:</strong>
+        <ol>
+        <li>Push opening brackets onto stack</li>
+        <li>Pop matching opening when closing arrives</li>
+        <li>Reject if mismatch or stack non-empty at end</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "([()])" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 12:** Design a PDA for :math:`L = \{a^n b^m \mid n > m, n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // First 'a'<br>
+        δ(q₀, a, A) = (q₀, AA) // More 'a's<br>
+        δ(q₀, b, A) = (q₁, ε) // First 'b', pop<br>
+        δ(q₁, b, A) = (q₁, ε) // More 'b's, pop<br>
+        δ(q₁, ε, A) = (q₂, A) // Accept with A left
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Greater-Than Strategy:</strong>
+        <ul>
+        <li>Push A for each 'a'</li>
+        <li>Pop A for each 'b'</li>
+        <li>Accept only if at least one A remains (n > m)</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aaab" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 13:** Design a PDA for :math:`L = \{a^n b^m \mid n < m, n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, a, B) = (q₀, ε) // Cancel<br>
+        δ(q₀, b, A) = (q₀, ε) // Cancel<br>
+        δ(q₀, b, Z₀) = (q₁, BZ₀)<br>
+        δ(q₁, b, B) = (q₁, BB)<br>
+        δ(q₁, ε, B) = (q₂, B) // Accept with B left
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Less-Than Strategy:</strong>
+        <ul>
+        <li>Use cancellation pattern</li>
+        <li>Accept only if B remains (more b's than a's)</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "abbb" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 14:** Design a PDA for :math:`L = \{a^n b^m \mid n \neq m\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Union of two PDAs:</strong><br><br>
+        
+        <strong>Case 1: n > m</strong><br>
+        (Same as Question 12)<br><br>
+        
+        <strong>Case 2: n < m</strong><br>
+        (Same as Question 13)<br><br>
+        
+        Non-deterministically choose which path at start.
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Union Pattern:</strong>
+        <ul>
+        <li>Language is union of L₁ (n>m) and L₂ (n<m)</li>
+        <li>Use non-determinism to try both</li>
+        <li>Accept if either path succeeds</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Examples: "aab" or "abb" are ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+Level 3: Limitations & Impossibilities
+======================================
+
+.. admonition:: **Question 15:** Prove that :math:`L = \{a^n b^n c^n \mid n \geq 1\}` is NOT context-free.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="not-possible">
+        NOT POSSIBLE with a PDA
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Proof Using Pumping Lemma:</strong>
+        <ol>
+        <li><strong>The Problem:</strong> Need to enforce three equal counts simultaneously</li>
+        <li><strong>PDA Limitation:</strong> A PDA has only ONE stack</li>
+        <li><strong>What PDAs Can Do:</strong> Match TWO counts (like a<sup>n</sup>b<sup>n</sup>)</li>
+        <li><strong>Why Three Fails:</strong>
+            <ul>
+            <li>To match a's and b's, we push 'a's and pop for 'b's</li>
+            <li>But then we can't also verify c's match without a second stack</li>
+            <li>Would need 2D memory (two stacks or equivalent)</li>
+            </ul>
+        </li>
+        <li><strong>Formal Proof:</strong> Use Pumping Lemma for CFLs:
+            <ul>
+            <li>Let p be pumping length, consider w = a<sup>p</sup>b<sup>p</sup>c<sup>p</sup></li>
+            <li>Any decomposition w = uvxyz with |vxy| ≤ p</li>
+            <li>vxy spans at most 2 symbol types</li>
+            <li>Pumping uv²xy²z breaks three-way equality</li>
+            </ul>
+        </li>
+        <li><strong>Language Class:</strong> This is Context-Sensitive (needs LBA)</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>Key Insight:</strong> A PDA can "count" one relationship using its stack. To count two independent relationships simultaneously, you need more power than a PDA provides.
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 16:** Prove that :math:`L = \{ww \mid w \in \{a,b\}^*\}` is NOT context-free.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="not-possible">
+        NOT POSSIBLE with a PDA
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Why Copying Fails:</strong>
+        <ol>
+        <li><strong>The Challenge:</strong> Need to verify second half is EXACT copy of first</li>
+        <li><strong>Difference from ww<sup>R</sup>:</strong>
+            <ul>
+            <li>ww<sup>R</sup> (palindrome): Can use stack to verify reverse</li>
+            <li>ww (copy): Would need to verify exact forward copy</li>
+            </ul>
+        </li>
+        <li><strong>Why PDA Fails:</strong>
+            <ul>
+            <li>LIFO (Last-In-First-Out) structure of stack</li>
+            <li>Can only compare in reverse order</li>
+            <li>Cannot "remember" first half in forward order AND compare</li>
+            </ul>
+        </li>
+        <li><strong>Pumping Lemma Proof:</strong>
+            <ul>
+            <li>Consider w = a<sup>p</sup>b<sup>p</sup>a<sup>p</sup>b<sup>p</sup></li>
+            <li>Any pumping will break the ww structure</li>
+            <li>Cannot maintain exact duplication</li>
+            </ul>
+        </li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        <strong>Contrast:</strong> ww<sup>R</sup> is CFL but ww is NOT CFL. The difference is in the ORDER of comparison - reverse vs forward!
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 17:** Prove that :math:`L = \{a^{n^2} \mid n \geq 1\}` is NOT context-free.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="not-possible">
+        NOT POSSIBLE with a PDA
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Non-Linear Count Problem:</strong>
+        <ol>
+        <li><strong>Language:</strong> Strings with 1, 4, 9, 16, 25,... a's (perfect squares)</li>
+        <li><strong>Why PDA Fails:</strong>
+            <ul>
+            <li>PDAs can handle LINEAR relationships (a<sup>n</sup>b<sup>n</sup>)</li>
+            <li>Cannot handle QUADRATIC or higher polynomial growth</li>
+            <li>Stack can only count linearly</li>
+            </ul>
+        </li>
+        <li><strong>Pumping Lemma Application:</strong>
+            <ul>
+            <li>Let p be pumping length</li>
+            <li>Consider w = a<sup>p²</sup></li>
+            <li>Pumping changes count by linear amount</li>
+            <li>p² + k is not a perfect square for small k</li>
+            </ul>
+        </li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="example-box">
+        💭 <strong>General Rule:</strong> Languages with non-linear counting (exponential, factorial, prime, perfect squares) are NOT context-free.
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+Level 4: Special Applications
+==============================
+
+.. admonition:: **Question 18:** Design a PDA for :math:`L = \{w \mid N_a(w) > N_b(w)\}` (strictly more a's).
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, a, B) = (q₀, ε) // Cancel<br>
+        δ(q₀, b, Z₀) = (q₀, BZ₀)<br>
+        δ(q₀, b, B) = (q₀, BB)<br>
+        δ(q₀, b, A) = (q₀, ε) // Cancel<br>
+        δ(q₀, ε, A) = (q₁, A) // Accept ONLY if A remains
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Strict Inequality:</strong>
+        <ul>
+        <li>Use cancellation for equal parts</li>
+        <li>Accept ONLY if A remains (more a's than b's)</li>
+        <li>Reject if B remains or stack is empty</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aaab" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 19:** Design a PDA for simple arithmetic expressions: :math:`L = \{a+(a*a), (a+a), ...\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Simplified for expressions with balanced parentheses:</strong><br><br>
+        
+        δ(q₀, a, Z₀) = (q₀, Z₀) // Operand<br>
+        δ(q₀, +, Z₀) = (q₀, Z₀) // Operator<br>
+        δ(q₀, *, Z₀) = (q₀, Z₀) // Operator<br>
+        δ(q₀, '(', Z₀) = (q₀, '('Z₀) // Push '('<br>
+        δ(q₀, '(', '(') = (q₀, '(''(')<br>
+        δ(q₀, ')', '(') = (q₀, ε) // Match<br>
+        δ(q₀, ε, Z₀) = (q₁, Z₀) // Accept
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Expression Validation:</strong>
+        <ol>
+        <li>Verify balanced parentheses using stack</li>
+        <li>Allow operands (a) and operators (+, *) freely</li>
+        <li>Can be extended with syntax rules</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "a+(a*a)" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 20:** Design a PDA for :math:`L = \{a^i b^j c^k d^l \mid i=k \text{ and } j=l\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Challenge:</strong> Two independent equal-count requirements<br><br>
+        
+        <strong>Approach:</strong> Cannot be done deterministically!<br><br>
+        
+        <strong>Non-deterministic solution:</strong><br>
+        Guess which pairs to track, but cannot verify both simultaneously.<br><br>
+        
+        <strong>Actually:</strong> This language is NOT context-free!
+        </div>
+
+    .. raw:: html
+
+        <div class="not-possible">
+        NOT POSSIBLE - This is NOT a CFL
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Why This Fails:</strong>
+        <ol>
+        <li><strong>Problem:</strong> Need to enforce i=k AND j=l simultaneously</li>
+        <li><strong>PDA Can Do:</strong> Either match (a,c) or match (b,d), not both</li>
+        <li><strong>Difference from a<sup>n</sup>b<sup>n</sup>c<sup>m</sup>d<sup>m</sup>:</strong>
+            <ul>
+            <li>Sequential pairs: Can handle first, then second</li>
+            <li>Crossed pairs (i=k, j=l): Cannot separate the dependencies</li>
+            </ul>
+        </li>
+        <li><strong>Proof:</strong> Use Ogden's Lemma or intersection properties of CFLs</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="highlight-note">
+        <strong>Key Pattern:</strong> "Crossed dependencies" (outer-to-outer, inner-to-inner) cannot be handled by PDAs, unlike "nested dependencies" (outer pair, then inner pair).
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 21:** Design a PDA for :math:`L = \{a^n b^m a^n \mid n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // Push first a's<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, b, A) = (q₁, A) // Read b's, keep stack<br>
+        δ(q₁, b, A) = (q₁, A)<br>
+        δ(q₁, a, A) = (q₂, ε) // Match last a's<br>
+        δ(q₂, a, A) = (q₂, ε)<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Outer Match Strategy:</strong>
+        <ol>
+        <li>Push A's for first group of 'a's</li>
+        <li>Skip middle 'b's (don't touch stack)</li>
+        <li>Pop A's for last group of 'a's</li>
+        <li>First and last 'a' counts must match</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabbaa" is ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 22:** Design a PDA for :math:`L = \{a^n b^n \mid n \geq 0\}` (including empty string).
+
+    .. raw:: html
+
+        <span class="level-indicator level-basic">BASIC</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, ε, Z₀) = (q₂, Z₀) // Accept empty<br>
+        δ(q₀, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, b, A) = (q₁, ε)<br>
+        δ(q₁, b, A) = (q₁, ε)<br>
+        δ(q₁, ε, Z₀) = (q₂, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Including Empty String:</strong>
+        <ul>
+        <li>Add ε-transition from start to accept (for n=0)</li>
+        <li>Otherwise same as standard a<sup>n</sup>b<sup>n</sup></li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Examples: "ε" or "aabb" are ACCEPTED
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 23:** Design a PDA for :math:`L = \{a^n b^{n+1} \mid n \geq 0\}` (one extra b).
+
+    .. raw:: html
+
+        <span class="level-indicator level-intermediate">INTERMEDIATE</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀)<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, b, A) = (q₁, ε) // Start popping<br>
+        δ(q₀, b, Z₀) = (q₂, Z₀) // Extra 'b' (n=0)<br>
+        δ(q₁, b, A) = (q₁, ε)<br>
+        δ(q₁, b, Z₀) = (q₂, Z₀) // One extra 'b'<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Off-By-One Pattern:</strong>
+        <ol>
+        <li>Push A for each 'a'</li>
+        <li>Pop A for each 'b'</li>
+        <li>Accept when one 'b' remains after stack empty</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabbb" is ACCEPTED (2 a's, 3 b's)
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 24:** Design a PDA for :math:`L = \{w \in \{a,b\}^* \mid N_a(w) = 2 \cdot N_b(w)\}` (twice as many a's).
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        <strong>Strategy: Push one A for every two 'a's, pop for 'b':</strong><br><br>
+        
+        δ(q₀, a, Z₀) = (q₁, Z₀) // First 'a', count<br>
+        δ(q₁, a, Z₀) = (q₀, AZ₀) // Second 'a', push<br>
+        δ(q₁, a, A) = (q₀, AA)<br>
+        δ(q₀, a, A) = (q₁, A)<br>
+        δ(q₀, b, A) = (q₀, ε) // Pop for 'b'<br>
+        δ(q₁, b, A) = (q₁, ε)<br>
+        δ(q₀, ε, Z₀) = (q₂, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Ratio Counting:</strong>
+        <ul>
+        <li>Alternate between states to count pairs of 'a's</li>
+        <li>Push only after two 'a's seen</li>
+        <li>Pop for each 'b'</li>
+        <li>Maintains 2:1 ratio</li>
+        </ul>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aaaab" is ACCEPTED (4 a's, 2 b's)
+        </div>
+
+    .. raw:: html
+
+        </details>
+
+----
+
+.. admonition:: **Question 25:** Design a PDA for :math:`L = \{a^n b^m c^{n+m} \mid n,m \geq 1\}`.
+
+    .. raw:: html
+
+        <span class="level-indicator level-advanced">ADVANCED</span>
+
+    **Solution:**
+
+    .. raw:: html
+
+        <details>
+        <summary><b>🔍 Show Complete Solution</b></summary>
+
+    .. raw:: html
+
+        <div class="pda-box">
+        δ(q₀, a, Z₀) = (q₀, AZ₀) // Push for a's<br>
+        δ(q₀, a, A) = (q₀, AA)<br>
+        δ(q₀, a, B) = (q₀, AB)<br>
+        δ(q₀, b, A) = (q₁, BA) // Push B for b's<br>
+        δ(q₁, b, B) = (q₁, BB)<br>
+        δ(q₁, c, A) = (q₂, ε) // Pop for c's<br>
+        δ(q₁, c, B) = (q₂, ε)<br>
+        δ(q₂, c, A) = (q₂, ε)<br>
+        δ(q₂, c, B) = (q₂, ε)<br>
+        δ(q₂, ε, Z₀) = (q₃, Z₀)
+        </div>
+
+    .. raw:: html
+
+        <div class="steps-box">
+        <strong>🎯 Sum Pattern:</strong>
+        <ol>
+        <li>Push A for each 'a' (count n)</li>
+        <li>Push B for each 'b' (count m)</li>
+        <li>Pop either A or B for each 'c'</li>
+        <li>Total count on stack = n+m</li>
+        <li>Accept when all popped (c's = n+m)</li>
+        </ol>
+        </div>
+
+    .. raw:: html
+
+        <div class="accepted">
+        Example: "aabbccccc" is ACCEPTED (2+3=5)
+        </div>
+
+    .. raw:: html
+
+        </details>
 
 ----
 
@@ -1231,36 +1703,46 @@ Summary: PDA Design Patterns
 .. raw:: html
 
    <div class="pda-box">
-   <strong>🎯 Essential PDA Patterns:</strong><br><br>
+   <strong>🎯 Essential Patterns:</strong><br><br>
    
-   <strong>1. Simple Equal Count (a<sup>n</sup>b<sup>n</sup>):</strong><br>
-   • Push for first symbol, pop for second<br>
-   • Accept when stack returns to Z₀<br><br>
+   <strong>1. Equal Count (a<sup>n</sup>b<sup>n</sup>):</strong><br>
+   Push for first, pop for second. Most fundamental pattern.<br><br>
    
    <strong>2. Palindromes (ww<sup>R</sup>):</strong><br>
-   • Push first half, pop second half<br>
-   • Use non-determinism to guess middle<br><br>
+   Push first half, guess middle, match second half.<br><br>
    
    <strong>3. Independent Parts (a<sup>n</sup>b<sup>m</sup>c<sup>m</sup>):</strong><br>
-   • Ignore independent symbols (don't push)<br>
-   • Use stack only for dependent parts<br><br>
+   Ignore independent symbols, track only dependent ones.<br><br>
    
-   <strong>4. Any-Order Equal Counts:</strong><br>
-   • Push A for 'a', push B for 'b'<br>
-   • Pop opposite symbol when possible (cancellation)<br><br>
+   <strong>4. Any-Order Equal (N<sub>a</sub>=N<sub>b</sub>):</strong><br>
+   Cancellation pattern - push/pop opposite symbols.<br><br>
    
-   <strong>5. Sequential Pairs (a<sup>n</sup>b<sup>n</sup>c<sup>m</sup>d<sup>m</sup>):</strong><br>
-   • Handle first pair completely<br>
-   • Then handle second pair<br>
-   • Use different stack symbols
+   <strong>5. Ratio Patterns (a<sup>2n</sup>b<sup>n</sup>):</strong><br>
+   Use state alternation or multiple push/pop.<br><br>
+   
+   <strong>6. Sequential Pairs (a<sup>n</sup>b<sup>n</sup>c<sup>m</sup>d<sup>m</sup>):</strong><br>
+   Handle completely in sequence, different stack symbols.<br><br>
+   
+   <strong>7. Union (L₁ ∪ L₂):</strong><br>
+   Non-deterministically choose which language to recognize.
    </div>
 
 .. raw:: html
 
    <div class="highlight-note">
-   <strong>⚡ PDA Limitations:</strong><br>
-   ✓ Can handle: two counts, palindromes, balanced parentheses<br>
-   ✗ Cannot handle: three equal counts (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>), copying (ww), context-sensitive patterns
+   <strong>⚡ What PDAs CAN Handle:</strong><br>
+   • Two equal counts<br>
+   • Palindromes<br>
+   • Balanced structures<br>
+   • Linear relationships<br>
+   • Sequential patterns<br><br>
+   
+   <strong>⚠️ What PDAs CANNOT Handle:</strong><br>
+   • Three+ equal counts (a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>)<br>
+   • Copying (ww)<br>
+   • Crossed dependencies<br>
+   • Non-linear counting (primes, squares, etc.)<br>
+   • Context-sensitive patterns
    </div>
 
 ----
