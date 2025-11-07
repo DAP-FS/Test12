@@ -96,7 +96,9 @@
 <li><p><a class="reference internal" href="#level-2-complex-patterns" id="id2">Level 2: Complex Patterns</a></p></li>
 <li><p><a class="reference internal" href="#level-3-limitations-impossibilities" id="id3">Level 3: Limitations &amp; Impossibilities</a></p></li>
 <li><p><a class="reference internal" href="#level-4-special-applications" id="id4">Level 4: Special Applications</a></p></li>
-<li><p><a class="reference internal" href="#summary-pda-design-patterns" id="id5">Summary: PDA Design Patterns</a></p></li>
+<li><p><a class="reference internal" href="#level-8-language-classification-impossibilities" id="id5">Level 8: Language Classification &amp; Impossibilities</a></p></li>
+<li><p><a class="reference internal" href="#summary-what-makes-languages-non-context-free" id="id6">Summary: What Makes Languages Non-Context-Free</a></p></li>
+<li><p><a class="reference internal" href="#summary-pda-design-patterns" id="id7">Summary: PDA Design Patterns</a></p></li>
 </ul>
 </nav>
 <hr class="docutils" />
@@ -1137,10 +1139,337 @@ Example: "aaaab" is ACCEPTED (4 a's, 2 b's)
 </div><div class="accepted">
 Example: "aabbccccc" is ACCEPTED (2+3=5)
 </div></details></div>
+<hr class="docutils" />
 </section>
 <hr class="docutils" />
+<section id="level-8-language-classification-impossibilities">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4.5. </span>Level 8: Language Classification &amp; Impossibilities</a><a class="headerlink" href="#level-8-language-classification-impossibilities" title="Link to this heading"></a></h2>
+<div class="admonition-question-26-classification-which-of-the-following-languages-can-be-accepted-by-a-pda-is-context-free admonition">
+<p class="admonition-title"><strong>Question 26 (Classification):</strong> Which of the following languages can be accepted by a PDA (is context-free)?</p>
+<ol class="upperalpha simple">
+<li><p><span class="math notranslate nohighlight">\(L = \{a^n b^n c^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L = \{a^n b^n \mid n \geq 1\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L = \{ww^R \mid w \in \{a,b\}^*\}\)</span></p></li>
+<li><p>All of the above</p></li>
+</ol>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+Answer: Only B and C are CFLs
+</div><div class="steps-box">
+<strong>🎯 Analysis:</strong>
+<ol>
+<li><strong>A) a<sup>n</sup>b<sup>n</sup>c<sup>n</sup>:</strong> ✗ NOT context-free
+    <ul>
+    <li>Requires THREE equal counts simultaneously</li>
+    <li>PDA has only ONE stack</li>
+    <li>Can match at most TWO counts</li>
+    <li>This is Context-Sensitive (needs LBA)</li>
+    </ul>
+</li>
+<li><strong>B) a<sup>n</sup>b<sup>n</sup>:</strong> ✓ Context-free
+    <ul>
+    <li>Classic CFL pattern</li>
+    <li>Push for a's, pop for b's</li>
+    <li>PDA can handle this easily</li>
+    </ul>
+</li>
+<li><strong>C) ww<sup>R</sup>:</strong> ✓ Context-free
+    <ul>
+    <li>Even-length palindromes</li>
+    <li>Push first half, match second half</li>
+    <li>Non-deterministically guess middle</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Key Pattern:</strong> PDAs can handle TWO equal counts or palindromes, but NOT three equal counts.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-27-impossibility-prove-that-math-l-a-n-mid-n-geq-0-factorial-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 27 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^{n!} \mid n \geq 0\}\)</span> (factorial) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Factorial Growth Fails:</strong>
+<ol>
+<li><strong>Language Description:</strong> Strings with 1, 1, 2, 6, 24, 120,... a's</li>
+<li><strong>Growth Rate:</strong> Factorial grows faster than exponential</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>PDAs can handle LINEAR relationships (a<sup>n</sup>b<sup>n</sup>)</li>
+    <li>Cannot handle SUPER-EXPONENTIAL growth</li>
+    <li>Stack can only count linearly</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Proof:</strong>
+    <ul>
+    <li>Let p be pumping length</li>
+    <li>Consider w = a<sup>p!</sup></li>
+    <li>Pumping adds/removes linear amount k</li>
+    <li>p! + k is not a factorial for suitable k</li>
+    <li>Gap between consecutive factorials grows too fast</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Pattern:</strong> Languages with non-polynomial growth (factorial, exponential of exponential) are NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-28-impossibility-prove-that-math-l-a-n-m-mid-n-m-geq-1-exponential-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 28 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^{n^m} \mid n, m \geq 1\}\)</span> (exponential) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Exponential Powers Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong>
+    <ul>
+    <li>n=2, m=2: a<sup>4</sup></li>
+    <li>n=2, m=3: a<sup>8</sup></li>
+    <li>n=3, m=2: a<sup>9</sup></li>
+    </ul>
+</li>
+<li><strong>The Challenge:</strong>
+    <ul>
+    <li>Not all powers are included (only those of form n<sup>m</sup>)</li>
+    <li>Cannot distinguish n<sup>m</sup> from other numbers</li>
+    <li>PDA cannot verify this property</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Would need to verify: "Is |w| expressible as n<sup>m</sup>?"</li>
+    <li>Requires arithmetic computation beyond linear counting</li>
+    <li>Stack provides only linear counting mechanism</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>General Principle:</strong> Languages requiring arithmetic verification (perfect squares, primes, exponentials) are NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-29-impossibility-prove-that-math-l-a-n-mid-n-text-is-prime-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 29 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{a^n \mid n \text{ is prime}\}\)</span> is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Prime Numbers Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong> Strings with 2, 3, 5, 7, 11, 13,... a's (only primes)</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>PDAs cannot perform primality testing</li>
+    <li>No way to verify divisibility properties using a stack</li>
+    <li>Would require checking: "Is |w| not divisible by any 2 ≤ k < |w|?"</li>
+    <li>This needs unbounded divisibility checks</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Approach:</strong>
+    <ul>
+    <li>Consider a large prime p</li>
+    <li>Pumping w = a<sup>p</sup> gives uv<sup>i</sup>xy<sup>i</sup>z</li>
+    <li>Length = p + (i-1)|vy|</li>
+    <li>Can choose i to make this composite</li>
+    <li>For example, i = p+1 gives p + p·|vy| = p(1 + |vy|) which is composite</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Key Insight:</strong> Prime detection requires arithmetic beyond simple counting - it needs divisibility testing which PDAs cannot perform.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-30-impossibility-prove-that-math-l-ww-mid-w-in-a-b-exact-copy-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 30 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{ww \mid w \in \{a,b\}^*\}\)</span> (exact copy) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Copying (Forward) Fails:</strong>
+<ol>
+<li><strong>The Challenge:</strong> Need to verify second half is EXACT copy of first</li>
+<li><strong>Contrast with ww<sup>R</sup>:</strong>
+    <ul>
+    <li><strong>ww<sup>R</sup> (palindrome):</strong> ✓ CFL - can use stack to verify reverse</li>
+    <li><strong>ww (copy):</strong> ✗ NOT CFL - would need to verify forward copy</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>LIFO (Last-In-First-Out) structure of stack</li>
+    <li>Can only compare in REVERSE order</li>
+    <li>Cannot "remember" first half in forward order AND compare</li>
+    <li>Would need FIFO queue or two stacks (= Turing Machine)</li>
+    </ul>
+</li>
+<li><strong>Pumping Lemma Proof:</strong>
+    <ul>
+    <li>Consider w = a<sup>p</sup>b<sup>p</sup>a<sup>p</sup>b<sup>p</sup></li>
+    <li>Any decomposition uvxyz with |vxy| ≤ p</li>
+    <li>vxy lies entirely in one or two adjacent blocks</li>
+    <li>Pumping disrupts the ww pattern</li>
+    <li>Cannot maintain exact duplication</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Critical Distinction:</strong> The ORDER of comparison matters!
+<ul>
+<li>ww<sup>R</sup> is CFL (reverse comparison via stack)</li>
+<li>ww is NOT CFL (forward comparison impossible with single stack)</li>
+</ul>
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-31-impossibility-prove-that-math-l-w-n-mid-w-in-a-b-n-geq-1-n-copies-is-not-context-free admonition">
+<p class="admonition-title"><strong>Question 31 (Impossibility):</strong> Prove that <span class="math notranslate nohighlight">\(L = \{w^n \mid w \in \{a,b\}^*, n \geq 1\}\)</span> (n copies) is NOT context-free.</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why Multiple Copies Fail:</strong>
+<ol>
+<li><strong>Language Description:</strong>
+    <ul>
+    <li>Examples: aa, abab, aabaabab (w=ab, n=2)</li>
+    <li>Need to verify ALL copies are identical</li>
+    </ul>
+</li>
+<li><strong>Special Cases:</strong>
+    <ul>
+    <li><strong>n=1:</strong> w<sup>1</sup> = all strings (trivially CFL)</li>
+    <li><strong>n=2:</strong> ww (NOT CFL as proven in Q30)</li>
+    <li><strong>n=3:</strong> www (even harder than ww)</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Cannot verify multiple identical copies</li>
+    <li>Would need to compare first copy with second, AND with third, etc.</li>
+    <li>Even checking www requires comparing THREE segments</li>
+    <li>PDA can only track one relationship at a time</li>
+    </ul>
+</li>
+<li><strong>Proof Approach:</strong>
+    <ul>
+    <li>If w<sup>n</sup> were CFL, then ww (n=2 case) would be CFL</li>
+    <li>But ww is NOT CFL (proven)</li>
+    <li>Therefore w<sup>n</sup> is NOT CFL</li>
+    </ul>
+</li>
+</ol>
+</div><div class="example-box">
+💭 <strong>Pattern:</strong> Any language requiring comparison of multiple forward copies is NOT context-free.
+</div></details></div>
+<hr class="docutils" />
+<div class="admonition-question-32-impossibility-is-math-l-www-r-mid-w-in-a-b-context-free admonition">
+<p class="admonition-title"><strong>Question 32 (Impossibility):</strong> Is <span class="math notranslate nohighlight">\(L = \{www^R \mid w \in \{a,b\}^*\}\)</span> context-free?</p>
+<span class="level-indicator level-advanced">ADVANCED</span><p><strong>Solution:</strong></p>
+<details>
+<summary><b>🔍 Show Complete Solution</b></summary><div class="not-possible">
+NOT POSSIBLE with a PDA
+</div><div class="steps-box">
+<strong>🎯 Why www<sup>R</sup> Fails:</strong>
+<ol>
+<li><strong>Language Description:</strong> Three copies of w, with last one reversed
+    <ul>
+    <li>Example: w = ab → string is "ab ab ba"</li>
+    <li>Need first two copies to match (forward) AND third to be reverse</li>
+    </ul>
+</li>
+<li><strong>Two Challenges Combined:</strong>
+    <ul>
+    <li><strong>Challenge 1:</strong> Verify first two copies are identical (like ww)</li>
+    <li><strong>Challenge 2:</strong> Verify third copy is reverse (like ww<sup>R</sup>)</li>
+    <li>While ww<sup>R</sup> alone is CFL, adding ww pattern makes it non-CFL</li>
+    </ul>
+</li>
+<li><strong>Why PDA Fails:</strong>
+    <ul>
+    <li>Cannot simultaneously:
+        <ul>
+        <li>Compare first two w's (forward comparison - impossible)</li>
+        <li>AND verify third w matches in reverse</li>
+        </ul>
+    </li>
+    <li>Would need to "remember" first w in forward order</li>
+    <li>While also preparing to match reverse of second w</li>
+    <li>This requires more than one stack's worth of memory</li>
+    </ul>
+</li>
+<li><strong>Formal Proof Sketch:</strong>
+    <ul>
+    <li>If www<sup>R</sup> were CFL, could intersect with regular language a<sup>*</sup>b<sup>*</sup>a<sup>*</sup>b<sup>*</sup>b<sup>*</sup>a<sup>*</sup></li>
+    <li>Would give {a<sup>n</sup>b<sup>n</sup>a<sup>n</sup>b<sup>n</sup>b<sup>n</sup>a<sup>n</sup>}</li>
+    <li>This is similar to crossed dependencies - NOT CFL</li>
+    </ul>
+</li>
+</ol>
+</div><div class="highlight-note">
+<strong>Key Insight:</strong> Adding forward-copy constraint (ww) to palindrome pattern (ww<sup>R</sup>) creates a language beyond CFL power.
+</div></details></div>
+</section>
+<hr class="docutils" />
+<section id="summary-what-makes-languages-non-context-free">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">4.6. </span>Summary: What Makes Languages Non-Context-Free</a><a class="headerlink" href="#summary-what-makes-languages-non-context-free" title="Link to this heading"></a></h2>
+<div class="pda-box">
+<strong>🎯 Patterns That CANNOT Be Handled by PDAs:</strong><br><br>
+
+<strong>1. Three or More Equal Counts:</strong><br>
+• a<sup>n</sup>b<sup>n</sup>c<sup>n</sup> - needs to track three relationships<br>
+• Requires more than one stack<br><br>
+
+<strong>2. Forward Copying:</strong><br>
+• ww - needs to remember and compare in same direction<br>
+• w<sup>n</sup> - multiple forward copies<br>
+• Stack is LIFO, can only compare in reverse<br><br>
+
+<strong>3. Arithmetic Properties:</strong><br>
+• Primes: a<sup>n</sup> where n is prime<br>
+• Perfect squares: a<sup>n²</sup><br>
+• Factorials: a<sup>n!</sup><br>
+• Exponentials: a<sup>n^m</sup><br>
+• Requires divisibility testing or complex arithmetic<br><br>
+
+<strong>4. Crossed Dependencies:</strong><br>
+• a<sup>i</sup>b<sup>j</sup>c<sup>k</sup>d<sup>l</sup> where i=k AND j=l<br>
+• Two independent equalities that "cross" each other<br><br>
+
+<strong>5. Mixed Constraints:</strong><br>
+• www<sup>R</sup> - combines copying with reverse<br>
+• Multiple simultaneous conditions
+</div><div class="highlight-note">
+<strong>⚡ Why These Fail:</strong><br><br>
+
+<strong>PDA Limitations:</strong><br>
+• Only ONE stack (LIFO structure)<br>
+• Can track at most ONE relationship<br>
+• Can compare only in REVERSE order<br>
+• Cannot perform arithmetic beyond counting<br><br>
+
+<strong>What's Needed:</strong><br>
+• Two stacks → Linear Bounded Automaton (LBA)<br>
+• Full tape → Turing Machine<br>
+• Multiple simultaneous counters → Beyond CFLs
+</div><div class="steps-box">
+<strong>🎓 Proof Techniques:</strong><br>
+<ol>
+<li><strong>Pumping Lemma for CFLs:</strong> Show no matter how you pump, language membership breaks</li>
+<li><strong>Closure Properties:</strong> Show if L were CFL, then intersecting with regular language gives known non-CFL</li>
+<li><strong>Reduction:</strong> Show if L were CFL, then another known non-CFL would also be CFL (contradiction)</li>
+<li><strong>Direct Argument:</strong> Show inherent limitation of PDA (like LIFO for ww)</li>
+</ol>
+</div></section>
+<hr class="docutils" />
 <section id="summary-pda-design-patterns">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">4.5. </span>Summary: PDA Design Patterns</a><a class="headerlink" href="#summary-pda-design-patterns" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">4.7. </span>Summary: PDA Design Patterns</a><a class="headerlink" href="#summary-pda-design-patterns" title="Link to this heading"></a></h2>
 <div class="pda-box">
 <strong>🎯 Essential Patterns:</strong><br><br>
 
