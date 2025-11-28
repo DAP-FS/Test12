@@ -153,6 +153,7 @@ Navigation
    modules/CFG
    modules/pushdownautomata
    modules/PDA
+   modules/Regular_Expressions
 
 ----
 
